@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <span id="reauth-email" class="reauth-email"></span>
                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
                <br>
-               <input type="input" name="Email" id="inputEmail" class="form-control"  pattern="[a-zA-Z0-9]+" placeholder="Email address" required >
+               <input type="input" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required >
                <br>
                <input type="password" id="inputPassword" name="MainPw" class="form-control"    placeholder="Password" required>
                <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
@@ -106,23 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
     <script type='text/javascript' src='js/jquery.barfiller.js'></script>
     <script type='text/javascript' src='js/custom.js'></script>
-
-    <script>
-    function filtro(){
-      var e=event.keyCode;
-	
-	if (event.shiftKey == false){
-		if (e==8 || e==32 || e==35 || e==36 || e==46 || (e>=48 && e<=57) || (e>=65 && e<=90) || (e>=96 && e<=105)){
-			return true;
-		}else{
-			return false;
-		}
-	}else{
-		return false;
-	}
-}
-</script>
-
-
+    
   </body>
 </html>
