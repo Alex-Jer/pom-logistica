@@ -2,6 +2,8 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
+include 'navbaarLogin.php';
+use \System\Linq;
 $pw2 = "";
 $Fim = FALSE;
 $pw1 = "";
@@ -12,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $pw = $_POST["MainPw"];
     $pw2 = $_POST["Pw2"];
     $nome= $_POST["Nome"];
-    $pfID= '1';/* $_POST["perfilID"];*/
-    $arID= '2';/*$_POST["armazID"]*/
+    $arID= $_POST["combobox"];
+    $pfID= $_POST["combobox2"];
     $email= $_POST["Email"];
 
     if ($pw == $pw2)
@@ -67,6 +69,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <br>
                <input type="password" id="inputPassword" name="MainPw" class="form-control"    placeholder="Password" required>
                <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
+                        <select name="combobox">
+                            <?php
+                              $busca = mysqli_query($conn,"SELECT * FROM armazem");
+                              foreach ($busca as $eachRow)
+                              {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                                <?php
+                              }
+
+                            ?>
+                        </select>
+                        <select name="combobox2">
+                            <?php
+                              $busca = mysqli_query($conn,"SELECT * FROM perfil");
+                              foreach ($busca as $eachRow)
+                              {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                                <?php
+                              }
+
+                            ?>
+                        </select>
           <?php
 
              if($Fim){
@@ -82,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                }
                mysqli_close($conn);
-                 header("Location: index.php");
+                 /*header("Location: cliente.php");*/
                  exit;
 
             }

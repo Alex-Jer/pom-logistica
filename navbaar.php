@@ -20,7 +20,7 @@
                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                         <li><a href="index.php">Home</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="registar.php">Registar</a></li>
+                        
                         
                     </ul>
                 </nav><!-- .site-navigation -->

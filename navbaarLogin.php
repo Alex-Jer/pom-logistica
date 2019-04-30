@@ -28,7 +28,7 @@
 </head>
 <body>
 
-
+<header class="site-header">
 <div class="nav-bar">
     <div class="container">
         <div class="row">
@@ -42,6 +42,8 @@
                         <li><a href="tipoguia.php">Guias</a></li>
                         <li><a href="tipozona.php">Zonas</a></li>
                         <li><a href="tipopalete.php">Paletes</a></li>
+                        <li><a href="cliente.php">Registar Cliente</a></li>
+                        <li><a href="registar.php">Registar Utilizador</a></li>
                     </ul>
                 </nav><!-- .site-navigation -->
 

@@ -3,7 +3,7 @@
 <html lang="pt">
 <?php 
 session_start();
-include 'navbarMenu.php';
+include 'navbaarLogin.php';
 include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         <div class=" card card-container">
             <form class="form-signin" action="cliente.php" method="post">
                 <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
-                <input type="input" id="inputNif" name="nif" class="form-control" placeholder="NIF" maxlength="9" required >
-                <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada" required >
+                <input type="number" id="inputNif" name="nif" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required >
+                <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada"  required >
                 <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required >
                    
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar Cliente</button>
