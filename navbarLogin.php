@@ -50,6 +50,7 @@ include 'db.php'
                         <li><a href="registar.php">Registar Utilizador</a></li>
                         <li><a href="zona.php">Zona</a></li>
                         <li><a href="localizacao.php">Localização</a></li>
+                        <li><a href="guiadevolucao.php">Guia de devolução</a></li>
                     </ul>
                 </nav><!-- .site-navigation -->
 
