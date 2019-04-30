@@ -7,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $guia = $_POST["combobox"];
     $carga = $_POST["carga"];
     $descarga = $_POST["descarga"];
-    $sql = "INSERT INTO armazem (nome, custo_carga, custo_descarga) VALUES ('$guia', '$carga', '$descarga')";
+    $espaco = $_POST["espaco"];
+    $sql = "INSERT INTO armazem (nome,espaco, custo_carga, custo_descarga) VALUES ('$guia', '$espaco', '$carga', '$descarga')";
     if (mysqli_query($conn, $sql)) {
 ?>
     <script type="text/javascript">;
@@ -58,21 +59,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     <div style="text-align:center">
                         <p>Tipo de armazém</p>
                         <select name="combobox">
-                            <option value="altas">Paletes altas</option>
-                            <option value="baixas">Paletes baixas</option>
-                            <option value="frio">Frio</option>
+                            <option value="Armazem de Paletes Altas">Armazem de Paletes altas</option>
+                            <option value="Armazem de Paletes Baixas">Armazem de Paletes baixas</option>
+                            <option value="Armazem de paletes para o Frio"> Armazem de paletes para o Frio</option>
                         </select>
                         &nbsp;
                     </div>
                     <div style="text-align:center">
                         &nbsp;
                         <p>Custo de carga</p>
-                        <input style="height:25px; width:137px" type="number" name="carga" min="0">
+                        <input style="height:25px; width:137px" type="number" name="carga"  step="any">
                     </div>
                     <div style="text-align:center">
                         &nbsp;
                         <p>Custo de descarga</p>
-                        <input style="height:25px; width:137px" type="number" name="descarga" min="0">
+                        <input style="height:25px; width:137px" type="number" name="descarga"  step="any">
+                    </div>
+                    <div style="text-align:center">
+                        &nbsp;
+                        <p>Espaço disponivel no armazem</p>
+                        <input style="height:25px; width:137px" type="number" name="espaco" >
                     </div>
                     &nbsp;
                <button type="submit">Confirmar</button>

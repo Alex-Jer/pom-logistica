@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-include 'navbaarLogin.php';
+include 'navbarLogin.php';
 use \System\Linq;
 $pw2 = "";
 $Fim = FALSE;
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             <?php
             }
             ?>
-               <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar</button>
+               <button type="submit">Registar</button>
            </form><!-- /form -->
        </div><!-- /card-container -->
    </div><!-- /container -->

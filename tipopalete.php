@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
-    header("Location: navbarLogin.php");
+    /*header("Location: navbarLogin.php");*/
     exit;
 }
 ?>
@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                <span id="reauth-email" class="reauth-email"></span>
                     <div style="text-align:center">
                         <select name="combobox">
-                            <option value="alta">Alta</option>
-                            <option value="baixa">Baixa</option>
-                            <option value="frio">Frio</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Baixa">Baixa</option>
+                            <option value="Fria">Fria</option>
                         </select>
                     </div>
                     &nbsp;
