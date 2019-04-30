@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'db.php';
+include 'navbarLogin.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $guia = $_POST["combobox"];
     $sql  = "INSERT INTO tipo_palete (nome) VALUES ('$guia')";
@@ -14,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
-    header("Location: navbaarLogin.php");
+    header("Location: navbarLogin.php");
     exit;
 }
 ?>

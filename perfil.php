@@ -2,23 +2,25 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
     $guia = $_POST["combobox"];
-    $sql  = "INSERT INTO tipo_zona (nome) VALUES ('$guia')";
+    $sql = "INSERT INTO perfil (nome) VALUES ('$guia')";
     if (mysqli_query($conn, $sql)) {
 ?>
-   <script type="text/javascript">;
+    <script type="text/javascript">;
     alert("New record created successfully"); </script>
     <?php
-    } else {
+    } else 
+    {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
     //header("Location: navbarLogin.php");
     exit;
-}
-?>
- <head>
+} 
+    ?>
+  <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
@@ -43,28 +45,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   </head>
   <body>
-
     <div class="container">
        <div class="card card-container">
            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
 
            <p id="profile-name" class="profile-name-card"></p>
-           <form class="form-signin" action="tipozona.php" method="post">
+           <form class="form-signin" action="perfil.php" method="post">
                <span id="reauth-email" class="reauth-email"></span>
                     <div style="text-align:center">
                         <select name="combobox">
-                            <option value="altas">Paletes altas</option>
-                            <option value="baixas">Paletes baixas</option>
-                            <option value="frio">Frio</option>
+                            <option value="operador">Operador</option>
+                            <option value="administrador">Administrador</option>
                         </select>
                     </div>
                     &nbsp;
-               <button type="submit">Confirmar</button>
-           </form><!-- /form -->
-       </div><!-- /card-container -->
-   </div><!-- /container -->
-   <script type="text/javascript"></script>
-   <script type="text/javascript"></script>
+                <button type="submit">Confirmar</button>
+            </form><!-- /form -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <script type="text/javascript"></script>
+    <script type="text/javascript"></script>
   </body>
 </html>
-        

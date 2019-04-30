@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'db.php';
+include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $guia = $_POST["combobox"];
@@ -13,12 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <?php
     } else 
     {
-          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-      mysqli_close($conn);
-      header("Location: navbaarLogin.php");
-      exit;
-
+    mysqli_close($conn);
+    header("Location: navbarLogin.php");
+    exit;
 } 
     ?>
   <head>

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+include 'db.php'
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +30,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<header class="site-header">
 
 <div class="nav-bar">
     <div class="container">
@@ -39,6 +42,9 @@
                 <nav class="site-navigation d-flex justify-content-end align-items-center">
                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                         <li><a href="navbaarLogin.php">Home</a></li>
+                        <li><a href="perfil.php">(Perfil)</a></li>
+                        <li><a href="armazem.php">Armazém</a></li>
+                        <li><a href="Cliente.php">Registar Cliente</a></li>
                         <li><a href="tipoguia.php">Guias</a></li>
                         <li><a href="tipozona.php">Zonas</a></li>
                         <li><a href="tipopalete.php">Paletes</a></li>
