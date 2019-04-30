@@ -43,8 +43,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <div class="container">
         <div class=" card card-container">
             <form class="form-signin" action="cliente.php" method="post">
-                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
-                <input type="number" id="inputNif" name="nif" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required >
+            <select name="combobox">
+                            <?php
+                              $busca = mysqli_query($conn,"SELECT * FROM cliente");
+                              foreach ($busca as $eachRow)
+                              {
+                                ?>
+                                &nbsp;
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                                <?php
+                              }
+
+                            ?>
+            </select>
+                <input type="input" id="inputGuia" name="Nguia" class="form-control" placeholder="Nº de guia" required autofocus>
+                <input type="datetime" id="inputdata" name="dataentrega" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required >
                 <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada"  required >
                 <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required >
                    

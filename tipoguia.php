@@ -55,8 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <span id="reauth-email" class="reauth-email"></span>
                     <div style="text-align:center">
                         <select name="combobox">
-                            <option value="entrega">Entrega</option>
-                            <option value="transporte">Transporte</option>
+                            <option value="Entrega">Entrega</option>
+                            <option value="Transporte">Transporte</option>
                         </select>
                     </div>
                     &nbsp;
