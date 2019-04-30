@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-include 'navbaarLogin.php';
+include 'navbarLogin.php';
 use \System\Linq;
 $pw2 = "";
 $Fim = FALSE;
@@ -69,57 +69,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <br>
                <input type="password" id="inputPassword" name="MainPw" class="form-control"    placeholder="Password" required>
                <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
-                        <select name="combobox">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM armazem");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                        </select>
-                        <select name="combobox2">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM perfil");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                        </select>
-          <?php
-
-             if($Fim){
-               $sql = "INSERT INTO utilizador (perfil_id,armazem_id,nome, email, password ) VALUES ('$pfID','$arID','$nome', '$email', '$pw')";
-               if (mysqli_query($conn, $sql)) {
-                 ?>
-                 <script type="text/javascript">;
-                 alert("New record created successfully"); </script>
-                 <?php
-                      
-               } else 
-               {
-                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-               }
-               mysqli_close($conn);
-                 /*header("Location: cliente.php");*/
-                 exit;
-
-            }
-            elseif (!$Fim && $Show) {
-              ?>
-              <script type="text/javascript">;
-              alert("As passwords nao coicidem");
-            </script>
-            <?php
-            }
-            ?>
+                  <select name="combobox">
+                    <?php
+                      $busca = mysqli_query($conn,"SELECT * FROM armazem");
+                      foreach ($busca as $eachRow)
+                      {
+                        ?>
+                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                        <?php
+                      }
+                    ?>
+                  </select>
+                  <select name="combobox2">
+                    <?php
+                      $busca = mysqli_query($conn,"SELECT * FROM perfil");
+                      foreach ($busca as $eachRow)
+                      {
+                    ?>
+                      <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                    <?php
+                      }
+                    ?>
+                  </select>
+                  <?php
+                  if($Fim){
+                    $sql = "INSERT INTO utilizador (perfil_id,armazem_id,nome, email, password ) VALUES ('$pfID','$arID','$nome', '$email', '$pw')";
+                    if (mysqli_query($conn, $sql)) {
+                      ?>
+                      <script type="text/javascript">;
+                      alert("New record created successfully"); </script>
+                      <?php
+                            
+                      } else 
+                      {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                      }
+                      mysqli_close($conn);
+                        /*header("Location: cliente.php");*/
+                        exit;
+                  }
+                  elseif (!$Fim && $Show) {
+                      ?>
+                  <script type="text/javascript">;
+                  alert("As passwords não coincidem");
+                </script>
+                <?php
+                }
+                ?>
                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar</button>
            </form><!-- /form -->
        </div><!-- /card-container -->

@@ -41,15 +41,15 @@ include 'db.php'
 
                 <nav class="site-navigation d-flex justify-content-end align-items-center">
                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
-                        <li><a href="navbaarLogin.php">Home</a></li>
-                        <li><a href="perfil.php">(Perfil)</a></li>
+                        <li><a href="navbarLogin.php">Home</a></li>
                         <li><a href="armazem.php">Armazém</a></li>
-                        <li><a href="Cliente.php">Registar Cliente</a></li>
                         <li><a href="tipoguia.php">Guias</a></li>
                         <li><a href="tipozona.php">Zonas</a></li>
                         <li><a href="tipopalete.php">Paletes</a></li>
                         <li><a href="cliente.php">Registar Cliente</a></li>
                         <li><a href="registar.php">Registar Utilizador</a></li>
+                        <li><a href="zona.php">Zona</a></li>
+                        <li><a href="localizacao.php">Localização</a></li>
                     </ul>
                 </nav><!-- .site-navigation -->
 
