@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Abr-2019 às 17:10
+-- Generation Time: 30-Abr-2019 às 10:42
 -- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.4
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,6 +63,30 @@ CREATE TABLE `cliente` (
   `localidade` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nome`, `nif`, `morada`, `localidade`) VALUES
+(5, 'Adriano Horta', 123123123, 'Quinta Nova Lote 3 Ponte Seca', 'Ã“bidos'),
+(6, 'João', 123123123, 'Rua Principal', 'Marinha Grande');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `documento`
+--
+
+CREATE TABLE `documento` (
+  `id` int(11) NOT NULL,
+  `cliente_id` int(5) NOT NULL,
+  `utilizador_id` int(5) NOT NULL,
+  `data_emissao` date NOT NULL,
+  `data_inicio` date NOT NULL,
+  `data_fim` date NOT NULL,
+  `iva` decimal(7,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +106,22 @@ CREATE TABLE `guia` (
   `morada` text NOT NULL,
   `localidade` int(30) NOT NULL,
   `matricula` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `linha`
+--
+
+CREATE TABLE `linha` (
+  `id` int(11) NOT NULL,
+  `documento_id` int(5) NOT NULL,
+  `tipo_linha_id` int(5) NOT NULL,
+  `guia_id` int(5) NOT NULL,
+  `palete_id` int(5) NOT NULL,
+  `quantidade` int(4) NOT NULL,
+  `valor` decimal(7,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -133,6 +173,17 @@ CREATE TABLE `perfil` (
 --
 
 CREATE TABLE `tipo_guia` (
+  `id` int(11) NOT NULL,
+  `nome` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipo_linha`
+--
+
+CREATE TABLE `tipo_linha` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -205,7 +256,8 @@ ALTER TABLE `armazem`
 -- Indexes for table `artigo`
 --
 ALTER TABLE `artigo`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`);
 
 --
 -- Indexes for table `cliente`
@@ -214,10 +266,33 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `documento`
+--
+ALTER TABLE `documento`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`),
+  ADD KEY `utilizador_id` (`utilizador_id`);
+
+--
 -- Indexes for table `guia`
 --
 ALTER TABLE `guia`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cliente_id` (`cliente_id`),
+  ADD KEY `tipo_guia_id` (`tipo_guia_id`),
+  ADD KEY `tipo_palete_id` (`tipo_palete_id`),
+  ADD KEY `tipo_zona_id` (`tipo_zona_id`),
+  ADD KEY `guia_id` (`guia_id`);
+
+--
+-- Indexes for table `linha`
+--
+ALTER TABLE `linha`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `documento_id` (`documento_id`),
+  ADD KEY `palete_id` (`palete_id`),
+  ADD KEY `guia_id` (`guia_id`),
+  ADD KEY `tipo_linha_id` (`tipo_linha_id`);
 
 --
 -- Indexes for table `localizacao`
@@ -229,7 +304,9 @@ ALTER TABLE `localizacao`
 -- Indexes for table `palete`
 --
 ALTER TABLE `palete`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artigo_id` (`artigo_id`),
+  ADD KEY `tipo_palete_id` (`tipo_palete_id`);
 
 --
 -- Indexes for table `perfil`
@@ -241,6 +318,12 @@ ALTER TABLE `perfil`
 -- Indexes for table `tipo_guia`
 --
 ALTER TABLE `tipo_guia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tipo_linha`
+--
+ALTER TABLE `tipo_linha`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -259,13 +342,17 @@ ALTER TABLE `tipo_zona`
 -- Indexes for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `armazem_id` (`armazem_id`),
+  ADD KEY `perfil_id` (`perfil_id`);
 
 --
 -- Indexes for table `zona`
 --
 ALTER TABLE `zona`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `armazem_id` (`armazem_id`),
+  ADD KEY `tipo_zona_id` (`tipo_zona_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -287,12 +374,24 @@ ALTER TABLE `artigo`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `documento`
+--
+ALTER TABLE `documento`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `linha`
+--
+ALTER TABLE `linha`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -320,6 +419,12 @@ ALTER TABLE `tipo_guia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tipo_linha`
+--
+ALTER TABLE `tipo_linha`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tipo_palete`
 --
 ALTER TABLE `tipo_palete`
@@ -335,13 +440,70 @@ ALTER TABLE `tipo_zona`
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `zona`
 --
 ALTER TABLE `zona`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `artigo`
+--
+ALTER TABLE `artigo`
+  ADD CONSTRAINT `artigo_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`);
+
+--
+-- Limitadores para a tabela `documento`
+--
+ALTER TABLE `documento`
+  ADD CONSTRAINT `documento_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
+  ADD CONSTRAINT `documento_ibfk_2` FOREIGN KEY (`utilizador_id`) REFERENCES `utilizador` (`id`);
+
+--
+-- Limitadores para a tabela `guia`
+--
+ALTER TABLE `guia`
+  ADD CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
+  ADD CONSTRAINT `guia_ibfk_2` FOREIGN KEY (`tipo_guia_id`) REFERENCES `tipo_guia` (`id`),
+  ADD CONSTRAINT `guia_ibfk_3` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`),
+  ADD CONSTRAINT `guia_ibfk_4` FOREIGN KEY (`tipo_zona_id`) REFERENCES `zona` (`id`),
+  ADD CONSTRAINT `guia_ibfk_5` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`);
+
+--
+-- Limitadores para a tabela `linha`
+--
+ALTER TABLE `linha`
+  ADD CONSTRAINT `linha_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documento` (`id`),
+  ADD CONSTRAINT `linha_ibfk_2` FOREIGN KEY (`palete_id`) REFERENCES `palete` (`id`),
+  ADD CONSTRAINT `linha_ibfk_3` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`),
+  ADD CONSTRAINT `linha_ibfk_4` FOREIGN KEY (`tipo_linha_id`) REFERENCES `tipo_linha` (`id`);
+
+--
+-- Limitadores para a tabela `palete`
+--
+ALTER TABLE `palete`
+  ADD CONSTRAINT `palete_ibfk_1` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`),
+  ADD CONSTRAINT `palete_ibfk_2` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`);
+
+--
+-- Limitadores para a tabela `utilizador`
+--
+ALTER TABLE `utilizador`
+  ADD CONSTRAINT `utilizador_ibfk_1` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`id`),
+  ADD CONSTRAINT `utilizador_ibfk_2` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id`);
+
+--
+-- Limitadores para a tabela `zona`
+--
+ALTER TABLE `zona`
+  ADD CONSTRAINT `zona_ibfk_1` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`id`),
+  ADD CONSTRAINT `zona_ibfk_2` FOREIGN KEY (`tipo_zona_id`) REFERENCES `tipo_zona` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
