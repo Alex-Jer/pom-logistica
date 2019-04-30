@@ -25,7 +25,7 @@ include 'db.php';
      }
      ?>
      <script type="text/javascript">;
-     alert("As passwords não coincidem");
+     alert("As passwords nao coicidem");
      </script>
      <?php
 

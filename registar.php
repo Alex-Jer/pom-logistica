@@ -5,6 +5,7 @@ include 'db.php';
 $pw2 = "";
 $Fim = FALSE;
 $pw1 = "";
+$action ="registar.php";
 $Show = FALSE;
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -23,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $Fim = FALSE;
       $Show = TRUE;
     }
+    
   }
  ?>
   <head>
@@ -64,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <input type="input" name="Email" id="inputEmail" class="form-control"  placeholder="Email address" required >
                <br>
                <input type="password" id="inputPassword" name="MainPw" class="form-control"    placeholder="Password" required>
-               <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required>
+               <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
           <?php
 
              if($Fim){
@@ -74,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                  <script type="text/javascript">;
                  alert("New record created successfully"); </script>
                  <?php
-
-               } else
+                      
+               } else 
                {
                      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                }
@@ -104,10 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
     <script type='text/javascript' src='js/jquery.barfiller.js'></script>
     <script type='text/javascript' src='js/custom.js'></script>
-<<<<<<< HEAD:Estagio_2019/POM_Logistica/registar.php
 
-=======
-
->>>>>>> 578067154fcb1cc326c0fe97973ab428a4af1882:registar.php
   </body>
 </html>
