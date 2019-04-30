@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Abr-2019 às 10:42
+-- Generation Time: 30-Abr-2019 às 12:43
 -- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.2
+-- versão do PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,6 +34,13 @@ CREATE TABLE `armazem` (
   `custo_carga` decimal(5,0) NOT NULL,
   `custo_descarga` decimal(5,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `armazem`
+--
+
+INSERT INTO `armazem` (`id`, `nome`, `custo_carga`, `custo_descarga`) VALUES
+(1, 'altas', '50', '100');
 
 -- --------------------------------------------------------
 
@@ -166,6 +173,15 @@ CREATE TABLE `perfil` (
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `perfil`
+--
+
+INSERT INTO `perfil` (`id`, `nome`) VALUES
+(1, 'administrador'),
+(2, 'operador'),
+(3, 'administrador');
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +192,14 @@ CREATE TABLE `tipo_guia` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tipo_guia`
+--
+
+INSERT INTO `tipo_guia` (`id`, `nome`) VALUES
+(1, 'entrega'),
+(2, 'entrega');
 
 -- --------------------------------------------------------
 
@@ -362,7 +386,7 @@ ALTER TABLE `zona`
 -- AUTO_INCREMENT for table `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `artigo`
@@ -410,13 +434,13 @@ ALTER TABLE `palete`
 -- AUTO_INCREMENT for table `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tipo_guia`
 --
 ALTER TABLE `tipo_guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tipo_linha`
