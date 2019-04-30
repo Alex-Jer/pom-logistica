@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-session_start();
 include 'db.php';
- ?>
-  <head>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $guia = $_POST["combobox"];
+    $sql  = "INSERT INTO tipo_palete (nome) VALUES ('$guia')";
+    if (mysqli_query($conn, $sql)) {
+?>
+   <script type="text/javascript">;
+    alert("New record created successfully"); </script>
     <?php
-
-
-    $em = "";
-
-    $passInput ="";
-     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-     $em = $_POST["emaill"];
-     $_SESSION['EmailPassa'] = $em;
-     $passInput = $_POST["Password"];
-     $busca = mysqli_query($conn,"SELECT password FROM utilizador WHERE Email='$em'");
-     $dado = mysqli_fetch_array($busca);
-    $pass = $dado['password'];
-     if ($passInput == $pass)
-     {
-       header("Location: teste.php");
-       exit;
-     }
-     ?>
-     <script type="text/javascript">;
-     alert("As passwords não coincidem");
-     </script>
-     <?php
-
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-     ?>
+    mysqli_close($conn);
+    header("Location: navbaarLogin.php");
+    exit;
+}
+?>
+ <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
@@ -61,25 +49,22 @@ include 'db.php';
            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
 
            <p id="profile-name" class="profile-name-card"></p>
-           <form class="form-signin" action="login.php" method="post">
+           <form class="form-signin" action="tipopalete.php" method="post">
                <span id="reauth-email" class="reauth-email"></span>
-               <input type="email" name="emaill" class="form-control" placeholder="Email address" required autofocus>
-               <input type="password" name="Password" class="form-control" placeholder="Password" required>
-               <div id="remember" class="checkbox">
-
-                   <label>
-                       <input type="checkbox" value="remember-me"> Remember me
-                   </label>
-               </div>
-               <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-
+                    <div style="text-align:center">
+                        <select name="combobox">
+                            <option value="alta">Alta</option>
+                            <option value="baixa">Baixa</option>
+                            <option value="frio">Frio</option>
+                        </select>
+                    </div>
+                    &nbsp;
+               <button type="submit">Confirmar</button>
            </form><!-- /form -->
-           <a href="#" class="forgot-password">
-               Forgot the password?
-           </a>
        </div><!-- /card-container -->
    </div><!-- /container -->
    <script type="text/javascript"></script>
    <script type="text/javascript"></script>
   </body>
 </html>
+        

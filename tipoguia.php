@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
+<?php
+include 'db.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $guia = $_POST["combobox"];
+    $sql = "INSERT INTO tipo_guia (nome) VALUES ('$guia')";
+    if (mysqli_query($conn, $sql)) {
+?>
+    <script type="text/javascript">;
+    alert("New record created successfully"); </script>
+    <?php
+    } else 
+    {
+          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+      mysqli_close($conn);
+      header("Location: navbaarLogin.php");
+      exit;
+
+} 
+    ?>
   <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
@@ -31,10 +52,10 @@
            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
 
            <p id="profile-name" class="profile-name-card"></p>
-           <form class="form-signin" action="login.php" method="post">
+           <form class="form-signin" action="tipoguia.php" method="post">
                <span id="reauth-email" class="reauth-email"></span>
                     <div style="text-align:center">
-                        <select>
+                        <select name="combobox">
                             <option value="entrega">Entrega</option>
                             <option value="transporte">Transporte</option>
                         </select>

@@ -5,7 +5,6 @@ include 'db.php';
 $pw2 = "";
 $Fim = FALSE;
 $pw1 = "";
-$action ="registar.php";
 $Show = FALSE;
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -24,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       $Fim = FALSE;
       $Show = TRUE;
     }
-    
   }
  ?>
   <head>
