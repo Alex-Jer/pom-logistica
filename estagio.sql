@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Abr-2019 às 12:43
+-- Generation Time: 30-Abr-2019 às 15:25
 -- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.4
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,16 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `armazem` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL,
-  `custo_carga` decimal(5,0) NOT NULL,
-  `custo_descarga` decimal(5,0) NOT NULL
+  `espaco` int(5) NOT NULL,
+  `custo_carga` decimal(5,2) NOT NULL,
+  `custo_descarga` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `armazem`
 --
 
-INSERT INTO `armazem` (`id`, `nome`, `custo_carga`, `custo_descarga`) VALUES
-(1, 'altas', '50', '100');
+INSERT INTO `armazem` (`id`, `nome`, `espaco`, `custo_carga`, `custo_descarga`) VALUES
+(3, 'Armazem de paletes Altas', 50, '19.99', '17.99'),
+(4, 'Armazem de paletes Baixas', 100, '14.99', '12.99'),
+(5, 'Armazem de paletes para o Frio', 25, '29.99', '27.49');
 
 -- --------------------------------------------------------
 
@@ -53,8 +56,15 @@ CREATE TABLE `artigo` (
   `cliente_id` int(11) NOT NULL,
   `referencia` text NOT NULL,
   `nome` text NOT NULL,
-  `peso` decimal(5,0) NOT NULL
+  `peso` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `artigo`
+--
+
+INSERT INTO `artigo` (`id`, `cliente_id`, `referencia`, `nome`, `peso`) VALUES
+(1, 6, 'Pratos', 'PRA-123', '429.75');
 
 -- --------------------------------------------------------
 
@@ -102,18 +112,25 @@ CREATE TABLE `documento` (
 
 CREATE TABLE `guia` (
   `id` int(11) NOT NULL,
-  `cliente_id` int(3) NOT NULL,
-  `guia_id` int(3) NOT NULL,
-  `tipo_guia_id` int(3) NOT NULL,
-  `tipo_palete_id` int(3) NOT NULL,
-  `tipo_zona_id` int(3) NOT NULL,
-  `data_prevista` date NOT NULL,
-  `numero_paletes` int(3) NOT NULL,
-  `numero_requisicao` int(3) NOT NULL,
-  `morada` text NOT NULL,
-  `localidade` int(30) NOT NULL,
-  `matricula` text NOT NULL
+  `cliente_id` int(3) DEFAULT NULL,
+  `guia_id` int(3) DEFAULT NULL,
+  `tipo_guia_id` int(3) DEFAULT NULL,
+  `tipo_palete_id` int(3) DEFAULT NULL,
+  `tipo_zona_id` int(3) DEFAULT NULL,
+  `data_prevista` date DEFAULT NULL,
+  `numero_paletes` int(3) DEFAULT NULL,
+  `numero_requisicao` int(3) DEFAULT NULL,
+  `morada` text,
+  `localidade` text,
+  `matricula` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `guia`
+--
+
+INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `data_prevista`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
+(1, 5, 1, 1, 1, 2, '2019-05-03', 5, 5, 'Òbidos', 'óbidos', '12-ST-76');
 
 -- --------------------------------------------------------
 
@@ -154,13 +171,21 @@ CREATE TABLE `localizacao` (
 
 CREATE TABLE `palete` (
   `id` int(11) NOT NULL,
-  `guia_entrada_id` int(3) NOT NULL,
-  `guia_saida_id` int(3) NOT NULL,
+  `guia_entrada_id` int(3) DEFAULT NULL,
+  `guia_saida_id` int(3) DEFAULT NULL,
   `artigo_id` int(3) NOT NULL,
   `tipo_palete_id` int(3) NOT NULL,
   `referencia` text NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `palete`
+--
+
+INSERT INTO `palete` (`id`, `guia_entrada_id`, `guia_saida_id`, `artigo_id`, `tipo_palete_id`, `referencia`, `nome`) VALUES
+(1, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos'),
+(2, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos');
 
 -- --------------------------------------------------------
 
@@ -178,9 +203,8 @@ CREATE TABLE `perfil` (
 --
 
 INSERT INTO `perfil` (`id`, `nome`) VALUES
-(1, 'administrador'),
-(2, 'operador'),
-(3, 'administrador');
+(1, 'Administrador'),
+(2, 'Operador');
 
 -- --------------------------------------------------------
 
@@ -198,8 +222,8 @@ CREATE TABLE `tipo_guia` (
 --
 
 INSERT INTO `tipo_guia` (`id`, `nome`) VALUES
-(1, 'entrega'),
-(2, 'entrega');
+(1, 'Entrega'),
+(2, 'Transporte');
 
 -- --------------------------------------------------------
 
@@ -226,6 +250,15 @@ CREATE TABLE `tipo_palete` (
   `comprimento` decimal(5,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `tipo_palete`
+--
+
+INSERT INTO `tipo_palete` (`id`, `nome`, `altura`, `largura`, `comprimento`) VALUES
+(1, 'Palete Baixa', '0', '0', '0'),
+(2, 'Palete Alta', '0', '0', '0'),
+(3, 'Palete Fria', '0', '0', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -236,6 +269,14 @@ CREATE TABLE `tipo_zona` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tipo_zona`
+--
+
+INSERT INTO `tipo_zona` (`id`, `nome`) VALUES
+(1, 'Alta'),
+(2, 'Baixa');
 
 -- --------------------------------------------------------
 
@@ -330,7 +371,9 @@ ALTER TABLE `localizacao`
 ALTER TABLE `palete`
   ADD PRIMARY KEY (`id`),
   ADD KEY `artigo_id` (`artigo_id`),
-  ADD KEY `tipo_palete_id` (`tipo_palete_id`);
+  ADD KEY `tipo_palete_id` (`tipo_palete_id`),
+  ADD KEY `guia_entrada_id` (`guia_entrada_id`),
+  ADD KEY `guia_saida_id` (`guia_saida_id`);
 
 --
 -- Indexes for table `perfil`
@@ -386,19 +429,19 @@ ALTER TABLE `zona`
 -- AUTO_INCREMENT for table `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `artigo`
 --
 ALTER TABLE `artigo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `documento`
@@ -410,7 +453,7 @@ ALTER TABLE `documento`
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `linha`
@@ -428,7 +471,7 @@ ALTER TABLE `localizacao`
 -- AUTO_INCREMENT for table `palete`
 --
 ALTER TABLE `palete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `perfil`
@@ -452,13 +495,13 @@ ALTER TABLE `tipo_linha`
 -- AUTO_INCREMENT for table `tipo_palete`
 --
 ALTER TABLE `tipo_palete`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tipo_zona`
 --
 ALTER TABLE `tipo_zona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `utilizador`
@@ -496,7 +539,7 @@ ALTER TABLE `guia`
   ADD CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `guia_ibfk_2` FOREIGN KEY (`tipo_guia_id`) REFERENCES `tipo_guia` (`id`),
   ADD CONSTRAINT `guia_ibfk_3` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`),
-  ADD CONSTRAINT `guia_ibfk_4` FOREIGN KEY (`tipo_zona_id`) REFERENCES `zona` (`id`),
+  ADD CONSTRAINT `guia_ibfk_4` FOREIGN KEY (`tipo_zona_id`) REFERENCES `tipo_zona` (`id`),
   ADD CONSTRAINT `guia_ibfk_5` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`);
 
 --
@@ -513,7 +556,9 @@ ALTER TABLE `linha`
 --
 ALTER TABLE `palete`
   ADD CONSTRAINT `palete_ibfk_1` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`),
-  ADD CONSTRAINT `palete_ibfk_2` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`);
+  ADD CONSTRAINT `palete_ibfk_2` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`),
+  ADD CONSTRAINT `palete_ibfk_3` FOREIGN KEY (`guia_entrada_id`) REFERENCES `guia` (`id`),
+  ADD CONSTRAINT `palete_ibfk_4` FOREIGN KEY (`guia_saida_id`) REFERENCES `guia` (`guia_id`);
 
 --
 -- Limitadores para a tabela `utilizador`
