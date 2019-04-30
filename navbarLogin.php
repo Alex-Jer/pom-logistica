@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 include 'db.php'
 ?>
 <html lang="en">
@@ -37,7 +37,7 @@ include 'db.php'
         <div class="row">
             <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
                 <div class="site-branding d-flex align-items-center">
-                
+
 
                 <nav class="site-navigation d-flex justify-content-end align-items-center">
                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
@@ -51,8 +51,7 @@ include 'db.php'
                         <li><a href="registar.php">Registar Utilizador</a></li>
                         <li><a href="artigo.php">Registar Artigo</a></li>
                         <li><a href="palete.php">Registar Palete</a></li>
-                        <li><a href="Guia_Entrega.php">Guia de Entrega</a></li>
-                    </ul>
+                        <li><a href="Guia_Entrega.php">Guia de Entrega</a></li>                    </ul>
                 </nav><!-- .site-navigation -->
 
                 <div class="hamburger-menu d-lg-none">
