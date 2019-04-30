@@ -58,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     <div class="container">
        <div class="card card-container">
-           <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-           <p id="profile-name" class="profile-name-card"></p>
-
+          <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+          <p id="profile-name" class="profile-name-card"></p>
+          <h1 style="text-align:center">Registar utilizador</h1>
            <form class="form-signin" method="post" action="registar.php">
                <span id="reauth-email" class="reauth-email"></span>
                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
@@ -69,60 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <br>
                <input type="password" id="inputPassword" name="MainPw" class="form-control"    placeholder="Password" required>
                <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
-<<<<<<< HEAD
-                        <select name="combobox">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM armazem");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                        </select>
-                        <select name="combobox2">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM perfil");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                        </select>
-          <?php
-
-             if($Fim){
-               $sql = "INSERT INTO utilizador (perfil_id,armazem_id,nome, email, password ) VALUES ('$pfID','$arID','$nome', '$email', '$pw')";
-               if (mysqli_query($conn, $sql)) {
-                 ?>
-                 <script type="text/javascript">;
-                 alert("New record created successfully"); </script>
-                 <?php
-                      
-               } else 
-               {
-                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-               }
-               mysqli_close($conn);
-                 /*header("Location: cliente.php");*/
-                 exit;
-
-            }
-            elseif (!$Fim && $Show) {
-              ?>
-              <script type="text/javascript">;
-              alert("As passwords nao coicidem");
-            </script>
-            <?php
-            }
-            ?>
-               <button type="submit">Registar</button>
-=======
                   <select name="combobox">
                     <?php
                       $busca = mysqli_query($conn,"SELECT * FROM armazem");
@@ -171,7 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 }
                 ?>
                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar</button>
->>>>>>> 58f142f4a7ee72123e370bb4db23cde1ec3383e3
            </form><!-- /form -->
        </div><!-- /card-container -->
    </div><!-- /container -->

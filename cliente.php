@@ -42,13 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
     <div class="container">
         <div class=" card card-container">
+            <h1 style="text-align:center">Registar cliente</h1>
             <form class="form-signin" action="cliente.php" method="post">
                 <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
                 <input type="number" id="inputNif" name="nif" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required >
                 <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada"  required >
                 <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required >
                    
-                <button type="submit">Registar Cliente</button>
+                <button type="submit">Confirmar</button>
            </form><!-- /form -->
         </div>
 

@@ -15,11 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
-<<<<<<< HEAD
-    /*header("Location: navbarLogin.php");*/
-=======
     //header("Location: navbarLogin.php");
->>>>>>> 58f142f4a7ee72123e370bb4db23cde1ec3383e3
     exit;
 }
 ?>

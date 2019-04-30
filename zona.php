@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            <form class="form-signin" action="zona.php" method="post">
                <span id="reauth-email" class="reauth-email"></span>
                <div style="text-align:center">
-               <p>Zona</p>
+               <h1>Zona</h1>
                         <select name="combobox">
                             <option value="altas">Paletes altas</option>
                             <option value="baias">Paletes baixas</option>
