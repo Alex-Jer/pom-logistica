@@ -20,7 +20,7 @@ include 'db.php';
     $pass = $dado['password'];
      if ($passInput == $pass)
      {
-       header("Location: teste.php");
+       header("Location: menu.php");
        exit;
      }
      ?>
