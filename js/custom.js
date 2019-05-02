@@ -45,7 +45,6 @@
             }
         }
     } );
-
     // Accordion & Toggle
     $('.accordion-wrap.type-accordion').collapsible({
         accordion: true,

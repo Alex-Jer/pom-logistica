@@ -12,10 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $peso = (float)$peso;
     $cli_id = $_POST["combobox"];
 
-    $sql = "INSERT INTO artigo (cliente_id, referencia, nome, peso) VALUES ('$cli_id','$ref', '$nome', '$peso')";
+    $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$ref','$nome','$peso')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
+            ;
             alert("New record created successfully");
         </script>
     <?php
@@ -65,6 +66,7 @@ exit;
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 
 </html>
