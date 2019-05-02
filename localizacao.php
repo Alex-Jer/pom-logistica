@@ -2,24 +2,21 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
-$i=0;
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $referencia = $_POST["referencia"];
-        $tipopalete = $_POST["combobox2"];
-        $zona = $_POST["combobox3"];
-        $dataentrada = $_POST["entrada"];
-        $datasaida = $_POST["saida"];
-        $sql = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
-        if (mysqli_query($conn, $sql)) {
-
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-        mysqli_close($conn);
-        //header("Location: navbarLogin.php");
-        exit;
+$i = 0;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $referencia = $_POST["referencia"];
+    $tipopalete = $_POST["combobox2"];
+    $zona = $_POST["combobox3"];
+    $dataentrada = $_POST["entrada"];
+    $datasaida = $_POST["saida"];
+    $sql = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
+    if (mysqli_query($conn, $sql)) { } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
+    mysqli_close($conn);
+    //header("Location: navbarLogin.php");
+    exit;
+}
 
 ?>
 
@@ -61,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <div style="text-align:center">
                     <h1>Localização</h1>
                     <br>
-                    <p>Tipo de palete</p>
-                    <select name="combobox2" id="TipoPalete">
+                    <select class="form-control" name="combobox2" id="TipoPalete">
+                        <option value="" disabled selected>Tipo de palete</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
                         foreach ($busca as $eachRow) {
@@ -72,29 +69,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     }
                     ?>
                     </select>
+                    <br>
                     <div style="text-align:center">
-                        <br>
-                        <p>Zona</p>
-                        <select name="combobox3" id="Zona"></select>
+                        <select class="form-control" name="combobox3" id="Zona">
+                            <option value="" disabled selected>Zona</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM zona");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                                <?php
+                        }
+                                ?>
+                        </select>
                     </div>
                 </div>
                 <div style="text-align:center">
                     <br>
-                    <p>Referência</p>
-                    <input type=text name="referencia">
+                    <input class="form-control" placeholder="Referência" type=text name="referencia">
                 </div>
                 <div style="text-align:center">
-                    <p>Data de entrada</p>
-                    <input style="text-align:right" type="date" name="entrada">
+                    <input class="form-control" style="text-align:center" type="text" onfocus="(this.type='datetime-local')" placeholder="Data de entrada" name="entrada">
                 </div>
-                &nbsp;
                 <div style="text-align:center">
-                    <p>Data de saída</p>
-                    <input style="text-align:right" type="date" name="saida">
-                    <br>
+                    <input class="form-control" style="text-align:center" type="text" onfocus="(this.type='datetime-local')" placeholder="Data de saída" name="saida">
                 </div>
                 &nbsp;
-                <button type="submit">Confirmar</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -104,16 +105,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 </html>
 <script>
-$("#TipoPalete").on("change",function(){
-  $.ajax({
-			url: 'ajaxLocal.php',
-			type: 'POST',
-			data:{id:$("#TipoPalete").val()},
-			success: function(data)
-			{
+    $("#TipoPalete").on("change", function() {
+        $.ajax({
+            url: 'ajaxLocal.php',
+            type: 'POST',
+            data: {
+                id: $("#TipoPalete").val()
+            },
+            success: function(data) {
 
-				$("#Zona").html(data);
-			},
-		});
-});
+                $("#Zona").html(data);
+            },
+        });
+    });
 </script>

@@ -56,24 +56,23 @@ exit;
                     <h1>Guia de transporte</h1>
                     <br>
                     <div style="text-align:center">
-                        <input type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
-                        <br>
+                        <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input placeholder="Hora de carga" style="text-align:center" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" placeholder="Hora de carga" style="text-align:center" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input placeholder="Hora prevista de descarga" style="text-align:center" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" placeholder="Hora prevista de descarga" style="text-align:center" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                     </div>
                     <div style="text-align:center">
                         <br>
                         <form class="form-signin" method="post">
-                            <input type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
+                            <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
                     </div>
                     <br>
-                    <button type="submit">Confirmar</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

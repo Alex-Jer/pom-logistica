@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'operador.php';
+include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
     $nrequisicao = $_POST["nrequisicao"];
@@ -74,7 +74,7 @@ exit;
                 </div>
                 &nbsp;
                 <div style="text-align:center">
-                    <input class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
+                    <input class="form-control" class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
                 </div>
                 <div style="text-align:center">
                     <br>
@@ -105,7 +105,7 @@ exit;
                 </div>
                 &nbsp;
                 <br>
-                <button type="submit">Confirmar</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

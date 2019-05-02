@@ -58,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="container">
     <div class="card card-container">
       <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-      <p id="profile-name" class="profile-name-card"></p>
       <h1 style="text-align:center">Registar utilizador</h1>
       <form class="form-signin" method="post" action="registar_utilizador.php">
         <span id="reauth-email" class="reauth-email"></span>
@@ -68,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <input type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required>
         <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required>
-        <select name="combobox">
+        <select class="form-control" name="combobox">
+          <option value="" disabled selected>Armazém</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM armazem");
           foreach ($busca as $eachRow) {
@@ -78,7 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <select name="combobox2">
+        <br>
+        <select class="form-control" name="combobox2">
+          <option value="" disabled selected>Estatuto</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM perfil");
           foreach ($busca as $eachRow) {
@@ -112,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php
       }
       ?>
+        <br>
         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar</button>
       </form><!-- /form -->
     </div><!-- /card-container -->
