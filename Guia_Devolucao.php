@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
-            ;
             alert("New record created successfully");
         </script>
     <?php
@@ -62,7 +61,7 @@ exit;
             <form class="form-signin" action="Guia_Devolucao.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
-                    <h1>Devolução</h1>
+                    <h1>Guia de devolução</h1>
                     <br>
                     <select name="cliente" style="text-align-last:center">
                         <option value="" disabled selected>Cliente</option>
@@ -76,42 +75,6 @@ exit;
                     ?>
                     </select>
                 </div>
-                <br>
-                <div style="text-align:center">
-                    <select name="tipopalete" style="text-align-last:center">
-                        <option value="" disabled selected>Tipo de paletes</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <br>
-                <div style="text-align:center">
-                    <select name="tipozona" style="text-align-last:center">
-                        <option value="" disabled selected>Tipo de zona</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input placeholder="Data" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
-                </div>
                 &nbsp;
                 <div style="text-align:center">
                     <input type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
@@ -120,19 +83,13 @@ exit;
                 <div style="text-align:center">
                     <br>
                     <form class="form-signin" method="post">
-                        <input type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
+                        <input type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center" required>
                 </div>
-                &nbsp;
                 <div style="text-align:center">
-                    <input type="input" name="localidade" placeholder="Localidade" style="text-align:center" required>
                     <br>
+                    <input placeholder="Data e hora prevista de recolha" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                 </div>
-                &nbsp;
-                <div style="text-align:center">
-                    <input type="input" name="matricula" placeholder="Matrícula" style="text-align:center" required>
-                    <br>
-                </div>
-                &nbsp;
+                <br>
                 <div style="text-align:center">
                     <select name="artigo" style="text-align-last:center">
                         <option value="" disabled selected>Artigo</option>
@@ -146,6 +103,11 @@ exit;
                     ?>
                     </select>
                 </div>
+                <div style="text-align:center">
+                    <br>
+                    <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
+                </div>
+                &nbsp;
                 <br>
                 <button type="submit">Confirmar</button>
             </form><!-- /form -->

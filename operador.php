@@ -43,7 +43,7 @@ include 'db.php'
 
                             <nav class="site-navigation d-flex justify-content-end align-items-center">
                                 <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
-                                    <li><a href="navbarLogin.php">Home</a></li>
+                                    <li><a href="operador.php">Home</a></li>
                                     <li><a href="armazem.php">Armazém</a></li>
                                     <li><a href="Guia_Devolucao.php">Guia de devolução</a></li>
                                     <li><a href="index.php">Sair</a></li>

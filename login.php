@@ -3,7 +3,7 @@
 <?php
 session_start();
 include 'db.php';
-include 'navbaar.php';
+include 'navbar.php';
 ?>
 
 <head>
@@ -31,7 +31,6 @@ include 'navbaar.php';
         }
         ?>
         <script type="text/javascript">
-            ;
             alert("As passwords não coincidem");
         </script>
     <?php
@@ -68,6 +67,7 @@ include 'navbaar.php';
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" action="login.php" method="post">
+                <h1 style="text-align:center">Login</h1>
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" name="emaill" class="form-control" placeholder="Email address" required autofocus>
                 <input type="password" name="Password" class="form-control" placeholder="Password" required>

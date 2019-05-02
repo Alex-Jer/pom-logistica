@@ -29,7 +29,7 @@
 
 <body>
     <?php
-    include 'navbaar.php';
+    include 'navbar.php';
     ?>
 
     <div class="swiper-container hero-slider">

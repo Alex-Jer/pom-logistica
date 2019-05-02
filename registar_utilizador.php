@@ -94,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if (mysqli_query($conn, $sql)) {
             ?>
             <script type="text/javascript">
-              ;
               alert("New record created successfully");
             </script>
           <?php

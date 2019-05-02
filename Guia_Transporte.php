@@ -3,20 +3,14 @@
 <?php
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $cliente = $_POST["cliente"];
-    $tipopalete = $_POST["tipopalete"];
-    $tipozona = $_POST["tipozona"];
-    $data = $_POST["data"];
-    $npaletes = $_POST["npaletes"];
-    $nrequisicao = $_POST["nrequisicao"];
-    $morada = $_POST["morada"];
-    $localidade = $_POST["localidade"];
     $matricula = $_POST["matricula"];
-    $sql = "INSERT INTO guia (cliente_id, tipo_palete_id, tipo_zona_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES ('$cliente', '$tipopalete', '$tipozona', '$data', '$npaletes', '$nrequisicao', '$morada', '$localidade', '$matricula')";
+    $horacarga = $_POST["horacarga"];
+    $horadescarga = $_POST["horadescarga"];
+    $morada = $_POST["morada"];
+    $sql = "INSERT INTO guia (data_prevista, morada, matricula) VALUES ('$matricula', '$horacarga', '$horadescarga', '$morada')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
-            ;
             alert("New record created successfully");
         </script>
     <?php
@@ -64,77 +58,25 @@ exit;
                 <div style="text-align:center">
                     <h1>Guia de transporte</h1>
                     <br>
+                    <div style="text-align:center">
+                        <input type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
+                        <br>
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input placeholder="Hora de carga" style="text-align:center" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input placeholder="Hora prevista de descarga" style="text-align:center" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <form class="form-signin" method="post">
+                            <input type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
+                    </div>
                     <br>
-                    <select name="tipopalete" style="text-align-last:center">
-                        <option value="" disabled selected>Tipo de paletes</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <br>
-                <div style="text-align:center">
-                    <select name="tipozona" style="text-align-last:center">
-                        <option value="" disabled selected>Tipo de zona</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input placeholder="Data" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
-                </div>
-                &nbsp;
-                <div style="text-align:center">
-                    <input type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
-                    <br>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <form class="form-signin" method="post">
-                        <input type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
-                </div>
-                &nbsp;
-                <div style="text-align:center">
-                    <input type="input" name="localidade" placeholder="Localidade" style="text-align:center" required>
-                    <br>
-                </div>
-                &nbsp;
-                <div style="text-align:center">
-                    <input type="input" name="matricula" placeholder="Matrícula" style="text-align:center" required>
-                    <br>
-                </div>
-                &nbsp;
-                <div style="text-align:center">
-                    <select name="artigo" style="text-align-last:center">
-                        <option value="" disabled selected>Artigo</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <br>
-                <button type="submit">Confirmar</button>
+                    <button type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
