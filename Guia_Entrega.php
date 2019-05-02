@@ -68,6 +68,7 @@ include 'db.php';
     <div class="container">
         <div class=" card card-container">
             <form class="form-signin" action="Guia_Entrega.php" method="post">
+            <h1>Guia de entrega</h1>
             <p>Cliente</p>
             <select name="comboboxCli">
                             <?php
@@ -166,7 +167,7 @@ include 'db.php';
 <script>
 $("#TipoPalete").on("change",function(){
   $.ajax({
-			url: 'Ajax.php',
+			url: 'ajaxEntrega.php',
 			type: 'POST',
 			data:{id:$("#TipoPalete").val()},
 			success: function(data)

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarLogin.php';
+include 'operador.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
     $tipopalete = $_POST["tipopalete"];
