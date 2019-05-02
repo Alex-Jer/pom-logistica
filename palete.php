@@ -6,13 +6,13 @@ include 'navbarLogin.php';
 include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["Nome"];
+    $nome = $_POST["nome"];
     $ref = $_POST["ref"];
+    $data = $_POST["data"];
+    $artigo = $_POST["artigo"];
+    $tipopalete = $_POST["tipopalete"];
 
-    $cli_id = $_POST["combobox"];
-    $cli_id2 = $_POST["combobox2"];
-
-    $sql = "INSERT INTO palete (artigo_id ,tipo_palete_id,referencia,nome) VALUES ('$cli_id','$cli_id2','$ref','$nome')";
+    $sql = "INSERT INTO palete (artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$artigo','$tipopalete','$ref','$nome', '$data')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -42,36 +42,62 @@ exit;
     <div class="container">
         <div class=" card card-container">
             <form class="form-signin" action="palete.php" method="post">
-                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
+                <input type="input" id="inputNome" name="nome" class="form-control" placeholder="Nome" required autofocus>
                 &nbsp;
-                <input type="input" id="inputRef" name="ref" class="form-control" placeholder="Referencia" value="PAL-" required>
-                &nbsp;
-                <select name="combobox">
-                    <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM artigo");
-                    foreach ($busca as $eachRow) {
-                        ?>
-                        &nbsp;
-                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                    <?php
-                }
-
-                ?>
-                </select>
-                &nbsp;
-                <select name="combobox2">
-                    <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
-                    foreach ($busca as $eachRow) {
-                        ?>
-                        &nbsp;
-                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                    <?php
-                }
-
-                ?>
-                </select>
-                <button type="submit">Registar Palete</button>
+                <input type="input" id="inputRef" name="ref" class="form-control" placeholder="Referência" value="PAL-" required>
+                <br>
+                <div style="text-align:center">
+                    <input placeholder="Data e hora" class="form-control" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <select class="form-control" name="artigo" style="text-align-last:center">
+                        <option value="" disabled selected>Artigo</option>
+                        <?php
+                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
+                        foreach ($busca as $eachRow) {
+                            ?>
+                            &nbsp;
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <select class="form-control" style="text-align-last:center" name="tipopalete">
+                        <option value="" disabled selected>Tipo de palete</option>
+                        <?php
+                        $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
+                        foreach ($busca as $eachRow) {
+                            ?>
+                            &nbsp;
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <select class="form-control" style="text-align-last:center" name="localizacao">
+                        <option value="" disabled selected>Localização</option>
+                        <?php
+                        $busca = mysqli_query($conn, "SELECT * FROM localizacao");
+                        foreach ($busca as $eachRow) {
+                            ?>
+                            &nbsp;
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <button type="submit">Registar Palete</button>
+                </div>
             </form><!-- /form -->
         </div>
 

@@ -4,15 +4,12 @@
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
-    $tipopalete = $_POST["tipopalete"];
-    $tipozona = $_POST["tipozona"];
-    $data = $_POST["data"];
-    $npaletes = $_POST["npaletes"];
     $nrequisicao = $_POST["nrequisicao"];
     $morada = $_POST["morada"];
-    $localidade = $_POST["localidade"];
-    $matricula = $_POST["matricula"];
-    $sql = "INSERT INTO guia (cliente_id, tipo_palete_id, tipo_zona_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES ('$cliente', '$tipopalete', '$tipozona', '$data', '$npaletes', '$nrequisicao', '$morada', '$localidade', '$matricula')";
+    $data = $_POST["data"];
+    $artigo = $_POST["artigo"];
+    $npaletes = $_POST["npaletes"];
+    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ('$cliente', 2, '$tipopalete', '$tipozona', '$data', '$npaletes', '$nrequisicao', '$morada', '$localidade', '$matricula')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -63,7 +60,7 @@ exit;
                 <div style="text-align:center">
                     <h1>Guia de devolução</h1>
                     <br>
-                    <select name="cliente" style="text-align-last:center">
+                    <select class="form-control" name="cliente" style="text-align-last:center">
                         <option value="" disabled selected>Cliente</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -77,21 +74,20 @@ exit;
                 </div>
                 &nbsp;
                 <div style="text-align:center">
-                    <input type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
-                    <br>
+                    <input class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
                 </div>
                 <div style="text-align:center">
                     <br>
                     <form class="form-signin" method="post">
-                        <input type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center" required>
+                        <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center" required>
                 </div>
                 <div style="text-align:center">
                     <br>
-                    <input placeholder="Data e hora prevista de recolha" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                 </div>
                 <br>
                 <div style="text-align:center">
-                    <select name="artigo" style="text-align-last:center">
+                    <select class="form-control" name="artigo" style="text-align-last:center">
                         <option value="" disabled selected>Artigo</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -105,7 +101,7 @@ exit;
                 </div>
                 <div style="text-align:center">
                     <br>
-                    <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
+                    <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
                 </div>
                 &nbsp;
                 <br>

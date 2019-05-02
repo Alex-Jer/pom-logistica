@@ -7,13 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $horacarga = $_POST["horacarga"];
     $horadescarga = $_POST["horadescarga"];
     $morada = $_POST["morada"];
-    $sql = "INSERT INTO guia (data_prevista, morada, matricula) VALUES ('$matricula', '$horacarga', '$horadescarga', '$morada')";
+    $sql = "INSERT INTO guia (tipo_guia_id, matricula, data_carga, data_prevista, morada) VALUES (3, '$matricula', '$horacarga', '$horadescarga', '$morada')";
     if (mysqli_query($conn, $sql)) {
-        ?>
+?>
         <script type="text/javascript">
             alert("New record created successfully");
         </script>
-    <?php
+        <?php
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
@@ -21,8 +21,7 @@ mysqli_close($conn);
 //header("Location: navbarLogin.php");
 exit;
 }
-?>
-
+        ?>
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
@@ -45,15 +44,13 @@ exit;
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" action="Guia_Devolucao.php" method="post">
+            <form class="form-signin" action="Guia_Transporte.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
                     <h1>Guia de transporte</h1>
@@ -83,5 +80,4 @@ exit;
     <script type="text/javascript"></script>
     <script type="text/javascript"></script>
 </body>
-
 </html>

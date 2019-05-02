@@ -1,69 +1,103 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang=pt dir="ltr">
 <?php
-session_start();
 include 'navbarLogin.php';
-include 'db.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["Nome"];
-    $nifNumber = $_POST["nif"];
-    $nifNumberr = (int)$nifNumber;
-    $Morada = $_POST["morada"];
-    $localidade = $_POST["local"];
-
-    $sql = "INSERT INTO cliente (nome,nif,morada, localidade) VALUES ('$nome',$nifNumberr,'$Morada', '$localidade')";
+    $cliente = $_POST["cliente"];
+    $horaentrega = $_POST["horaentrega"];
+    $npaletes = $_POST["npaletes"];
+    $tipopalete = $_POST["tipopalete"];
+    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, data_carga, numero_paletes) VALUES ('$cliente', 1, '$tipopalete', '$horaentrega', '$npaletes')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
             alert("New record created successfully");
         </script>
     <?php
-
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-header("Location: menu.php");
+//header("Location: navbarLogin.php");
 exit;
-} ?>
-
-
+}
+?>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="container">
-        <div class=" card card-container">
-            <form class="form-signin" action="registar_cliente.php" method="post">
-                <select name="combobox">
-                    <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM cliente");
-                    foreach ($busca as $eachRow) {
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="Guia_Entrega.php" method="post">
+                <span id="reauth-email" class="reauth-email"></span>
+                <div style="text-align:center">
+                    <h1>Guia de entrega</h1>
+                    <br>
+                    <div style="text-align:center">
+                        <select name="cliente" style="text-align-last:center">
+                            <option value="" disabled selected>Cliente</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input placeholder="Hora prevista de entrega" style="text-align:center" name="horaentrega" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
+                    </div>
+                    <br>
+                    <div style="text-align:center">
+                        <select name="tipopalete">
+                            <option value="" disabled selected>Tipo de palete</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                            <?php
+                        }
                         ?>
-                        &nbsp;
-                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                    <?php
-                }
-
-                ?>
-                </select>
-                <input type="input" id="inputGuia" name="Nguia" class="form-control" placeholder="Nº de guia" required autofocus>
-                <input type="datetime" id="inputdata" name="dataentrega" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required>
-                <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada" required>
-                <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required>
-
-                <button type="submit">Registar Cliente</button>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit">Confirmar</button>
             </form><!-- /form -->
-        </div>
-
-    </div>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <script type="text/javascript"></script>
+    <script type="text/javascript"></script>
 </body>
 
 </html>

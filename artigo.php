@@ -8,12 +8,11 @@ include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
     $ref = $_POST["ref"];
-
     $peso = $_POST["peso"];
     $peso = (float)$peso;
     $cli_id = $_POST["combobox"];
 
-    $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$nome','$ref','$peso')";
+    $sql = "INSERT INTO artigo (cliente_id, referencia, nome, peso) VALUES ('$cli_id','$ref', '$nome', '$peso')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -49,7 +48,7 @@ exit;
                 &nbsp;
                 <input type="number" id="inputPeso" name="peso" class="form-control" placeholder="Peso" step="any" required>
                 &nbsp;
-                <select name="combobox">
+                <select class="form-control" name="combobox">
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM cliente");
                     foreach ($busca as $eachRow) {
@@ -58,7 +57,6 @@ exit;
                         <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
                     <?php
                 }
-
                 ?>
                 </select>
                 &nbsp;

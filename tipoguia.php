@@ -58,6 +58,7 @@ exit;
                     <select name="combobox">
                         <option value="Entrega">Entrega</option>
                         <option value="Transporte">Transporte</option>
+                        <option value="Devolução">Devolução</option>
                     </select>
                 </div>
                 &nbsp;
