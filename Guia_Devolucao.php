@@ -3,11 +3,16 @@
 <?php
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $guia = $_POST["combobox"];
-    $armazem = $_POST["combobox2"];
-    $tipozona = $_POST["combobox3"];
-    $precozona = $_POST["precozona"];
-    $sql  = "INSERT INTO zona (armazem_id, tipo_zona_id, nome, preco_zona) VALUES ('$armazem', '$tipozona', '$guia', '$precozona')";
+    $cliente = $_POST["cliente"];
+    $tipopalete = $_POST["tipopalete"];
+    $tipozona = $_POST["tipozona"];
+    $data = $_POST["data"];
+    $npaletes = $_POST["npaletes"];
+    $nrequisicao = $_POST["nrequisicao"];
+    $morada = $_POST["morada"];
+    $localidade = $_POST["localidade"];
+    $matricula = $_POST["matricula"];
+    $sql = "INSERT INTO guia (cliente_id, tipo_palete_id, tipo_zona_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES ('$cliente', '$tipopalete', '$tipozona', '$data', '$npaletes', '$nrequisicao', '$morada', '$localidade', '$matricula')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -49,24 +54,19 @@ exit;
 </head>
 
 <body>
-
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" action="zona.php" method="post">
+            <form class="form-signin" action="Guia_Devolucao.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
-                    <h1>Zona</h1>
-                    <select name="combobox">
-                        <option value="altas">Paletes altas</option>
-                        <option value="baias">Paletes baixas</option>
-                        <option value="frio">Frio</option>
-                    </select>
-                    <select name="combobox2">
+                    <h1>Guia de devolução</h1>
+                    <br>
+                    <select name="cliente" style="text-align-last:center">
+                        <option value="" disabled selected>Cliente</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM armazem");
+                        $busca = mysqli_query($conn, "SELECT * FROM cliente");
                         foreach ($busca as $eachRow) {
                             ?>
                             <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
@@ -74,9 +74,27 @@ exit;
                     }
                     ?>
                     </select>
-                    <select name="combobox3">
+                </div>
+                &nbsp;
+                <div style="text-align:center">
+                    <input type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
+                    <br>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <form class="form-signin" method="post">
+                        <input type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center" required>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <input placeholder="Data e hora prevista de recolha" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <select name="artigo" style="text-align-last:center">
+                        <option value="" disabled selected>Artigo</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
+                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
                         foreach ($busca as $eachRow) {
                             ?>
                             <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
@@ -86,11 +104,11 @@ exit;
                     </select>
                 </div>
                 <div style="text-align:center">
-                    &nbsp;
-                    <p>Preço de zona</p>
-                    <input style="height:25px; width:137px" type="number" name="precozona" min="0">
+                    <br>
+                    <input type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
                 </div>
                 &nbsp;
+                <br>
                 <button type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->

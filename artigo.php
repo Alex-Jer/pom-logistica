@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="pt">
-<?php 
+<?php
 session_start();
 include 'navbarLogin.php';
 include 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
     $ref = $_POST["ref"];
-    
-    $peso= $_POST["peso"];
+
+    $peso = $_POST["peso"];
     $peso = (float)$peso;
-    $cli_id= $_POST["combobox"];
+    $cli_id = $_POST["combobox"];
 
         $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$ref','$nome','$peso')";
             if (mysqli_query($conn, $sql)) {
@@ -39,34 +37,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <title>Menu</title>
 
 </head>
+
 <body>
-    
+
     <div class="container">
         <div class=" card card-container">
             <form class="form-signin" action="artigo.php" method="post">
                 <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
                 &nbsp;
-                <input type="input" id="inputRef" name="ref" class="form-control" placeholder="Referencia"  required >
+                <input type="input" id="inputRef" name="ref" class="form-control" placeholder="Referencia" required>
                 &nbsp;
-                <input type="number" id="inputPeso" name="peso" class="form-control" placeholder="Peso"  step="any" required >
+                <input type="number" id="inputPeso" name="peso" class="form-control" placeholder="Peso" step="any" required>
                 &nbsp;
                 <select name="combobox">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM cliente");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                &nbsp;
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                              }
+                    <?php
+                    $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                    foreach ($busca as $eachRow) {
+                        ?>
+                        &nbsp;
+                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                    <?php
+                }
 
-                            ?>
-                        </select>
-                        
-                &nbsp;  
+                ?>
+                </select>
+                &nbsp;
                 <button type="submit">Registar Artigo</button>
-           </form><!-- /form -->
+            </form><!-- /form -->
         </div>
 
     </div>

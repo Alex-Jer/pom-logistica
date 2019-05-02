@@ -3,11 +3,11 @@
 <?php
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $guia = $_POST["combobox"];
-    $carga = $_POST["carga"];
-    $descarga = $_POST["descarga"];
-    $espaco = $_POST["espaco"];
-    $sql = "INSERT INTO armazem (nome,espaco, custo_carga, custo_descarga) VALUES ('$guia', '$espaco', '$carga', '$descarga')";
+    $matricula = $_POST["matricula"];
+    $horacarga = $_POST["horacarga"];
+    $horadescarga = $_POST["horadescarga"];
+    $morada = $_POST["morada"];
+    $sql = "INSERT INTO guia (data_prevista, morada, matricula) VALUES ('$matricula', '$horacarga', '$horadescarga', '$morada')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -49,41 +49,34 @@ exit;
 </head>
 
 <body>
-
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-
             <p id="profile-name" class="profile-name-card"></p>
-            <h1 style="text-align:center">Armazém</h1>
-            <form class="form-signin" action="armazem.php" method="post">
+            <form class="form-signin" action="Guia_Devolucao.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
-                    <p>Tipo de armazém</p>
-                    <select name="combobox">
-                        <option value="Armazem de Paletes Altas">Armazem de Paletes altas</option>
-                        <option value="Armazem de Paletes Baixas">Armazem de Paletes baixas</option>
-                        <option value="Armazem de paletes para o Frio"> Armazem de paletes para o Frio</option>
-                    </select>
-                    &nbsp;
-                </div>
-                <div style="text-align:center">
-                    &nbsp;
-                    <p>Custo de carga</p>
-                    <input style="height:25px; width:137px" type="number" name="carga" step="any">
-                </div>
-                <div style="text-align:center">
-                    &nbsp;
-                    <p>Custo de descarga</p>
-                    <input style="height:25px; width:137px" type="number" name="descarga" step="any">
-                </div>
-                <div style="text-align:center">
-                    &nbsp;
-                    <p>Espaço disponivel no armazem</p>
-                    <input style="height:25px; width:137px" type="number" name="espaco">
-                </div>
-                &nbsp;
-                <button type="submit">Confirmar</button>
+                    <h1>Guia de transporte</h1>
+                    <br>
+                    <div style="text-align:center">
+                        <input type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
+                        <br>
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input placeholder="Hora de carga" style="text-align:center" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <input placeholder="Hora prevista de descarga" style="text-align:center" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    </div>
+                    <div style="text-align:center">
+                        <br>
+                        <form class="form-signin" method="post">
+                            <input type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
+                    </div>
+                    <br>
+                    <button type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Abr-2019 às 15:25
+-- Generation Time: 02-Maio-2019 às 13:26
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -41,9 +41,10 @@ CREATE TABLE `armazem` (
 --
 
 INSERT INTO `armazem` (`id`, `nome`, `espaco`, `custo_carga`, `custo_descarga`) VALUES
-(3, 'Armazem de paletes Altas', 50, '19.99', '17.99'),
-(4, 'Armazem de paletes Baixas', 100, '14.99', '12.99'),
-(5, 'Armazem de paletes para o Frio', 25, '29.99', '27.49');
+(3, 'Armazem A(Altas)', 50, '19.99', '17.99'),
+(4, 'Armazem B(Baixas)', 100, '14.99', '12.99'),
+(5, 'Armazem C(Fria)', 25, '29.99', '27.49'),
+(6, 'Armazem D(Altas e baixas)', 80, '12.99', '14.99');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,7 @@ CREATE TABLE `artigo` (
 --
 
 INSERT INTO `artigo` (`id`, `cliente_id`, `referencia`, `nome`, `peso`) VALUES
-(1, 6, 'Pratos', 'PRA-123', '429.75');
+(1, 6, 'PRA-123', 'Pratos', '429.75');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,8 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`id`, `nome`, `nif`, `morada`, `localidade`) VALUES
 (5, 'Adriano Horta', 123123123, 'Quinta Nova Lote 3 Ponte Seca', 'Ã“bidos'),
-(6, 'João', 123123123, 'Rua Principal', 'Marinha Grande');
+(6, 'João', 123123123, 'Rua Principal', 'Marinha Grande'),
+(8, '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,8 @@ CREATE TABLE `guia` (
   `tipo_guia_id` int(3) DEFAULT NULL,
   `tipo_palete_id` int(3) DEFAULT NULL,
   `tipo_zona_id` int(3) DEFAULT NULL,
-  `data_prevista` date DEFAULT NULL,
+  `data_prevista` datetime DEFAULT NULL,
+  `data_carga` datetime NOT NULL,
   `numero_paletes` int(3) DEFAULT NULL,
   `numero_requisicao` int(3) DEFAULT NULL,
   `morada` text,
@@ -129,8 +132,8 @@ CREATE TABLE `guia` (
 -- Extraindo dados da tabela `guia`
 --
 
-INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `data_prevista`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
-(1, 5, 1, 1, 1, 2, '2019-05-03', 5, 5, 'Òbidos', 'óbidos', '12-ST-76');
+INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `data_prevista`, `data_carga`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
+(1, 5, 1, 1, 1, 2, '2019-05-03 00:00:00', '0000-00-00 00:00:00', 5, 5, 'Òbidos', 'óbidos', '12-ST-76');
 
 -- --------------------------------------------------------
 
@@ -176,16 +179,17 @@ CREATE TABLE `palete` (
   `artigo_id` int(3) NOT NULL,
   `tipo_palete_id` int(3) NOT NULL,
   `referencia` text NOT NULL,
-  `nome` text NOT NULL
+  `nome` text NOT NULL,
+  `Data` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `palete`
 --
 
-INSERT INTO `palete` (`id`, `guia_entrada_id`, `guia_saida_id`, `artigo_id`, `tipo_palete_id`, `referencia`, `nome`) VALUES
-(1, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos'),
-(2, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos');
+INSERT INTO `palete` (`id`, `guia_entrada_id`, `guia_saida_id`, `artigo_id`, `tipo_palete_id`, `referencia`, `nome`, `Data`) VALUES
+(1, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos', '0000-00-00 00:00:00'),
+(2, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -255,8 +259,8 @@ CREATE TABLE `tipo_palete` (
 --
 
 INSERT INTO `tipo_palete` (`id`, `nome`, `altura`, `largura`, `comprimento`) VALUES
-(1, 'Palete Baixa', '0', '0', '0'),
-(2, 'Palete Alta', '0', '0', '0'),
+(1, 'Baixa', '0', '0', '0'),
+(2, 'Alta', '0', '0', '0'),
 (3, 'Palete Fria', '0', '0', '0');
 
 -- --------------------------------------------------------
@@ -275,8 +279,9 @@ CREATE TABLE `tipo_zona` (
 --
 
 INSERT INTO `tipo_zona` (`id`, `nome`) VALUES
-(1, 'Alta'),
-(2, 'Baixa');
+(1, 'Baixa'),
+(2, 'Alta'),
+(3, 'Palete Fria');
 
 -- --------------------------------------------------------
 
@@ -304,8 +309,17 @@ CREATE TABLE `zona` (
   `armazem_id` int(3) NOT NULL,
   `tipo_zona_id` int(5) NOT NULL,
   `nome` text NOT NULL,
-  `preco_zona` int(5) NOT NULL
+  `preco_zona` int(5) NOT NULL,
+  `espaco` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `zona`
+--
+
+INSERT INTO `zona` (`id`, `armazem_id`, `tipo_zona_id`, `nome`, `preco_zona`, `espaco`) VALUES
+(1, 4, 1, 'Zonda de paletes baixas no Armazem B', 5, 100),
+(2, 3, 2, 'Zonda de paletes altas no Armazem A', 10, 70);
 
 --
 -- Indexes for dumped tables
@@ -429,19 +443,19 @@ ALTER TABLE `zona`
 -- AUTO_INCREMENT for table `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `artigo`
 --
 ALTER TABLE `artigo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `documento`
@@ -453,7 +467,7 @@ ALTER TABLE `documento`
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `linha`
@@ -477,7 +491,7 @@ ALTER TABLE `palete`
 -- AUTO_INCREMENT for table `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tipo_guia`
@@ -501,19 +515,19 @@ ALTER TABLE `tipo_palete`
 -- AUTO_INCREMENT for table `tipo_zona`
 --
 ALTER TABLE `tipo_zona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `zona`
 --
 ALTER TABLE `zona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

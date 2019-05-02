@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 
 ?>
 <html lang="en">
+
 <head>
     <title>POM Logistica</title>
 
@@ -40,8 +41,9 @@ if ($conn->connect_error) {
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
     <script type='text/javascript' src='js/swiper.min.js'></script>
     <script type='text/javascript' src='js/jquery.countdown.min.js'></script>
@@ -50,4 +52,5 @@ if ($conn->connect_error) {
     <script type='text/javascript' src='js/jquery.barfiller.js'></script>
     <script type='text/javascript' src='js/custom.js'></script>
 </body>
+
 </html>
