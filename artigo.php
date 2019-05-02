@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $peso = (float)$peso;
     $cli_id= $_POST["combobox"];
 
-        $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$nome','$ref','$peso')";
+        $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$ref','$nome','$peso')";
             if (mysqli_query($conn, $sql)) {
                 ?>
                 <script type="text/javascript">;
@@ -63,12 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
                             ?>
                         </select>
+                        
                 &nbsp;  
                 <button type="submit">Registar Artigo</button>
            </form><!-- /form -->
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 
 </html>
