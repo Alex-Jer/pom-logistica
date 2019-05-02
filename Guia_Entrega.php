@@ -7,13 +7,12 @@ include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
-    $ref = $_POST["ref"];
+    $nifNumber = $_POST["nif"];
+    $nifNumberr = (int)$nifNumber;
+    $Morada = $_POST["morada"];
+    $localidade = $_POST["local"];
 
-    $peso = $_POST["peso"];
-    $peso = (float)$peso;
-    $cli_id = $_POST["combobox"];
-
-    $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$nome','$ref','$peso')";
+    $sql = "INSERT INTO cliente (nome,nif,morada, localidade) VALUES ('$nome',$nifNumberr,'$Morada', '$localidade')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-
+header("Location: menu.php");
 exit;
 } ?>
 
@@ -43,13 +42,7 @@ exit;
 
     <div class="container">
         <div class=" card card-container">
-            <form class="form-signin" action="artigo.php" method="post">
-                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
-                &nbsp;
-                <input type="input" id="inputRef" name="ref" class="form-control" placeholder="Referencia" required>
-                &nbsp;
-                <input type="number" id="inputPeso" name="peso" class="form-control" placeholder="Peso" step="any" required>
-                &nbsp;
+            <form class="form-signin" action="registar_cliente.php" method="post">
                 <select name="combobox">
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -62,8 +55,12 @@ exit;
 
                 ?>
                 </select>
-                &nbsp;
-                <button type="submit">Registar Artigo</button>
+                <input type="input" id="inputGuia" name="Nguia" class="form-control" placeholder="Nº de guia" required autofocus>
+                <input type="datetime" id="inputdata" name="dataentrega" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required>
+                <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada" required>
+                <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required>
+
+                <button type="submit">Registar Cliente</button>
             </form><!-- /form -->
         </div>
 

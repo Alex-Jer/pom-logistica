@@ -32,16 +32,14 @@
 // DON'T REMOVE THE "UNUSED" NAMESPACES!!!
 // This is for better access in lambda expressions, e.g.
 use \System\ClrString;
-use \System\Object as ClrObject;
-use \System\Linq\Enumerable;
-
 
 /**
  * Provides services in a root namespace context.
  *
  * @author Marcel Joachim Kloubert <marcel.kloubert@gmx.net>
  */
-class phpLINQ {
+class phpLINQ
+{
     /**
      * Executes code globally.
      *
@@ -51,7 +49,8 @@ class phpLINQ {
      *
      * @throws \System\InvalidCastException $code cannot be a string.
      */
-    public static final function execGlobal($code) {
+    final public static function execGlobal($code)
+    {
         return eval(System\ClrString::valueToString($code, false));
     }
 
@@ -62,7 +61,8 @@ class phpLINQ {
      *
      * @return bool Is valid lambda expression or not.
      */
-    public static function isLambda($val) {
+    public static function isLambda($val)
+    {
         return false !== static::toLambda($val, false);
     }
 
@@ -76,8 +76,9 @@ class phpLINQ {
      *
      * @throws ArgumentException $expr is no valid expression.
      */
-    public static function toLambda($expr, bool $throwException = true) {
-        $throwOrReturn = function() use ($throwException) {
+    public static function toLambda($expr, bool $throwException = true)
+    {
+        $throwOrReturn = function () use ($throwException) {
             if ($throwException) {
                 throw new System\ArgumentException('expr', 'No lambda expression!', null, 0);
             }
@@ -93,9 +94,8 @@ class phpLINQ {
 
         // check for lambda
         if (1 === preg_match("/^(\\s*)([\\(]?)([^\\)]*)([\\)]?)(\\s*)(=>)/m", $expr, $lambdaMatches)) {
-            if ((empty($lambdaMatches[2]) && !empty($lambdaMatches[4])) ||
-                (!empty($lambdaMatches[2]) && empty($lambdaMatches[4])))
-            {
+            if ((empty($lambdaMatches[2]) && !empty($lambdaMatches[4])) || (!empty($lambdaMatches[2]) && empty($lambdaMatches[4]))
+            ) {
                 if ($throwException) {
                     throw new System\ArgumentException('expr', 'Syntax error in lambda expression!', null, 1);
                 }
@@ -103,8 +103,10 @@ class phpLINQ {
                 return false;
             }
 
-            $lambdaBody = trim(substr($expr, strlen($lambdaMatches[0])),  // take anything after =>
-                               '{}' . " \t\n\r\0\x0B");  // remove surrounding {}
+            $lambdaBody = trim(
+                substr($expr, strlen($lambdaMatches[0])), // take anything after =>
+                '{}' . " \t\n\r\0\x0B"
+            ); // remove surrounding {}
 
             if ('' !== $lambdaBody) {
                 if ((';' !== \substr($lambdaBody, -1))) {

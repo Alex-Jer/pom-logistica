@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>POM Logistica</title>
 
@@ -25,15 +26,16 @@
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-   <?php
-   include 'navbaar.php';
-   ?>
+    <?php
+    include 'navbaar.php';
+    ?>
 
     <div class="swiper-container hero-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide hero-content-wrap">
-               
+
 
                 <div class="hero-content-overlay position-absolute w-100 h-100">
                     <div class="container h-100">
@@ -66,4 +68,5 @@
     <script type='text/javascript' src='js/custom.js'></script>
 
 </body>
+
 </html>

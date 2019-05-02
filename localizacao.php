@@ -8,21 +8,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $zona = $_POST["combobox3"];
     $dataentrada = $_POST["entrada"];
     $datasaida = $_POST["saida"];
-    $sql  = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
+    $sql = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
     if (mysqli_query($conn, $sql)) {
-?>
-   <script type="text/javascript">;
-    alert("New record created successfully"); </script>
+        ?>
+        <script type="text/javascript">
+            ;
+            alert("New record created successfully");
+        </script>
     <?php
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    mysqli_close($conn);
-    //header("Location: navbarLogin.php");
-    exit;
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+mysqli_close($conn);
+//header("Location: navbarLogin.php");
+exit;
 }
 ?>
- <head>
+
+<head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
@@ -45,56 +48,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="container">
-       <div class="card card-container">
-           <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
 
-           <p id="profile-name" class="profile-name-card"></p>
-           <form class="form-signin" action="localizacao.php" method="post">
-               <span id="reauth-email" class="reauth-email"></span>
-               <div style="text-align:center">
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="localizacao.php" method="post">
+                <span id="reauth-email" class="reauth-email"></span>
+                <div style="text-align:center">
                     <h1>Localização</h1>
                     <br>
                     <p>Tipo de palete</p>
                     <select name="combobox2">
                         <?php
-                            $busca = mysqli_query($conn,"SELECT * FROM tipo_palete");
-                            foreach ($busca as $eachRow)
-                            {
-                        ?>
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                        $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
+                        foreach ($busca as $eachRow) {
+                            ?>
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
                         <?php
-                            }
-                        ?>
+                    }
+                    ?>
                     </select>
                     <div style="text-align:center">
                         <br>
                         <p>Zona</p>
                         <select name="combobox3">
-                        <?php
-                            $busca = mysqli_query($conn,"SELECT * FROM tipo_zona");
-                            foreach ($busca as $eachRow)
-                            {
-                        ?>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
+                            foreach ($busca as $eachRow) {
+                                ?>
                                 <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                            }
+                            <?php
+                        }
                         ?>
                         </select>
                     </div>
-                </div>     
-                <div style="text-align:center">
-                <br>
-                <p>Referência</p>
-                    <input type=text name="referencia">     
                 </div>
-               <div style="text-align:center">
+                <div style="text-align:center">
+                    <br>
+                    <p>Referência</p>
+                    <input type=text name="referencia">
+                </div>
+                <div style="text-align:center">
                     <p>Data de entrada</p>
                     <input style="text-align:right" type="date" name="entrada">
-               </div>
+                </div>
                 &nbsp;
                 <div style="text-align:center">
                     <p>Data de saída</p>
@@ -102,12 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <br>
                 </div>
                 &nbsp;
-               <button type="submit">Confirmar</button>
-           </form><!-- /form -->
-       </div><!-- /card-container -->
-   </div><!-- /container -->
-   <script type="text/javascript"></script>
-   <script type="text/javascript"></script>
-  </body>
+                <button type="submit">Confirmar</button>
+            </form><!-- /form -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+    <script type="text/javascript"></script>
+    <script type="text/javascript"></script>
+</body>
+
 </html>
-        
