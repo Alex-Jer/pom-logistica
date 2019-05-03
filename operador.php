@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include 'db.php'
+include 'db.php';
 ?>
 <html lang="en">
 
@@ -46,6 +46,8 @@ include 'db.php'
                                     <li><a href="operador.php">Home</a></li>
                                     <li><a href="armazem.php">Armazém</a></li>
                                     <li><a href="Guia_Devolucao.php">Guia de devolução</a></li>
+                                    <li><a href="showGuiaEntrega.php">Registar Palete</a></li>
+                                    <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->

@@ -12,7 +12,7 @@ include 'navbar.php';
     $passInput = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $em = $_POST["emaill"];
-        $_SESSION['EmailPassa'] = $em;
+        $_SESSION['emailSession'] = $em;
         $passInput = $_POST["Password"];
         $buscapass = mysqli_query($conn, "SELECT password FROM utilizador WHERE Email='$em'");
         $buscaId = mysqli_query($conn, "SELECT perfil_id FROM utilizador WHERE Email='$em'");

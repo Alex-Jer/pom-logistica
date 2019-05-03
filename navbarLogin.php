@@ -56,6 +56,7 @@ include 'db.php'
                                     <li><a href="Guia_Entrega.php">Guia entrega</a></li>
                                     <li><a href="Guia_Devolucao.php">Guia devolução</a></li>
                                     <li><a href="Guia_Transporte.php">Guia transporte</a></li>
+                                    <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->

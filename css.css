@@ -10,8 +10,8 @@ html {
 }
 
 .card-container.card {
-  max-width: 350px;
-  padding: 40px 40px;
+  max-width: 500px;
+  padding: 20px 40px;
 }
 
 .btn {
@@ -29,7 +29,7 @@ html {
 .card {
   background-color: #f7f7f7;
   /* just in case there no content*/
-  padding: 20px 25px 30px;
+  padding: 10px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
   /* shadows and rounded borders */
@@ -138,4 +138,18 @@ html {
 .forgot-password:active,
 .forgot-password:focus {
   color: rgb(12, 97, 33);
+}
+
+.metade{
+  width: 50%;
+  height: 50%;
+  flex:1;
+}
+
+.dupla{  flex:2;
+}
+
+.li {
+  overflow: auto;
+  white-space: nowrap;
 }
