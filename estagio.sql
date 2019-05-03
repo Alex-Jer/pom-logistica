@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Maio-2019 às 16:28
+-- Generation Time: 03-Maio-2019 às 11:24
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -119,10 +119,12 @@ CREATE TABLE `guia` (
   `tipo_guia_id` int(3) DEFAULT NULL,
   `tipo_palete_id` int(3) DEFAULT NULL,
   `tipo_zona_id` int(3) DEFAULT NULL,
+  `armazem_id` int(3) DEFAULT NULL,
+  `artigo_id` int(3) DEFAULT NULL,
   `data_prevista` datetime DEFAULT NULL,
   `data_carga` datetime NOT NULL,
   `numero_paletes` int(3) DEFAULT NULL,
-  `numero_requisicao` int(3) DEFAULT NULL,
+  `numero_requisicao` text,
   `morada` text,
   `localidade` text,
   `matricula` text
@@ -132,9 +134,9 @@ CREATE TABLE `guia` (
 -- Extraindo dados da tabela `guia`
 --
 
-INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `data_prevista`, `data_carga`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
-(1, 5, 1, 1, 1, 2, '2019-05-03 00:00:00', '0000-00-00 00:00:00', 5, 5, 'Òbidos', 'óbidos', '12-ST-76'),
-(2, 5, NULL, 1, 2, 2, '2019-05-01 11:45:00', '0000-00-00 00:00:00', 7, 25, NULL, NULL, NULL);
+INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `armazem_id`, `artigo_id`, `data_prevista`, `data_carga`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
+(1, 5, 1, 1, 1, 1, 4, 1, '2019-05-03 00:00:00', '0000-00-00 00:00:00', 5, 'REQ-102', 'Òbidos', 'óbidos', '12-ST-76'),
+(2, 5, NULL, 1, 2, 2, 3, 1, '2019-05-01 11:45:00', '0000-00-00 00:00:00', 7, 'REQ-042', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -547,7 +549,9 @@ ALTER TABLE `guia`
   ADD KEY `tipo_guia_id` (`tipo_guia_id`),
   ADD KEY `tipo_palete_id` (`tipo_palete_id`),
   ADD KEY `tipo_zona_id` (`tipo_zona_id`),
-  ADD KEY `guia_id` (`guia_id`);
+  ADD KEY `guia_id` (`guia_id`),
+  ADD KEY `armazem_id` (`armazem_id`),
+  ADD KEY `guia_ibfk_7` (`artigo_id`);
 
 --
 -- Indexes for table `linha`
@@ -741,7 +745,9 @@ ALTER TABLE `guia`
   ADD CONSTRAINT `guia_ibfk_2` FOREIGN KEY (`tipo_guia_id`) REFERENCES `tipo_guia` (`id`),
   ADD CONSTRAINT `guia_ibfk_3` FOREIGN KEY (`tipo_palete_id`) REFERENCES `tipo_palete` (`id`),
   ADD CONSTRAINT `guia_ibfk_4` FOREIGN KEY (`tipo_zona_id`) REFERENCES `tipo_zona` (`id`),
-  ADD CONSTRAINT `guia_ibfk_5` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`);
+  ADD CONSTRAINT `guia_ibfk_5` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`),
+  ADD CONSTRAINT `guia_ibfk_6` FOREIGN KEY (`armazem_id`) REFERENCES `armazem` (`id`),
+  ADD CONSTRAINT `guia_ibfk_7` FOREIGN KEY (`artigo_id`) REFERENCES `artigo` (`id`);
 
 --
 -- Limitadores para a tabela `linha`
