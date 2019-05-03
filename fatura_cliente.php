@@ -49,7 +49,7 @@ exit;
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="listagem_pedidos_armazem.php" method="post">
                 <div style="text-align:center">
-                    <h1>Pedidos do dia</h1>
+                    <h1>Fatura mensal</h1>
                     <br>
                     <div class="container">
 
@@ -57,12 +57,10 @@ exit;
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
-                                    <th>Número de requisição</th>
-                                    <th>Armazém</th>
-                                    <th>Número de paletes</th>
-                                    <th>Data e hora prevista</th>
-                                    <th>Data e hora de carga</th>
-                                    <th>Morada</th>
+                                    <th>Preço por palete / zona</th>
+                                    <th>Preço de carga</th>
+                                    <th>Preço de descarga</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,41 +68,33 @@ exit;
                                 $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 3 ORDER BY 'data_carga' ASC");
                                 foreach ($query as $eachRow) {
                                     $clienteId = $eachRow['cliente_id'];
-                                    $numReq = $eachRow['numero_requisicao'];
-                                    $armazem = $eachRow['armazem_id'];
-                                    $numPaletes = $eachRow['numero_paletes'];
-                                    $dataPrevista = $eachRow['data_prevista'];
-                                    $dataCarga = $eachRow['data_carga'];
-                                    $morada = $eachRow['morada'];
                                     $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$clienteId'");
                                     $sql3 = mysqli_fetch_array($sql2);
                                     $nomeCliente = $sql3['nome'];
-                                    $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$armazem'");
-                                    $sql5 = mysqli_fetch_array($sql4);
-                                    $nomeArmazem = $sql5['nome'];
+                                    //Inacabado
                                     ?>
                                     <tr>
-                                        <td><?php echo $nomeCliente ?></td>
-                                        <td><?php echo $numReq ?></td>
-                                        <td><?php echo $nomeArmazem ?></td>
-                                        <td><?php echo $numPaletes ?></td>
-                                        <td><?php echo $dataPrevista ?></td>
-                                        <td><?php echo $dataCarga ?></td>
-                                        <td><?php echo $morada ?></td>
+                                        <td><?php 
+                                            ?></td>
+                                        <td><?php 
+                                            ?></td>
+                                        <td><?php 
+                                            ?></td>
+                                        <td><?php 
+                                            ?></td>
+                                        <td><?php 
+                                            ?></td>
                                     </tr>
-                                    <?php
-                                }
-                                    ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
-            </form><!-- /form -->
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-    <script type="text/javascript"></script>
-    <script type="text/javascript"></script>
-</body>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
+                </form><!-- /form -->
+            </div><!-- /card-container -->
+        </div><!-- /container -->
+        <script type="text/javascript"></script>
+        <script type="text/javascript"></script>
+    </body>
 
-</html>
+    </html>
