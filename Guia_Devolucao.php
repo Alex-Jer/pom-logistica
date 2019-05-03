@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
+include 'db.php';
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
@@ -9,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST["data"];
     $artigo = $_POST["artigo"];
     $npaletes = $_POST["npaletes"];
-    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ('$cliente', 2, '$tipopalete', '$tipozona', '$data', '$npaletes', '$nrequisicao', '$morada', '$localidade', '$matricula')";
+    //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
+    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ('$cliente', 2, '$data', '$npaletes', '$nrequisicao', '$morada')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -19,10 +21,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
+$sql2 = mysqli_query($conn, "SELECT * FROM guia WHERE numero_requisicao='$nrequisicao'");
+$sql3 = mysqli_fetch_array($sql2);
+$sql4 = $sql3['numero_paletes'];
+$sql5 = $sql3['artigo_id'];
+//$sql5 = (int)$sql5;
+$sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$sql5'");
+/*foreach($sql2 AS $eachrow)
+    {
+        $sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5'");
+    }*/
+$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
+//$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' LIMIT 1");
+if (mysqli_query($conn, $sql7)) {
+    ?>
+        <script type="text/javascript">
+            alert("New record created successfully");
+        </script>
+    <?php
+} /*else {
+    echo "Error: " . $sql7 . "<br>" . mysqli_error($conn);
+}*/
 mysqli_close($conn);
 //header("Location: navbarLogin.php");
 exit;
 }
+
+// "UPDATE guia SET numero_paletes = (numero_paletes - '$npaletes')";
+//$sql2 = "";
+/*foreach("SELECT numero_paletes FROM guia WHERE numero_requisicao='$nrequisicao'")
+    {
+
+    }*/
+
 ?>
 
 <head>
@@ -47,7 +78,6 @@ exit;
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>

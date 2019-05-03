@@ -66,7 +66,7 @@ exit;
     <div class="container">
         <div class="card card-container">
             <form class="form-signin" action="Guia_Entrega.php" method="post">
-                <h1>Guia de entrega</h1>
+                <h1 style="text-align:center">Guia de entrega</h1>
                 <br>
                 <div style="text-align:center">
                     <select class="form-control" name="comboboxCli" style="text-align-last:center">
