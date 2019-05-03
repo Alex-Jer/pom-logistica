@@ -3,25 +3,27 @@
 <?php
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cliente = $_POST['cliente'];
     $matricula = $_POST["matricula"];
     $horacarga = $_POST["horacarga"];
     $horadescarga = $_POST["horadescarga"];
     $morada = $_POST["morada"];
-    $sql = "INSERT INTO guia (tipo_guia_id, matricula, data_carga, data_prevista, morada) VALUES (3, '$matricula', '$horacarga', '$horadescarga', '$morada')";
+    $nreq = $_POST["numReq"];
+    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, matricula, data_carga, data_prevista, numero_requisicao, morada) VALUES ('$cliente', 3, '$matricula', '$horacarga', '$horadescarga', '$nreq' ,'$morada')";
     if (mysqli_query($conn, $sql)) {
-?>
+        ?>
         <script type="text/javascript">
             alert("New record created successfully");
         </script>
-        <?php
+    <?php
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-mysqli_close($conn);
 //header("Location: navbarLogin.php");
 exit;
 }
-        ?>
+?>
+
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
@@ -45,6 +47,7 @@ exit;
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="card card-container">
@@ -55,6 +58,20 @@ exit;
                 <div style="text-align:center">
                     <h1>Guia de transporte</h1>
                     <br>
+                    <div style="text-align:center">
+                        <select class="form-control" name="cliente" style="text-align-last:center">
+                            <option value="" disabled selected>Cliente</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                        <br>
+                    </div>
                     <div style="text-align:center">
                         <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
                     </div>
@@ -71,6 +88,20 @@ exit;
                         <form class="form-signin" method="post">
                             <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
                     </div>
+                    <div style="text-align:center">
+                        <br>
+                        <select class="form-control" name="numReq" style="text-align-last:center">
+                            <option value="" disabled selected>Número de requisição</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM guia");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['numero_requisicao'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                    </div>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
@@ -79,4 +110,5 @@ exit;
     <script type="text/javascript"></script>
     <script type="text/javascript"></script>
 </body>
+
 </html>

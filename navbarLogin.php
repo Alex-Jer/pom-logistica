@@ -54,8 +54,9 @@ include 'db.php'
                                     <li><a href="zona.php">Zona</a></li>
                                     <li><a href="localizacao.php">Localização</a></li>
                                     <li><a href="Guia_Entrega.php">Guia entrega</a></li>
-                                    <li><a href="Guia_Devolucao.php">Guia devolução</a></li>
+                                    <li><a href="Guia_Operador.php">Guia operador</a></li>
                                     <li><a href="Guia_Transporte.php">Guia transporte</a></li>
+                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->
