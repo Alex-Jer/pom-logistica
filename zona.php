@@ -59,12 +59,16 @@ exit;
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
                     <h1>Zona</h1>
-                    <select name="combobox">
+                    <br>
+                    <select style="text-align-last:center" class="form-control" name="combobox">
+                        <option value="" disabled selected>Tipo de palete</option>
                         <option value="altas">Paletes altas</option>
                         <option value="baias">Paletes baixas</option>
                         <option value="frio">Frio</option>
                     </select>
-                    <select name="combobox2">
+                    <br>
+                    <select style="text-align-last:center" class="form-control" name="combobox2">
+                        <option value="" disabled selected>Tipo de armazém</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM armazem");
                         foreach ($busca as $eachRow) {
@@ -74,7 +78,8 @@ exit;
                     }
                     ?>
                     </select>
-                    <select name="combobox3">
+                    <br>
+                    <select style="text-align-last:center" class="form-control" name="combobox3">
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
                         foreach ($busca as $eachRow) {
@@ -85,13 +90,12 @@ exit;
                     ?>
                     </select>
                 </div>
-                <div style="text-align:center">
+                <div style="text-align-last:center">
                     &nbsp;
-                    <p>Preço de zona</p>
-                    <input style="height:25px; width:137px" type="number" name="precozona" min="0">
+                    <input style="text-align:center" placeholder="Preço de zona" class="form-control" type="number" name="precozona" min="0">
                 </div>
                 &nbsp;
-                <button type="submit">Confirmar</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

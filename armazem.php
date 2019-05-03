@@ -48,41 +48,35 @@ mysqli_close($conn);
 </head>
 
 <body>
-
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-
             <p id="profile-name" class="profile-name-card"></p>
             <h1 style="text-align:center">Armazém</h1>
             <form class="form-signin" action="armazem.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
-                    <p>Tipo de armazém</p>
-                    <select name="combobox">
-                        <option value="Armazem de Paletes Altas">Armazem de Paletes altas</option>
-                        <option value="Armazem de Paletes Baixas">Armazem de Paletes baixas</option>
-                        <option value="Armazem de paletes para o Frio"> Armazem de paletes para o Frio</option>
+                    <select style="text-align-last:center" class="form-control" name="combobox">
+                        <option value="" disabled selected>Tipo de armazém</option>
+                        <option value="Armazem de Paletes Altas">Armazém de Paletes altas</option>
+                        <option value="Armazem de Paletes Baixas">Armazém de Paletes baixas</option>
+                        <option value="Armazem de paletes para o Frio"> Armazém de paletes para o Frio</option>
                     </select>
                     &nbsp;
                 </div>
                 <div style="text-align:center">
-                    &nbsp;
-                    <p>Custo de carga</p>
-                    <input style="height:25px; width:137px" type="number" name="carga" step="any">
+                    <input style="text-align:center" class="form-control" type="number" name="carga" step="any" placeholder="Custo de carga">
                 </div>
                 <div style="text-align:center">
                     &nbsp;
-                    <p>Custo de descarga</p>
-                    <input style="height:25px; width:137px" type="number" name="descarga" step="any">
+                    <input style="text-align:center" class="form-control" type="number" name="descarga" step="any" placeholder="Custo de descarga">
                 </div>
                 <div style="text-align:center">
                     &nbsp;
-                    <p>Espaço disponivel no armazem</p>
-                    <input style="height:25px; width:137px" type="number" name="espaco">
+                    <input style="text-align:center" class="form-control" type="number" name="espaco" placeholder="Espaço disponível no armazém">
                 </div>
                 &nbsp;
-                <button type="submit">Confirmar</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

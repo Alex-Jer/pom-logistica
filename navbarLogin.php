@@ -54,9 +54,13 @@ include 'db.php'
                                     <li><a href="zona.php">Zona</a></li>
                                     <li><a href="localizacao.php">Localização</a></li>
                                     <li><a href="Guia_Entrega.php">Guia entrega</a></li>
-                                    <li><a href="Guia_Devolucao.php">Guia devolução</a></li>
+                                    <li><a href="Guia_Operador.php">Guia operador</a></li>
                                     <li><a href="Guia_Transporte.php">Guia transporte</a></li>
+<<<<<<< HEAD
                                     <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
+=======
+                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
+>>>>>>> 8322ffdc303a153f86971a2cd1426797b0684bd5
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->
