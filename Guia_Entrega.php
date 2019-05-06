@@ -5,47 +5,6 @@
 session_start();
 include 'navbarLogin.php';
 include 'db.php';
-<<<<<<< HEAD
-    if ($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $nomeCli = $_POST["comboboxCli"];
-
-        $dataEntrega = $_POST["dataentrega"];
-
-        $getCBtg= $_POST["comboboxTipoGuia"];
-
-        $getCBart= $_POST["comboboxArtigo"];
-
-        $getQT= $_POST["qt"];
-
-        $getCBtp= $_POST["comboboxTipo_Palete"];
-
-        $getCBtz= $_POST["comboboxTipoZona"];
-
-        $getREQ= $_POST["req"];
-
-        
-
-        $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, $getCBtg,$getCBtp, $getCBtz, '$dataEntrega', $getQT,$getREQ)";
-        
-        if (mysqli_query($conn, $sql)) {
-            ?>
-            <script type="text/javascript">;
-            alert("New record created successfully"); </script>
-            <?php
-                
-        } else 
-        {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-        mysqli_close($conn);
-      /*header("Location: menu.php");*/
-       exit;
-      }
-
-      
-      
-=======
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomeCli = $_POST["comboboxCli"];
 
@@ -90,7 +49,6 @@ mysqli_close($conn);
 exit;
 }
 
->>>>>>> 8322ffdc303a153f86971a2cd1426797b0684bd5
 ?>
 
 <head>
@@ -176,29 +134,7 @@ exit;
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
                         foreach ($busca as $eachRow) {
                             ?>
-<<<<<<< HEAD
-                              
-                   </select>
-                   <p>Quantidade de paletes</p>
-                <input type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" value="<?php echo $_POST['qt'];?>"required >
-                        
-                &nbsp;  
-
-                <p>TipoZona</p>
-                <select name="comboboxTipoZona" id="TipoZona"></select>
-                &nbsp;  
-                <p>Numero de requesição</p>
-                <input type="number" id="inputreq" name="req" class="form-control" placeholder="Numero de requesição" value="<?php echo htmlspecialchars($_POST['req']);?>" required >
-                    
-                <div id="Espaco"> </div>
-
-                
-                <button type="submit">Registar Cliente</button>   
-           </form><!-- /form -->
-        </div>
-=======
                             <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['comboboxTipo_Palete']) && $_POST['comboboxTipo_Palete'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
->>>>>>> 8322ffdc303a153f86971a2cd1426797b0684bd5
 
                             <?php
                             echo $eachRow['nome'];
@@ -224,36 +160,6 @@ exit;
 
 </html>
 <script>
-<<<<<<< HEAD
-$("#TipoPalete").on("change",function(){
-  $.ajax({
-			url: 'ajaxEntrega.php',
-			type: 'POST',
-			data:{id:$("#TipoPalete").val()},
-			success: function(data)
-			{
-
-				$("#TipoZona").html(data);
-			},
-		});
-});
-</script>
-
-<script>
-$("#TipoPalete").on("change",function(){
-  $.ajax({
-			url: 'ajaxEspaco.php',
-			type: 'POST',
-			data:{id:$("#TipoPalete").val()},
-			success: function(data)
-			{
-
-				$("#Espaco").html(data);
-			},
-		});
-});
-</script>
-=======
     $("#TipoPalete").on("change", function() {
         $.ajax({
             url: 'ajaxEntrega.php',
@@ -268,4 +174,3 @@ $("#TipoPalete").on("change",function(){
         });
     });
 </script>
->>>>>>> 8322ffdc303a153f86971a2cd1426797b0684bd5
