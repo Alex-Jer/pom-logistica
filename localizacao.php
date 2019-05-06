@@ -2,23 +2,6 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
-<<<<<<< HEAD
-$i=0;
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $referencia = $_POST["referencia"];
-        $tipopalete = $_POST["combobox2"];
-        $zona = $_POST["combobox3"];
-        $dataentrada = $_POST["entrada"];
-        $datasaida = $_POST["saida"];
-        $sql = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
-        if (mysqli_query($conn, $sql)) {
-
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-        mysqli_close($conn);
-=======
 $i = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST["referencia"];
@@ -29,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO localizacao (palete_id, zona_id, referencia, data_entrada, data_saida) VALUES ('$tipopalete', '$zona', '$referencia', '$dataentrada', '$datasaida')";
     if (mysqli_query($conn, $sql)) { } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
->>>>>>> 8322ffdc303a153f86971a2cd1426797b0684bd5
     }
     mysqli_close($conn);
     //header("Location: navbarLogin.php");
