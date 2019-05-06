@@ -7,19 +7,12 @@ include 'navbarLogin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomeCli = $_POST["comboboxCli"];
-
     $dataEntrega = $_POST["dataentrega"];
-
     $getCBtg = $_POST["comboboxTipoGuia"];
-
     $getCBart = $_POST["comboboxArtigo"];
-
     $getQT = $_POST["qt"];
-
     $getCBtp = $_POST["comboboxTipo_Palete"];
-
     $getCBtz = $_POST["comboboxTipoZona"];
-
     $getREQ = $_POST["req"];
 
     $busca = mysqli_query($conn, "SELECT * FROM tipo_palete WHERE id='$getCBtp'");
