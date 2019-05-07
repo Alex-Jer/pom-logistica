@@ -2,6 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
+$i = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST["referencia"];
     $tipopalete = $_POST["combobox2"];
