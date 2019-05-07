@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Maio-2019 às 11:24
+-- Generation Time: 06-Maio-2019 às 17:46
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -41,10 +41,12 @@ CREATE TABLE `armazem` (
 --
 
 INSERT INTO `armazem` (`id`, `nome`, `espaco`, `custo_carga`, `custo_descarga`) VALUES
-(3, 'Armazem A(Altas)', 50, '19.99', '17.99'),
-(4, 'Armazem B(Baixas)', 100, '14.99', '12.99'),
-(5, 'Armazem C(Fria)', 25, '29.99', '27.49'),
-(6, 'Armazem D(Altas e baixas)', 80, '12.99', '14.99');
+(3, 'Armazem A(Altas)', 51, '19.99', '17.99'),
+(4, 'Armazem B(Baixas)', 94, '14.99', '12.99'),
+(5, 'Armazem C(Fria)', 24, '29.99', '27.49'),
+(6, 'Armazem D(Altas e baixas)', 75, '12.99', '14.99'),
+(7, 'Armazem de paletes para o Frio', 20, '7.00', '8.00'),
+(8, 'Armazem F', 25, '9.00', '7.00');
 
 -- --------------------------------------------------------
 
@@ -87,8 +89,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`id`, `nome`, `nif`, `morada`, `localidade`) VALUES
 (5, 'Adriano Horta', 123123123, 'Quinta Nova Lote 3 Ponte Seca', 'Ã“bidos'),
-(6, 'João', 123123123, 'Rua Principal', 'Marinha Grande'),
-(8, '', 0, '', '');
+(6, 'João', 123123123, 'Rua Principal', 'Marinha Grande');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,12 @@ CREATE TABLE `guia` (
 
 INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `armazem_id`, `artigo_id`, `data_prevista`, `data_carga`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`) VALUES
 (1, 5, 1, 1, 1, 1, 4, 1, '2019-05-03 00:00:00', '0000-00-00 00:00:00', 5, 'REQ-102', 'Òbidos', 'óbidos', '12-ST-76'),
-(2, 5, NULL, 1, 2, 2, 3, 1, '2019-05-01 11:45:00', '0000-00-00 00:00:00', 7, 'REQ-042', NULL, NULL, NULL);
+(2, 5, NULL, 1, 2, 2, 3, 1, '2019-05-01 11:45:00', '0000-00-00 00:00:00', 7, 'REQ-042', NULL, NULL, NULL),
+(23, 5, NULL, 1, 3, 3, 5, 1, '2019-05-21 11:45:00', '0000-00-00 00:00:00', 3, 'REQ-025', NULL, NULL, NULL),
+(24, 6, NULL, 1, 1, 1, 4, 1, '2019-05-07 14:30:00', '0000-00-00 00:00:00', 10, 'REQ-987', NULL, NULL, NULL),
+(25, 5, NULL, 1, 2, 2, 8, 1, '2019-05-11 11:11:00', '0000-00-00 00:00:00', 21, 'REQ-742', NULL, NULL, NULL),
+(26, 5, NULL, 1, 1, 1, 6, 1, '2019-05-11 11:45:00', '0000-00-00 00:00:00', 2, 'REQ-554', NULL, NULL, NULL),
+(27, 5, NULL, 1, 2, 2, 6, 1, '2019-05-11 11:45:00', '0000-00-00 00:00:00', 4, 'REQ-117', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,187 +169,189 @@ CREATE TABLE `linha` (
 CREATE TABLE `localizacao` (
   `id` int(11) NOT NULL,
   `palete_id` int(11) DEFAULT NULL,
-  `zona_id` int(11) NOT NULL,
+  `zona_id` int(11) DEFAULT NULL,
   `referencia` text NOT NULL,
   `data_entrada` date DEFAULT NULL,
-  `data_saida` date DEFAULT NULL
+  `data_saida` date DEFAULT NULL,
+  `hasPalete` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `localizacao`
 --
 
-INSERT INTO `localizacao` (`id`, `palete_id`, `zona_id`, `referencia`, `data_entrada`, `data_saida`) VALUES
-(1, NULL, 1, 'A-1', NULL, NULL),
-(2, NULL, 1, 'A-2', NULL, NULL),
-(3, NULL, 1, 'A-3', NULL, NULL),
-(4, NULL, 1, 'A-4', NULL, NULL),
-(5, NULL, 1, 'A-5', NULL, NULL),
-(6, NULL, 1, 'A-6', NULL, NULL),
-(7, NULL, 1, 'A-7', NULL, NULL),
-(8, NULL, 1, 'A-8', NULL, NULL),
-(9, NULL, 1, 'A-9', NULL, NULL),
-(10, NULL, 1, 'A-10', NULL, NULL),
-(11, NULL, 1, 'A-11', NULL, NULL),
-(12, NULL, 1, 'A-12', NULL, NULL),
-(13, NULL, 1, 'A-13', NULL, NULL),
-(14, NULL, 1, 'A-14', NULL, NULL),
-(15, NULL, 1, 'A-15', NULL, NULL),
-(16, NULL, 1, 'A-16', NULL, NULL),
-(17, NULL, 1, 'A-17', NULL, NULL),
-(18, NULL, 1, 'A-18', NULL, NULL),
-(19, NULL, 1, 'A-19', NULL, NULL),
-(20, NULL, 1, 'A-20', NULL, NULL),
-(21, NULL, 1, 'A-21', NULL, NULL),
-(22, NULL, 1, 'A-22', NULL, NULL),
-(23, NULL, 1, 'A-23', NULL, NULL),
-(24, NULL, 1, 'A-24', NULL, NULL),
-(25, NULL, 1, 'A-25', NULL, NULL),
-(26, NULL, 1, 'A-26', NULL, NULL),
-(27, NULL, 1, 'A-27', NULL, NULL),
-(28, NULL, 1, 'A-28', NULL, NULL),
-(29, NULL, 1, 'A-29', NULL, NULL),
-(30, NULL, 1, 'A-30', NULL, NULL),
-(31, NULL, 1, 'A-31', NULL, NULL),
-(32, NULL, 1, 'A-32', NULL, NULL),
-(33, NULL, 1, 'A-33', NULL, NULL),
-(34, NULL, 1, 'A-34', NULL, NULL),
-(35, NULL, 1, 'A-35', NULL, NULL),
-(36, NULL, 1, 'A-36', NULL, NULL),
-(37, NULL, 1, 'A-37', NULL, NULL),
-(38, NULL, 1, 'A-38', NULL, NULL),
-(39, NULL, 1, 'A-39', NULL, NULL),
-(40, NULL, 1, 'A-40', NULL, NULL),
-(41, NULL, 1, 'A-41', NULL, NULL),
-(42, NULL, 1, 'A-42', NULL, NULL),
-(43, NULL, 1, 'A-43', NULL, NULL),
-(44, NULL, 1, 'A-44', NULL, NULL),
-(45, NULL, 1, 'A-45', NULL, NULL),
-(46, NULL, 1, 'A-46', NULL, NULL),
-(47, NULL, 1, 'A-47', NULL, NULL),
-(48, NULL, 1, 'A-48', NULL, NULL),
-(49, NULL, 1, 'A-49', NULL, NULL),
-(50, NULL, 1, 'A-50', NULL, NULL),
-(51, NULL, 1, 'A-51', NULL, NULL),
-(52, NULL, 1, 'A-52', NULL, NULL),
-(53, NULL, 1, 'A-53', NULL, NULL),
-(54, NULL, 1, 'A-54', NULL, NULL),
-(55, NULL, 1, 'A-55', NULL, NULL),
-(56, NULL, 1, 'A-56', NULL, NULL),
-(57, NULL, 1, 'A-57', NULL, NULL),
-(58, NULL, 1, 'A-58', NULL, NULL),
-(59, NULL, 1, 'A-59', NULL, NULL),
-(60, NULL, 1, 'A-60', NULL, NULL),
-(61, NULL, 1, 'A-61', NULL, NULL),
-(62, NULL, 1, 'A-62', NULL, NULL),
-(63, NULL, 1, 'A-63', NULL, NULL),
-(64, NULL, 1, 'A-64', NULL, NULL),
-(65, NULL, 1, 'A-65', NULL, NULL),
-(66, NULL, 1, 'A-66', NULL, NULL),
-(67, NULL, 1, 'A-67', NULL, NULL),
-(68, NULL, 1, 'A-68', NULL, NULL),
-(69, NULL, 1, 'A-69', NULL, NULL),
-(70, NULL, 1, 'A-70', NULL, NULL),
-(71, NULL, 1, 'A-71', NULL, NULL),
-(72, NULL, 1, 'A-72', NULL, NULL),
-(73, NULL, 1, 'A-73', NULL, NULL),
-(74, NULL, 1, 'A-74', NULL, NULL),
-(75, NULL, 1, 'A-75', NULL, NULL),
-(76, NULL, 1, 'A-76', NULL, NULL),
-(77, NULL, 1, 'A-77', NULL, NULL),
-(78, NULL, 1, 'A-78', NULL, NULL),
-(79, NULL, 1, 'A-79', NULL, NULL),
-(80, NULL, 1, 'A-80', NULL, NULL),
-(81, NULL, 1, 'A-81', NULL, NULL),
-(82, NULL, 1, 'A-82', NULL, NULL),
-(83, NULL, 1, 'A-83', NULL, NULL),
-(84, NULL, 1, 'A-84', NULL, NULL),
-(85, NULL, 1, 'A-85', NULL, NULL),
-(86, NULL, 1, 'A-86', NULL, NULL),
-(87, NULL, 1, 'A-87', NULL, NULL),
-(88, NULL, 1, 'A-88', NULL, NULL),
-(89, NULL, 1, 'A-89', NULL, NULL),
-(90, NULL, 1, 'A-90', NULL, NULL),
-(91, NULL, 1, 'A-91', NULL, NULL),
-(92, NULL, 1, 'A-92', NULL, NULL),
-(93, NULL, 1, 'A-93', NULL, NULL),
-(94, NULL, 1, 'A-94', NULL, NULL),
-(95, NULL, 1, 'A-95', NULL, NULL),
-(96, NULL, 1, 'A-96', NULL, NULL),
-(97, NULL, 1, 'A-97', NULL, NULL),
-(98, NULL, 1, 'A-98', NULL, NULL),
-(99, NULL, 1, 'A-99', NULL, NULL),
-(100, NULL, 1, 'A-100', NULL, NULL),
-(101, NULL, 2, 'P-1', NULL, NULL),
-(102, NULL, 2, 'P-2', NULL, NULL),
-(103, NULL, 2, 'P-3', NULL, NULL),
-(104, NULL, 2, 'P-4', NULL, NULL),
-(105, NULL, 2, 'P-5', NULL, NULL),
-(106, NULL, 2, 'P-6', NULL, NULL),
-(107, NULL, 2, 'P-7', NULL, NULL),
-(108, NULL, 2, 'P-8', NULL, NULL),
-(109, NULL, 2, 'P-9', NULL, NULL),
-(110, NULL, 2, 'P-10', NULL, NULL),
-(111, NULL, 2, 'P-11', NULL, NULL),
-(112, NULL, 2, 'P-12', NULL, NULL),
-(113, NULL, 2, 'P-13', NULL, NULL),
-(114, NULL, 2, 'P-14', NULL, NULL),
-(115, NULL, 2, 'P-15', NULL, NULL),
-(116, NULL, 2, 'P-16', NULL, NULL),
-(117, NULL, 2, 'P-17', NULL, NULL),
-(118, NULL, 2, 'P-18', NULL, NULL),
-(119, NULL, 2, 'P-19', NULL, NULL),
-(120, NULL, 2, 'P-20', NULL, NULL),
-(121, NULL, 2, 'P-21', NULL, NULL),
-(122, NULL, 2, 'P-22', NULL, NULL),
-(123, NULL, 2, 'P-23', NULL, NULL),
-(124, NULL, 2, 'P-24', NULL, NULL),
-(125, NULL, 2, 'P-25', NULL, NULL),
-(126, NULL, 2, 'P-26', NULL, NULL),
-(127, NULL, 2, 'P-27', NULL, NULL),
-(128, NULL, 2, 'P-28', NULL, NULL),
-(129, NULL, 2, 'P-29', NULL, NULL),
-(130, NULL, 2, 'P-30', NULL, NULL),
-(131, NULL, 2, 'P-31', NULL, NULL),
-(132, NULL, 2, 'P-32', NULL, NULL),
-(133, NULL, 2, 'P-33', NULL, NULL),
-(134, NULL, 2, 'P-34', NULL, NULL),
-(135, NULL, 2, 'P-35', NULL, NULL),
-(136, NULL, 2, 'P-36', NULL, NULL),
-(137, NULL, 2, 'P-37', NULL, NULL),
-(138, NULL, 2, 'P-38', NULL, NULL),
-(139, NULL, 2, 'P-39', NULL, NULL),
-(140, NULL, 2, 'P-40', NULL, NULL),
-(141, NULL, 2, 'P-41', NULL, NULL),
-(142, NULL, 2, 'P-42', NULL, NULL),
-(143, NULL, 2, 'P-43', NULL, NULL),
-(144, NULL, 2, 'P-44', NULL, NULL),
-(145, NULL, 2, 'P-45', NULL, NULL),
-(146, NULL, 2, 'P-46', NULL, NULL),
-(147, NULL, 2, 'P-47', NULL, NULL),
-(148, NULL, 2, 'P-48', NULL, NULL),
-(149, NULL, 2, 'P-49', NULL, NULL),
-(150, NULL, 2, 'P-50', NULL, NULL),
-(151, NULL, 2, 'P-51', NULL, NULL),
-(152, NULL, 2, 'P-52', NULL, NULL),
-(153, NULL, 2, 'P-53', NULL, NULL),
-(154, NULL, 2, 'P-54', NULL, NULL),
-(155, NULL, 2, 'P-55', NULL, NULL),
-(156, NULL, 2, 'P-56', NULL, NULL),
-(157, NULL, 2, 'P-57', NULL, NULL),
-(158, NULL, 2, 'P-58', NULL, NULL),
-(159, NULL, 2, 'P-59', NULL, NULL),
-(160, NULL, 2, 'P-60', NULL, NULL),
-(161, NULL, 2, 'P-61', NULL, NULL),
-(162, NULL, 2, 'P-62', NULL, NULL),
-(163, NULL, 2, 'P-63', NULL, NULL),
-(164, NULL, 2, 'P-64', NULL, NULL),
-(165, NULL, 2, 'P-65', NULL, NULL),
-(166, NULL, 2, 'P-66', NULL, NULL),
-(167, NULL, 2, 'P-67', NULL, NULL),
-(168, NULL, 2, 'P-68', NULL, NULL),
-(169, NULL, 2, 'P-69', NULL, NULL),
-(170, NULL, 2, 'P-70', NULL, NULL);
+INSERT INTO `localizacao` (`id`, `palete_id`, `zona_id`, `referencia`, `data_entrada`, `data_saida`, `hasPalete`) VALUES
+(1, 29, 1, 'A-1', '2019-11-11', NULL, 1),
+(2, 2, 1, 'A-2', NULL, NULL, 1),
+(3, 27, 1, 'A-3', '2019-11-11', NULL, 1),
+(4, 21, 1, 'A-4', '1111-11-11', NULL, 1),
+(5, 24, 2, 'A-5', '2019-11-11', NULL, 1),
+(6, 25, 1, 'A-6', '2019-11-11', NULL, 1),
+(7, 31, 1, 'A-7', '2019-11-11', NULL, 1),
+(8, 3, 1, 'A-8', '2019-11-11', NULL, 1),
+(9, 28, 1, 'A-9', '2019-11-11', NULL, 1),
+(10, 26, 1, 'A-10', '2019-11-11', NULL, 1),
+(11, 32, 1, 'A-11', '2019-02-22', NULL, 1),
+(12, 3, 1, 'A-12', '2019-11-11', NULL, 1),
+(13, 24, 2, 'A-13', '1111-11-11', NULL, 1),
+(14, 3, 1, 'A-14', '2019-11-11', NULL, 1),
+(15, 3, 1, 'A-15', '2019-11-11', NULL, 1),
+(16, 3, 1, 'A-16', '2019-11-11', NULL, 1),
+(17, 3, 1, 'A-17', '2019-11-11', NULL, 1),
+(18, 3, 1, 'A-18', '2019-11-11', NULL, 1),
+(19, 3, 1, 'A-19', '2019-11-11', NULL, 1),
+(20, 41, 1, 'A-20', '2019-11-11', NULL, 1),
+(21, 42, 2, 'A-21', '2019-11-11', NULL, 1),
+(22, 43, 2, 'A-22', '2019-11-11', NULL, 1),
+(23, 44, 2, 'A-23', '2019-11-11', NULL, 1),
+(24, 45, 2, 'A-24', '2019-11-11', NULL, 1),
+(25, 46, 2, 'A-25', '2019-11-11', NULL, 1),
+(26, 47, 2, 'A-26', '2019-11-11', NULL, 1),
+(27, 48, 2, 'A-27', '2019-11-11', NULL, 1),
+(28, 49, 2, 'A-28', '2019-11-11', NULL, 1),
+(29, 50, 2, 'A-29', '2019-11-11', NULL, 1),
+(30, 51, 1, 'A-30', '2019-11-11', NULL, 1),
+(31, 52, 4, 'A-31', '2019-05-07', NULL, 1),
+(32, 53, 1, 'A-32', '2019-05-21', NULL, 1),
+(33, 54, 1, 'A-33', '2019-11-11', NULL, 1),
+(34, 55, 1, 'A-34', '2019-11-11', NULL, 1),
+(35, 56, 1, 'A-35', '2019-05-11', NULL, 1),
+(36, 57, 5, 'A-36', '2019-05-11', NULL, 1),
+(37, 58, 5, 'A-37', '2019-11-11', NULL, 1),
+(38, 59, 5, 'A-38', '2019-11-11', NULL, 1),
+(39, 60, 1, 'A-39', '2019-11-11', NULL, 1),
+(40, 61, 5, 'A-40', '2019-11-11', NULL, 1),
+(41, 62, 6, 'A-41', '2019-05-11', NULL, 1),
+(42, NULL, NULL, 'A-42', NULL, NULL, 0),
+(43, NULL, NULL, 'A-43', NULL, NULL, 0),
+(44, NULL, NULL, 'A-44', NULL, NULL, 0),
+(45, NULL, NULL, 'A-45', NULL, NULL, 0),
+(46, NULL, NULL, 'A-46', NULL, NULL, 0),
+(47, NULL, NULL, 'A-47', NULL, NULL, 0),
+(48, NULL, NULL, 'A-48', NULL, NULL, 0),
+(49, NULL, NULL, 'A-49', NULL, NULL, 0),
+(50, NULL, NULL, 'A-50', NULL, NULL, 0),
+(51, NULL, NULL, 'A-51', NULL, NULL, 0),
+(52, NULL, NULL, 'A-52', NULL, NULL, 0),
+(53, NULL, NULL, 'A-53', NULL, NULL, 0),
+(54, NULL, NULL, 'A-54', NULL, NULL, 0),
+(55, NULL, NULL, 'A-55', NULL, NULL, 0),
+(56, NULL, NULL, 'A-56', NULL, NULL, 0),
+(57, NULL, NULL, 'A-57', NULL, NULL, 0),
+(58, NULL, NULL, 'A-58', NULL, NULL, 0),
+(59, NULL, NULL, 'A-59', NULL, NULL, 0),
+(60, NULL, NULL, 'A-60', NULL, NULL, 0),
+(61, NULL, NULL, 'A-61', NULL, NULL, 0),
+(62, NULL, NULL, 'A-62', NULL, NULL, 0),
+(63, NULL, NULL, 'A-63', NULL, NULL, 0),
+(64, NULL, NULL, 'A-64', NULL, NULL, 0),
+(65, NULL, NULL, 'A-65', NULL, NULL, 0),
+(66, NULL, NULL, 'A-66', NULL, NULL, 0),
+(67, NULL, NULL, 'A-67', NULL, NULL, 0),
+(68, NULL, NULL, 'A-68', NULL, NULL, 0),
+(69, NULL, NULL, 'A-69', NULL, NULL, 0),
+(70, NULL, NULL, 'A-70', NULL, NULL, 0),
+(71, NULL, NULL, 'A-71', NULL, NULL, 0),
+(72, NULL, NULL, 'A-72', NULL, NULL, 0),
+(73, NULL, NULL, 'A-73', NULL, NULL, 0),
+(74, NULL, NULL, 'A-74', NULL, NULL, 0),
+(75, NULL, NULL, 'A-75', NULL, NULL, 0),
+(76, NULL, NULL, 'A-76', NULL, NULL, 0),
+(77, NULL, NULL, 'A-77', NULL, NULL, 0),
+(78, NULL, NULL, 'A-78', NULL, NULL, 0),
+(79, NULL, NULL, 'A-79', NULL, NULL, 0),
+(80, NULL, NULL, 'A-80', NULL, NULL, 0),
+(81, NULL, NULL, 'A-81', NULL, NULL, 0),
+(82, NULL, NULL, 'A-82', NULL, NULL, 0),
+(83, NULL, NULL, 'A-83', NULL, NULL, 0),
+(84, NULL, NULL, 'A-84', NULL, NULL, 0),
+(85, NULL, NULL, 'A-85', NULL, NULL, 0),
+(86, NULL, NULL, 'A-86', NULL, NULL, 0),
+(87, NULL, NULL, 'A-87', NULL, NULL, 0),
+(88, NULL, NULL, 'A-88', NULL, NULL, 0),
+(89, NULL, NULL, 'A-89', NULL, NULL, 0),
+(90, NULL, NULL, 'A-90', NULL, NULL, 0),
+(91, NULL, NULL, 'A-91', NULL, NULL, 0),
+(92, NULL, NULL, 'A-92', NULL, NULL, 0),
+(93, NULL, NULL, 'A-93', NULL, NULL, 0),
+(94, NULL, NULL, 'A-94', NULL, NULL, 0),
+(95, NULL, NULL, 'A-95', NULL, NULL, 0),
+(96, NULL, NULL, 'A-96', NULL, NULL, 0),
+(97, NULL, NULL, 'A-97', NULL, NULL, 0),
+(98, NULL, NULL, 'A-98', NULL, NULL, 0),
+(99, NULL, NULL, 'A-99', NULL, NULL, 0),
+(100, NULL, NULL, 'A-100', NULL, NULL, 0),
+(101, NULL, NULL, 'P-1', NULL, NULL, 0),
+(102, NULL, NULL, 'P-2', NULL, NULL, 0),
+(103, NULL, NULL, 'P-3', NULL, NULL, 0),
+(104, NULL, NULL, 'P-4', NULL, NULL, 0),
+(105, NULL, NULL, 'P-5', NULL, NULL, 0),
+(106, NULL, NULL, 'P-6', NULL, NULL, 0),
+(107, NULL, NULL, 'P-7', NULL, NULL, 0),
+(108, NULL, NULL, 'P-8', NULL, NULL, 0),
+(109, NULL, NULL, 'P-9', NULL, NULL, 0),
+(110, NULL, NULL, 'P-10', NULL, NULL, 0),
+(111, NULL, NULL, 'P-11', NULL, NULL, 0),
+(112, NULL, NULL, 'P-12', NULL, NULL, 0),
+(113, NULL, NULL, 'P-13', NULL, NULL, 0),
+(114, NULL, NULL, 'P-14', NULL, NULL, 0),
+(115, NULL, NULL, 'P-15', NULL, NULL, 0),
+(116, NULL, NULL, 'P-16', NULL, NULL, 0),
+(117, NULL, NULL, 'P-17', NULL, NULL, 0),
+(118, NULL, NULL, 'P-18', NULL, NULL, 0),
+(119, NULL, NULL, 'P-19', NULL, NULL, 0),
+(120, NULL, NULL, 'P-20', NULL, NULL, 0),
+(121, NULL, NULL, 'P-21', NULL, NULL, 0),
+(122, NULL, NULL, 'P-22', NULL, NULL, 0),
+(123, NULL, NULL, 'P-23', NULL, NULL, 0),
+(124, NULL, NULL, 'P-24', NULL, NULL, 0),
+(125, NULL, NULL, 'P-25', NULL, NULL, 0),
+(126, NULL, NULL, 'P-26', NULL, NULL, 0),
+(127, NULL, NULL, 'P-27', NULL, NULL, 0),
+(128, NULL, NULL, 'P-28', NULL, NULL, 0),
+(129, NULL, NULL, 'P-29', NULL, NULL, 0),
+(130, NULL, NULL, 'P-30', NULL, NULL, 0),
+(131, NULL, NULL, 'P-31', NULL, NULL, 0),
+(132, NULL, NULL, 'P-32', NULL, NULL, 0),
+(133, NULL, NULL, 'P-33', NULL, NULL, 0),
+(134, NULL, NULL, 'P-34', NULL, NULL, 0),
+(135, NULL, NULL, 'P-35', NULL, NULL, 0),
+(136, NULL, NULL, 'P-36', NULL, NULL, 0),
+(137, NULL, NULL, 'P-37', NULL, NULL, 0),
+(138, NULL, NULL, 'P-38', NULL, NULL, 0),
+(139, NULL, NULL, 'P-39', NULL, NULL, 0),
+(140, NULL, NULL, 'P-40', NULL, NULL, 0),
+(141, NULL, NULL, 'P-41', NULL, NULL, 0),
+(142, NULL, NULL, 'P-42', NULL, NULL, 0),
+(143, NULL, NULL, 'P-43', NULL, NULL, 0),
+(144, NULL, NULL, 'P-44', NULL, NULL, 0),
+(145, NULL, NULL, 'P-45', NULL, NULL, 0),
+(146, NULL, NULL, 'P-46', NULL, NULL, 0),
+(147, NULL, NULL, 'P-47', NULL, NULL, 0),
+(148, NULL, NULL, 'P-48', NULL, NULL, 0),
+(149, NULL, NULL, 'P-49', NULL, NULL, 0),
+(150, NULL, NULL, 'P-50', NULL, NULL, 0),
+(151, NULL, NULL, 'P-51', NULL, NULL, 0),
+(152, NULL, NULL, 'P-52', NULL, NULL, 0),
+(153, NULL, NULL, 'P-53', NULL, NULL, 0),
+(154, NULL, NULL, 'P-54', NULL, NULL, 0),
+(155, NULL, NULL, 'P-55', NULL, NULL, 0),
+(156, NULL, NULL, 'P-56', NULL, NULL, 0),
+(157, NULL, NULL, 'P-57', NULL, NULL, 0),
+(158, NULL, NULL, 'P-58', NULL, NULL, 0),
+(159, NULL, NULL, 'P-59', NULL, NULL, 0),
+(160, NULL, NULL, 'P-60', NULL, NULL, 0),
+(161, NULL, NULL, 'P-61', NULL, NULL, 0),
+(162, NULL, NULL, 'P-62', NULL, NULL, 0),
+(163, NULL, NULL, 'P-63', NULL, NULL, 0),
+(164, NULL, NULL, 'P-64', NULL, NULL, 0),
+(165, NULL, NULL, 'P-65', NULL, NULL, 0),
+(166, NULL, NULL, 'P-66', NULL, NULL, 0),
+(167, NULL, NULL, 'P-67', NULL, NULL, 0),
+(168, NULL, NULL, 'P-68', NULL, NULL, 0),
+(169, NULL, NULL, 'P-69', NULL, NULL, 0),
+(170, NULL, NULL, 'P-70', NULL, NULL, 0),
+(171, 2, NULL, 'B-71', '0000-00-00', '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -368,7 +376,51 @@ CREATE TABLE `palete` (
 
 INSERT INTO `palete` (`id`, `guia_entrada_id`, `guia_saida_id`, `artigo_id`, `tipo_palete_id`, `referencia`, `nome`, `Data`) VALUES
 (1, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos', '0000-00-00 00:00:00'),
-(2, NULL, NULL, 1, 2, 'PAL-1', 'Palete de Pratos', '0000-00-00 00:00:00');
+(3, 1, NULL, 1, 1, 'PAL-454', 'Palete de pratos', '0000-00-00 00:00:00'),
+(7, 1, NULL, 1, 1, 'PAL-909', 'Palete de pratos', '0000-00-00 00:00:00'),
+(8, 1, NULL, 1, 1, 'PAL-910', 'Palete de pratos', '0000-00-00 00:00:00'),
+(9, 1, NULL, 1, 1, 'PAL-978', 'Palete de pratos', '0000-00-00 00:00:00'),
+(10, 1, NULL, 1, 1, 'PAL-223', 'Palete de ', '0000-00-00 00:00:00'),
+(11, 1, NULL, 1, 1, 'PAL-221', 'Palete de ', '0000-00-00 00:00:00'),
+(13, 1, NULL, 1, 1, 'PAL-112', 'Palete de pratos', '0000-00-00 00:00:00'),
+(14, 1, NULL, 1, 1, 'PAL-112', 'Palete de pratos', '0000-00-00 00:00:00'),
+(16, 1, NULL, 1, 1, 'PAL-11', 'Palete de 111', '0000-00-00 00:00:00'),
+(17, 1, NULL, 1, 1, 'PAL-115', 'Palete de 111', '0000-00-00 00:00:00'),
+(18, 2, NULL, 1, 2, 'PAL-229', 'Palete de pratos', '0000-00-00 00:00:00'),
+(19, 1, NULL, 1, 1, 'PAL-11', 'Palete de pratos', '0000-00-00 00:00:00'),
+(20, 1, NULL, 1, 1, 'PAL-787', 'Palete de pratos', '0000-00-00 00:00:00'),
+(21, 1, NULL, 1, 1, 'PAL-478', 'Palete de pratos', '0000-00-00 00:00:00'),
+(24, 2, NULL, 1, 2, 'PAL-987', 'Palete de pratos', '0000-00-00 00:00:00'),
+(25, 1, NULL, 1, 1, 'PAL-365', 'Palete de pratos', '0000-00-00 00:00:00'),
+(26, 1, NULL, 1, 1, 'PAL-144', 'Palete de pratos', '0000-00-00 00:00:00'),
+(27, 1, NULL, 1, 1, 'PAL-423', 'Palete de pratos', '0000-00-00 00:00:00'),
+(28, 1, NULL, 1, 1, 'PAL-113', 'Palete de ', '0000-00-00 00:00:00'),
+(29, 1, NULL, 1, 1, 'PAL-117', 'Palete de pratos', '0000-00-00 00:00:00'),
+(30, 2, NULL, 1, 2, 'PAL-987', 'Palete de pratos', '0000-00-00 00:00:00'),
+(31, 1, NULL, 1, 1, 'PAL-777', 'Palete de pratos', '0000-00-00 00:00:00'),
+(32, 1, NULL, 1, 1, 'PAL-999', 'Palete de pratos', '0000-00-00 00:00:00'),
+(41, 1, NULL, 1, 1, 'PAL-187', 'Palete de pratos', '0000-00-00 00:00:00'),
+(42, 2, NULL, 1, 2, 'PAL-655', 'Palete de ', '0000-00-00 00:00:00'),
+(43, 2, NULL, 1, 2, 'PAL-658', 'Palete de ', '0000-00-00 00:00:00'),
+(44, 2, NULL, 1, 2, 'PAL-644', 'Palete de ', '0000-00-00 00:00:00'),
+(45, 2, NULL, 1, 2, 'PAL-471', 'Palete de ', '0000-00-00 00:00:00'),
+(46, 2, NULL, 1, 2, 'PAL-299', 'Palete de ', '0000-00-00 00:00:00'),
+(47, 2, NULL, 1, 2, 'PAL-300', 'Palete de pratos', '0000-00-00 00:00:00'),
+(48, 2, NULL, 1, 2, 'PAL-301', 'Palete de pratos', '0000-00-00 00:00:00'),
+(49, 2, NULL, 1, 2, 'PAL-302', 'Palete de pratos', '0000-00-00 00:00:00'),
+(50, 2, NULL, 1, 2, 'PAL-303', 'Palete de pratos', '0000-00-00 00:00:00'),
+(51, 1, NULL, 1, 1, 'PAL-678', 'Palete de ', '0000-00-00 00:00:00'),
+(52, 23, NULL, 1, 3, 'PAL-078', 'Palete de pratos', '0000-00-00 00:00:00'),
+(53, 24, NULL, 1, 1, 'PAL-114', 'Palete de pratos', '0000-00-00 00:00:00'),
+(54, 24, NULL, 1, 1, 'PAL-079', 'Palete de pratos', '0000-00-00 00:00:00'),
+(55, 24, NULL, 1, 1, 'PAL-103', 'Palete de pratos', '0000-00-00 00:00:00'),
+(56, 24, NULL, 1, 1, 'PAL-744', 'Palete de pratos', '0000-00-00 00:00:00'),
+(57, 26, NULL, 1, 1, 'PAL-001', 'Palete de pratos', '0000-00-00 00:00:00'),
+(58, 27, NULL, 1, 2, 'PAL-002', 'Palete de pratos', '0000-00-00 00:00:00'),
+(59, 26, NULL, 1, 1, 'PAL-003', 'Palete de pratos', '0000-00-00 00:00:00'),
+(60, 1, NULL, 1, 1, 'PAL-005', 'Palete de pratos', '0000-00-00 00:00:00'),
+(61, 26, NULL, 1, 1, 'PAL-006', 'Palete de pratos', '0000-00-00 00:00:00'),
+(62, 26, NULL, 1, 1, 'PAL-007', 'Palete de pratos', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -482,7 +534,7 @@ CREATE TABLE `utilizador` (
 --
 
 INSERT INTO `utilizador` (`id`, `perfil_id`, `armazem_id`, `nome`, `email`, `password`) VALUES
-(1, 2, 3, 'a', 'a@a.com', 'a'),
+(1, 2, 3, 'a', 'a@a.com', 'aa'),
 (2, 1, 3, 'b', 'b@b.com', 'b');
 
 -- --------------------------------------------------------
@@ -506,8 +558,12 @@ CREATE TABLE `zona` (
 --
 
 INSERT INTO `zona` (`id`, `armazem_id`, `tipo_zona_id`, `nome`, `preco_zona`, `espaco`, `tipo_palete_id`) VALUES
-(1, 4, 1, 'Zona de paletes baixas no Armazem B', 5, 100, 1),
-(2, 3, 2, 'Zona de paletes altas no Armazem A', 10, 70, 2);
+(1, 4, 1, 'Zona de paletes baixas no Armazem B', 5, 94, 1),
+(2, 3, 2, 'Zona de paletes altas no Armazem A', 10, 51, 2),
+(3, 8, 2, 'Zona de paletes altas no armazem 8', 6, 25, 2),
+(4, 5, 3, 'Zona de paletes frias no armazem F', 25, 24, 3),
+(5, 6, 2, 'Zona de Paletes altas no Armazem D', 10, 31, 2),
+(6, 6, 1, 'Zona de Paletes baixas no Armazem D', 8, 44, 1);
 
 --
 -- Indexes for dumped tables
@@ -634,7 +690,7 @@ ALTER TABLE `zona`
 -- AUTO_INCREMENT for table `armazem`
 --
 ALTER TABLE `armazem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `artigo`
@@ -658,7 +714,7 @@ ALTER TABLE `documento`
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `linha`
@@ -670,13 +726,13 @@ ALTER TABLE `linha`
 -- AUTO_INCREMENT for table `localizacao`
 --
 ALTER TABLE `localizacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
 -- AUTO_INCREMENT for table `palete`
 --
 ALTER TABLE `palete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `perfil`
@@ -718,7 +774,7 @@ ALTER TABLE `utilizador`
 -- AUTO_INCREMENT for table `zona`
 --
 ALTER TABLE `zona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

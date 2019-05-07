@@ -67,7 +67,7 @@ exit;
                             </thead>
                             <tbody>
                                 <?php
-                                $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 3 ORDER BY 'data_carga' ASC");
+                                $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 3 ORDER BY data_carga ASC");
                                 foreach ($query as $eachRow) {
                                     $clienteId = $eachRow['cliente_id'];
                                     $numReq = $eachRow['numero_requisicao'];

@@ -63,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span id="reauth-email" class="reauth-email"></span>
         <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
         <br>
-        <input type="input" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        <input type="input" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <br>
-        <input type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required>
-        <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required>
+        <input type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+        <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
         <select class="form-control" name="combobox">
           <option value="" disabled selected>Armazém</option>
           <?php

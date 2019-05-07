@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-header("Location: menu.php");
 exit;
 } ?>
 
@@ -38,16 +37,37 @@ exit;
 </head>
 
 <body>
+    <script>
+        function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+                textbox.addEventListener(event, function() {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                });
+            });
+        }
+
+        setInputFilter(document.getElementById("uintTextBox"), function(value) {
+            return /^\d*$/.test(value);
+        });
+
+    </script>
 
     <div class="container">
         <div class=" card card-container">
             <h1 style="text-align:center">Registar cliente</h1>
             <br>
             <form class="form-signin" action="registar_cliente.php" method="post">
-                <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
-                <input type="number" id="inputNif" name="nif" class="form-control" placeholder="NIF" onKeyDown="if(this.value.length==9) return false;" required>
-                <input type="input" id="inputMorada" name="morada" class="form-control" placeholder="Morada" required>
-                <input type="input" id="inputLocalidade" name="local" class="form-control" placeholder="Localidade" required>
+                <input type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" title="Apenas deve conter letras." required autofocus>
+                <input type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 title="O NIF tem de ter 9 dígitos." required>
+                <input type="input" name="morada" class="form-control" placeholder="Morada" pattern="[a-zA-Z0-9-,-.]+" required>
+                <input type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z]+" required>
                 <br>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
             </form><!-- /form -->

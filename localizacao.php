@@ -2,7 +2,10 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
+<<<<<<< HEAD
 $i = 0;
+=======
+>>>>>>> ed18816ebdae376bc79d927e1b1dbe404f3795ba
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST["referencia"];
     $tipopalete = $_POST["combobox2"];
@@ -78,9 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             foreach ($busca as $eachRow) {
                                 ?>
                                 <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                                <?php
+                            <?php
                         }
-                                ?>
+                        ?>
                         </select>
                     </div>
                 </div>
