@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
@@ -30,20 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" href="css.css">
 </head>
 
 <body>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="fatura_cliente.php" method="post">
                 <div style="text-align:center">
                     <h1>Fatura mensal</h1>
                     <br>
                     <div class="container">
-                        <div style="text-align:center">
-                            <select name="cliente" style="text-align-last:center; width:40" onchange="this.form.submit()">
+                        <div text-align:center">
+                            <select class="custom-select" name="cliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -55,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                             </select>
                         </div>
-                        
                         <br>
                         <table class="table">
                             <thead>
@@ -128,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div><!-- /container -->
     <script type="text/javascript"></script>
     <script type="text/javascript"></script>
+    <script src="teste.js"></script>
 </body>
 
 </html>

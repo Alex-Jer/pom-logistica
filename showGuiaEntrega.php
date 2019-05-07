@@ -45,11 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $getEspaco2=$dado2['espaco'];
         $espacoTotal=$getEspaco2-1;
         
-        
+        date_default_timezone_set("Europe/Lisbon");
+        $timeRN=date("Y-m-d H:i:s");
 
         
         if ($count==0){
-            $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome) VALUES ('$guiaentrada', '$artigo','$tpID', '$referencia','$nomepal')";
+            $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', '$referencia','$nomepal', '$timeRN')";
             if (mysqli_query($conn, $sql)) {
                 ?>
                 <?php
@@ -229,8 +230,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     </div>
   </div>
 
-</body>
 
+</body>
 </html>
 <script>
   $("#teste").on("change", function() {

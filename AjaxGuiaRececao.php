@@ -7,6 +7,7 @@ $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['id']."'")
         $tpID=$dado[ 'tipo_palete_id'];
         $arID=$dado['armazem_id'];
         $cliID=$dado['cliente_id'];
+        date_default_timezone_set("Europe/Lisbon");
         $timeRN=date("Y-m-d H:i:s");
         $getCBtz=$dado['tipo_zona_id'];
         $getArtigo=$dado['artigo_id'];
