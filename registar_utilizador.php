@@ -61,9 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h1 style="text-align:center">Registar utilizador</h1>
       <form class="form-signin" method="post" action="registar_utilizador.php">
         <span id="reauth-email" class="reauth-email"></span>
-        <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" required autofocus>
+        <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
         <br>
-        <input type="input" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <br>
         <input type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
         <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>

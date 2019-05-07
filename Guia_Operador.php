@@ -18,43 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("New record created successfully");
         </script>
     <?php
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-$sql2 = mysqli_query($conn, "SELECT * FROM guia WHERE numero_requisicao='$nrequisicao'");
-$sql3 = mysqli_fetch_array($sql2);
-$sql4 = $sql3['numero_paletes'];
-$sql5 = $sql3['artigo_id'];
-//$sql5 = (int)$sql5;
-$sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$sql5'");
-/*foreach($sql2 AS $eachrow)
-    {
-        $sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5'");
-    }*/
-$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
-//$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' LIMIT 1");
-if (mysqli_query($conn, $sql7)) {
-    ?>
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    $sql2 = mysqli_query($conn, "SELECT * FROM guia WHERE numero_requisicao='$nrequisicao'");
+    $sql3 = mysqli_fetch_array($sql2);
+    $sql4 = $sql3['numero_paletes'];
+    $sql5 = $sql3['artigo_id'];
+    $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$sql5'");
+    $sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
+    if (mysqli_query($conn, $sql7)) {
+        ?>
         <script type="text/javascript">
             alert("New record created successfully");
         </script>
-    <?php
-} /*else {
-    echo "Error: " . $sql7 . "<br>" . mysqli_error($conn);
-}*/
-mysqli_close($conn);
-//header("Location: navbarLogin.php");
-exit;
+        <?php
+    } 
+    mysqli_close($conn);
+    exit;
 }
-
-// "UPDATE guia SET numero_paletes = (numero_paletes - '$npaletes')";
-//$sql2 = "";
-/*foreach("SELECT numero_paletes FROM guia WHERE numero_requisicao='$nrequisicao'")
-    {
-
-    }*/
-
-?>
+    ?>
 
 <head>
     <link rel="stylesheet" href="style.css">
@@ -104,20 +87,20 @@ exit;
                 </div>
                 &nbsp;
                 <div style="text-align:center">
-                    <input class="form-control" class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center" required>
+                    <input class="form-control" class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center; margin-top:-5%" required>
                 </div>
                 <div style="text-align:center">
                     <br>
                     <form class="form-signin" method="post">
-                        <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center" required>
+                        <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-top:-5%" required>
                 </div>
                 <div style="text-align:center">
                     <br>
-                    <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                    <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:-5%" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                 </div>
                 <br>
                 <div style="text-align:center">
-                    <select class="form-control" name="artigo" style="text-align-last:center">
+                    <select class="form-control" name="artigo" style="text-align-last:center; margin-top:-8.5%">
                         <option value="" disabled selected>Artigo</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -131,7 +114,7 @@ exit;
                 </div>
                 <div style="text-align:center">
                     <br>
-                    <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center">
+                    <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:-5%">
                 </div>
                 &nbsp;
                 <br>

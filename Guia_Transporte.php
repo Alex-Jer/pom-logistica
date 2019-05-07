@@ -59,7 +59,7 @@ exit;
                     <h1>Guia de transporte</h1>
                     <br>
                     <div style="text-align:center">
-                        <select class="form-control" name="cliente" style="text-align-last:center">
+                        <select class="form-control" name="cliente" style="text-align-last:center; margin-top:-5%">
                             <option value="" disabled selected>Cliente</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -73,24 +73,24 @@ exit;
                         <br>
                     </div>
                     <div style="text-align:center">
-                        <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center" required>
+                        <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:-5%" required>
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input class="form-control" placeholder="Hora de carga" style="text-align:center" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" placeholder="Hora de carga" style="text-align:center; margin-top:-5%" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input class="form-control" placeholder="Hora prevista de descarga" style="text-align:center" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" placeholder="Hora prevista de descarga" style="text-align:center; margin-top:-8.5%" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                     </div>
                     <div style="text-align:center">
                         <br>
                         <form class="form-signin" method="post">
-                            <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center" required>
+                            <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:-%" required>
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <select class="form-control" name="numReq" style="text-align-last:center">
+                        <select class="form-control" name="numReq" style="text-align-last:center; margin-top:-5%">
                             <option value="" disabled selected>Número de requisição</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT * FROM guia");
