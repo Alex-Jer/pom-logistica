@@ -14,7 +14,7 @@ $busca = mysqli_query($conn,"SELECT * FROM tipo_palete WHERE id='".$_POST['id'].
 $dado = mysqli_fetch_array($busca);
         $nome = $dado['nome'];
         $nome2 = $dado['id'];
-echo '<option value="" disabled selected>Armazem</option>';
+echo '<option value="" disabled selected>Armazém</option>';
 $busca2 = mysqli_query($conn,"SELECT * FROM zona WHERE tipo_zona_id='$nome2'");
 foreach ($busca2 as $eachRow)
 {

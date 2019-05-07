@@ -154,12 +154,13 @@ html {
   white-space: nowrap;
 }
 
-.custom-select {
+.custom-select-teste {
   position: relative;
   font-family: Arial;
+  font-size: 150%;
 }
 
-.custom-select select {
+.custom-select-teste select {
   display: none; /*hide original SELECT element: */
 }
 
@@ -211,4 +212,11 @@ html {
 
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu-center {
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, 0) !important;
 }

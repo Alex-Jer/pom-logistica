@@ -8,6 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
@@ -33,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="css.css">
+
 </head>
 
 <body>
@@ -45,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h1>Fatura mensal</h1>
                     <br>
                     <div class="container">
-                        <div text-align:center">
-                            <select class="custom-select" name="cliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()">
+                        <div style="text-align:center">
+                            <select class="custom-select custom-select-lg" name="cliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -130,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div><!-- /container -->
     <script type="text/javascript"></script>
     <script type="text/javascript"></script>
-    <script src="teste.js"></script>
 </body>
 
 </html>
