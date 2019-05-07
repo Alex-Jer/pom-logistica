@@ -226,58 +226,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
           </div>
         </form>
       </div>
-      <div class="col dupla card card-container ">
-        <form class="form-signin" action="showGuiaEntrega.php" method="post">
-          <p>Data e Hora da Entrega</p>
-          <input type="datetime-local" id="inputdata" name="dataentrega" placeholder="Data" value="<?php echo $_POST['dataentrega']; ?>" required>
-          &nbsp;
-          <p>Artigo</p>
-          <select name="comboboxArtigo" id="comboboxArtigo">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM artigo");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Guia</p>
-          <select name="comboBoxGuiaId" id="comboBoxGuiaId">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM guia");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Localizacao</p>
-          <select name="comboBoxLocalizacao" id="comboBoxLocalizacao">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Refrencia Palete</p>
-          <input type="text" id="inputdata" name="refpal" value="PAL-" placeholder="Data" value="<?php echo $_POST['refpal']; ?>" required>
-          <p>Nome</p>
-          <input type="text" id="inputdata" name="nomepal" value="Palete de " placeholder="Data" value="<?php echo $_POST['nomepal']; ?>" required>
-
-          <button type="submit">Registar Palete</button>
-        </form>
-      </div>
     </div>
   </div>
 

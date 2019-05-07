@@ -49,6 +49,7 @@ include 'db.php';
                                     <li><a href="showGuiaEntrega.php">Registar Palete</a></li>
                                     <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="Guia_Rececao.php">Pedidos</a></li>
+                                    <li><a href="pdf.php">Pedidos</a></li>
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->
