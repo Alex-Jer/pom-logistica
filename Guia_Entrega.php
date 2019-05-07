@@ -68,14 +68,13 @@ exit;
                         $busca = mysqli_query($conn, "SELECT * FROM cliente");
                         foreach ($busca as $eachRow) {
                             ?>
-                            &nbsp;
                             <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['comboboxCli']) && $_POST['comboboxCli'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
                         <?php
                     }
                     ?>
                     </select>
-                    &nbsp;
-                    <select class="form-control" name="comboboxTipoGuia" style="text-align-last:center">
+                    <br>
+                    <select class="form-control" name="comboboxTipoGuia" style="text-align-last:center; margin-top:-5%">
                         <option value="" disabled selected>Tipo de guia</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_guia");
@@ -89,9 +88,8 @@ exit;
                     </select>
                     <br>
                     <!-- <input type="input" id="inputGuia" name="Nguia" class="form-control" placeholder="Nº de guia" required autofocus> -->
-                    <input style="text-align-last:center" class="form-control" type="text" onfocus="(this.type='datetime-local')" class="textbox-n" id="inputdata" name="dataentrega" placeholder="Data" required>
-                    <br>
-                    <select class="form-control" name="comboboxArtigo" style="text-align-last:center">
+                    <input style="text-align-last:center; margin-top:-5%;" class="form-control" type="text" onfocus="(this.type='datetime-local')" class="textbox-n" id="inputdata" name="dataentrega" placeholder="Data" required>
+                    <select class="form-control" name="comboboxArtigo" style="text-align-last:center; margin-top:5%">
                         <option value="" disabled selected>Referência</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -104,7 +102,7 @@ exit;
                     ?>
                     </select>
                     <br>
-                    <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center">
+                    <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:-5%">
                         <option value="" disabled selected>Tipo de paletes</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
@@ -115,13 +113,12 @@ exit;
                             <?php
                             echo $eachRow['nome'];
                         }
-
                         ?>
                     </select>
                     <br>
-                    <input style="text-align-last:center" type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" value="<?php echo $_POST['qt']; ?>" required>
+                    <input style="text-align-last:center; margin-top:-5%" type="number" id="uintTextBox" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" value="<?php echo $_POST['qt']; ?>" required>
                     <br>
-                    <select class="form-control" name="comboboxTipoZona" id="TipoZona" style="text-align-last:center">
+                    <select class="form-control" name="comboboxTipoZona" id="TipoZona" style="text-align-last:center; margin-top:-5%">
                         <option value="" disabled selected>Tipo de zona</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
@@ -135,7 +132,7 @@ exit;
                         ?>
                     </select>
                     <br>
-                    <input type="number" id="inputreq" name="req" class="form-control" style="text-align-last:center" placeholder="Numero de requisição" value="<?php echo htmlspecialchars($_POST['req']); ?>" required>
+                    <input type="number" id="uintTextBox" name="req" class="form-control" style="text-align-last:center; margin-top:-6%" placeholder="Numero de requisição" value="<?php echo htmlspecialchars($_POST['req']); ?>" required>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ?>
@@ -149,6 +146,28 @@ exit;
             </form><!-- /form -->
         </div>
     </div>
+
+    <script>
+        function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+                textbox.addEventListener(event, function() {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                });
+            });
+        }
+
+        setInputFilter(document.getElementById("uintTextBox"), function(value) {
+            return /^\d*$/.test(value);
+        });
+    </script>
+
 </body>
 
 </html>

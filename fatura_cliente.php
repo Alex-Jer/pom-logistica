@@ -29,12 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="fatura_cliente.php" method="post">
                 <div style="text-align:center">
@@ -54,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                             </select>
                         </div>
+                        
                         <br>
                         <table class="table">
                             <thead>
