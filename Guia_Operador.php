@@ -3,6 +3,7 @@
 <?php
 include 'db.php';
 include 'navbarLogin.php';
+$count = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
     $nrequisicao = $_POST["nrequisicao"];
@@ -18,26 +19,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("New record created successfully");
         </script>
     <?php
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    $sql2 = mysqli_query($conn, "SELECT * FROM guia WHERE numero_requisicao='$nrequisicao'");
-    $sql3 = mysqli_fetch_array($sql2);
-    $sql4 = $sql3['numero_paletes'];
-    $sql5 = $sql3['artigo_id'];
-    $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$sql5'");
-    $sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
-    if (mysqli_query($conn, $sql7)) {
-        ?>
-        <script type="text/javascript">
-            alert("New record created successfully");
-        </script>
-        <?php
-    } 
-    mysqli_close($conn);
-    exit;
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-    ?>
+
+$sql2 = mysqli_query($conn, "SELECT * FROM guia WHERE numero_requisicao='$nrequisicao'");
+$sql3 = mysqli_fetch_array($sql2);
+$sql4 = $sql3['numero_paletes'];
+$sql5 = $sql3['artigo_id'];
+$sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo' ORDER BY Data ASC");
+//$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
+foreach ($sql6 as $eachRow2) {
+    $count++;
+    if ($count <= $npaletes) {
+        echo $count;
+        $paleteId = $eachRow2['id'];
+        $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npaletes"); 
+        if (mysqli_query($conn, $sql10)) {
+            ?>
+                <script type="text/javascript">
+                    alert("New record created successfully");
+                </script>
+            <?php
+        }
+    }
+}
+}
+?>
 
 <head>
     <link rel="stylesheet" href="style.css">
@@ -74,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h1>Guia do operador</h1>
                     <br>
                     <select class="form-control" name="cliente" style="text-align-last:center">
-                    <option value="" disabled selected>Cliente</option>
+                        <option value="" disabled selected>Cliente</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM cliente");
                         foreach ($busca as $eachRow) {

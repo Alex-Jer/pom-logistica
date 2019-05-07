@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Maio-2019 às 17:46
+-- Generation Time: 07-Maio-2019 às 13:13
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -142,7 +142,9 @@ INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_
 (24, 6, NULL, 1, 1, 1, 4, 1, '2019-05-07 14:30:00', '0000-00-00 00:00:00', 10, 'REQ-987', NULL, NULL, NULL),
 (25, 5, NULL, 1, 2, 2, 8, 1, '2019-05-11 11:11:00', '0000-00-00 00:00:00', 21, 'REQ-742', NULL, NULL, NULL),
 (26, 5, NULL, 1, 1, 1, 6, 1, '2019-05-11 11:45:00', '0000-00-00 00:00:00', 2, 'REQ-554', NULL, NULL, NULL),
-(27, 5, NULL, 1, 2, 2, 6, 1, '2019-05-11 11:45:00', '0000-00-00 00:00:00', 4, 'REQ-117', NULL, NULL, NULL);
+(27, 5, NULL, 1, 2, 2, 6, 1, '2019-05-11 11:45:00', '0000-00-00 00:00:00', 4, 'REQ-117', NULL, NULL, NULL),
+(28, 5, 26, 3, 1, 1, 6, 1, '2019-05-06 18:25:45', '0000-00-00 00:00:00', 2, 'REQ-554', NULL, NULL, NULL),
+(29, 5, NULL, 3, NULL, NULL, NULL, NULL, '2019-02-22 11:11:00', '2019-02-22 11:11:00', NULL, '', 'Obidos', NULL, '10-RT-22');
 
 -- --------------------------------------------------------
 
@@ -458,7 +460,8 @@ CREATE TABLE `tipo_guia` (
 
 INSERT INTO `tipo_guia` (`id`, `nome`) VALUES
 (1, 'Entrega'),
-(2, 'Transporte');
+(2, 'Transporte'),
+(3, 'Operador');
 
 -- --------------------------------------------------------
 
@@ -702,7 +705,7 @@ ALTER TABLE `artigo`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `documento`
@@ -714,7 +717,7 @@ ALTER TABLE `documento`
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `linha`
@@ -744,7 +747,7 @@ ALTER TABLE `perfil`
 -- AUTO_INCREMENT for table `tipo_guia`
 --
 ALTER TABLE `tipo_guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tipo_linha`

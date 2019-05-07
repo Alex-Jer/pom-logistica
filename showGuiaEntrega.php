@@ -45,11 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $getEspaco2=$dado2['espaco'];
         $espacoTotal=$getEspaco2-1;
         
-        
+        date_default_timezone_set("Europe/Lisbon");
+        $timeRN=date("Y-m-d H:i:s");
 
         
         if ($count==0){
-            $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome) VALUES ('$guiaentrada', '$artigo','$tpID', '$referencia','$nomepal')";
+            $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', '$referencia','$nomepal', '$timeRN')";
             if (mysqli_query($conn, $sql)) {
                 ?>
                 <?php
@@ -226,63 +227,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
           </div>
         </form>
       </div>
-      <div class="col dupla card card-container ">
-        <form class="form-signin" action="showGuiaEntrega.php" method="post">
-          <p>Data e Hora da Entrega</p>
-          <input type="datetime-local" id="inputdata" name="dataentrega" placeholder="Data" value="<?php echo $_POST['dataentrega']; ?>" required>
-          &nbsp;
-          <p>Artigo</p>
-          <select name="comboboxArtigo" id="comboboxArtigo">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM artigo");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Guia</p>
-          <select name="comboBoxGuiaId" id="comboBoxGuiaId">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM guia");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Localizacao</p>
-          <select name="comboBoxLocalizacao" id="comboBoxLocalizacao">
-            <?php
-            $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
-            foreach ($busca as $eachRow) {
-              ?>
-              &nbsp;
-              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-            <?php
-          }
-
-          ?>
-          </select>
-          <p>Refrencia Palete</p>
-          <input type="text" id="inputdata" name="refpal" value="PAL-" placeholder="Data" value="<?php echo $_POST['refpal']; ?>" required>
-          <p>Nome</p>
-          <input type="text" id="inputdata" name="nomepal" value="Palete de " placeholder="Data" value="<?php echo $_POST['nomepal']; ?>" required>
-
-          <button type="submit">Registar Palete</button>
-        </form>
-      </div>
-    </div>
   </div>
 
-</body>
 
+</body>
 </html>
 <script>
   $("#teste").on("change", function() {
