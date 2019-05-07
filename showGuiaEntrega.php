@@ -16,8 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $dado = mysqli_fetch_array($buscaId);
         $tpID=$dado[ 'tipo_palete_id'];
         $arID=$dado['armazem_id'];
+        $cliID=$dado['cliente_id'];
 
-        $buscaZoID = mysqli_query($conn, "SELECT * FROM zona WHERE armazem_id='$arID'");
+        $buscaZoID = mysqli_query($conn, "SELECT * FROM zona WHERE armazem_id='$arID' AND tipo_zona_id=' $tpID'");
         $dado3 = mysqli_fetch_array($buscaZoID);
         $zonaID=$dado3['id'];
 
@@ -35,10 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $getEspaco = mysqli_query($conn, "SELECT * FROM zona WHERE id='$zonaID'");
         $dado = mysqli_fetch_array($getEspaco);
         $getEspacoo=$dado['espaco'];
-        $getArmaID=$dado['armazem_id'];
         $espaco=$getEspacoo-1;
         echo $espaco;
+        $getArmaID=$dado['armazem_id'];
 
+        $getEspaco = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$getArmaID'");
+        $dado2 = mysqli_fetch_array($getEspaco);
+        $getEspaco2=$dado2['espaco'];
+        $espacoTotal=$getEspaco2-1;
+        
+        
 
         
         if ($count==0){
@@ -51,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
+
+           
            $buscaPaleteID = mysqli_query($conn, "SELECT * FROM palete WHERE referencia='$referencia'");
            $dado2 = mysqli_fetch_array($buscaPaleteID);
            $palete_idd = $dado2['id'];
@@ -63,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     echo "Error: " . $sqlLocal . "<br>" . mysqli_error($conn);
             }
 
-            $sqlEspaco ="UPDATE armazem SET espaco='$espaco' WHERE id='$getArmaID'";
+            $sqlEspaco ="UPDATE armazem SET espaco='$espacoTotal' WHERE id='$getArmaID'";
            if (mysqli_query($conn, $sqlEspaco)) {
             } else 
             {
@@ -150,7 +159,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                                                 
                             </div>
                         </div>
+                        <div id ="DivEntrega">
+                        <button type="button" id="Entrega">Confirmar Entrega</button>
+                        </div>
                     </div> 
+                    
              </form>
             </div>
             <div class= "col dupla card card-container ">
@@ -239,9 +252,25 @@ $("#teste").on("change",function(){
 		});
 });
 </script>
+
+
+<script>
+$("#Entrega").on("click",function(){
+  $.ajax({
+			url: 'AjaxGuiaRececao.php',
+			type: 'POST',
+			data:{id:$("#teste").val()},
+			success: function(data)
+			{ 
+				$("#DivEntrega").html(data);
+			},
+		});
+});
+</script>
 <script type="text/javascript">
-  document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo'];?>";
+  // document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo'];?>";
   document.getElementById('comboBoxGuiaId').value = "<?php echo $_POST['comboBoxGuiaId'];?>";
   document.getElementById('comboBoxLocalizacao').value = "<?php echo $_POST['comboBoxLocalizacao'];?>";
+  document.getElementById('teste').value = "<?php echo $_POST['comboboxGuiaEntrega'];?>";
   
 </script>

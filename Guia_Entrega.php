@@ -5,6 +5,7 @@
 session_start();
 include 'navbarLogin.php';
 include 'db.php';
+$olateste ="a";
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $nomeCli = $_POST["comboboxCli"];
@@ -26,7 +27,6 @@ include 'db.php';
         {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-        mysqli_close($conn);
       /*header("Location: menu.php");*/
       }
       
@@ -111,15 +111,17 @@ include 'db.php';
                     
                 
                 <p style="display:none" id="pArmazem">Armazem</p>
-                <select name="Armazem" id="Armazem" style="display:none"></select>
+                <select name="Armazem" id="Armazem" style="display:none">
 
-                <div id="Espaco"> </div>
+                </select>
+
+                <div id="Espaco"></div>
                 
         
               <div id="HiddenTeste" name="HiddenTeste">
               </div>
                           <p>Quantidade de paletes</p>
-                <input type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" value="<?php echo $_POST['qt'];?>"required >
+                <input type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" required >
                 
                 <button type="submit">Registar Cliente</button>   
            </form><!-- /form -->
@@ -141,24 +143,13 @@ $("#TipoPalete").on("change",function(){
         $("#pZona").css({'display':'block'});
         $("#TipoZona").css({'display':'block'});
 				$("#TipoZona").html(data);
+
 			},
 		});
 });
 </script>
 
-<script>
-$("#Armazem").on("change",function(){
-  $.ajax({
-			url: 'ajaxEspaco.php',
-			type: 'POST',
-			data:{id:$("#Armazem").val()},
-			success: function(data)
-			{
-        document.getElementById("inputqt").setAttribute("max", data);
-			},
-		});
-});
-</script>
+
 <script>
 $("#TipoPalete").on("change",function(){
   $.ajax({
@@ -171,6 +162,19 @@ $("#TipoPalete").on("change",function(){
                 $("#inputqt").css({'display':'block'});
                 $("#Armazem").css({'display':'block'});
 				$("#Armazem").html(data);
+			},
+		});
+});
+</script>
+<script>
+$("#Armazem").on("change",function(){
+  $.ajax({
+			url: 'ajaxEspaco.php',
+			type: 'POST',
+			data:{id:$("#Armazem").val(),teste:$("#TipoZona").val()},
+			success: function(data)
+			{
+        document.getElementById("inputqt").setAttribute("max", data);
 			},
 		});
 });

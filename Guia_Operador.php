@@ -91,7 +91,7 @@ exit;
                     <h1>Guia do operador</h1>
                     <br>
                     <select class="form-control" name="cliente" style="text-align-last:center">
-                        <option value="" disabled selected>Cliente</option>
+                    <option value="" disabled selected>Cliente</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT * FROM cliente");
                         foreach ($busca as $eachRow) {
