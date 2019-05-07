@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarLogin.php';
+include 'operador.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (mysqli_query($conn, $sql)) {
-        ?>
-        <script type="text/javascript">
-            alert("New record created successfully");
-        </script>
-    <?php
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
-//header("Location: navbarLogin.php");
-exit;
 }
 ?>
 
@@ -48,7 +36,7 @@ exit;
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="Guia_Rececao.php" method="post">
+            <form class="container" action="pdf.php" method="post">
                 <div style="text-align:center">
                     <h1>Guia de Rececao</h1>
                     <br>
@@ -84,6 +72,7 @@ exit;
                         </div>
                         <br>
                         <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
+                        <button type="submit">PDF</button>
                 </form><!-- /form -->
             </div><!-- /card-container -->
         </div><!-- /container -->
