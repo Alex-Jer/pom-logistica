@@ -67,7 +67,9 @@ exit;
                             </thead>
                             <tbody>
                                 <?php
-                                $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 3 ORDER BY data_carga ASC");
+                                 date_default_timezone_set("Europe/Lisbon");
+                                 $timeRN=date("Y-m-d");
+                                $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
                                 foreach ($query as $eachRow) {
                                     $clienteId = $eachRow['cliente_id'];
                                     $numReq = $eachRow['numero_requisicao'];

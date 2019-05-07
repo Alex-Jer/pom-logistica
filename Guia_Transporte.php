@@ -23,11 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlLocalizacao=mysqli_query($conn,"SELECT * FROM localizacao where palete_id='$paleteeID'");
     $sql4= mysqli_fetch_array($sqlLocalizacao);
     $zonaID=$sql4['zona_id'];
+    echo $zonaID;
 
     $sqlZona=mysqli_query($conn,"SELECT * from zona WHERE id='$zonaID'");
     $sql5=mysqli_fetch_array($sqlZona);
     $armazemID=$sql5['armazem_id'];
     $tipoZona =$sql5['tipo_zona_id'];
+    echo $armazemID;
 
 
     $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada,localidade, matricula) VALUES ($cliente, 2,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$horadescarga','$npal','$nreq','$morada','$Localidade', '$matricula')";

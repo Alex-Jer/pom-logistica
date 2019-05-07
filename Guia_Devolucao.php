@@ -36,15 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="pdf.php" method="post">
+            <form class="container" action="pdfDevolucao.php" method="post">
                 <div style="text-align:center">
-                    <h1>Guia de Rececao</h1>
+                    <h1>Guia de Devolucao</h1>
                     <br>
                     <div class="container">
                             <select name="guia" id="guia">
                             <option value="" selected disabled >Numero Requesicao</option>
                             <?php
-                                        $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=1");
+                                        $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=2");
                                         
                                         foreach ($busca as $eachRow)
                                         {
@@ -72,7 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <br>
                         <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
+                        <div style="text-align:center">
                         <button type="submit" id="pdf" style="display:none">PDF</button>
+                        </div>
                 </form><!-- /form -->
             </div><!-- /card-container -->
         </div><!-- /container -->
@@ -84,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
 $("#guia").on("change",function(){
   $.ajax({
-			url: 'ajaxRececao.php',
+			url: 'ajaxDevolucao.php',
 			type: 'POST',
 			data:{id:$("#guia").val()},
 			success: function(data)
