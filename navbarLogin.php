@@ -56,14 +56,9 @@ include 'db.php'
                                     <li><a href="Guia_Entrega.php">Guia entrega</a></li>
                                     <li><a href="Guia_Operador.php">Guia operador</a></li>
                                     <li><a href="Guia_Transporte.php">Guia transporte</a></li>
-<<<<<<< HEAD
-                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
-                                    
-=======
                                     <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
                                     <li><a href="fatura_cliente.php">Fatura</a></li>
->>>>>>> ed18816ebdae376bc79d927e1b1dbe404f3795ba
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->
