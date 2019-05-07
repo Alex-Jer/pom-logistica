@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     <select name="comboboxGuiaEntrega"  id="teste">
                     <option value="" selected disabled >Numero Requesicao</option>
                     <?php
-                                $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=1");
+                                $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=2");
                                 
                                 foreach ($busca as $eachRow)
                                 {
@@ -169,58 +169,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
              </form>
             </div>
             <div class= "col dupla card card-container ">
-                <form class="form-signin" action="showGuiaEntrega.php" method="post">
-                <p>Data e Hora da Entrega</p>
-                <input type="datetime-local" id="inputdata" name="dataentrega"  placeholder="Data"  value="<?php echo $_POST['dataentrega'];?>"required >
+            <div style="text-align:center">
+            <form class="form-signin" action="Guia_Operador.php" method="post">
+                    <br>
+                    <select class="form-control" name="cliente" style="text-align-last:center">
+                    <option value="" disabled selected>Cliente</option>
+                        <?php
+                        $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                        foreach ($busca as $eachRow) {
+                            ?>
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
                 &nbsp;
-                <p>Artigo</p>
-                <select name="comboboxArtigo" id="comboboxArtigo">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM artigo");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                &nbsp;
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                                <?php
-                              }
-
+                <div style="text-align:center">
+                    <input class="form-control" class="form-control" type="input" name="nrequisicao" placeholder="Número de requisição" style="text-align:center; margin-top:-5%" required>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <form class="form-signin" method="post">
+                        <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-top:-5%" required>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:-5%" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <select class="form-control" name="artigo" style="text-align-last:center; margin-top:-8.5%">
+                        <option value="" disabled selected>Artigo</option>
+                        <?php
+                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
+                        foreach ($busca as $eachRow) {
                             ?>
-                </select>
-                <p>Guia</p>
-                <select name="comboBoxGuiaId" id="comboBoxGuiaId">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM guia");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                &nbsp;
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                </select>
-                <p>Localizacao</p>
-                <select name="comboBoxLocalizacao" id="comboBoxLocalizacao">
-                            <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM localizacao WHERE hasPalete=0");
-                              foreach ($busca as $eachRow)
-                              {
-                                ?>
-                                &nbsp;
-                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                                <?php
-                              }
-
-                            ?>
-                </select>
-                <p>Refrencia Palete</p>
-                <input type="text" id="inputdata" name="refpal"  value="PAL-" placeholder="Data"  value="<?php echo $_POST['refpal'];?>"required >
-                <p>Nome</p>
-                <input type="text" id="inputdata" name="nomepal" value="Palete de "  placeholder="Data"  value="<?php echo $_POST['nomepal'];?>"required >
-                
-                <button type="submit">Registar Palete</button>
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+                <div style="text-align:center">
+                    <br>
+                    <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:-5%">
+                </div>
+                &nbsp;
+                <br>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
                 </form>
             </div>
           </div>

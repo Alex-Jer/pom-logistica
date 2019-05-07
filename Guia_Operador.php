@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $busca = mysqli_query($conn, "SELECT * FROM artigo");
                         foreach ($busca as $eachRow) {
                             ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
                         <?php
                     }
                     ?>

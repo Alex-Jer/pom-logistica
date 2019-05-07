@@ -5,11 +5,32 @@ include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST['cliente'];
     $matricula = $_POST["matricula"];
-    $horacarga = $_POST["horacarga"];
     $horadescarga = $_POST["horadescarga"];
     $morada = $_POST["morada"];
-    $nreq = $_POST["numReq"];
-    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, matricula, data_carga, data_prevista, numero_requisicao, morada) VALUES ('$cliente', 3, '$matricula', '$horacarga', '$horadescarga', '$nreq' ,'$morada')";
+    $nreq = $_POST["Refrencia"];
+    $npal=$_POST["NPaletes"];
+    $artigoo=$_POST["artigo"];
+    $Localidade=$_POST["Localidade"];
+
+    
+    $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo'");
+    $sql3 = mysqli_fetch_array($sqlArtigo);
+    $tipoPalete=$sql3['tipo_palete_id'];
+    $paleteeID=$sql3['id'];
+    echo $paleteeID;
+
+
+    $sqlLocalizacao=mysqli_query($conn,"SELECT * FROM localizacao where palete_id='$paleteeID'");
+    $sql4= mysqli_fetch_array($sqlLocalizacao);
+    $zonaID=$sql4['zona_id'];
+
+    $sqlZona=mysqli_query($conn,"SELECT * from zona WHERE id='$zonaID'");
+    $sql5=mysqli_fetch_array($sqlZona);
+    $armazemID=$sql5['armazem_id'];
+    $tipoZona =$sql5['tipo_zona_id'];
+
+
+    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada,localidade, matricula) VALUES ($cliente, 2,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$horadescarga','$npal','$nreq','$morada','$Localidade', '$matricula')";
     if (mysqli_query($conn, $sql)) {
         ?>
         <script type="text/javascript">
@@ -19,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-//header("Location: navbarLogin.php");
-exit;
 }
 ?>
 
@@ -31,6 +50,7 @@ exit;
     <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="jquery.js"></script>
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -51,7 +71,6 @@ exit;
 <body>
     <div class="container">
         <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" action="Guia_Transporte.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
@@ -70,18 +89,39 @@ exit;
                         }
                         ?>
                         </select>
+                        </div>
                         <br>
+                    
+                    <div style="text-align:center">
+                        <select class="form-control" name="artigo" style="text-align-last:center; margin-top:-5%" id="artigoID">
+                            <option value="" disabled selected>Artigo</option>
+                            <?php
+                            $busca = mysqli_query($conn, "SELECT * FROM artigo");
+                            foreach ($busca as $eachRow) {
+                                ?>
+                                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
                     </div>
+                     <br>
                     <div style="text-align:center">
                         <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:-5%" required>
+                        <br>
+                    </div>
+                    
+                    <div style="text-align:center">
+                        <br>
+                        <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:-8.5%" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input class="form-control" placeholder="Hora de carga" style="text-align:center; margin-top:-5%" name="horacarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" type="input" id="inputReferencia" name="Refrencia" placeholder="Referencia" value="REQ-" style="text-align:center; margin-top:-%" required>
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <input class="form-control" placeholder="Hora prevista de descarga" style="text-align:center; margin-top:-8.5%" name="horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                        <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:-%" required>
                     </div>
                     <div style="text-align:center">
                         <br>
@@ -90,20 +130,12 @@ exit;
                     </div>
                     <div style="text-align:center">
                         <br>
-                        <select class="form-control" name="numReq" style="text-align-last:center; margin-top:-5%">
-                            <option value="" disabled selected>Número de requisição</option>
-                            <?php
-                            $busca = mysqli_query($conn, "SELECT * FROM guia");
-                            foreach ($busca as $eachRow) {
-                                ?>
-                                <option value=" <?php echo $eachRow['numero_requisicao'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-                            <?php
-                        }
-                        ?>
-                        </select>
+                        <form class="form-signin" method="post">
+                            <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:-%" required>
                     </div>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
+                </div>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -112,3 +144,16 @@ exit;
 </body>
 
 </html>
+<script>
+$("#artigoID").on("change",function(){
+  $.ajax({
+			url: 'ajaxMaxGuiaT.php',
+			type: 'POST',
+			data:{id:$("#artigoID").val()},
+			success: function(data)
+			{
+        document.getElementById("inputNPaletes").setAttribute("max", data);
+			},
+		});
+});
+</script>

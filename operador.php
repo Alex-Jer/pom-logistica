@@ -45,7 +45,7 @@ include 'db.php';
                                 <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                                     <li><a href="operador.php">Home</a></li>
                                     <li><a href="armazem.php">Armazém</a></li>
-                                    <li><a href="Guia_Devolucao.php">Guia de devolução</a></li>
+                                    <li><a href="Guia_OperadorV2.php">Guia de devolução</a></li>
                                     <li><a href="showGuiaEntrega.php">Registar Palete</a></li>
                                     <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="Guia_Rececao.php">Pedidos</a></li>
