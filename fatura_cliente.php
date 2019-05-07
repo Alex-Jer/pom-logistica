@@ -104,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $datetime2 = new DateTime($dataCarga);
                                         $intervalo = date_diff($datetime2, $datetime1);
                                         $diasArmazenamento = $intervalo->format('%a');
+                                        echo $diasArmazenamento;
 
                                         $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
                                         $row = $result->fetch_row();

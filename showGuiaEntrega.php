@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     <select name="comboboxGuiaEntrega"  id="teste">
                     <option value="" selected disabled >Numero Requesicao</option>
                     <?php
-                                $busca = mysqli_query($conn,"SELECT * FROM guia");
+                                $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=1");
                                 
                                 foreach ($busca as $eachRow)
                                 {
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <p>Guia</p>
                 <select name="comboBoxGuiaId" id="comboBoxGuiaId">
                             <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM guia");
+                              $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=1");
                               foreach ($busca as $eachRow)
                               {
                                 ?>

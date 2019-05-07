@@ -13,7 +13,7 @@ $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['id']."'")
         $getArtigo=$dado['artigo_id'];
         $qtPal=$dado['numero_paletes'];
         $numeroReq=$dado['numero_requisicao'];
-   $sql = "INSERT INTO guia (cliente_id,guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($cliID,'".$_POST['id']."',3,$tpID, $getCBtz,$arID,$getArtigo, '$timeRN', $qtPal,'$numeroReq')";
+   $sql = "INSERT INTO guia (cliente_id,guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($cliID,'".$_POST['id']."',4,$tpID, $getCBtz,$arID,$getArtigo, '$timeRN', $qtPal,'$numeroReq')";
 if (mysqli_query($conn, $sql)) {
     ?>
     <?php
