@@ -48,7 +48,6 @@ foreach ($sql6 as $eachRow2) {
 ?>
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
     <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
@@ -66,9 +65,6 @@ foreach ($sql6 as $eachRow2) {
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="css/swiper.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>

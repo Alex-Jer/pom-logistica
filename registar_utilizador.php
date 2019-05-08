@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-include 'navbarLogin.php';
+//include 'navbarLogin.php';
 use \System\Linq;
 
 $pw2 = "";
@@ -28,46 +28,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-
-  <!-- FontAwesome CSS -->
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-
-  <!-- ElegantFonts CSS -->
-  <link rel="stylesheet" href="css/elegant-fonts.css">
-
-  <!-- themify-icons CSS -->
-  <link rel="stylesheet" href="css/themify-icons.css">
-
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="css/swiper.min.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
-  <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-
+  <nav role="navigation">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="navbarLogin.php">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
+          <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+          <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="registar_utilizador.php">Registar Utilizador</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="fatura_cliente.php">Fatura</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">Sair</a>
+      </li>
+    </ul>
+  </nav>
   <div class="container">
     <div class="card card-container">
       <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
       <h1 style="text-align:center">Registar utilizador</h1>
       <form class="form-signin" method="post" action="registar_utilizador.php">
         <span id="reauth-email" class="reauth-email"></span>
-        <input type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
+        <input style="margin-top:2rem; height:3.2rem; font-size:1.5rem;" type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
         <br>
-        <input type="email" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input style="height:3.2rem; font-size:1.5rem; margin-bottom:0rem;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
         <br>
-        <input type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
-        <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
-        <select class="form-control" name="combobox">
+        <input style="height:3.2rem; font-size:1.5rem;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+        <input style="height:3.2rem; font-size:1.5rem;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+        <select style="text-align-last:center; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" class="form-control" name="combobox">
           <option value="" disabled selected>Armazém</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM armazem");
@@ -79,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
         </select>
         <br>
-        <select class="form-control" name="combobox2">
+        <select style="text-align-last:center; height:70%; font-size:1.5rem; color: #6C757D;" class="form-control" name="combobox2">
           <option value="" disabled selected>Estatuto</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM perfil");
@@ -115,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
       ?>
         <br>
-        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registar</button>
+        <button style="font-size:1.5rem; margin-left:auto; margin-right:auto; margin-top:0.4rem; width:10rem;" type="submit" class="btn btn-warning">Registar</button>
       </form><!-- /form -->
     </div><!-- /card-container -->
   </div><!-- /container -->

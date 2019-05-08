@@ -29,10 +29,10 @@ foreach ($dado as $eachRow) {
     $refArtigo = $sql7['referencia'];
     //Inacabado
     echo '<tr>';
-        echo '<td> '.$nomeCliente.'</td>';
-            echo '<td> '.$timeRN.'</td>';
-            echo '<td> '.$qtPal.'</td>';
-            echo '<td> '.$refArtigo.'</td>';
-             echo '<td> '.$nomeArmazem.'</td>';
+        echo '<td>'.$nomeCliente.'</td>';
+            echo '<td>'.$timeRN.'</td>';
+            echo '<td>'.$qtPal.'</td>';
+            echo '<td>'.$refArtigo.'</td>';
+             echo '<td>'.$nomeArmazem.'</td>';
     echo '</tr>';
     }

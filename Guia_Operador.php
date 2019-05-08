@@ -1,207 +1,199 @@
 <?php
 session_start();
-include 'operador.php';
+//include 'operador.php';
 include 'db.php';
 
 $count = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $cliente = $_POST["cliente"];
-    $idGuiaa = $_POST["nrequisicao"];
-    $morada = $_POST["morada"];
-    $data = $_POST["data"];
-    $artigoo = $_POST["artigo"];
-    $npal = $_POST["npaletes"];
-    $sql6 = mysqli_query($conn, "SELECT * FROM guia WHERE id='$idGuiaa'");
-    $dado = mysqli_fetch_array($sql6);
-    $nrequisicao=$dado['numero_requisicao'];
+  $cliente = $_POST["cliente"];
+  $idGuiaa = $_POST["nrequisicao"];
+  $morada = $_POST["morada"];
+  $data = $_POST["data"];
+  $artigoo = $_POST["artigo"];
+  $npal = $_POST["npaletes"];
+  $sql6 = mysqli_query($conn, "SELECT * FROM guia WHERE id='$idGuiaa'");
+  $dado = mysqli_fetch_array($sql6);
+  $nrequisicao = $dado['numero_requisicao'];
 
-    $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo'");
-    $sql3 = mysqli_fetch_array($sqlArtigo);
-    $tipoPalete=$sql3['tipo_palete_id'];
-    $paleteeID=$sql3['id'];
-    echo $paleteeID;
+  $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo'");
+  $sql3 = mysqli_fetch_array($sqlArtigo);
+  $tipoPalete = $sql3['tipo_palete_id'];
+  $paleteeID = $sql3['id'];
+  echo $paleteeID;
 
+  $sqlLocalizacao = mysqli_query($conn, "SELECT * FROM localizacao where palete_id='$paleteeID'");
+  $sql4 = mysqli_fetch_array($sqlLocalizacao);
+  $zonaID = $sql4['zona_id'];
 
-    $sqlLocalizacao=mysqli_query($conn,"SELECT * FROM localizacao where palete_id='$paleteeID'");
-    $sql4= mysqli_fetch_array($sqlLocalizacao);
-    $zonaID=$sql4['zona_id'];
+  $sqlZona = mysqli_query($conn, "SELECT * from zona WHERE id='$zonaID'");
+  $sql5 = mysqli_fetch_array($sqlZona);
+  $armazemID = $sql5['armazem_id'];
+  $tipoZona = $sql5['tipo_zona_id'];
 
-    $sqlZona=mysqli_query($conn,"SELECT * from zona WHERE id='$zonaID'");
-    $sql5=mysqli_fetch_array($sqlZona);
-    $armazemID=$sql5['armazem_id'];
-    $tipoZona =$sql5['tipo_zona_id'];
-
-    //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
-    $sql = "INSERT INTO guia (cliente_id, guia_id,tipo_guia_id,  tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ($cliente,$idGuiaa,     4,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$data','$npal','$nrequisicao','$morada')";
-    if (mysqli_query($conn, $sql)) {
-        ?>
-        <script type="text/javascript">
-            alert("New record created successfully");
-        </script>
-    <?php
+  //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
+  $sql = "INSERT INTO guia (cliente_id, guia_id,tipo_guia_id,  tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ($cliente,$idGuiaa,     4,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$data','$npal','$nrequisicao','$morada')";
+  if (mysqli_query($conn, $sql)) {
+    ?>
+    <script type="text/javascript">
+      alert("New record created successfully");
+    </script>
+  <?php
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
 $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo' ORDER BY Data ASC");
 //$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
 foreach ($sql6 as $eachRow2) {
-    $count++;
-    if ($count <= $npal) {
-        echo $count;
-        $paleteId = $eachRow2['id'];
-        $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal"); 
-        if (mysqli_query($conn, $sql10)) {
-            ?>
-                <script type="text/javascript">
-                    alert("New record created successfully");
-                </script>
-            <?php
-        }
+  $count++;
+  if ($count <= $npal) {
+    echo $count;
+    $paleteId = $eachRow2['id'];
+    $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal");
+    if (mysqli_query($conn, $sql10)) {
+      ?>
+        <script type="text/javascript">
+          alert("New record created successfully");
+        </script>
+      <?php
     }
+  }
 }
 }
-      
-
-   
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script type="text/javascript" src="jquery.js"></script>
-
-  <!-- FontAwesome CSS -->
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-
-  <!-- ElegantFonts CSS -->
-  <link rel="stylesheet" href="css/elegant-fonts.css">
-
-  <!-- themify-icons CSS -->
-  <link rel="stylesheet" href="css/themify-icons.css">
-
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="css/swiper.min.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
-
-  <link rel="stylesheet" href="css.css">
-
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class= "container">
-        <div class="row">
-            <div class= "col card card-container metade w-auto li ">
-             <form class="form-signin" action="Guia_OperadorV2.php" method="post">
-              <div class="row">
-                    <select name="comboboxGuiaEntrega"  id="teste">
-                    <option value="" selected disabled >Numero Requesicao</option>
-                    <?php
-                                $busca = mysqli_query($conn,"SELECT * FROM guia where tipo_guia_id=2");
-                                
-                                foreach ($busca as $eachRow)
-                                {
-                                    ?>
-                                    <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-                                    <?php
-                                }
+  <nav role="navigation">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="operador.php">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="armazem.php">Armazém</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="Guia_Operador.php">Guia do Operador</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="pdf.php">PDF</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">Sair</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col card card-container metade w-auto li ">
+        <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+          <div class="row">
+            <select class="form-control" style="text-align-last:center; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" name="comboboxGuiaEntrega" id="teste">
+              <option value="" selected disabled>Número de requisição</option>
+              <?php
+              $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
 
-                                ?>
-                    </select>
-              </div>     
-                    <div class="row ">
-                        <div class= "col-12 text-left w-auto p-3 li" id="Card" style="display:none">
-                            <div class= "text-left w-auto p-3 li " id="Espaco" style="display:none">
-                                                
-                            </div>
-                        </div>
-                        <!-- <div id ="DivEntrega">
+              foreach ($busca as $eachRow) {
+                ?>
+                <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
+              <?php
+            }
+            ?>
+            </select>
+          </div>
+          <div class="row ">
+            <div class="col-12 text-left w-auto p-3 li" id="Card" style="display:none">
+              <div class="text-left w-auto p-3 li " id="Espaco" style="display:none">
+
+              </div>
+            </div>
+            <!-- <div id ="DivEntrega">
                         <button type="button" id="Entrega">Confirmar Entrega</button>
                         </div> -->
-                    </div> 
-                    
-             </form>
-            </div>
-            <div class= "col dupla card card-container " id="testediv" style="display:none">
-            
-            <form class="form-signin" action="Guia_OperadorV2.php" method="post">
-            
-               <div style="text-align:center">
-               <h1>Guia de Devolucao</h1>
-                    <br>
-                    <select class="form-control" name="cliente" style="text-align-last:center">
-                    <option value="" disabled selected>Cliente</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM cliente");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                    <br>
-                </div>
-                <div style="text-align:center">
-               
-                    <select class="form-control" name="nrequisicao" style="text-align-last:center">
-                    <option value="" disabled selected>Guia</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <form class="form-signin" method="post">
-                        <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-top:-5%" required>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:-5%" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
-                </div>
-                <br>
-                <div style="text-align:center">
-                <br>
-                    <select class="form-control" name="artigo" style="text-align-last:center; margin-top:-8.5%">
-                        <option value="" disabled selected>Artigo</option>
-                        <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
-                        foreach ($busca as $eachRow) {
-                            ?>
-                            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
-                </div>
-                <div style="text-align:center">
-                    <br>
-                    <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:-5%">
-                </div>
-                &nbsp;
-                <br>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
-                </form>
-            </div>
           </div>
         </form>
       </div>
+      <div class="col dupla card card-container " id="testediv" style="display:none">
+        <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+          <div style="text-align:center">
+            <h1>Guia do Operador</h1>
+            <br>
+            <select class="form-control" name="cliente" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+              <option value="" disabled selected>Cliente</option>
+              <?php
+              $busca = mysqli_query($conn, "SELECT * FROM cliente");
+              foreach ($busca as $eachRow) {
+                ?>
+                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+              <?php
+            }
+            ?>
+            </select>
+          </div>
+          <div style="text-align:center">
+            <select class="form-control" name="nrequisicao" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+              <option value="" disabled selected>Guia</option>
+              <?php
+              $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
+              foreach ($busca as $eachRow) {
+                ?>
+                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
+              <?php
+            }
+            ?>
+            </select>
+          </div>
+          <div style="text-align:center">
+            <form class="form-signin" method="post">
+              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem" required>
+          </div>
+          <div style="text-align:center">
+            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+          </div>
+          <div style="text-align:center">
+            <select class="form-control" name="artigo" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+              <option value="" disabled selected>Artigo</option>
+              <?php
+              $busca = mysqli_query($conn, "SELECT * FROM artigo");
+              foreach ($busca as $eachRow) {
+                ?>
+                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+              <?php
+            }
+            ?>
+            </select>
+          </div>
+          <div style="text-align:center">
+            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem">
+          </div>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
+        </form>
+      </div>
     </div>
+    </form>
+  </div>
+  </div>
   </div>
 
 </body>
@@ -264,9 +256,8 @@ $("#Entrega").on("click",function(){
 });
 </script> -->
 <script type="text/javascript">
-  // document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo'];?>";
-  document.getElementById('comboBoxGuiaId').value = "<?php echo $_POST['comboBoxGuiaId'];?>";
-  document.getElementById('comboBoxLocalizacao').value = "<?php echo $_POST['comboBoxLocalizacao'];?>";
-  document.getElementById('teste').value = "<?php echo $_POST['comboboxGuiaEntrega'];?>";
-  
+  // document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo']; ?>";
+  document.getElementById('comboBoxGuiaId').value = "<?php echo $_POST['comboBoxGuiaId']; ?>";
+  document.getElementById('comboBoxLocalizacao').value = "<?php echo $_POST['comboBoxLocalizacao']; ?>";
+  document.getElementById('teste').value = "<?php echo $_POST['comboboxGuiaEntrega']; ?>";
 </script>
