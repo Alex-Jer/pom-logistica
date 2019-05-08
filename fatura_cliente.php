@@ -3,14 +3,17 @@
 <?php
 include 'navbarLogin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $cliente = $_POST["cliente"];
+    $cliente = $_POST["cbCliente"];
 }
+date_default_timezone_set("Europe/Lisbon");
+        $timeRN=date("Y-m-d H:i:s");
 ?>
 
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
     <meta charset="utf-8">
+    <script type="text/javascript" src="jquery.js"></script>
     <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -45,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h1>Fatura mensal</h1>
                     <br>
                     <div class="container">
-                        <div text-align:center">
-                            <select class="custom-select" name="cliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()">
+                        <div class="text-align:center">
+                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()"  >
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -58,35 +61,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                             </select>
                         </div>
+
+                        <div id ="clienteteste">
+                        </div>
                         <br>
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>Tipo de Guia</th>
+                                    <th>Nº Paletes</th>
                                     <th>Preço por palete / zona</th>
-                                    <th>Preço de carga</th>
-                                    <th>Preço de descarga</th>
+                                    <th>Preço de Carga/Descarga</th>
+                                    <th>Dias</th>
+
                                     <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 if (isset($cliente)) {
-                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE cliente_id='$cliente'");
-                                    //$precoZona = 10;
-                                    $taxaCarga = 10;
-                                    $taxaDescarga = 10;
-
+                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE cliente_id='$cliente' and (tipo_guia_id=4 or tipo_guia_id=3)");
+                                    
                                     foreach ($query as $eachRow) {
+                                        $CargaFinal=0;
+                                        $guiaid=$eachRow['id'];
                                         $clienteId = $eachRow['cliente_id'];
                                         $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$clienteId'");
                                         $sql3 = mysqli_fetch_array($sql2);
-
+                                        $tipoGuia=$eachRow['tipo_guia_id'];
                                         $numReq = $eachRow['numero_requisicao'];
                                         $numPaletes = $eachRow['numero_paletes'];
                                         $dataCarga = $eachRow['data_carga'];
+                                        $ArtigoIDD = $eachRow['artigo_id'];
                                         $dataPrevistaDescarga = $eachRow['data_prevista'];
                                         $tipozonaId = $eachRow['tipo_zona_id'];
                                         $armazemId = $eachRow['armazem_id'];
+
+                                        $queryPalete= mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$ArtigoIDD'");
+                                    
+                                        foreach ($queryPalete as $eachRowPalete) {
+                                            $dataDescarga=$eachRowPalete['Data_Saida'];
+                                            $dataCarga=$eachRowPalete['Data'];
+                                            
+                                            if ($dataDescarga==0)
+                                            {
+                                                $datetime1 = new DateTime($timeRN);
+                                                $datetime3=$timeRN;
+                                            }
+                                            else
+                                            {
+                                                $datetime1 = new DateTime($dataDescarga);
+                                                $datetime3=$dataDescarga;
+                                            }
+                                            $datetime2 = new DateTime($dataCarga);
+                                            $intervalo = date_diff($datetime1, $datetime2);
+                                            $diasArmazenamento = $intervalo->format('%a');
+                                            if ($diasArmazenamento==0){
+                                                $diasArmazenamento=1;
+                                            }
+                                        }
+                                        
+                                        $sqlTGuia = mysqli_query($conn, "SELECT * FROM tipo_guia WHERE id='$tipoGuia'");
+                                        $sqlTipoG = mysqli_fetch_array($sqlTGuia);
+                                        $NomeGuia = $sqlTipoG['nome'];
 
                                         $sql4 = mysqli_query($conn, "SELECT * FROM zona WHERE id='$tipozonaId'");
                                         $sql5 = mysqli_fetch_array($sql4);
@@ -97,27 +134,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $custoCarga = $sql7['custo_carga'];
                                         $custoDescarga = $sql7['custo_descarga'];
 
-                                        $datetime1 = new DateTime($dataPrevistaDescarga);
-                                        $datetime2 = new DateTime($dataCarga);
-                                        $intervalo = date_diff($datetime2, $datetime1);
-                                        $diasArmazenamento = $intervalo->format('%a');
-                                        echo $diasArmazenamento;
-
-                                        $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
+                                        $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=3 AND cliente_id='$clienteId'");
                                         $row = $result->fetch_row();
                                         $count = $row[0];
 
-                                        $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=2 AND numero_requisicao='$numReq'");
+                                        $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=4 AND cliente_id='$clienteId'");
                                         $row = $result->fetch_row();
                                         $count2 = $row[0];
+
+                                        if ($tipoGuia==3)
+                                        {
+                                            $CargaFinal = $custoCarga * $count;
+                                            $tipoLinha=1;
+                                         
+
+                                        }
+                                        elseif($tipoGuia==4)
+                                        {
+                                            $CargaFinal = $custoDescarga * $count2;
+                                            $tipoLinha=2;
+                                        }
+                                        $Total= $CargaFinal + ($precoZona * $numPaletes * $diasArmazenamento );
                                         ?>
-                                        <tr>
+                                        <tr>    
+                                            <td><?php  echo "$NomeGuia - $numReq" ?>  </td>
+                                            <td><?php  echo $numPaletes ?>  </td>
                                             <td><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
-                                            <td><?php echo $custoCarga * $count . " €" ?></td>
-                                            <td><?php echo $custoDescarga * $count2 . " €" ?></td>
-                                            <td><?php echo ($custoCarga * $count) + ($custoDescarga * $count2) . " €" ?></td>
+                                            <td><?php echo $CargaFinal. " €" ?></td>
+                                            <td><?php echo $diasArmazenamento ?></td>
+                                            <td><?php echo $Total . " €" ?></td>
                                         </tr>
+                                        
                                     <?php
+
+                                    //  $sql = "INSERT INTO linha (tipo_linha_id, guia_id, artigo_id,quantidade,valor) VALUES ($tipoLinha,$guiaid, $ArtigoIDD ,$numPaletes,'$Total')";
+        
+                                    //  if (mysqli_query($conn, $sql)) {
+                                                     
+                                    //  } else 
+                                    //  {
+                                    //          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    //  }
                                 }
                             }
                             ?>
@@ -127,6 +184,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <br>
                     <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
             </form><!-- /form -->
+            <form  class="container" action="pdfFatura.php" method="post">
+            <button type="submit">PDF</button>   
+
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                ?>
+
+                <input type="hidden" name="GetCliente" value=<?php echo $cliente?>>
+                <?php
+                }
+                ?>
+            
+            </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
     <script type="text/javascript"></script>

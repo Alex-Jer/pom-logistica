@@ -31,6 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $armazemID=$sql5['armazem_id'];
     $tipoZona =$sql5['tipo_zona_id'];
 
+    date_default_timezone_set("Europe/Lisbon");
+        $timeRN=date("Y-m-d H:i:s");
+
     //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
     $sql = "INSERT INTO guia (cliente_id, guia_id,tipo_guia_id,  tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ($cliente,$idGuiaa,     4,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$data','$npal','$nrequisicao','$morada')";
     if (mysqli_query($conn, $sql)) {
@@ -47,11 +50,15 @@ $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo' ORD
 //$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
 foreach ($sql6 as $eachRow2) {
     $count++;
+    $forpaleteId=$eachRow2['id'];
     if ($count <= $npal) {
         echo $count;
         $paleteId = $eachRow2['id'];
         $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal"); 
         if (mysqli_query($conn, $sql10)) {
+        }
+        $sqlPalete = mysqli_query($conn, "UPDATE palete SET Data_Saida = '$timeRN' WHERE id=$forpaleteId and Data_Saida=0 LIMIT $npal"); 
+        if (mysqli_query($conn, $sqlPalete)) {
             ?>
                 <script type="text/javascript">
                     alert("New record created successfully");
@@ -101,7 +108,7 @@ foreach ($sql6 as $eachRow2) {
     <div class= "container">
         <div class="row">
             <div class= "col card card-container metade w-auto li ">
-             <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+             <form class="form-signin" action="Guia_Operador.php" method="post">
               <div class="row">
                     <select name="comboboxGuiaEntrega"  id="teste">
                     <option value="" selected disabled >Numero Requesicao</option>
@@ -133,7 +140,7 @@ foreach ($sql6 as $eachRow2) {
             </div>
             <div class= "col dupla card card-container " id="testediv" style="display:none">
             
-            <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+            <form class="form-signin" action="Guia_Operador.php" method="post">
             
                <div style="text-align:center">
                <h1>Guia de Devolucao</h1>
