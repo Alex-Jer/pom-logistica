@@ -220,7 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <input type="text" id="inputdata" name="refpal"  value="PAL-" placeholder="Data"  value="<?php echo $_POST['refpal'];?>"required >
                 <p>Nome</p>
                 <input type="text" id="inputdata" name="nomepal" value="Palete de "  placeholder="Data"  value="<?php echo $_POST['nomepal'];?>"required >
-                
                 <button type="submit">Registar Palete</button>
                 </form>
             </div>

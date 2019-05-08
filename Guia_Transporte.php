@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div style="text-align:center">
                         <br>
                         <form class="form-signin" method="post">
-                            <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:-%" required>
+                            <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:-9%" required>
                     </div>
                     <div style="text-align:center">
                         <br>
