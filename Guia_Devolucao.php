@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 <a class="nav-link" href="armazem.php">Armazém</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+                <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+                <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
@@ -51,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="pdfDevolucao.php" method="post">
                 <div style="text-align:center">
-                    <h1 style="margin-bottom:2rem;">Guia de devolução</h1>
+                    <h1 style="margin-bottom:1rem;">Guia de devolução</h1>
                     <div class="container">
-                        <select style="text-align-last:center; width:21.5rem; margin-bottom:2rem; font-size:15px" class="form-control-lg" name="guia" id="guia">
+                        <select style="text-align-last:center; width:18.7rem; margin-left:auto; margin-right:auto; margin-bottom:1rem;" class="form-control" name="guia" id="guia">
                             <option value="" selected disabled>Numero de requisição</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
@@ -65,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                         ?>
                         </select>
                         <div style="text-align:center">
-                            <button type="submit" id="pdf" class="btn btn-primary" style="font-size:12px; height:3.15rem; width:4rem; display:none; margin-top:-5.15rem; margin-right:11rem; float:right;">PDF</button>
+                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:13.5rem; text-align:center; float:right;">PDF</button>
                         </div>
                         <table class="table" style="font-size:16px;">
                             <thead>
                                 <tr>
-                                    <th>Cliente</th>
+                                    <th width="20%">Cliente</th>
                                     <th>Dia e hora da carga</th>
                                     <th>Nº de paletes</th>
                                     <th>Artigo</th>

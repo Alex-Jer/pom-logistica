@@ -72,7 +72,7 @@ foreach ($sql6 as $eachRow2) {
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" action="Guia_Operador.php" method="post">
+            <form class="form-signin" action="Guia_Operador_admin.php" method="post">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div style="text-align:center">
                     <h1>Guia do operador</h1>

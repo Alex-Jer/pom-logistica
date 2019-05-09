@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link" href="armazem.php">Armazém</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+        <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="mudarpass.php">Mudar Palavra-Passe</a>
+        <a class="nav-link active" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </nav>
   <div class="container">
     <div class="card card-container">
-      <form class="form-signin" action="mudarpass.php" method="post">
-        <h1>Mudar Palavra-Passe</h1>
+      <form class="form-signin" action="mudarpass_operador.php" method="post">
+        <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <br>
         <input type="password" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
         <input type="password" name="textNewPass" class="form-control" placeholder="Nova Password" required>

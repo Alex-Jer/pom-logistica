@@ -104,13 +104,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link" href="armazem.php">Armazém</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+        <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="showGuiaEntrega.php">Registar Palete</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+        <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
@@ -131,10 +131,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </nav>
   <div class="container">
     <div class="row">
-      <div class="col card card-container metade w-auto li ">
+      <div class="col card card-container metade w-auto li">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
           <div class="row">
-            <select style="text-align-last:center; width:21.5rem; margin-top:1rem; margin-bottom:1rem; margin-left:2rem; font-size:15px; color: #6C757D;" class="form-control-lg" name="comboboxGuiaEntrega" id="teste">
+            <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxGuiaEntrega" id="teste">
               <option value="" selected disabled>Número de requisição</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
@@ -146,21 +146,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             </select>
           </div>
-          <div class="row ">
+          <div class="row">
             <div class="col-12 text-left w-auto p-3 li" id="Card" style="display:none">
-              <div class="text-left w-auto p-3 li " id="Espaco" style="display:none">
+              <div class="text-left w-auto p-3 li" id="Espaco" style="display:none">
               </div>
             </div>
-            <div id="DivEntrega">
-              <button style="margin-top:3%; font-size:1.5rem; margin-left:2rem;" type="submit" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
+            <div id="DivEntrega" style="margin-bottom:-1.5rem; margin-top:1rem;">
+              <button type="submit" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="col dupla card card-container">
+      <div class="col dupla card card-container" style="height:28rem;">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
-          <input class="form-control" style="text-align:center; height:3.2rem; width:41.7rem; font-size:1.5rem; margin-top:1rem; type=" text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
-          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboboxArtigo" id="comboboxArtigo">
+          <h1 style="text-align:center">Registar palete</h1>
+          <input class="form-control" style="text-align:center; margin-top:1rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
+          <select class="form-control" style="text-align-last:center; color: #6C757D; margin-top:0.7rem;" name="comboboxArtigo" id="comboboxArtigo">
             <option value="" disabled selected>Artigo</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -171,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
           ?>
           </select>
-          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboBoxGuiaId" id="comboBoxGuiaId">
+          <select class="form-control" style="text-align-last:center; margin-top:0.6rem; color: #6C757D;" name="comboBoxGuiaId" id="comboBoxGuiaId">
             <option value="" disabled selected>Guia</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
@@ -182,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
           ?>
           </select>
-          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
+          <select class="form-control" style="text-align-last:center; margin-top:0.6rem; color: #6C757D;" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
             <option value="" disabled selected>Localização</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
@@ -193,14 +194,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
           ?>
           </select>
-          <div style="text-align:center; max-height:200px; margin-top:2%; height:3.2rem; width:41.7rem; font-size:1.5rem" class="input-group mb-3">
+          <div style="text-align:center;" class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-lg" style="font-size:1.3rem; height:3.2rem;">PAL-</span>
+              <span class="input-group-text" style="height:2.35rem; margin-top:0.6rem;" id="inputGroup-sizing-lg">PAL-</span>
             </div>
-            <input style="height:3.2rem; font-size:1.5rem; margin-left:4.2rem; margin-top:-3.15rem;" type="text" class="form-control" placeholder="Referência da palete" name="refpal" required>
+            <input type="text" class="form-control" style="width:5rem; margin-top:0.6rem;" placeholder="Referência da palete" name="refpal" required>
           </div>
-          <input placeholder="Nome da palete" class="form-control" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
-          <button style="margin-top:3rem; font-size:1.5rem" type="submit" class="btn btn-warning" type="submit">Registar palete</button>
+          <input placeholder="Nome da palete" class="form-control" style="text-align:center; margin-top:-1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+          <button type="submit" class="btn btn-primary" style="margin-top:1rem;">Registar palete</button>
         </form>
       </div>
     </div>

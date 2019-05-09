@@ -79,13 +79,13 @@ foreach ($sql6 as $eachRow2) {
         <a class="nav-link" href="armazem.php">Armazém</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="Guia_Operador.php">Guia do Operador</a></li>
+        <a class="nav-link active" href="Guia_Operador_operador.php">Guia do Operador</a></li>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+        <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
@@ -107,9 +107,9 @@ foreach ($sql6 as $eachRow2) {
   <div class="container">
     <div class="row">
       <div class="col card card-container metade w-auto li ">
-        <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+        <form class="form-signin" action="Guia_Operador_operador.php" method="post">
           <div class="row">
-            <select class="form-control" style="text-align-last:center; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" name="comboboxGuiaEntrega" id="teste">
+            <select class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D;" name="comboboxGuiaEntrega" id="teste">
               <option value="" selected disabled>Número de requisição</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
@@ -128,18 +128,14 @@ foreach ($sql6 as $eachRow2) {
 
               </div>
             </div>
-            <!-- <div id ="DivEntrega">
-                        <button type="button" id="Entrega">Confirmar Entrega</button>
-                        </div> -->
           </div>
         </form>
       </div>
       <div class="col dupla card card-container " id="testediv" style="display:none">
-        <form class="form-signin" action="Guia_OperadorV2.php" method="post">
+        <form class="form-signin" action="Guia_Operador_operador.php" method="post">
           <div style="text-align:center">
             <h1>Guia do Operador</h1>
-            <br>
-            <select class="form-control" name="cliente" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+            <select class="form-control" name="cliente" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
               <option value="" disabled selected>Cliente</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -152,7 +148,7 @@ foreach ($sql6 as $eachRow2) {
             </select>
           </div>
           <div style="text-align:center">
-            <select class="form-control" name="nrequisicao" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+            <select class="form-control" name="nrequisicao" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
               <option value="" disabled selected>Guia</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
@@ -166,13 +162,13 @@ foreach ($sql6 as $eachRow2) {
           </div>
           <div style="text-align:center">
             <form class="form-signin" method="post">
-              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem" required>
+              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-top:1rem;" required>
           </div>
           <div style="text-align:center">
-            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:1rem;" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
           </div>
           <div style="text-align:center">
-            <select class="form-control" name="artigo" style="text-align-last:center; height:70%; margin-bottom:1.5rem; font-size:1.5rem; color: #6C757D;">
+            <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
               <option value="" disabled selected>Artigo</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -185,9 +181,9 @@ foreach ($sql6 as $eachRow2) {
             </select>
           </div>
           <div style="text-align:center">
-            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1.5rem; max-height:200px; height:3.2rem; font-size:1.5rem">
+            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:1rem;">
           </div>
-          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
+          <button style="margin-top:1rem;" class="btn btn-primary btn-block btn-signin" type="submit">Confirmar</button>
         </form>
       </div>
     </div>
@@ -241,20 +237,6 @@ foreach ($sql6 as $eachRow2) {
   });
 </script>
 
-
-<!-- <script>
-$("#Entrega").on("click",function(){
-  $.ajax({
-			url: 'AjaxGuiaRececao.php',
-			type: 'POST',
-			data:{id:$("#teste").val()},
-			success: function(data)
-			{ 
-				$("#DivEntrega").html(data);
-			},
-		});
-});
-</script> -->
 <script type="text/javascript">
   // document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo']; ?>";
   document.getElementById('comboBoxGuiaId').value = "<?php echo $_POST['comboBoxGuiaId']; ?>";

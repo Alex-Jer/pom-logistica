@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
                     <a class="dropdown-item active" href="Guia_Transporte.php">Transporte</a>
                 </div>
             </li>
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card card-container" style="max-width:250%; width:60%; margin-top:3rem;">
             <form style="text-align:center" action="Guia_Entrega.php" method="post">
                 <h1>Guia de transporte</h1>
-                <select class="form-control" name="cliente" style="border-color:#ced4da; text-align-last:center; width:80%; height:70%; margin-right:auto; margin-left:auto; margin-top:2rem; font-size:1.5rem; color: #6C757D;">
+                <select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px">
                     <option value="" disabled selected>Cliente</option>
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 ?>
                 </select>
-                <select class="form-control" name="artigo" style="border-color:#ced4da; text-align-last:center; width:80%; height:70%; margin-right:auto; margin-left:auto; margin-top:1rem; font-size:1.5rem; color: #6C757D;" id="artigoID">
+                <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="artigoseID">
                     <option value="" disabled selected>Artigo</option>
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -114,19 +114,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 ?>
                 </select>
-                <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" required>
-                <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
-                <div style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" class="input-group mb-3">
+                <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                <div style="text-align:center;" class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-lg" style="font-size:1.3rem">REQ-</span>
+                        <span class="input-group-text" style="height:2.35rem; margin-top:0.7rem; height:auto; font-size:14px" id="inputGroup-sizing">REQ-</span>
                     </div>
-                    <input style="height:3.2rem; font-size:1.5rem;" type="text" class="form-control" placeholder="Número de requisição" name="Referencia" required>
+                    <input type="text" class="form-control" style="width:5rem; margin-top:0.7rem; height:auto; font-size:14px" placeholder="Número de requisição" name="Referencia" required>
                 </div>
-                <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" required>
-                <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" required>
-                <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" required>
-                <input class="form-control" type="number" id="inputqt" name="qt" placeholder="Quantidade de paletes neste artigo" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" required>
-                <button style="margin-top:3%; font-size:1.5rem" type="submit" class="btn btn-warning">Confirmar</button>
+                <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" type="number" id="inputqt" name="qt" placeholder="Quantidade de paletes neste artigo" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <button style="margin-top:1rem; margin-left:auto; margin-right:auto; width:36.7rem; height:auto; font-size:14px" type="submit" class="btn btn-primary">Confirmar</button>
             </form><!-- /form -->
         </div>
     </div>

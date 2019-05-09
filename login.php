@@ -31,34 +31,17 @@ include 'db.php';
         }
         ?>
         <script type="text/javascript">
-            alert("As passwords não coincidem");
+            alert("Palavra-Passe incorreta.");
         </script>
     <?php
 }
 ?>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="css/elegant-fonts.css">
-
-    <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
 </head>
 
 <body>
-<nav role="navigation">
+    <nav role="navigation">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
@@ -66,7 +49,7 @@ include 'db.php';
             <li class="nav-item">
                 <a class="nav-link active" href="login.php">Login</a>
             </li>
-           
+
         </ul>
     </nav>
     <div class="container">
@@ -78,15 +61,14 @@ include 'db.php';
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" name="emaill" class="form-control" placeholder="Email address" required autofocus>
                 <input type="password" name="Password" class="form-control" placeholder="Password" required>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" value="remember-me" id="defaultUnchecked">
+                    <label class="custom-control-label" for="defaultUnchecked">Remember me</label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                <button style="margin-top:1rem;" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Log in</button>
             </form><!-- /form -->
-            <a href="#" class="forgot-password">
-                Forgot your password?
+            <a style="color:#007bff;" href="#" class="forgot-password">
+                Esqueceu-se da Palavra-Passe?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->

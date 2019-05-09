@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-          <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+          <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
           <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
         </div>
       </li>
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link active" href="registar_utilizador.php">Registar Utilizador</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+        <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
@@ -72,13 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h1 style="text-align:center">Registar utilizador</h1>
       <form class="form-signin" method="post" action="registar_utilizador.php">
         <span id="reauth-email" class="reauth-email"></span>
-        <input style="margin-top:2rem; height:3.2rem; font-size:1.5rem;" type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
-        <br>
-        <input style="height:3.2rem; font-size:1.5rem; margin-bottom:0rem;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-        <br>
-        <input style="height:3.2rem; font-size:1.5rem;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
-        <input style="height:3.2rem; font-size:1.5rem;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
-        <select style="text-align-last:center; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" class="form-control" name="combobox">
+        <input style="margin-top:1rem; height:auto;" type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox">
           <option value="" disabled selected>Armazém</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM armazem");
@@ -89,8 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <br>
-        <select style="text-align-last:center; height:70%; font-size:1.5rem; color: #6C757D;" class="form-control" name="combobox2">
+        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox2">
           <option value="" disabled selected>Estatuto</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM perfil");
@@ -115,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
         mysqli_close($conn);
-        /*header("Location: registar_utilizador.php");*/
         exit;
       } elseif (!$Fim && $Show) {
         ?>
@@ -125,8 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php
       }
       ?>
-        <br>
-        <button style="font-size:1.5rem; margin-left:auto; margin-right:auto; margin-top:0.4rem; width:10rem;" type="submit" class="btn btn-warning">Registar</button>
+        <button style="margin-top:1rem; margin-left:auto; margin-right:auto; width:auto; height:auto;" type="submit" class="btn btn-primary">Registar</button>
       </form><!-- /form -->
     </div><!-- /card-container -->
   </div><!-- /container -->

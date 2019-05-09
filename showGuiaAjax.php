@@ -38,19 +38,19 @@ $dado = mysqli_fetch_array($busca);
 
                 echo'<h1>'.$numReq.'</h1>';
                 echo '<div>';
-                echo "<b style=\"font-size:1.4rem;\"> Número de paletes = </b> <b style=\"font-size:1.4rem; font-weight: normal\"> $nome2 </b>";
+                echo "<b> Número de paletes = </b> <b style=\"font-weight: normal\"> $nome2 </b>";
                 echo '</div>';
 
                 echo '<div>';
-                echo "<b style=\"font-size:1.4rem;\"> Tipo de Paletes = </b> <b style=\"font-size:1.4rem; font-weight: normal\"> $tipoPalete </b>";
+                echo "<b> Tipo de Paletes = </b> <b style=\"font-weight: normal\"> $tipoPalete </b>";
                 echo '</div>';
 
                 echo '<div>';
-                echo "<b style=\"font-size:1.4rem;\"> Artigo = </b> <b style=\"font-size:1.4rem; font-weight: normal\"> $artigo ($artigoref) </b>";
+                echo "<b> Artigo = </b> <b style=\"font-weight: normal\"> $artigo ($artigoref) </b>";
                 echo '</div>';
 
                 echo '<div>';
-                echo "<b style=\"font-size:1.4rem;\"> Encontra-se no armazém = </b> <b style=\"font-size:1.4rem; font-weight: normal\"> $armazem </b>";
+                echo "<b> Encontra-se no armazém = </b> <b style=\"font-weight: normal\"> $armazem </b>";
                 echo '</div>';
 
 

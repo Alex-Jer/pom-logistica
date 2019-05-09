@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 //include 'navbarLogin.php';
-// include 'db.php';
+include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cliente"];
 }
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
                     <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
                 </div>
             </li>
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h1 style="margin-bottom:2rem;">Fatura mensal</h1>
                     <div class="container">
                         <div style="text-align:center; margin-bottom:2rem;">
-                            <select class="form-control-lg" name="cliente" style="text-align-last:center; width:18.5rem;" onchange="this.form.submit()">
+                            <select class="form-control" name="cliente" style="text-align-last:center; width:18.7rem; margin-left:auto; margin-right:auto; margin-bottom:1rem;" onchange="this.form.submit()">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -72,10 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Preço por palete / zona</th>
-                                    <th>Preço de carga</th>
-                                    <th>Preço de descarga</th>
-                                    <th>Total</th>
+                                    <th style="width:30%">Preço por palete / zona</th>
+                                    <th style="width:20%">Preço de carga</th>
+                                    <th style="width:20%">Preço de descarga</th>
+                                    <th style="width:20%">Total</th>
                                 </tr>
                             </thead>
                             <tbody>

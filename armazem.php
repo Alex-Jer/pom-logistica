@@ -37,13 +37,13 @@ mysqli_close($conn);
                 <a class="nav-link active" href="armazem.php">Armazém</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+                <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+                <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
@@ -76,21 +76,17 @@ mysqli_close($conn);
                         <option value="Armazem de Paletes Baixas">Armazém de Paletes baixas</option>
                         <option value="Armazem de paletes para o Frio"> Armazém de paletes para o Frio</option>
                     </select>
-                    &nbsp;
                 </div>
                 <div style="text-align:center">
-                    <input style="text-align:center" class="form-control" type="number" name="carga" step="any" placeholder="Custo de carga">
+                    <input style="text-align:center; margin-top:1rem;" class="form-control" type="number" name="carga" step="any" placeholder="Custo de carga">
                 </div>
                 <div style="text-align:center">
-                    &nbsp;
-                    <input style="text-align:center" class="form-control" type="number" name="descarga" step="any" placeholder="Custo de descarga">
+                    <input style="text-align:center; margin-top:1rem;" class="form-control" type="number" name="descarga" step="any" placeholder="Custo de descarga">
                 </div>
                 <div style="text-align:center">
-                    &nbsp;
-                    <input style="text-align:center" class="form-control" type="number" name="espaco" placeholder="Espaço disponível no armazém">
+                    <input style="text-align:center; margin-top:1rem;" class="form-control" type="number" name="espaco" placeholder="Espaço disponível no armazém">
                 </div>
-                &nbsp;
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>
+                <button class="btn btn-primary btn-block btn-signin" style="margin-top:1rem;" type="submit">Confirmar</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

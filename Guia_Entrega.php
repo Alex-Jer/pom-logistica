@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
         <div class="dropdown-menu">
           <a class="dropdown-item active" href="Guia_Entrega.php">Entrega</a>
-          <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+          <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
           <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
         </div>
       </li>
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+        <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="card card-container" style="max-width:250%; width:60%">
       <form style="text-align:center" action="Guia_Entrega.php" method="post">
         <h1>Guia de entrega</h1>
-        <select class="form-control-lg" style="border-color:#ced4da; text-align-last:center; width:80%; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" name="comboboxCli" id="comboboxCli">
+        <select class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D;" name="comboboxCli" id="comboboxCli">
           <option value="" disabled selected>Cliente</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <input class="form-control" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
-        <select class="form-control" name="comboboxArtigo" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem; color: #6C757D;" id="comboboxArtigo">
+        <input class="form-control" style="text-align:center; margin-top:1rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
+        <select class="form-control" name="comboboxArtigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;" id="comboboxArtigo">
           <option value="" disabled selected>Artigo</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem; color: #6C757D;">
+        <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
           <option value="" disabled selected>Tipo de paletes</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
@@ -107,22 +107,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
           ?>
         </select>
-        <select class="form-control" name="comboboxTipoZona" id="TipoZona" style="display:none; text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem">
+        <select class="form-control" name="comboboxTipoZona" id="TipoZona" style="display:none; text-align-last:center; margin-top:1rem; color: #6C757D;">
           <option value="" disabled selected>Tipo de zona</option>
         </select>
-        <div style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg" style="font-size:1.3rem">REQ-</span>
-          </div>
-          <input style="height:3.2rem; font-size:1.5rem;" type="text" class="form-control" placeholder="Número de requisição" name="req" required>
+        <div style="text-align:center" class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="height:2.37rem; margin-top:0.6rem" id="inputGroup-sizing-lg">REQ-</span>
+            </div>
+            <input type="text" class="form-control" style="width:5rem; margin-top:0.6rem;" placeholder="Número de requisição" name="req" required>
         </div>
-        <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem">
+        <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:1rem; color: #6C757D;">
         </select>
         <div id="Espaco"></div>
         <div id="HiddenTeste" name="HiddenTeste">
         </div>
-        <input style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" required>
-        <button style="margin-top:3%; font-size:1.5rem" type="submit" class="btn btn-warning">Confirmar</button>
+        <input style="text-align:center; margin-top:1rem;" type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" required>
+        <button type="submit" class="btn btn-primary" style="margin-top:1rem; margin-left:auto; margin-right:auto; width:36.7rem;">Confirmar</button>
       </form><!-- /form -->
     </div>
   </div>

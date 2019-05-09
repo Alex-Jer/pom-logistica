@@ -25,50 +25,48 @@ exit;
 </head>
 
 <body>
-    <nav role="navigation">
+<nav role="navigation">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="navbarLogin.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
-                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
-                </div>
+                <a class="nav-link" href="operador.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+                <a class="nav-link" href="armazem.php">Armazém</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
+                <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Pass</a>
+                <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="fatura_cliente.php">Fatura</a>
+                <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pdf.php">PDF</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Sair</a>
             </li>
         </ul>
     </nav>
-    <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 1000px">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <div class="container" style="margin-left: auto; margin-right:auto;">
+        <div class="card card-container" style="max-width:none">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="listagem_pedidos_armazem_operador.php" method="post">
                 <div style="text-align:center">
                     <h1>Pedidos do dia</h1>
-                    <br>
-                    <div class="container">
-
-                        <table class="table">
+                    <div class="container" style="margin-left:auto; margin-right:auto;">
+                        <table class="table" style="margin-left:auto; margin-right:auto;">
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
@@ -115,8 +113,6 @@ exit;
                             </tbody>
                         </table>
                     </div>
-                    <br>
-                    <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

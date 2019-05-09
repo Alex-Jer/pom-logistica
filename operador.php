@@ -19,13 +19,13 @@ include 'db.php';
                 <a class="nav-link" href="armazem.php">Armazém</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+                <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+                <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
