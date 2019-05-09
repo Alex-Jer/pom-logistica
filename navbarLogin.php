@@ -19,6 +19,7 @@ if ($_SESSION["user"]==2)
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -89,6 +90,47 @@ if ($_SESSION["user"]==2)
     <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
     <script type='text/javascript' src='js/jquery.barfiller.js'></script>
     <script type='text/javascript' src='js/custom.js'></script>
+=======
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav role="navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="navbarLogin.php">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
+                    <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="fatura_cliente.php">Fatura</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Sair</a>
+            </li>
+        </ul>
+    </nav>
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 </body>
+
 
 </html>

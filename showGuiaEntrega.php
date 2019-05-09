@@ -1,6 +1,11 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 include 'operador.php';
+=======
+session_start();
+//include 'operador.php';
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 =======
 session_start();
 //include 'operador.php';
@@ -66,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $sql)) {
       ?>
     <?php
+<<<<<<< HEAD
 
   } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -76,6 +82,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dado2 = mysqli_fetch_array($buscaPaleteID);
   $palete_idd = $dado2['id'];
 
+=======
+
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+
+
+  $buscaPaleteID = mysqli_query($conn, "SELECT * FROM palete WHERE referencia='$referencia'");
+  $dado2 = mysqli_fetch_array($buscaPaleteID);
+  $palete_idd = $dado2['id'];
+
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 
   $sqlLocal = "UPDATE localizacao SET palete_id='$palete_idd', zona_id='$zonaID', data_entrada='$dataehora', hasPalete=1 WHERE id='$eachLocalizacao'";
   if (mysqli_query($conn, $sqlLocal)) { } else {
@@ -167,8 +185,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div id="DivEntrega">
               <button style="margin-top:3%; font-size:1.5rem; margin-left:2rem;" type="submit" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
+<<<<<<< HEAD
+=======
             </div>
           </div>
+        </form>
+      </div>
+      <div class="col dupla card card-container">
+        <form class="form-signin" action="showGuiaEntrega.php" method="post">
+          <input class="form-control" style="text-align:center; height:3.2rem; width:41.7rem; font-size:1.5rem; margin-top:1rem; type=" text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
+          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboboxArtigo" id="comboboxArtigo">
+            <option value="" disabled selected>Artigo</option>
+            <?php
+            $busca = mysqli_query($conn, "SELECT * FROM artigo");
+            foreach ($busca as $eachRow) {
+              ?>
+              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+            <?php
+          }
+          ?>
+          </select>
+          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboBoxGuiaId" id="comboBoxGuiaId">
+            <option value="" disabled selected>Guia</option>
+            <?php
+            $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
+            foreach ($busca as $eachRow) {
+              ?>
+              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
+            <?php
+          }
+          ?>
+          </select>
+          <select class="form-control" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem; color: #6C757D;" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
+            <option value="" disabled selected>Localização</option>
+            <?php
+            $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
+            foreach ($busca as $eachRow) {
+              ?>
+              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+            <?php
+          }
+          ?>
+          </select>
+          <div style="text-align:center; max-height:200px; margin-top:2%; height:3.2rem; width:41.7rem; font-size:1.5rem" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-lg" style="font-size:1.3rem; height:3.2rem;">PAL-</span>
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
+            </div>
+            <input style="height:3.2rem; font-size:1.5rem; margin-left:4.2rem; margin-top:-3.15rem;" type="text" class="form-control" placeholder="Referência da palete" name="refpal" required>
+          </div>
+          <input placeholder="Nome da palete" class="form-control" style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:41.7rem; font-size:1.5rem" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+          <button style="margin-top:3rem; font-size:1.5rem" type="submit" class="btn btn-warning" type="submit">Registar palete</button>
         </form>
       </div>
       <div class="col dupla card card-container">

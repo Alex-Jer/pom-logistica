@@ -2,8 +2,13 @@
 <html lang="pt">
 <script type="text/javascript" src="jquery.js"></script>
 <?php
+<<<<<<< HEAD
 
 include 'navbarLogin.php';
+=======
+session_start();
+//include 'navbarLogin.php';
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 include 'db.php';
 if ($_SESSION["user"]==2)
 {
@@ -25,35 +30,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $getCBtz = $_POST["comboboxTipoZona"];
   $getREQ = $_POST["req"];
   $getArmazem = $_POST["Armazem"];
-  // $TESTE2=$_POST["ola"];
-  // echo $TESTE2;
-
-  $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, 1,$getCBtp, $getCBtz,$getArmazem,'$getCBart', '$dataEntrega', $getQT,'$getREQ')";
+  $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, 1, $getCBtp, $getCBtz, $getArmazem, '$getCBart', '$dataEntrega', $getQT, 'REQ-' + '$getREQ')";
 
   if (mysqli_query($conn, $sql)) { } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }
-  /*header("Location: menu.php");*/
 }
 ?>
 
 <head>
   <meta charset="UTF-8">
+  <script type="text/javascript" src="jquery.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- <meta http-equiv="refresh" content="1"> -->
   <title>Menu</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="css.css">
 </head>
 
 <body>
+  <nav role="navigation">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="navbarLogin.php">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" href="Guia_Entrega.php">Entrega</a>
+          <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+          <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="fatura_cliente.php">Fatura</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">Sair</a>
+      </li>
+    </ul>
+  </nav>
   <div class="container">
     <div class="card card-container" style="max-width:250%; width:60%">
       <form style="text-align:center" action="Guia_Entrega.php" method="post">
         <h1>Guia de entrega</h1>
-        <select class="custom-select custom-select-lg" style="text-align-last:center; width:80%; height:70%; margin-top:4%; font-size:1.5rem" name="comboboxCli" id="comboboxCli">
+        <select class="form-control-lg" style="border-color:#ced4da; text-align-last:center; width:80%; height:70%; margin-top:4%; font-size:1.5rem; color: #6C757D;" name="comboboxCli" id="comboboxCli">
           <option value="" disabled selected>Cliente</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -76,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem">
+        <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem; color: #6C757D;">
           <option value="" disabled selected>Tipo de paletes</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
@@ -96,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-lg" style="font-size:1.3rem">REQ-</span>
           </div>
-          <input style="height:3.2rem; text-indent:11rem; font-size:1.5rem" type="text" class="form-control" placeholder="Número de requisição" name="req" required>
+          <input style="height:3.2rem; font-size:1.5rem;" type="text" class="form-control" placeholder="Número de requisição" name="req" required>
         </div>
         <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem">
         </select>
@@ -104,8 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="HiddenTeste" name="HiddenTeste">
         </div>
         <input style="text-align:center; margin-top:2%; max-height:200px; height:3.2rem; width:46.8rem; margin-left:5.8rem; font-size:1.5rem" type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" required>
-
-        <button style="margin-top:3%; font-size:1.5rem" type="submit" class="btn btn-warning">Registar Cliente</button>
+        <button style="margin-top:3%; font-size:1.5rem" type="submit" class="btn btn-warning">Confirmar</button>
       </form><!-- /form -->
     </div>
   </div>

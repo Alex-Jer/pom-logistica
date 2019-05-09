@@ -3,7 +3,7 @@
 <?php
 session_start();
 include 'db.php';
-include 'navbar.php';
+//include 'navbar.php';
 ?>
 
 <head>
@@ -39,12 +39,13 @@ include 'navbar.php';
     <?php
 }
 ?>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="">
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -57,14 +58,20 @@ include 'navbar.php';
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="css/swiper.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
+<nav role="navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="login.php">Login</a>
+            </li>
+           
+        </ul>
+    </nav>
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->

@@ -19,33 +19,12 @@ if ($_SESSION["user"]==1)
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="css/elegant-fonts.css">
-
-    <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
+<<<<<<< HEAD
     <header class="site-header">
 
         <div class="nav-bar">
@@ -79,6 +58,42 @@ if ($_SESSION["user"]==1)
                 </div><!-- .container -->
             </div><!-- .nav-bar -->
     </header><!-- .site-header -->
+=======
+    <nav role="navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="operador.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="armazem.php">Armazém</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Guia_Operador.php">Guia do Operador</a></li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pdf.php">PDF</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Sair</a>
+            </li>
+        </ul>
+    </nav>
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
     <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
     <script type='text/javascript' src='js/swiper.min.js'></script>

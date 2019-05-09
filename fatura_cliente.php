@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
+<<<<<<< HEAD
 include 'navbarLogin.php';
 if ($_SESSION["user"]==2)
 {
@@ -12,6 +13,10 @@ if ($_SESSION["user"]==2)
         </script>
         <?php
 }
+=======
+//include 'navbarLogin.php';
+// include 'db.php';
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cbCliente"];
     $query = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliente'");
@@ -23,7 +28,9 @@ date_default_timezone_set("Europe/Lisbon");
 ?>
 
 <head>
+    <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="">
@@ -33,34 +40,52 @@ date_default_timezone_set("Europe/Lisbon");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
+=======
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="css/elegant-fonts.css">
-
-    <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet" href="css.css">
-
 </head>
 
 <body>
+    <nav role="navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="navbarLogin.php">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
+                    <a class="dropdown-item" href="Guia_Operador.php">Operador</a>
+                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mudarpass.php">Mudar Palavra-Passe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="fatura_cliente.php">Fatura</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Sair</a>
+            </li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="fatura_cliente.php" method="post">
                 <div style="text-align:center">
+<<<<<<< HEAD
                     <h1>Fatura mensal</h1>
                     <br>    
                     <?php
@@ -73,6 +98,12 @@ date_default_timezone_set("Europe/Lisbon");
                     <div class="container">
                         <div class="text-align:center">
                             <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()"  >
+=======
+                    <h1 style="margin-bottom:2rem;">Fatura mensal</h1>
+                    <div class="container">
+                        <div style="text-align:center; margin-bottom:2rem;">
+                            <select class="form-control-lg" name="cliente" style="text-align-last:center; width:18.5rem;" onchange="this.form.submit()">
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -84,10 +115,13 @@ date_default_timezone_set("Europe/Lisbon");
                             ?>
                             </select>
                         </div>
+<<<<<<< HEAD
 
                         <div id ="clienteteste">
                         </div>
                         <br>
+=======
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
                         <table class="table">
                             <thead>
                                 <tr>
@@ -157,7 +191,16 @@ date_default_timezone_set("Europe/Lisbon");
                                         $custoCarga = $sql7['custo_carga'];
                                         $custoDescarga = $sql7['custo_descarga'];
 
+<<<<<<< HEAD
                                         $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=3 AND cliente_id='$clienteId'");
+=======
+                                        $datetime1 = new DateTime($dataPrevistaDescarga);
+                                        $datetime2 = new DateTime($dataCarga);
+                                        $intervalo = date_diff($datetime2, $datetime1);
+                                        $diasArmazenamento = $intervalo->format('%a');
+
+                                        $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
                                         $row = $result->fetch_row();
                                         $count = $row[0];
 
