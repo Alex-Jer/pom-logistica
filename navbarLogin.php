@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <?php
-include 'db.php'
+include 'db.php';
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 ?>
 <html lang="en">
 
@@ -9,9 +23,7 @@ include 'db.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -29,6 +41,7 @@ include 'db.php'
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules\bootstrap3\dist\css\bootstrap.min.css">
 </head>
 
 <body>
@@ -42,25 +55,19 @@ include 'db.php'
 
 
                             <nav class="site-navigation d-flex justify-content-end align-items-center">
-                                <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center   ">
                                     <li><a href="navbarLogin.php">Home</a></li>
-                                    <!-- <li><a href="perfil.php">Perfil</a></li> -->
-                                    <!-- <li><a href="armazem.php">Armazém</a></li> -->
-                                    <!-- <li><a href="tipoguia.php">Guias</a></li> -->
-                                    <!-- <li><a href="tipozona.php">Zonas</a></li> -->
-                                    <!-- <li><a href="tipopalete.php">Paletes</a></li> -->
-                                    <li><a href="registar_cliente.php">Registar Cliente</a></li>
-                                    <li><a href="registar_utilizador.php">Registar Utilizador</a></li>
-                                    <!-- <li><a href="zona.php">Zona</a></li> -->
-                                    <!-- <li><a href="localizacao.php">Localização</a></li> -->
-                                    <li><a href="Guia_Entrega.php">Guia entrega</a></li>
-                                    <li><a href="Guia_Operador.php">Guia operador</a></li>
-                                    <li><a href="Guia_Transporte.php">Guia transporte</a></li>
-                                    <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
-                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
+                                    <li><a href="artigo.php">Artigo</a></li>
+                                    <li><a href="Guia_Entrega.php">Guia Entrega</a></li>
+                                    <li><a href="Guia_Transporte.php">Guia Transporte</a></li>
                                     <li><a href="fatura_cliente.php">Fatura</a></li>
-                                    <li><a href="index.php">Sair</a></li>
+                                    <li> <a href="registar_cliente.php">Registar Cliente</a></li>
+                                    <li> <a href="registar_utilizador.php">Registar Utilizador</a></li>
+                                    <li>  <a href="mudarpass.php">Mudar Palavra-Pass</a></li>
+                                    <li><a href="Index.php">Sair</a></li>
+                                    
                                 </ul>
+                                
                             </nav><!-- .site-navigation -->
 
                             <div class="hamburger-menu d-lg-none">

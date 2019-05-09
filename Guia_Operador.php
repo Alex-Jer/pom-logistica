@@ -1,7 +1,18 @@
 <?php
-session_start();
 include 'operador.php';
 include 'db.php';
+if ($_SESSION["user"]==1)
+{
+    
+    header("Location: Login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+}
 
 $count = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

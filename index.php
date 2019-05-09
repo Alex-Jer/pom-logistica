@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $_SESSION["user"]=0 ?>
 <head>
     <title>POM Logistica</title>
 

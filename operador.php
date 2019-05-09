@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <?php
+ if(!isset($_SESSION)) 
+ { 
+     session_start(); 
+ }  
 include 'db.php';
+if ($_SESSION["user"]==1)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 ?>
 <html lang="en">
 
@@ -44,14 +58,12 @@ include 'db.php';
                             <nav class="site-navigation d-flex justify-content-end align-items-center">
                                 <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                                     <li><a href="operador.php">Home</a></li>
-                                    <li><a href="armazem.php">Armazém</a></li>
-                                    <li><a href="Guia_Operador.php">Guia de devolução</a></li>
                                     <li><a href="showGuiaEntrega.php">Registar Palete</a></li>
-                                    <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
-                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
+                                    <li><a href="Guia_Operador.php">Guia de devolução</a></li>
                                     <li><a href="Guia_Rececao.php">Imprimir Rececao</a></li>
                                     <li><a href="Guia_Devolucao.php">Imprimir Devolucao</a></li>
-                                    <li><a href="pdf.php">Pedidos</a></li>
+                                    <li><a href="listagem_pedidos_armazem.php">Pedidos</a></li>
+                                    <li><a href="mudarpass.php">Mudar Palavra-Pass</a></li>
                                     <li><a href="index.php">Sair</a></li>
                                 </ul>
                             </nav><!-- .site-navigation -->

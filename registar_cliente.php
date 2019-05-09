@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php
-session_start();
 include 'navbarLogin.php';
 include 'db.php';
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];

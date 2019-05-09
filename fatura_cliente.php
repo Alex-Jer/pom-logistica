@@ -2,8 +2,21 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarLogin.php';
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cbCliente"];
+    $query = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliente'");
+                $dado = mysqli_fetch_array($query);
+                $clienteNome=$dado['nome'];
 }
 date_default_timezone_set("Europe/Lisbon");
         $timeRN=date("Y-m-d H:i:s");
@@ -49,21 +62,23 @@ date_default_timezone_set("Europe/Lisbon");
             <form class="container" action="fatura_cliente.php" method="post">
                 <div style="text-align:center">
                     <h1>Fatura mensal</h1>
+                    <br>    
+                    <?php
+                    if (isset( $clienteNome)) { ?>
+                    <p><?php echo  $clienteNome ?></p>
+                    <?php
+                    }
+                    ?>
                     <br>
                     <div class="container">
-<<<<<<< HEAD
                         <div class="text-align:center">
                             <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()"  >
-=======
-                        <div style="text-align:center">
-                            <select class="custom-select custom-select-lg" name="cliente" style="text-align-last:center; width:200px;" onchange="this.form.submit()">
->>>>>>> f1027e8dba6615cf8b313cc67aaf9e20565d59f4
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT * FROM cliente");
                                 foreach ($busca as $eachRow) {
                                     ?>
-                                    <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+                                    <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : '';?>><?php echo $eachRow['nome'] ?></option>
                                 <?php
                             }
                             ?>

@@ -14,14 +14,17 @@ include 'navbar.php';
         $em = $_POST["emaill"];
         $_SESSION['emailSession'] = $em;
         $passInput = $_POST["Password"];
-        $buscapass = mysqli_query($conn, "SELECT password FROM utilizador WHERE Email='$em'");
-        $buscaId = mysqli_query($conn, "SELECT perfil_id FROM utilizador WHERE Email='$em'");
-        $dado = mysqli_fetch_array($buscapass);
-        $dado2 = mysqli_fetch_array($buscaId);
+        $busca = mysqli_query($conn, "SELECT * FROM utilizador WHERE Email='$em'");
+        $dado = mysqli_fetch_array($busca);
         $pass = $dado['password'];
-        $id = $dado2['perfil_id'];
+        $id = $dado['perfil_id'];
+        $iduser=$dado['id'];
+        $_SESSION['user']=$id;
+        $_SESSION['userid']=$iduser;
         if ($passInput == $pass) {
             if ($id == '1') {
+
+                
                 header("Location: navbarLogin.php");
                 exit;
             } elseif ($id == '2') {

@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 
 $servername = "localhost";
 $username = "root";
@@ -229,11 +229,17 @@ require "fpdf.php";
                     $count =$row[0];
                     if ($count==0)
                     {
-                        $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('".$_POST['GetCliente']."',2,'$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
+                        $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('".$_POST['GetCliente']."','".$_SESSION['userid']."','$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
                     
                                                 if (mysqli_query($conn, $sql2)) {
-                                                                
+                                                    $id = mysqli_insert_id($conn);      
                                                 }
+                                                
+                      $sqllinha = "UPDATE linha SET documento_id=$id WHERE documento_id IS NULL";
+                    
+                     if (mysqli_query($conn, $sqllinha)) {
+                                                                
+                       }
                     }
                 
             }
