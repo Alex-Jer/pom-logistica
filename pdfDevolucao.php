@@ -43,7 +43,7 @@ require "fpdf.php";
             }
             function viewTable($conn){
                 $this->SetFont('Times','',12);
-                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['guia']."'");
+                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['GuiaID']."'");
                 $eachRow = mysqli_fetch_array($dado);
                     $cliID=$eachRow['cliente_id'];
                     $timeRN=$eachRow['data_prevista'];

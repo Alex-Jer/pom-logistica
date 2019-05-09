@@ -51,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="pdf.php" method="post">
+            <form class="container" action="registar_clientes.php" method="post">
                 <div style="text-align:center">
-                    <h1 style="margin-bottom:1rem;">Guia de Receção</h1>
+                    <h1 style="margin-bottom:1rem;">Clientes</h1>
                     <div class="container">
                         <div style="text-align:center">
                             <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
@@ -62,43 +62,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                             <thead>
                                 <tr>
                                     <th style="width:15%">Cliente</th>
-                                    <th style="width:30%">Dia e hora da carga</th>
-                                    <th style="width:15%">Nº de Paletes</th>
-                                    <th style="width:20%">Artigo</th>
-                                    <th style="width:20%">Armazém</th>
+                                    <th style="width:30%">NIF</th>
+                                    <th style="width:40%">Morada</th>
+                                    <th style="width:30%">Localidade</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=1");
+                            $dado = mysqli_query($conn, "SELECT * FROM cliente");
                             foreach ($dado as $eachRow) {
-                                $cliID=$eachRow['cliente_id'];
-                                $GuiaID=$eachRow['id'];
-                                $timeRN=$eachRow['data_prevista'];
-                                $getArtigo=$eachRow['artigo_id'];
-                                $qtPal=$eachRow['numero_paletes'];
-                                $numeroReq=$eachRow['numero_requisicao'];
-                                $arID=$eachRow['armazem_id'];
-                                $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliID'");
-                                $sql3 = mysqli_fetch_array($sql2);
-                                $nomeCliente = $sql3['nome'];
-                                $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$arID'");
-                                $sql5 = mysqli_fetch_array($sql4);
-                                $nomeArmazem = $sql5['nome'];
-                                $sql6 = mysqli_query($conn, "SELECT * FROM artigo WHERE id='$getArtigo'");
-                                $sql7 = mysqli_fetch_array($sql6);
-                                $refArtigo = $sql7['referencia'];
+
+                                $nomeID=$eachRow['id'];
+                                $Nome=$eachRow['nome'];
+                                $nif = $eachRow['nif'];
+                                $Morada = $eachRow['morada'];
+                                $Localidade = $eachRow['localidade'];
                                 //Inacabado
                                 echo '<tr>';
-                                    echo '<td> '.$nomeCliente.'</td>';
-                                        echo '<td> '.$timeRN.'</td>';
-                                        echo '<td> '.$qtPal.'</td>';
-                                        echo '<td> '.$refArtigo.'</td>';
-                                        echo '<td> '.$nomeArmazem.'</td>';
-                                        ?>
-                                        <!-- <td><input type="submit" name="Ola" ></td> -->
-                                        <td><button type="submit" name="GuiaID" value="<?php echo $GuiaID ?>">PDF</button></td>
-                                        <?php
+                                    echo '<td> '.$Nome.'</td>';
+                                        echo '<td> '.$nif.'</td>';
+                                        echo '<td> '.$Morada.'</td>';
+                                        echo '<td> '.$Localidade.'</td>';
                                 echo '</tr>';
                                 }
                                 ?>
@@ -113,20 +98,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </body>
 
 </html>
-<script>
-    $("#guia").on("change", function() {
-        $.ajax({
-            url: 'ajaxRececao.php',
-            type: 'POST',
-            data: {
-                id: $("#guia").val()
-            },
-            success: function(data) {
-                $("#pdf").css({
-                    'display': 'block'
-                })
-                $("#tabela").html(data);
-            },
-        });
-    });
-</script>

@@ -38,7 +38,7 @@ if ($_SESSION["user"]==2)
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
+                <a class="nav-link" href="ListarClientes.php">Registar Cliente</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
