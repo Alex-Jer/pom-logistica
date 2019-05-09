@@ -26,6 +26,7 @@ $timeRN = date("Y-m-d H:i:s");
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
@@ -89,12 +90,12 @@ $timeRN = date("Y-m-d H:i:s");
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="width:20%">Tipo de Guia</th>
-                                <th style="width:20%">Nº Paletes</th>
-                                <th style="width:30%">Preço por palete / zona</th>
-                                <th style="width:30%">Preço de Carga/Descarga</th>
-                                <th style="width:20%">Dias</th>
-                                <th style="width:20%">Total</th>
+                                <th style="width:15%">Tipo de Guia</th>
+                                <th style="width:15%">Nº Paletes</th>
+                                <th style="width:25%">Preço por palete / zona</th>
+                                <th style="width:25%">Preço de Carga/Descarga</th>
+                                <th style="width:10%">Dias</th>
+                                <th style="width:25%">Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -183,18 +184,17 @@ $timeRN = date("Y-m-d H:i:s");
                         ?>
                         </tbody>
                     </table>
-            </form><!-- /form -->
-            <form class="container" action="pdfFatura.php" method="post">
-                <button type="submit">PDF</button>
-                <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    <form class="container" action="pdfFatura.php" method="post">
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            ?>
+                            <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
+                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:20rem; margin-top:-10rem; float:right;">PDF</button>
+                        <?php
+                    }
                     ?>
-
-                    <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-                <?php
-            }
-            ?>
-            </form>
+                    </form>
+            </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
     <script type="text/javascript"></script>
@@ -202,3 +202,20 @@ $timeRN = date("Y-m-d H:i:s");
 </body>
 
 </html>
+
+<script>
+    $("#cbCliente").on("change", function() {
+        $.ajax({
+            url: 'ajaxFatura.php',
+            type: 'POST',
+            data: {
+                id: $("#cbCliente").val()
+            },
+            success: function(data) {
+                $("#pdf").css({
+                    'display': 'block'
+                });
+            },
+        });
+    });
+</script>
