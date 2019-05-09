@@ -2,7 +2,6 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-<<<<<<< HEAD
 include 'navbarLogin.php';
 if ($_SESSION["user"]==2)
 {
@@ -14,9 +13,6 @@ if ($_SESSION["user"]==2)
         </script>
         <?php
 }
-=======
-//include 'navbarLogin.php';
->>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 use \System\Linq;
 
 $pw2 = "";
