@@ -18,9 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 <a class="nav-link" href="operador.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="armazem.php">Armazém</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
@@ -37,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="Guia_Devolucao.php">Imprimir Devolução</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pdf.php">PDF</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Sair</a>

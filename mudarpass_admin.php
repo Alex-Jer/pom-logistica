@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
         <input type="password" name="textNewPass" class="form-control" placeholder="Nova Password" required>
         <input type="password" name="textNewPass2" class="form-control" placeholder="Confirmar Nova Password" required>
-        <button class="btn btn-lg btn-primary btn-block btn-signin" style="margin-top:7%" type="submit">Confirmar</button>
+        <button class="btn btn btn-primary btn-block btn-signin" style="margin-top:7%" type="submit">Confirmar</button>
       </form><!-- /form -->
     </div>
   </div>

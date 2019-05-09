@@ -19,9 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 <a class="nav-link" href="operador.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="armazem.php">Armazém</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
@@ -38,9 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pdf.php">PDF</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Sair</a>
@@ -70,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                         <div style="text-align:center">
                             <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
                         </div>
-                        <table class="table" style="font-size:16px;">
+                        <table class="table" style="font-size:16px; margin-top:1.5rem;">
                             <thead>
                                 <tr>
                                     <th style="width:15%">Cliente</th>

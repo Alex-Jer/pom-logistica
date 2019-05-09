@@ -4,7 +4,7 @@
 include 'db.php';
 //include 'navbarLogin.php';
 session_start();
-if ($_SESSION["user"]==2)
+if ($_SESSION["user"]==1)
 {
     
     header("Location: login.php");

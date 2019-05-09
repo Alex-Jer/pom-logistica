@@ -2,7 +2,14 @@
 session_start();
 //include 'operador.php';
 include 'db.php';
-
+if ($_SESSION["user"] == 1) {
+  header("Location: Login.php");
+  ?>
+  <script type="text/javascript">
+    alert("Voce nao tem permissoes para acessar a isso");
+  </script>
+<?php
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dataehora = $_POST['dataentrega'];
   $artigo = $_POST['comboboxArtigo'];
@@ -24,19 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // $sqlCount = mysqli_query("SELECT count(*) FROM palete  WHERE referencia = '$referencia'");
   $result = $conn->query("SELECT count(*) FROM palete  WHERE referencia = '$referencia'");
   $row = $result->fetch_row();
-  //echo '#: ', $row[0];
+  echo '#: ', $row[0];
   $count = $row[0];
 
   $countEspaco = $conn->query("SELECT count(*) FROM localizacao  WHERE hasPalete = 1 AND zona_id=$zonaID");
   $row12 = $countEspaco->fetch_row();
-  //echo '#: ', $row12[0];
+  echo '#: ', $row12[0];
   $countRows = $row12[0];
 
   $getEspaco = mysqli_query($conn, "SELECT * FROM zona WHERE id='$zonaID'");
   $dado = mysqli_fetch_array($getEspaco);
   $getEspacoo = $dado['espaco'];
   $espaco = $getEspacoo - 1;
-  //echo $espaco;
+  echo $espaco;
   $getArmaID = $dado['armazem_id'];
 
   $getEspaco = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$getArmaID'");
@@ -46,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   date_default_timezone_set("Europe/Lisbon");
   $timeRN = date("Y-m-d H:i:s");
-
 
   if ($count == 0) {
     $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', 'PAL- + $referencia','Palete de + $nomepal', '$timeRN')";
@@ -64,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $palete_idd = $dado2['id'];
 
 
-  $sqlLocal = "UPDATE localizacao SET palete_id='$palete_idd', zona_id='$zonaID',data_entrada='$dataehora',hasPalete=1 WHERE id='$eachLocalizacao'";
+  $sqlLocal = "UPDATE localizacao SET palete_id='$palete_idd', zona_id='$zonaID', data_entrada='$dataehora', hasPalete=1 WHERE id='$eachLocalizacao'";
   if (mysqli_query($conn, $sqlLocal)) { } else {
     echo "Error: " . $sqlLocal . "<br>" . mysqli_error($conn);
   }
@@ -86,10 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
 }
 }
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,37 +133,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </nav>
   <div class="container">
     <div class="row">
-      <div class="col card card-container metade w-auto li ">
+      <div class="col card card-container metade w-auto li">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
           <div class="row">
             <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxGuiaEntrega" id="teste">
               <option value="" selected disabled>Número de requisição</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
-
               foreach ($busca as $eachRow) {
                 ?>
                 <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
               <?php
             }
-
             ?>
             </select>
           </div>
-          <div class="row ">
+          <div class="row">
             <div class="col-12 text-left w-auto p-3 li" id="Card" style="display:none">
-              <div class="text-left w-auto p-3 li " id="Espaco" style="display:none"></div>
+              <div class="text-left w-auto p-3 li" id="Espaco" style="display:none">
+              </div>
             </div>
             <div id="DivEntrega">
-              <button style="margin-top:3%; font-size:1.5rem; margin-left:2rem;" type="button" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
+              <button style="margin-top:3%; font-size:1.5rem; margin-left:2rem;" type="submit" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="col dupla card card-container ">
+      <div class="col dupla card card-container" style="height:28rem;">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
+          <h1 style="text-align:center">Registar palete</h1>
           <input class="form-control" style="text-align:center; margin-top:1rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxArtigo" id="comboboxArtigo">
+          <select class="form-control" style="text-align-last:center; color: #6C757D; margin-top:0.7rem;" name="comboboxArtigo" id="comboboxArtigo">
             <option value="" disabled selected>Artigo</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -170,10 +172,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
             <?php
           }
-
           ?>
           </select>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxGuiaId" id="comboBoxGuiaId">
+          <select class="form-control" style="text-align-last:center; margin-top:0.6rem; color: #6C757D;" name="comboBoxGuiaId" id="comboBoxGuiaId">
             <option value="" disabled selected>Guia</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
@@ -182,10 +183,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
             <?php
           }
-
           ?>
           </select>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
+          <select class="form-control" style="text-align-last:center; margin-top:0.6rem; color: #6C757D;" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
             <option value="" disabled selected>Localização</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
@@ -194,7 +194,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
             <?php
           }
-
           ?>
           </select>
           <div style="text-align:center;" class="input-group mb-3">
@@ -210,10 +209,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </form>
   </div>
-  </div>
-  </div>
-
-
 </body>
 
 </html>
@@ -255,7 +250,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
   });
 </script>
-
 
 <script>
   $("#Entrega").on("click", function() {

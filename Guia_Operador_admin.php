@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql3 = mysqli_fetch_array($sqlArtigo);
   $tipoPalete = $sql3['tipo_palete_id'];
   $paleteeID = $sql3['id'];
-  echo $paleteeID;
+  //echo $paleteeID;
 
   $sqlLocalizacao = mysqli_query($conn, "SELECT * FROM localizacao where palete_id='$paleteeID'");
   $sql4 = mysqli_fetch_array($sqlLocalizacao);
@@ -55,7 +55,7 @@ $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo' ORDE
 foreach ($sql6 as $eachRow2) {
   $count++;
   if ($count <= $npal) {
-    echo $count;
+    //echo $count;
     $paleteId = $eachRow2['id'];
     $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal");
     if (mysqli_query($conn, $sql10)) {
