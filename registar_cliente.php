@@ -93,7 +93,7 @@ exit;
             <h1 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:2rem">Registar cliente</h1>
             <form class="form-signin" action="registar_cliente.php" method="post">
                 <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                <input style="text-align:center; margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 title="O NIF tem de ter 9 dígitos." required>
+                <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 title="O NIF tem de ter 9 dígitos." required>
                 <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required>
                 <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required>
                 <button style="margin-top:1rem; margin-left:auto; margin-right:auto; width:auto; height:auto;" type="submit" class="btn btn-primary">Confirmar</button>

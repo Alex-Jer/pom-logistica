@@ -2,20 +2,27 @@
 session_start();
 //include 'operador.php';
 include 'db.php';
-
+if ($_SESSION["user"] == 2) {
+  header("Location: Login.php");
+  ?>
+  <script type="text/javascript">
+    alert("Voce nao tem permissoes para acessar a isso");
+  </script>
+<?php
+}
 $count = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $cliente = $_POST["cliente"];
-  $idGuiaa = $_POST["nrequisicao"];
+  $idGuia = $_POST["nrequisicao"];
   $morada = $_POST["morada"];
   $data = $_POST["data"];
-  $artigoo = $_POST["artigo"];
+  $artigo = $_POST["artigo"];
   $npal = $_POST["npaletes"];
-  $sql6 = mysqli_query($conn, "SELECT * FROM guia WHERE id='$idGuiaa'");
+  $sql6 = mysqli_query($conn, "SELECT * FROM guia WHERE id='$idGuia'");
   $dado = mysqli_fetch_array($sql6);
   $nrequisicao = $dado['numero_requisicao'];
 
-  $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo'");
+  $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo'");
   $sql3 = mysqli_fetch_array($sqlArtigo);
   $tipoPalete = $sql3['tipo_palete_id'];
   $paleteeID = $sql3['id'];
@@ -31,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $tipoZona = $sql5['tipo_zona_id'];
 
   //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
-  $sql = "INSERT INTO guia (cliente_id, guia_id,tipo_guia_id,  tipo_palete_id, tipo_zona_id,armazem_id,artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) VALUES ($cliente,$idGuiaa,     4,$tipoPalete, $tipoZona ,$armazemID,$artigoo,'$data','$npal','$nrequisicao','$morada')";
+  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) 
+                    VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada')";
   if (mysqli_query($conn, $sql)) {
     ?>
     <script type="text/javascript">
@@ -42,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-$sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo' ORDER BY Data ASC");
+$sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo' ORDER BY Data ASC");
 //$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
 foreach ($sql6 as $eachRow2) {
   $count++;
@@ -70,7 +78,7 @@ foreach ($sql6 as $eachRow2) {
 </head>
 
 <body>
-<nav role="navigation">
+  <nav role="navigation">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link" href="navbarLogin.php">Home</a>
@@ -112,7 +120,6 @@ foreach ($sql6 as $eachRow2) {
               <option value="" selected disabled>Número de requisição</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
-
               foreach ($busca as $eachRow) {
                 ?>
                 <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
@@ -124,7 +131,6 @@ foreach ($sql6 as $eachRow2) {
           <div class="row ">
             <div class="col-12 text-left w-auto p-3 li" id="Card" style="display:none">
               <div class="text-left w-auto p-3 li " id="Espaco" style="display:none">
-
               </div>
             </div>
           </div>

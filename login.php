@@ -22,9 +22,7 @@ include 'db.php';
         $_SESSION['user']=$id;
         $_SESSION['userid']=$iduser;
         if ($passInput == $pass) {
-            if ($id == '1') {
-
-                
+            if ($id == '1') {                
                 header("Location: navbarLogin.php");
                 exit;
             } elseif ($id == '2') {

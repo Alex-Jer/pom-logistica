@@ -2,7 +2,8 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-include 'navbarLogin.php';
+//include 'navbarLogin.php';
+session_start();
 if ($_SESSION["user"]==2)
 {
     
@@ -82,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h1 style="text-align:center">Registar utilizador</h1>
       <form class="form-signin" method="post" action="registar_utilizador.php">
         <span id="reauth-email" class="reauth-email"></span>
-        <input style="margin-top:1rem; height:auto;" type="input" id="inputNome" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z]+" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
         <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
         <input style="margin-top:1rem; height:auto;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
         <input style="margin-top:1rem; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
