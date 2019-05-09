@@ -2,7 +2,20 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
+<<<<<<< HEAD
+if ($_SESSION["user"]==1)
+{
+  
+  include "navbarLogin.php";
+}
+elseif($_SESSION["user"]==2)
+{
+  include "operador.php";
+}
+
+=======
 //include "operador.php";
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 include "db.php";
 $NewPass = "";
 

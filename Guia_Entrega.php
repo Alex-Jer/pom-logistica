@@ -2,9 +2,24 @@
 <html lang="pt">
 <script type="text/javascript" src="jquery.js"></script>
 <?php
+<<<<<<< HEAD
+
+include 'navbarLogin.php';
+=======
 session_start();
 //include 'navbarLogin.php';
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 include 'db.php';
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 $olateste = "a";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nomeCli = $_POST["comboboxCli"];

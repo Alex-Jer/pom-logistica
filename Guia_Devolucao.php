@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
+<<<<<<< HEAD
+include 'operador.php';
+if ($_SESSION["user"]==1)
+{
+    
+    header("Location: Login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+}
+=======
 //include 'operador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") { }
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 ?>
 
 <head>

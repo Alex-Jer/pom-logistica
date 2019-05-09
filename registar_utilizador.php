@@ -2,7 +2,17 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-//include 'navbarLogin.php';
+include 'navbarLogin.php';
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
 use \System\Linq;
 
 $pw2 = "";

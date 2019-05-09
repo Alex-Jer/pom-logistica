@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
+<<<<<<< HEAD
+include 'navbarLogin.php';
+if ($_SESSION["user"]==2)
+{
+    
+    header("Location: Login.php");
+    ?>
+    <script type="text/javascript">
+            alert("Voce nao tem permissoes para acessar a isso");
+        </script>
+        <?php
+}
+=======
 //include 'navbarLogin.php';
 include 'db.php';
+>>>>>>> 61999857b0b61dfd2b17cdec280e99798503bf38
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST['cliente'];
     $matricula = $_POST["matricula"];
