@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                         echo '<td> '.$nomeArmazem.'</td>';
                                         ?>
                                         <!-- <td><input type="submit" name="Ola" ></td> -->
-                                        <td><button type="submit" name="GuiaID" value="<?php echo $GuiaID ?>">PDF</button></td>
+                                       -
                                         <?php
                                 echo '</tr>';
                                 }

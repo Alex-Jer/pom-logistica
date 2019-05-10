@@ -3,16 +3,29 @@
 <?php
 //include 'operador.php';
 include 'db.php';
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nome = $_POST["Nome"];
-        $nifNumber = $_POST["nif"];
-        $nifNumberr = (int)$nifNumber;
-        $Morada = $_POST["morada"];
-        $localidade = $_POST["local"];
-    
-        $sql = "INSERT INTO cliente (nome,nif,morada, localidade) VALUES ('$nome',$nifNumberr,'$Morada', '$localidade')";
-        if (mysqli_query($conn, $sql)) {
-        }
+	$pw2 = "";
+	$Fim = false;
+	$pw1 = "";
+	$Show = false;
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	  $pw = $_POST["MainPw"];
+	  $pw2 = $_POST["Pw2"];
+	  $nome = $_POST["Nome"];
+	  $arID = $_POST["combobox"];
+	  $pfID = $_POST["combobox2"];
+	  $email = $_POST["Email"];
+
+	  if ($pw == $pw2) {
+          $sql = "INSERT INTO utilizador (perfil_id,armazem_id,nome, email, password ) VALUES ('$pfID','$arID','$nome', '$email', '$pw')";
+          if (mysqli_query($conn, $sql)) {
+		  }
+	  } else {
+          ?>
+		<script type="text/javascript">
+            alert("As passwords não coincidem");
+          </script>
+          <?php
+	  }
  }
 ?>
 
@@ -29,10 +42,10 @@ include 'db.php';
                 <a class="nav-link" href="operador.php">Home</a>
                 </li>
             <li class="nav-item">
-                <a class="nav-link active" href="ListarClientes.php">Registar Cliente</a>
+                <a class="nav-link" href="ListarClientes.php">Registar Cliente</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="ListarUtilizadores.php">Registar Utilizador</a></li>
+                <a class="nav-link  active" href="ListarUtilizadores.php">Registar Utilizador</a></li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
@@ -54,11 +67,11 @@ include 'db.php';
         
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="ListarClientes.php" method="post">
+            <form class="container" action="ListarUtilizadores.php" method="post">
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Clientes</h1>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Registar Cliente
+  Registar Utilizador
 </button>
                     <div class="container">
                         <div style="text-align:center">
@@ -67,29 +80,39 @@ include 'db.php';
                         <table class="table" style="font-size:16px;">
                             <thead>
                                 <tr>
-                                    <th style="width:15%">Cliente</th>
-                                    <th style="width:30%">NIF</th>
-                                    <th style="width:40%">Morada</th>
-                                    <th style="width:30%">Localidade</th>
+                                    <th style="width:15%">Nome</th>
+                                    <th style="width:40%">Email</th>
+                                    <th style="width:30%">Estatuto</th>
+                                    <th style="width:30%">Armazem</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $dado = mysqli_query($conn, "SELECT * FROM cliente");
+                            $dado = mysqli_query($conn, "SELECT * FROM utilizador");
                             foreach ($dado as $eachRow) {
 
                                 $nomeID=$eachRow['id'];
                                 $Nome=$eachRow['nome'];
-                                $nif = $eachRow['nif'];
-                                $Morada = $eachRow['morada'];
-                                $Localidade = $eachRow['localidade'];
+                                $email = $eachRow['email'];
+                                $EstatutoID = $eachRow['perfil_id'];
+                                $ArmazemID = $eachRow['armazem_id'];
+								
+								$query = mysqli_query($conn, "SELECT * FROM armazem WHERE id=$ArmazemID");
+								$getQuery = mysqli_fetch_array($query);
+								$ArmazemNome  = $getQuery['nome'];
+								
+								$query2 = mysqli_query($conn, "SELECT * FROM perfil WHERE id=$EstatutoID");
+								$getQuery2 = mysqli_fetch_array($query2);
+								$PerfilNome  = $getQuery2['nome'];
+								
+								
                                 //Inacabado
                                 echo '<tr>';
                                     echo '<td> '.$Nome.'</td>';
-                                        echo '<td> '.$nif.'</td>';
-                                        echo '<td> '.$Morada.'</td>';
-                                        echo '<td> '.$Localidade.'</td>';
+                                        echo '<td> '.$email.'</td>';
+                                        echo '<td> '.$PerfilNome.'</td>';
+                                        echo '<td> '.$ArmazemNome.'</td>';
                                 echo '</tr>';
                                 }
                                 ?>
@@ -117,9 +140,31 @@ include 'db.php';
       </div>
                 <div class="modal-body">
                             <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                            <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." required>
-                            <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required>
-                            <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required>
+        <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+        <input style="margin-top:1rem; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox">
+          <option value="" disabled selected>Armazém</option>
+          <?php
+          $busca = mysqli_query($conn, "SELECT * FROM armazem");
+          foreach ($busca as $eachRow) {
+            ?>
+            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+          <?php
+        }
+        ?>
+        </select>
+        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox2">
+          <option value="" disabled selected>Estatuto</option>
+          <?php
+          $busca = mysqli_query($conn, "SELECT * FROM perfil");
+          foreach ($busca as $eachRow) {
+            ?>
+            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+          <?php
+        }
+        ?>
+        </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

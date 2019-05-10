@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
+        <a class="nav-link" href="paletesTeste.php">Registar Palete</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
