@@ -2,8 +2,19 @@
 <html lang="pt">
 <?php
 session_start();
-//include 'navbarLogin.php';
 include 'db.php';
+include 'navbarAdmin.php';
+
+/*
+function echoActiveClassIfRequestMatches($requestUri)
+{
+    $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
+
+    if ($current_file_name == $requestUri)
+        echo 'class="active"';
+}*/
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
@@ -29,46 +40,12 @@ exit;
 
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="teste.css">
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="navbarLogin.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="registar_cliente.php">Registar Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="fatura_cliente.php">Fatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Sair</a>
-            </li>
-        </ul>
-    </nav>
     <script>
         function setInputFilter(textbox, inputFilter) {
             ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {

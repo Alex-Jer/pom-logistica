@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-//include 'operador.php';
+include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 ?>
@@ -13,34 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="operador.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="Guia_Rececao.php">Imprimir Receção</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Sair</a>
-            </li>
-        </ul>
-    </nav>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->

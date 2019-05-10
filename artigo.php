@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SESSION["user"]==2)
 {

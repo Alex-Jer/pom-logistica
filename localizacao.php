@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 $i = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST["referencia"];
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
-    //header("Location: navbarLogin.php");
+    //header("Location: navbarAdmin.php");
     exit;
 }
 

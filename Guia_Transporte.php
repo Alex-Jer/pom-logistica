@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-//include 'navbarLogin.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST['cliente'];
@@ -55,39 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="navbarLogin.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item active" href="Guia_Transporte.php">Transporte</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="fatura_cliente.php">Fatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Sair</a>
-            </li>
-        </ul>
-    </nav>
     <div class="container">
         <div class="card card-container" style="max-width:250%; width:60%; margin-top:3rem;">
             <form style="text-align:center" action="Guia_Entrega.php" method="post">
