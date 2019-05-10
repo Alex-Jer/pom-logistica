@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SESSION["user"]==2)
 {
     
-    header("Location: login.php");
+    header("Location: index.php");
     ?>
     <script type="text/javascript">
             alert("Voce nao tem permissoes para acessar a isso");

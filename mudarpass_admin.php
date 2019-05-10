@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
-//include "operador.php";
 include "db.php";
+include "navbarAdmin.php";
 $NewPass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<<<<<<< HEAD
   <nav role="navigation">
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -87,6 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </li>
     </ul>
   </nav>
+=======
+>>>>>>> 17ffb2b88de1eaa94f99947678f47f707ec8d950
   <div class="container">
     <div class="card card-container">
       <form class="form-signin" action="mudarpass_admin.php" method="post">

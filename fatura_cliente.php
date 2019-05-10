@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-//include 'navbarLogin.php';
-include 'db.php';
 session_start();
+include 'navbarAdmin.php';
+include 'db.php';
 if ($_SESSION["user"] == 2) {
 
-    header("Location: login.php");
+    header("Location: index.php");
     ?>
     <script type="text/javascript">
         alert("Você não tem permissões para essa página.");
@@ -31,39 +31,6 @@ $timeRN = date("Y-m-d H:i:s");
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="navbarLogin.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="fatura_cliente.php">Fatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Sair</a>
-            </li>
-        </ul>
-    </nav>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <p id="profile-name" class="profile-name-card"></p>

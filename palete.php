@@ -2,7 +2,7 @@
 <html lang="pt">
 <?php
 session_start();
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

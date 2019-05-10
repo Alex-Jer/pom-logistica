@@ -1,9 +1,9 @@
 <?php
 session_start();
-//include 'operador.php';
+include 'navbarOperador.php';
 include 'db.php';
 if ($_SESSION["user"] == 1) {
-  header("Location: Login.php");
+  header("Location: index.php");
   ?>
   <script type="text/javascript">
     alert("Voce nao tem permissoes para acessar a isso");
@@ -75,37 +75,10 @@ foreach ($sql6 as $eachRow2) {
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles\style3.css">
 </head>
 
 <body>
-  <nav role="navigation">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" href="operador.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="Guia_Operador_operador.php">Guia do Operador</a></li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="showGuiaEntrega.php">Registar Palete</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Sair</a>
-      </li>
-    </ul>
-  </nav>
   <div class="container">
     <div class="row">
       <div class="col card card-container metade w-auto li ">
@@ -135,7 +108,7 @@ foreach ($sql6 as $eachRow2) {
         <form class="form-signin" action="Guia_Operador_operador.php" method="post">
           <div style="text-align:center">
             <h1>Guia do Operador</h1>
-            <select class="form-control" name="cliente" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
+            <select class="form-control" name="cliente" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
               <option value="" disabled selected>Cliente</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -148,7 +121,7 @@ foreach ($sql6 as $eachRow2) {
             </select>
           </div>
           <div style="text-align:center">
-            <select class="form-control" name="nrequisicao" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
+            <select class="form-control" name="nrequisicao" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
               <option value="" disabled selected>Guia</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
@@ -162,13 +135,13 @@ foreach ($sql6 as $eachRow2) {
           </div>
           <div style="text-align:center">
             <form class="form-signin" method="post">
-              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:center; margin-top:1rem;" required>
+              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:left; margin-top:1rem;" required>
           </div>
           <div style="text-align:center">
-            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:1rem;" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:1rem;" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date" required>
           </div>
           <div style="text-align:center">
-            <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
+            <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
               <option value="" disabled selected>Artigo</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -181,17 +154,13 @@ foreach ($sql6 as $eachRow2) {
             </select>
           </div>
           <div style="text-align:center">
-            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:1rem;">
+            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:1rem;" required>
           </div>
           <button style="margin-top:1rem;" class="btn btn-primary btn-block btn-signin" type="submit">Confirmar</button>
         </form>
       </div>
     </div>
-    </form>
   </div>
-  </div>
-  </div>
-
 </body>
 
 </html>

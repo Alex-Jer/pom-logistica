@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $guia = $_POST["combobox"];
     $sql = "INSERT INTO tipo_guia (nome) VALUES ('$guia')";

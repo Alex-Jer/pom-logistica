@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'db.php';
-include 'navbarLogin.php';
+include 'navbarAdmin.php';
 use \System\Linq;
 $pw2 = "";
 $Fim = FALSE;

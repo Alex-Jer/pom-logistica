@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-//include 'navbarLogin.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $sql)) {
@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-//header("Location: navbarLogin.php");
 exit;
 }
 ?>
@@ -22,53 +21,20 @@ exit;
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css">
+    <link rel="stylesheet" href="styles\style.css">
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="navbarLogin.php">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item" href="Guia_Transporte.php">Transporte</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_cliente.php">Registar Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="registar_utilizador.php">Registar Utilizador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mudarpass_admin.php">Mudar Palavra-Pass</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="fatura_cliente.php">Fatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Sair</a>
-            </li>
-        </ul>
-    </nav>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 1000px">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
                 <div style="text-align:center">
-                    <h1>Pedidos do dia</h1>
-                    <br>
+                    <h1 style="margin-bottom:1rem;">Pedidos do dia</h1>
+                    <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem;" type="datetime-local" name="pedidos">
                     <div class="container">
-
-                        <table class="table">
+                        <table style="margin-top:2rem;" class="table">
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
@@ -115,8 +81,6 @@ exit;
                             </tbody>
                         </table>
                     </div>
-                    <br>
-                    <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Confirmar</button>-->
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->

@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include 'operador.php';
+include 'navbarOperador.php';
 include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
   if ($count == 0) {
-    $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', 'PAL- + $referencia','Palete de + $nomepal', '$timeRN')";
+    $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', 'PAL-$referencia','Palete de $nomepal', '$timeRN')";
     if (mysqli_query($conn, $sql)) {
       ?>
     <?php
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  $buscaPaleteID = mysqli_query($conn, "SELECT * FROM palete WHERE referencia='$referencia'");
+  $buscaPaleteID = mysqli_query($conn, "SELECT * FROM palete WHERE referencia='PAL-$referencia'");
   $dado2 = mysqli_fetch_array($buscaPaleteID);
   $palete_idd = $dado2['id'];
 
@@ -80,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
   ?>
     <script type="text/javascript">
-      ;
       alert("Essa referencia de palete já existe");
     </script>
   <?php
@@ -98,43 +97,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="utf-8">
   <script type="text/javascript" src="jquery.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles\style3.css">
 </head>
 
 <body>
-  <nav role="navigation">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" href="operador.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="showGuiaEntrega.php">Registar Palete</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Sair</a>
-      </li>
-    </ul>
-  </nav>
+  <script type="text/javascript">
+    $(function() {
+      $('#datetimepicker1').datetimepicker();
+    });
+  </script>
+  </div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col card card-container metade w-auto li ">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
           <div class="row">
-            <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxGuiaEntrega" id="teste">
+            <h1 style="margin-left:2rem;">Entrega de palete</h1>
+            <select style="text-align-last:center; margin-top:1rem; margin-left:2rem; color: #6C757D; width:23rem;" class="form-control" name="comboboxGuiaEntrega" id="teste">
               <option value="" selected disabled>Número de requisição</option>
               <?php
               $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
@@ -153,15 +133,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="text-left w-auto p-3 li " id="Espaco" style="display:none"></div>
             </div>
             <div id="DivEntrega">
-              <button style="margin-top:3%; font-size:1.5rem; margin-left:2rem;" type="button" class="btn btn-primary" id="Entrega">Confirmar entrega</button>
+              <button style="margin-top:2rem; margin-left:2rem;" type="button" class="btn btn-primary" id="Entrega">Confirmar</button>
             </div>
           </div>
         </form>
       </div>
       <div class="col dupla card card-container ">
         <form class="form-signin" action="showGuiaEntrega.php" method="post">
-          <input class="form-control" style="text-align:center; margin-top:1rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxArtigo" id="comboboxArtigo">
+          <h1 style="text-align:center;">Registar palete</h1>
+          <input class="form-control" style="text-align:center; margin-top:1.5rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
+          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboboxArtigo" id="comboboxArtigo" required>
             <option value="" disabled selected>Artigo</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM artigo");
@@ -173,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           ?>
           </select>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxGuiaId" id="comboBoxGuiaId">
+          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxGuiaId" id="comboBoxGuiaId" required>
             <option value="" disabled selected>Guia</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=1");
@@ -185,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           ?>
           </select>
-          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao">
+          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
             <option value="" disabled selected>Localização</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
@@ -194,26 +175,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
             <?php
           }
-
           ?>
           </select>
           <div style="text-align:center;" class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" style="height:2.35rem; margin-top:0.6rem;" id="inputGroup-sizing-lg">PAL-</span>
+              <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:5.65rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
             </div>
-            <input type="text" class="form-control" style="width:5rem; margin-top:0.6rem;" placeholder="Referência da palete" name="refpal" required>
+            <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
           </div>
-          <input placeholder="Nome da palete" class="form-control" style="text-align:center; margin-top:-1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
-          <button type="submit" class="btn btn-primary" style="margin-top:1rem;">Registar palete</button>
+          <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
+            </div>
+            <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:2rem;">Confirmar</button>
         </form>
       </div>
-    </div>
     </form>
   </div>
-  </div>
-  </div>
-
-
 </body>
 
 </html>
