@@ -19,17 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Guia de devolução</h1>
                     <div class="container">
-                        <select style="text-align-last:center; width:18.7rem; margin-left:auto; margin-right:auto; margin-bottom:1rem;" class="form-control" name="guia" id="guia">
-                            <option value="" selected disabled>Numero de requisição</option>
-                            <?php
-                            $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
-                            foreach ($busca as $eachRow) {
-                                ?>
-                                <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-                            <?php
-                        }
-                        ?>
-                        </select>
                         <div style="text-align:center">
                             <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:13.5rem; text-align:center; float:right;">PDF</button>
                         </div>
@@ -43,7 +32,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     <th>Armazém</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabela">
+                            <tbody >
+                            <?php 
+                            $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=2");
+                            foreach ($dado as $eachRow) {
+                                $cliID=$eachRow['cliente_id'];
+                                $timeRN=$eachRow['data_prevista'];
+                                $getArtigo=$eachRow['artigo_id'];
+                                $GuiaID=$eachRow['id'];
+                                $qtPal=$eachRow['numero_paletes'];
+                                $numeroReq=$eachRow['numero_requisicao'];
+                                $arID=$eachRow['armazem_id'];
+                                $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliID'");
+                                $sql3 = mysqli_fetch_array($sql2);
+                                $nomeCliente = $sql3['nome'];
+                                $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$arID'");
+                                $sql5 = mysqli_fetch_array($sql4);
+                                $nomeArmazem = $sql5['nome'];
+                                $sql6 = mysqli_query($conn, "SELECT * FROM artigo WHERE id='$getArtigo'");
+                                $sql7 = mysqli_fetch_array($sql6);
+                                $refArtigo = $sql7['referencia'];
+                                //Inacabado
+                                echo '<tr>';
+                                    echo '<td>'.$nomeCliente.'</td>';
+                                        echo '<td>'.$timeRN.'</td>';
+                                        echo '<td>'.$qtPal.'</td>';
+                                        echo '<td>'.$refArtigo.'</td>';
+                                         echo '<td>'.$nomeArmazem.'</td>';
+                                         ?>
+                                         <!-- <td><input type="submit" name="Ola" ></td> -->
+                                         <td><button type="submit" name="GuiaID" value="<?php echo $GuiaID ?>">PDF</button></td>
+                                         <?php
+                                echo '</tr>';
+                               
+                                }
+                                
+                            ?>
+                            
                             </tbody>
                         </table>
                     </div>

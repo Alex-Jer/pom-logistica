@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
 echo $_POST['id'];
 
-$dado = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['id']."'");
+$dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=1");
 foreach ($dado as $eachRow) {
     $cliID=$eachRow['cliente_id'];
     $timeRN=$eachRow['data_prevista'];
