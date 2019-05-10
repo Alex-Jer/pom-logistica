@@ -3,7 +3,7 @@ session_start();
 include 'navbarAdmin.php';
 include 'db.php';
 if ($_SESSION["user"] == 2) {
-  header("Location: Login.php");
+  header("Location: index.php");
   ?>
   <script type="text/javascript">
     alert("Voce nao tem permissoes para acessar a isso");

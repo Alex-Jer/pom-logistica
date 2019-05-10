@@ -14,8 +14,6 @@ function echoActiveClassIfRequestMatches($requestUri)
         echo 'class="active"';
 }*/
 
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
     $nifNumber = $_POST["nif"];
@@ -34,15 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-mysqli_close($conn);
-exit;
 } ?>
 
 
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="teste.css">
+    <link rel="stylesheet" href="styles\style3.css">
 </head>
 
 <body>
@@ -66,7 +62,7 @@ exit;
         });
     </script>
     <div class="container">
-        <div class=" card card-container">
+        <div class="card card-container">
             <h1 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:2rem">Registar cliente</h1>
             <form class="form-signin" action="registar_cliente.php" method="post">
                 <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>

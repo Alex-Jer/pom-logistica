@@ -5,8 +5,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if ($_SESSION["user"] == 1) {
-
-    header("Location: login.php");
+    header("Location: index.php");
     ?>
     <script type="text/javascript">
         alert("Voce nao tem permissoes para acessar a isso");
@@ -30,7 +29,7 @@ function echoActiveClassIfRequestMatches($requestUri)
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="teste.css">
+    <link rel="stylesheet" href="styles\style3.css">
 </head>
 
 <body>
@@ -63,6 +62,5 @@ function echoActiveClassIfRequestMatches($requestUri)
         </ul>
     </nav>
 </body>
-
 
 </html>

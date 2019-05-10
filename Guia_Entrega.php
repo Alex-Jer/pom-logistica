@@ -8,7 +8,7 @@ include 'db.php';
 if ($_SESSION["user"]==2)
 {
     
-    header("Location: login.php");
+    header("Location: index.php");
     ?>
     <script type="text/javascript">
             alert("Voce nao tem permissoes para acessar a isso");
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $getCBtz = $_POST["comboboxTipoZona"];
   $getREQ = $_POST["req"];
   $getArmazem = $_POST["Armazem"];
-  $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, 1, $getCBtp, $getCBtz, $getArmazem, '$getCBart', '$dataEntrega', $getQT, 'REQ-' + '$getREQ')";
+  $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, 1, $getCBtp, $getCBtz, $getArmazem, '$getCBart', '$dataEntrega', $getQT, 'REQ-$getREQ')";
 
   if (mysqli_query($conn, $sql)) { } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -89,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <div style="text-align:center" class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" style="height:2.37rem; margin-top:0.6rem" id="inputGroup-sizing-lg">REQ-</span>
+              <span class="input-group-text" style="height:2.37rem; margin-top:1rem" id="inputGroup-sizing-lg">REQ-</span>
             </div>
-            <input type="text" class="form-control" style="width:5rem; margin-top:0.6rem;" placeholder="Número de requisição" name="req" required>
+            <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Número de requisição" name="req" required>
         </div>
         <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:1rem; color: #6C757D;">
         </select>

@@ -7,7 +7,7 @@ include 'db.php';
 include 'navbarOperador.php';
 if ($_SESSION["user"] == 1) {
 
-    header("Location: login.php");
+    header("Location: index.php");
     ?>
     <script type="text/javascript">
         alert("Voce nao tem permissoes para acessar a isso");

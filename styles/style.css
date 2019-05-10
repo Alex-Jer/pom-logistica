@@ -27,7 +27,7 @@ html {
   * Card component
   */
 .card {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   /* just in case there no content*/
   padding: 10px 25px 30px;
   margin: 0 auto 25px;
@@ -226,4 +226,4 @@ html {
   right: auto !important;
   text-align: center !important;
   transform: translate(-50%, 0) !important;
-}w
+}

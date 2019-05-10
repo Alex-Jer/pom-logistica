@@ -40,7 +40,7 @@
                 <nav class="site-navigation d-flex justify-content-end align-items-center">
                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="login.php">Login</a></li> 
+                        <li><a href=index.php>Login</a></li> 
                     </ul>
                 </nav><!-- .site-navigation -->
 
