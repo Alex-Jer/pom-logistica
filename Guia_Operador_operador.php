@@ -1,5 +1,8 @@
+<!DOCTYPE html>
+<html lang=pt dir="ltr">
 <?php
-session_start();
+
+
 include 'navbarOperador.php';
 include 'db.php';
 if ($_SESSION["perfilId"] == 1) {
@@ -12,43 +15,39 @@ if ($_SESSION["perfilId"] == 1) {
 }
 $count = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $cliente = $_POST["cliente"];
-  $idGuia = $_POST["nrequisicao"];
-  $morada = $_POST["morada"];
-  $data = $_POST["data"];
-  $artigo = $_POST["artigo"];
-  $npal = $_POST["npaletes"];
-  $sql6 = mysqli_query($conn, "SELECT * FROM guia WHERE id='$idGuia'");
-  $dado = mysqli_fetch_array($sql6);
-  $nrequisicao = $dado['numero_requisicao'];
 
-  $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo'");
-  $sql3 = mysqli_fetch_array($sqlArtigo);
-  $tipoPalete = $sql3['tipo_palete_id'];
-  $paleteeID = $sql3['id'];
-  //echo $paleteeID;
+  
 
-  $sqlLocalizacao = mysqli_query($conn, "SELECT * FROM localizacao where palete_id='$paleteeID'");
-  $sql4 = mysqli_fetch_array($sqlLocalizacao);
-  $zonaID = $sql4['zona_id'];
+  $idGuia = $_POST["Confirm3"];
+$sql = mysqli_query($conn,"SELECT guia.cliente_id as cliente, guia.id, guia.artigo_id as artigo,guia.armazem_id as armazem_id, guia.numero_paletes as npaletes,guia.tipo_palete_id as tp,guia.tipo_zona_id as tzid, guia.numero_requisicao as numero_requisicao ,guia.morada as morada, palete.id as palete_id, zona.id as zona FROM guia INNER JOIN palete on palete.artigo_id=guia.artigo_id INNER JOIN localizacao on localizacao.palete_id=palete.id INNER JOIN zona ON (zona.id=localizacao.zona_id and zona.armazem_id=guia.armazem_id and zona.tipo_zona_id=guia.tipo_palete_id) WHERE guia.id='$idGuia'");
 
-  $sqlZona = mysqli_query($conn, "SELECT * from zona WHERE id='$zonaID'");
-  $sql5 = mysqli_fetch_array($sqlZona);
-  $armazemID = $sql5['armazem_id'];
-  $tipoZona = $sql5['tipo_zona_id'];
+$dado = mysqli_fetch_array($sql);
+$cliente = $dado["cliente"];
+
+$morada = $dado["morada"];
+$artigo = $dado["artigo"];
+$npal = $dado["npaletes"];
+$nrequisicao = $dado['numero_requisicao'];
+
+$tipoPalete = $dado['tp'];
+//echo $paleteeID;
+date_default_timezone_set("Europe/Lisbon");
+$data=date("Y-m-d H:i:s");
+$zonaID = $dado['zona'];
+
+$armazemID = $dado['armazem_id'];
+$tipoZona = $dado['tzid'];
+
 
   //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
-  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada) 
-                    VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada')";
+  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, confirmar,confirmarTotal) 
+                    VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada',1,1)";
   if (mysqli_query($conn, $sql)) {
-    ?>
-    <script type="text/javascript">
-      alert("New record created successfully");
-    </script>
-  <?php
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+  }
+
+$sql10 = mysqli_query($conn, "UPDATE guia SET confirmar = 1, confirmarTotal = 1 WHERE id=$idGuia ");
+    if (mysqli_query($conn, $sql10)) {
+    }
 
 $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo' ORDER BY Data ASC");
 //$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
@@ -69,146 +68,93 @@ foreach ($sql6 as $eachRow2) {
 }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles\style3.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <link rel="stylesheet" href="styles\style2.css">
 </head>
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col card card-container metade w-auto li ">
-        <form class="form-signin" action="Guia_Operador_operador.php" method="post">
-          <div class="row">
-            <select class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D;" name="comboboxGuiaEntrega" id="teste">
-              <option value="" selected disabled>Número de requisição</option>
-              <?php
-              $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
-              foreach ($busca as $eachRow) {
-                ?>
-                <option value="<?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-              <?php
-            }
-            ?>
-            </select>
-          </div>
-          <div class="row ">
-            <div class="col-12 text-left w-auto p-3 li" id="Card" style="display:none">
-              <div class="text-left w-auto p-3 li " id="Espaco" style="display:none">
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col dupla card card-container " id="testediv" style="display:none">
-        <form class="form-signin" action="Guia_Operador_operador.php" method="post">
-          <div style="text-align:center">
-            <h1>Guia do Operador</h1>
-            <select class="form-control" name="cliente" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
-              <option value="" disabled selected>Cliente</option>
-              <?php
-              $busca = mysqli_query($conn, "SELECT * FROM cliente");
-              foreach ($busca as $eachRow) {
-                ?>
-                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
-              <?php
-            }
-            ?>
-            </select>
-          </div>
-          <div style="text-align:center">
-            <select class="form-control" name="nrequisicao" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
-              <option value="" disabled selected>Guia</option>
-              <?php
-              $busca = mysqli_query($conn, "SELECT * FROM guia where tipo_guia_id=2");
-              foreach ($busca as $eachRow) {
-                ?>
-                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['numero_requisicao'] ?></option>
-              <?php
-            }
-            ?>
-            </select>
-          </div>
-          <div style="text-align:center">
-            <form class="form-signin" method="post">
-              <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada de entrega" style="text-align:left; margin-top:1rem;" required>
-          </div>
-          <div style="text-align:center">
-            <input class="form-control" placeholder="Data e hora prevista de recolha" style="text-align:center; margin-top:1rem;" name="data" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date" required>
-          </div>
-          <div style="text-align:center">
-            <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;" required>
-              <option value="" disabled selected>Artigo</option>
-              <?php
-              $busca = mysqli_query($conn, "SELECT * FROM artigo");
-              foreach ($busca as $eachRow) {
-                ?>
-                <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-              <?php
-            }
-            ?>
-            </select>
-          </div>
-          <div style="text-align:center">
-            <input class="form-control" type="number" name="npaletes" placeholder="Número de paletes" min=0 style="text-align:center; margin-top:1rem;" required>
-          </div>
-          <button style="margin-top:1rem;" class="btn btn-primary btn-block btn-signin" type="submit">Confirmar</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<body >
+    <form class="container" action="Guia_Operador_operador.php" method="post" id="mainForm" novalidate>
+    
+    <div class="container" id="onLoad" >
+        <div class="card card-container" style="text-align:center; width:120%; margin-right:auto; margin-left:auto; max-width: 100000px">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <p id="profile-name" class="profile-name-card"></p>
+           
+                <div style="text-align:center">
+                    <h1 style="margin-bottom:1rem;">Confirmar Guias Transporte</h1>
+                    <div class="container">
+                    <nav role="navigation">
+                      <ul class="nav">
+                          <li class="nav-item">
+                          <button class="btn2" type="button"  value ="1" id ="notConfirmed">Por Confirmar</button>
+                          </li>
+                      </ul>
+                  </nav>
+                        <!-- <div style="text-align:center">
+                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
+                        </div> -->
+                        <table class="table" style="font-size:16px; margin-top:1.5rem;">
+                            <thead>
+                                <tr>
+                                    <th style="width:15%">Cliente</th>
+                                    <th style="width:15%">N Guia</th>
+                                    <th style="width:30%">Dia e hora da carga</th>
+                                    <th style="width:15%">Nº de Paletes</th>
+                                    <th style="width:20%">Artigo</th>
+                                    <th style="width:20%">Armazém</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Testeeee">
+
+                            </tbody>
+                        </table>
+                        <div id="DivEntrega"></div>
+                        
+                    </div>
+            <!-- /form -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+      </form>
+
 </body>
 
 </html>
+
 <script>
-  $("#teste").on("change", function() {
+  $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'showGuiaAjax.php',
+      url: 'ajaxDevolucao2.php',
       type: 'POST',
       data: {
-        id: $("#teste").val()
-      },
-      beforeSend: function() {
-        $("#Espaco").css({
-          'display': 'block'
-        });
-        $("#Card").css({
-          'display': 'block'
-        });
-        $("#Espaco").html("Carregando...");
+        id: $("#notConfirmed").val()
       },
       success: function(data) {
-        $("#Espaco").css({
-          'display': 'block'
-        });
-        $("#Card").css({
-          'display': 'block'
-        });
-        $("#testediv").css({
-          'display': 'block'
-        });
-        $("#Espaco").html(data);
+        $("#notConfirmed").removeClass('btn2')
+        $("#notConfirmed").addClass('btn3')
+        $("#Testeeee").html(data);
       },
-      error: function(data) {
-        $("#Espaco").css({
-          'display': 'block'
-        });
-        $("#Card").css({
-          'display': 'block'
-        });
-        $("#Espaco").html("Houve um erro ao carregar");
-      }
     });
   });
 </script>
-
-<script type="text/javascript">
-  // document.getElementById('comboboxArtigo').value = "<?php echo $_POST['comboboxArtigo']; ?>";
-  document.getElementById('comboBoxGuiaId').value = "<?php echo $_POST['comboBoxGuiaId']; ?>";
-  document.getElementById('comboBoxLocalizacao').value = "<?php echo $_POST['comboBoxLocalizacao']; ?>";
-  document.getElementById('teste').value = "<?php echo $_POST['comboboxGuiaEntrega']; ?>";
+<script>
+  $(document).ready(function(){
+    $.ajax({
+      url: 'ajaxDevolucao2.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val()
+      },
+      success: function(data) {
+          $("#notConfirmed").removeClass('btn2')
+          $("#notConfirmed").addClass('btn3')
+        $("#Testeeee").html(data);
+      },
+    });
+  });
 </script>
