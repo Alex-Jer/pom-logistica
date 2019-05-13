@@ -31,25 +31,38 @@ if (mysqli_query($conn, $sql2)) {
 
 
 }
-elseif (isset($_POST['save'])) {
-  $dataehora = $_POST['dataentrega'];
-  $artigo = $_POST['comboboxArtigo'];
-  $guiaentrada = $_POST['comboBoxGuiaId'];
+elseif(isset($_POST['confirmTotal']))
+
+{ 
+  echo $_POST['confirmTotal'];
+  
+  $updateGuia = mysqli_query($conn,"UPDATE guia SET confirmarTotal=1 WHERE id='".$_POST['confirmTotal']."'");
+  if (mysqli_query($conn, $updateGuia)) {
+  }
+} 
+elseif (isset($_POST['Guia_ID2'])) {
+  date_default_timezone_set("Europe/Lisbon");
+        $timeRN=date("Y-m-d H:i:s");
+  $dataehora = $timeRN;
   $referencia = $_POST['refpal'];
   $nomepal = $_POST['nomepal'];
   $eachLocalizacao = $_POST['comboBoxLocalizacao'];
 
-  $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='$guiaentrada'");
+  $buscaId = mysqli_query($conn, "SELECT guia.id,guia.artigo_id, guia.tipo_zona_id, zona.id as zonaid, zona.espaco as zonaespaco, armazem.espaco as armazemespaco,guia.tipo_palete_id,guia.armazem_id FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN tipo_palete on guia.tipo_palete_id=tipo_palete.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN zona on (zona.armazem_id=armazem.id and zona.tipo_zona_id=tipo_palete.id) where guia.id='".$_POST['Guia_ID2']."'");
   $dado = mysqli_fetch_array($buscaId);
   $tpID = $dado['tipo_palete_id'];
   $arID = $dado['armazem_id'];
-  $cliID = $dado['cliente_id'];
+  $artigo= $dado['artigo_id'];
 
-  $buscaZoID = mysqli_query($conn, "SELECT * FROM zona WHERE armazem_id='$arID' AND tipo_zona_id=' $tpID'");
-  $dado3 = mysqli_fetch_array($buscaZoID);
-  $zonaID = $dado3['id'];
+  $zonaID = $dado['zonaid'];
 
-  // $sqlCount = mysqli_query("SELECT count(*) FROM palete  WHERE referencia = '$referencia'");
+  $getEspacoo = $dado['zonaespaco'];
+  $espaco = $getEspacoo - 1;
+
+  $getArmaID = $dado['armazemespaco'];
+  $getEspaco2 = $dado['armazemespaco'];
+  $espacoTotal = $getEspaco2 - 1;
+
   $result = $conn->query("SELECT count(*) FROM palete  WHERE referencia = '$referencia'");
   $row = $result->fetch_row();
   //echo '#: ', $row[0];
@@ -60,24 +73,15 @@ elseif (isset($_POST['save'])) {
   //echo '#: ', $row12[0];
   $countRows = $row12[0];
 
-  $getEspaco = mysqli_query($conn, "SELECT * FROM zona WHERE id='$zonaID'");
-  $dado = mysqli_fetch_array($getEspaco);
-  $getEspacoo = $dado['espaco'];
-  $espaco = $getEspacoo - 1;
-  //echo $espaco;
-  $getArmaID = $dado['armazem_id'];
-
-  $getEspaco = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$getArmaID'");
-  $dado2 = mysqli_fetch_array($getEspaco);
-  $getEspaco2 = $dado2['espaco'];
-  $espacoTotal = $getEspaco2 - 1;
-
   date_default_timezone_set("Europe/Lisbon");
   $timeRN = date("Y-m-d H:i:s");
+  $nomepal="Palete de $nomepal";
+  $referencia="PAL-$referencia";
+
 
 
   if ($count == 0) {
-    $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('$guiaentrada', '$artigo','$tpID', 'PAL- + $referencia','Palete de + $nomepal', '$timeRN')";
+    $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('".$_POST['Guia_ID2']."', '$artigo','$tpID', '$referencia','$nomepal', '$timeRN')";
     if (mysqli_query($conn, $sql)) {
       ?>
     <?php
@@ -114,6 +118,7 @@ elseif (isset($_POST['save'])) {
   <?php
 }
 }
+
 
 }
 ?>
@@ -155,11 +160,13 @@ elseif (isset($_POST['save'])) {
             </li>
         </ul>
     </nav>
+    <form class="container" action="paletesTeste.php" method="post" id="mainForm" novalidate>
+    
     <div class="container" id="onLoad" >
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+        <div class="card card-container" style="text-align:center; width:120%; margin-right:auto; margin-left:auto; max-width: 100000px">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="paletesTeste.php" method="post">
+           
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Registar Paletes</h1>
                     <div class="container">
@@ -178,6 +185,7 @@ elseif (isset($_POST['save'])) {
                             <thead>
                                 <tr>
                                     <th style="width:15%">Cliente</th>
+                                    <th style="width:15%">N Guia</th>
                                     <th style="width:30%">Dia e hora da carga</th>
                                     <th style="width:15%">Nº de Paletes</th>
                                     <th style="width:20%">Artigo</th>
@@ -191,12 +199,11 @@ elseif (isset($_POST['save'])) {
                         <div id="DivEntrega"></div>
                         
                     </div>
-                    <!-- Nao faz o post se tiver o modal no codigo sem modal funciona -->
-                    <!-- Nao faz o post se tiver o modal no codigo sem modal funciona -->
-                    <!-- Nao faz o post se tiver o modal no codigo sem modal funciona -->
-                    <!-- Nao faz o post se tiver o modal no codigo sem modal funciona -->
-                    
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- /form -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -206,21 +213,41 @@ elseif (isset($_POST['save'])) {
                               </button>
                             </div>
                                       <div class="modal-body">
-                                                  <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                                                  <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." required>
-                                                  <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required>
-                                                  <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required>
-                                      </div>
+            
+                                  
+          <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
+            <option value="" disabled selected>Localização</option>
+            <?php
+            $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
+            foreach ($busca as $eachRow) {
+              ?>
+              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+            <?php
+          }
+          ?>
+          </select>
+          <div style="text-align:center;" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:5.65rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
+            </div>
+            <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
+          </div>
+          <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
+            </div>
+            <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+          </div>
+          </div>
                                       <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                          <button type="submit" class="btn btn-primary">Save changes</button>
+                                          <button type="submit" class="btn btn-primary" name="save">Save changes</button>
                                       </div>
-                            </div>
-                            </div>
-                      </div>
-            </form><!-- /form -->
-        </div><!-- /card-container -->
-    </div><!-- /container -->
+                           </div>
+                         </div>
+      </div>
+      </form>
+
 </body>
 
 </html>
@@ -282,4 +309,13 @@ elseif (isset($_POST['save'])) {
       },
     });
   });
+</script>
+<script type="text/javascript">
+$('mainForm').submit(function () {
+   singleAmount =$("#confirmTotal").val();
+   if (confirm("Are you sure you want to submit the value of " + singleAmount + " ?"))
+      return true;
+   else
+     return false;
+});
 </script>

@@ -32,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                 </tr>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
                             <?php
                             $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=1");
                             foreach ($dado as $eachRow) {
@@ -64,37 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                        -
                                         <?php
                                 echo '</tr>';
-=======
-                                <?php
-                                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=3");
-                                foreach ($dado as $eachRow) {
-                                    $cliID = $eachRow['cliente_id'];
-                                    $GuiaID = $eachRow['id'];
-                                    $timeRN = $eachRow['data_prevista'];
-                                    $getArtigo = $eachRow['artigo_id'];
-                                    $qtPal = $eachRow['numero_paletes'];
-                                    $numeroReq = $eachRow['numero_requisicao'];
-                                    $arID = $eachRow['armazem_id'];
-                                    $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliID'");
-                                    $sql3 = mysqli_fetch_array($sql2);
-                                    $nomeCliente = $sql3['nome'];
-                                    $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$arID'");
-                                    $sql5 = mysqli_fetch_array($sql4);
-                                    $nomeArmazem = $sql5['nome'];
-                                    $sql6 = mysqli_query($conn, "SELECT * FROM artigo WHERE id='$getArtigo'");
-                                    $sql7 = mysqli_fetch_array($sql6);
-                                    $refArtigo = $sql7['referencia'];
-                                    echo '<tr>';
-                                    echo '<td> ' . $nomeCliente . '</td>';
-                                    echo '<td> ' . $timeRN . '</td>';
-                                    echo '<td> ' . $qtPal . '</td>';
-                                    echo '<td> ' . $refArtigo . '</td>';
-                                    echo '<td> ' . $nomeArmazem . '</td>';
-                                    ?>
-                                    <td><button type="submit" class="btn btn-primary" name="GuiaID">PDF</button></td>
-                                    <?php
-                                    echo '</tr>';
->>>>>>> 17ffb2b88de1eaa94f99947678f47f707ec8d950
                                 }
                                 ?>
                             </tbody>
