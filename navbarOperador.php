@@ -45,7 +45,7 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("showGuiaEntrega") ?>" href="showGuiaEntrega.php">Registar Palete</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("paletesTeste") ?>" href="paletesTeste.php">Registar Palete</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Mudar Palavra-Passe</a>

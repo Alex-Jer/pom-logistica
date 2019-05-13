@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                             </thead>
                             <tbody>
                                 <?php
-                                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=3");
+                                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=1");
                                 foreach ($dado as $eachRow) {
                                     $cliID = $eachRow['cliente_id'];
                                     $GuiaID = $eachRow['id'];
@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     $sql6 = mysqli_query($conn, "SELECT * FROM artigo WHERE id='$getArtigo'");
                                     $sql7 = mysqli_fetch_array($sql6);
                                     $refArtigo = $sql7['referencia'];
+                                    //Inacabado
                                     echo '<tr>';
                                     echo '<td> ' . $nomeCliente . '</td>';
                                     echo '<td> ' . $timeRN . '</td>';
@@ -58,7 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     echo '<td> ' . $refArtigo . '</td>';
                                     echo '<td> ' . $nomeArmazem . '</td>';
                                     ?>
-                                    <td><button type="submit" class="btn btn-primary" name="GuiaID">PDF</button></td>
+                                    <!-- <td><input type="submit" name="Ola" ></td> -->
+                                    -
                                     <?php
                                     echo '</tr>';
                                 }
