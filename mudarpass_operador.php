@@ -65,37 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-<<<<<<< HEAD
-  <nav role="navigation">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" href="operador.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Operador_operador.php">Guia do Operador</a></li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="paletesTeste.php">Registar Palete</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Rececao.php">Imprimir Receção</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Guia_Devolucao.php">Imprimir Devolução</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Sair</a>
-      </li>
-    </ul>
-  </nav>
-=======
->>>>>>> 17ffb2b88de1eaa94f99947678f47f707ec8d950
   <div class="container">
     <div class="card card-container">
       <form class="form-signin" action="mudarpass_operador.php" method="post">

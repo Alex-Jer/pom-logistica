@@ -181,19 +181,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="input-group-prepend">
               <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:5.65rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
             </div>
-            <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
+            <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" id="inputdata" name="refpal" required>
           </div>
-          <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
+          <div style="text-align:center;" class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
+              <span class="input-group-text" style="height:2.35rem; margin-top:-0.5rem;" id="inputGroup-sizing">Palete de</span>
             </div>
-            <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+            <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:-0.5rem;" type="text" id="inputdata" name="nomepal" required>
           </div>
-          <button type="submit" class="btn btn-primary" style="margin-top:2rem;">Confirmar</button>
+          <button type="submit" class="btn btn-primary" style="margin-top:1rem;">Confirmar</button>
         </form>
       </div>
-    </form>
-  </div>
+      </form>
+    </div>
 </body>
 
 </html>

@@ -39,6 +39,9 @@ function echoActiveClassIfRequestMatches($requestUri)
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("navbarAdmin") ?>" href="navbarAdmin.php">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarUtilizadores") ?>" href="ListarUtilizadores.php">Utilizadores</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Guia_Entrega") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador_admin") ?> <?= echoActiveClassIfRequestMatches("Guia_Transporte") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
                 <div class="dropdown-menu">
@@ -49,9 +52,6 @@ function echoActiveClassIfRequestMatches($requestUri)
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("registar_cliente") ?>" href="registar_cliente.php">Registar Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("registar_utilizador") ?>" href="registar_utilizador.php">Registar Utilizador</a></li>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?>" href="mudarpass_admin.php">Mudar Palavra-Passe</a>

@@ -39,6 +39,9 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("operador") ?>" href="operador.php">Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes") ?>" href="ListarClientes.php">Clientes</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Guia do Operador</a></li>
             </li>
             <li class="nav-item">
