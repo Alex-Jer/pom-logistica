@@ -17,3 +17,52 @@
 ::placeholder {
   text-align: center;
 }
+
+.btn2 {
+  border: none;
+  color: #495057;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn2:hover {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+  color: #131212;
+}
+
+.btn2:active {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+  color: #131212;
+}
+
+.btn2:focus {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+  outline: 0;
+  color: #131212;
+}
+
+.btn3 {
+  border: none;
+  border-bottom: 3px solid #007bff;
+  color: #131212;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  outline: 0;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn3:focus {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+  outline: 0;
+  color: #131212;
+}

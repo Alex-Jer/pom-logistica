@@ -4,8 +4,7 @@ include 'db.php';
 if (!isset($_SESSION)) {
     session_start();
 }
-if ($_SESSION["user"] == 2) {
-
+if ($_SESSION["perfilId"] == 2) {
     header("Location: index.php");
     ?>
     <script type="text/javascript">

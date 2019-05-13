@@ -4391,6 +4391,7 @@ input[type="button"].btn-block {
 
 .nav-pills .nav-link {
   border-radius: 0.25rem;
+  font-weight:normal;
 }
 
 .nav-pills .nav-link.active,

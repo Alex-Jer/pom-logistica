@@ -3,6 +3,7 @@
 <?php
 session_start();
 include 'db.php';
+//include 'navbar.php';
 ?>
 
 <head>
@@ -10,24 +11,17 @@ include 'db.php';
     $em = "";
     $passInput = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $passInput = $_POST['password'];
-
-        $stmt = $conn->prepare("SELECT id, perfil_id, password FROM utilizador WHERE Email=? LIMIT 1");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($id, $perfilId, $password);
-        $stmt->fetch();
-
-        //echo "Email textbox: " . $email;
-        //echo " Id: " . $id . " Perfil id: " . $perfilId . " Email: " . $email . " Password: " . $password;
-
-        $_SESSION['emailSession'] = $email;
+        $em = $_POST["email"];
+        $_SESSION['emailSession'] = $em;
+        $passInput = $_POST["Password"];
+        $busca = mysqli_query($conn, "SELECT * FROM utilizador WHERE Email='$em'");
+        $dado = mysqli_fetch_array($busca);
+        $pass = $dado['password'];
+        $id = $dado['perfil_id'];
+        $iduser = $dado['id'];
         $_SESSION['user'] = $id;
-        $_SESSION['perfilId'] = $perfilId;
-
-        if ($passInput == $password) {
+        $_SESSION['userid'] = $iduser;
+        if ($passInput == $pass) {
             if ($id == '1') {
                 header("Location: navbarAdmin.php");
                 exit;
@@ -35,16 +29,12 @@ include 'db.php';
                 header("Location: operador.php");
                 exit;
             }
-        } else {
-            ?>
-            <script type="text/javascript">
-                alert("Password incorreta.");
-            </script>
-            <?php
         }
-        $stmt->close();
         ?>
-        <?php
+        <script type="text/javascript">
+            alert("Palavra-Passe incorreta.");
+        </script>
+    <?php
 }
 ?>
     <meta charset="UTF-8">
@@ -65,13 +55,13 @@ include 'db.php';
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Log In</h5>
-                        <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                             <div class="form-label-group">
                                 <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[A-Za-z0-9\s@-. ]+" required autofocus>
                                 <label for="inputEmail">Email address</label>
                             </div>
                             <div class="form-label-group">
-                                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
+                                <input name="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
                                 <label for="inputPassword">Password</label>
                             </div>
                             <div class="custom-control custom-checkbox mb-3">

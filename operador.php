@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 }
 include 'db.php';
 include 'navbarOperador.php';
-if ($_SESSION["user"] == 1) {
+if ($_SESSION["perfilId"] == 1) {
 
     header("Location: index.php");
     ?>

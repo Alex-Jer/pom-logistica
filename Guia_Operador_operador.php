@@ -2,7 +2,7 @@
 session_start();
 include 'navbarOperador.php';
 include 'db.php';
-if ($_SESSION["user"] == 1) {
+if ($_SESSION["perfilId"] == 1) {
   header("Location: index.php");
   ?>
   <script type="text/javascript">

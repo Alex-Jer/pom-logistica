@@ -3,12 +3,12 @@
 <?php
 session_start();
 /*
-if ($_SESSION["user"]==1)
+if ($_SESSION["perfilId"]==1)
 {
   
   include "navbarAdmin.php";
 }
-elseif($_SESSION["user"]==2)
+elseif($_SESSION["perfilId"]==2)
 {
   include "operador.php";
 }*/

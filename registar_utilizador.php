@@ -4,7 +4,7 @@
 session_start();
 include 'db.php';
 include 'navbarAdmin.php';
-if ($_SESSION["user"] == 2) {
+if ($_SESSION["perfilId"] == 2) {
 
   header("Location: index.php");
   ?>

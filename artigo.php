@@ -3,7 +3,7 @@
 <?php
 include 'navbarAdmin.php';
 include 'db.php';
-if ($_SESSION["user"]==2)
+if ($_SESSION["perfilId"]==2)
 {
     
     header("Location: index.php");
