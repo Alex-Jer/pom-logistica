@@ -11,23 +11,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+    tbody,
+    thead tr {
+        display: block;
+    }
+
+    tbody {
+        height: 21rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    tbody td,
+    thead th {
+        width: 190px;
+    }
+
+    thead th:last-child {
+        width: 16rem;
+        /* 140px + 16px scrollbar width */
+    }
+</style>
+
 <body>
-    <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 1000px">
+    <div class="row align-items-center">
+        <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="pdfDevolucao.php" method="post">
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Guia de devolução</h1>
-                    <div class="container">
-                        <table class="table" style="font-size:16px;">
+                    <div class="container" style="margin-left:6rem;">
+                    <table class="table" style="font-size:16px; margin-top:1.5rem; margin-left:-2rem; width:60rem;">
                             <thead>
                                 <tr>
-                                    <th width="20%">Cliente</th>
-                                    <th width="25%">Dia e hora da carga</th>
-                                    <th width="17%">Nº de paletes</th>
-                                    <th width="20%">Artigo</th>
-                                    <th width="30%">Armazém</th>
-                                    <th width="20%"></th>
+                                    <th>Cliente</th>
+                                    <th style="width:25%">Dia e hora da carga</th>
+                                    <th style="width:15%">Nº de paletes</th>
+                                    <th>Artigo</th>
+                                    <th>Armazém</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     $timeRN = $eachRow['data_prevista'];
                                     echo '<tr>';
                                     echo '<td>' . $nomeCliente . '</td>';
-                                    echo '<td>' . $timeRN . '</td>';
-                                    echo '<td>' . $qtPal . '</td>';
+                                    echo '<td style="width:25%">' . $timeRN . '</td>';
+                                    echo '<td style="width:15%">' . $qtPal . '</td>';
                                     echo '<td>' . $refArtigo . '</td>';
                                     echo '<td>' . $nomeArmazem . '</td>';
                                     ?>
@@ -57,9 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                             </tbody>
                         </table>
                     </div>
+                </div>
             </form><!-- /form -->
         </div><!-- /card-container -->
-    </div><!-- /container -->
+    </div>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarOperador.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["Nome"];
@@ -59,11 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     tbody td,
     thead th {
-        width: 260px;
+        width: 230px;
     }
 
     thead th:last-child {
-        width: 260px;
+        width: 196px;
         /* 140px + 16px scrollbar width */
     }
 </style>
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="ListarClientes.php" method="post">
+            <form class="container" action="ListarClientes_admin.php" method="post">
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Clientes</h1>
                     <button type="button" class="btn btn-primary" style="margin-bottom:1rem;" data-toggle="modal" data-target="#exampleModal">
@@ -83,34 +83,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div style="text-align:center">
                                 <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
                             </div>
-                            <table class="table" style="font-size:16px;">
-                                <thead>
-                                    <tr>
-                                        <th>Cliente</th>
-                                        <th>NIF</th>
-                                        <th>Morada</th>
-                                        <th>Localidade</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $dado = mysqli_query($conn, "SELECT id,nif,nome,morada,localidade FROM cliente");
-                                    foreach ($dado as $eachRow) {
-                                        $nomeID = $eachRow['id'];
-                                        $Nome = $eachRow['nome'];
-                                        $nif = $eachRow['nif'];
-                                        $Morada = $eachRow['morada'];
-                                        $Localidade = $eachRow['localidade'];
-                                        echo '<tr>';
-                                        echo '<td> ' . $Nome . '</td>';
-                                        echo '<td> ' . $nif . '</td>';
-                                        echo '<td> ' . $Morada . '</td>';
-                                        echo '<td> ' . $Localidade . '</td>';
-                                        echo '</tr>';
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                            <div style="margin-left:5rem; margin-right:auto">
+                                <table style="margin-top:1rem; margin-left:-25px; text-align:center" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>NIF</th>
+                                            <th style="width:25rem;">Morada</th>
+                                            <th>Localidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $dado = mysqli_query($conn, "SELECT * FROM cliente");
+                                        foreach ($dado as $eachRow) {
+                                            $nomeID = $eachRow['id'];
+                                            $Nome = $eachRow['nome'];
+                                            $nif = $eachRow['nif'];
+                                            $Morada = $eachRow['morada'];
+                                            $Localidade = $eachRow['localidade'];
+                                            echo '<tr>';
+                                            echo '<td> ' . $Nome . '</td>';
+                                            echo '<td> ' . $nif . '</td>';
+                                            echo '<td style="width:25rem;"> ' . $Morada . '</td>';
+                                            echo '<td> ' . $Localidade . '</td>';
+                                            echo '</tr>';
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </form>
                 </div>
