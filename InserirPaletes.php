@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'operador.php';
+include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
@@ -42,12 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tpID = $dado['tipo_palete_id'];
     $arID = $dado['armazem_id'];
     $artigo = $dado['artigo_id'];
-
     $zonaID = $dado['zonaid'];
-
     $getEspacoo = $dado['zonaespaco'];
     $espaco = $getEspacoo - 1;
-
     $getArmaID = $dado['armazemespaco'];
     $getEspaco2 = $dado['armazemespaco'];
     $espacoTotal = $getEspaco2 - 1;
@@ -67,8 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomepal = "Palete de $nomepal";
     $referencia = "PAL-$referencia";
 
-
-
     if ($count == 0) {
       $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('" . $_POST['Guia_ID2'] . "', '$artigo','$tpID', '$referencia','$nomepal', '$timeRN')";
       if (mysqli_query($conn, $sql)) {
@@ -79,12 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
-
     $buscaPaleteID = mysqli_query($conn, "SELECT id FROM palete WHERE referencia='$referencia'");
     $dado2 = mysqli_fetch_array($buscaPaleteID);
     $palete_idd = $dado2['id'];
-
-
+    
     $sqlLocal = "UPDATE localizacao SET palete_id='$palete_idd', zona_id='$zonaID',data_entrada='$dataehora',hasPalete=1 WHERE id='$eachLocalizacao'";
     if (mysqli_query($conn, $sqlLocal)) { } else {
       echo "Error: " . $sqlLocal . "<br>" . mysqli_error($conn);
@@ -101,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     ?>
       <script type="text/javascript">
-        ;
         alert("Essa referencia de palete já existe");
       </script>
     <?php
@@ -112,51 +104,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <meta charset="utf-8">
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.js"></script>
   <link rel="stylesheet" href="styles\style3.css">
   <link rel="stylesheet" href="css\bootstrap.css">
-  <!-- <link rel="stylesheet" href="styles\style2.css"> -->
 </head>
 
+<style>
+  body {
+    overflow: hidden;
+  }
+</style>
+
 <body>
-  <form class="container" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
-    <div class="container" id="onLoad">
-      <div class="card card-container" style="text-align:center; margin-right:auto; margin-left:auto; max-width: 100000px">
+  <div class="row align-items-center">
+    <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
+      <p id="profile-name" class="profile-name-card"></p>
+      <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
         <div style="text-align:center">
           <h1 style="margin-top:1rem; margin-bottom:1rem;">Registar Paletes</h1>
-          <div class="container">
-            <!--<nav role="navigation">
-              <ul class="nav">
-                <li class="nav-item">
-                  <button class="btn2" type="button" value="1" id="notConfirmed">Por Confirmar</button>
-                  <button class="btn2" type="button" value="2" id="Confirmed">Confirmadas</button>
-                </li>
-              </ul>
-            </nav>-->
+          <div class="container" style="margin-left:-5rem">
             <ul class="nav nav-pills">
               <li class="nav-item">
-                <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</but>
+                <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
               </li>
               <li class="nav-item">
                 <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
               </li>
             </ul>
-
-            <!-- <div style="text-align:center">
-                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
-                 </div> -->
-            <table class="table" style="font-size:16px; margin-top:1.5rem;">
+            <table class="table" style="font-size:16px; margin-top:1.5rem; width:75rem;">
               <thead>
                 <tr>
-                  <th style="width:20%">Cliente</th>
+                  <th style="width:15%">Cliente</th>
                   <th style="width:10%">Nº guia</th>
-                  <th >Dia e hora da carga</th>
-                  <th style="width:15%">Nº de paletes</th>
-                  <th>Artigo</th>
-                  <th>Armazém</th>
-                  <th></th>
+                  <th style="width:20%">Dia e hora da carga</th>
+                  <th style="width:10%">Nº de paletes</th>
+                  <th style="width:15%">Artigo</th>
+                  <th style="width:10%">Armazém</th>
+                  <th style="width:10%"></th>
+                  <th style="width:10%"></th>
                 </tr>
               </thead>
               <tbody id="Testeeee">
@@ -164,54 +150,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
             <div id="DivEntrega"></div>
           </div>
-        </div><!-- /card-container -->
-      </div><!-- /container -->
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Registar um cliente</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-
-              <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
-                <option value="" disabled selected>Localização</option>
-                <?php
-                $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
-                foreach ($busca as $eachRow) {
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Registar um cliente</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
+                    <option value="" disabled selected>Localização</option>
+                    <?php
+                    $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
+                    foreach ($busca as $eachRow) {
+                      ?>
+                      <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+                    <?php
+                  }
                   ?>
-                  <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                <?php
-              }
-              ?>
-              </select>
-              <div style="text-align:center;" class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:5.65rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
+                  </select>
+                  <div style="text-align:center;" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:5.65rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
+                    </div>
+                    <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
+                  </div>
+                  <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
+                    </div>
+                    <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+                  </div>
                 </div>
-                <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
-              </div>
-              <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" name="save">Save changes</button>
                 </div>
-                <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="save">Save changes</button>
             </div>
           </div>
         </div>
-      </div>
-  </form>
-
+      </form>
+    </div>
 </body>
 
 </html>
@@ -255,7 +237,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   });
 </script>
 
-
 <script>
   $(document).ready(function() {
     $.ajax({
@@ -274,6 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
   });
 </script>
+
 <script type="text/javascript">
   $('mainForm').submit(function() {
     singleAmount = $("#confirmTotal").val();

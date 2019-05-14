@@ -30,20 +30,17 @@ foreach ($dado as $eachRow) {
     //Inacabado
     echo '<tr>';
     echo '<td> ' . $nomeCliente . '</td>';
-    echo '<td> ' . $numeroReq . '</td>';
-
+    echo '<td> ' . $numeroReq . '</td>';    
     echo '<td> ' . $time . '</td>';
     echo '<td> ' . $qtPal . '</td>';
     echo '<td> ' . $refArtigo . '</td>';
     echo '<td> ' . $nomeArmazem . '</td>';
     if ($confirm == NULL) {
-        echo '<td ><button type="submit"  class="btn btn-primary" style="margin-top:auto; height:2rem; padding: 0 0.3rem; border-radius:0.3rem;" name="Confirm" id="Confirm"  value="' . $GuiaID . '">Confirmar</button></td>';
+        echo '<td ><button type="submit"  class="btn btn-primary" style="margin-top:auto; height:2rem; padding: 0 0.3rem; border-radius:0.3rem; font-size:13px" name="Confirm" id="Confirm"  value="' . $GuiaID . '">Confirmar</button></td>';
     } else {
-        echo '<td><button type="button"  class="btn btn-primary" name="Guia_ID" id="Guia_ID" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '">Registar Palete</button></td>';
-
+        echo '<td><button type="button"  class="btn btn-primary" name="Guia_ID" id="Guia_ID" data-toggle="modal" data-target="#exampleModal" style="font-size:13px" value="' . $GuiaID . '">Registar Palete</button></td>';
         echo '<input type="hidden" value="' . $GuiaID . '" name="Guia_ID2">';
-        echo '<td><button type="submit"  class="btn btn-primary" name="confirmTotal" id="confirmTotal" value="' . $GuiaID . '">Confirmar Guia</button></td>';
+        echo '<td><button type="submit"  class="btn btn-primary" name="confirmTotal" id="confirmTotal" style="font-size:13px" value="' . $GuiaID . '">Confirmar Guia</button></td>';
     }
-
     echo '</tr>';
 }

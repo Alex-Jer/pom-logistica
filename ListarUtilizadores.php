@@ -51,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <table class="table" style="font-size:16px;">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Email</th>
+                                    <th style="width:20%">Nome</th>
+                                    <th style="width:30%">Email</th>
                                     <th>Estatuto</th>
                                     <th>Armazém</th>
                                 </tr>

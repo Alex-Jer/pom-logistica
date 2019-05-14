@@ -36,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles\style3.css">
 </head>
@@ -63,13 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
     <div class="container">
         <div class="card card-container">
-            <h1 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:2rem">Registar cliente</h1>
-            <form class="form-signin" action="registar_cliente.php" method="post">
+            <h1 style="text-align:center; margin-left:auto; margin-right:auto; margin-bottom:1rem">Registar cliente</h1>
+            <form action="registar_cliente.php" method="post">
                 <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 title="O NIF tem de ter 9 dígitos." required>
+                <input style="margin-top:1rem; height:auto;" type="number" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 title="O NIF tem de ter 9 dígitos." required>
                 <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required>
                 <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required>
-                <button style="margin-top:1rem; margin-left:auto; margin-right:auto; width:auto; height:auto;" type="submit" class="btn btn-primary">Confirmar</button>
+                <button style="margin-top:2rem; margin-left:auto; margin-right:auto; width:100%" type="submit" class="btn btn-primary">Confirmar</button>
             </form><!-- /form -->
         </div>
 
