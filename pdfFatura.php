@@ -38,7 +38,7 @@ require "fpdf.php";
                 die("Connection failed: " . $conn->connect_error);
                 }
                 $this->Ln(10);
-                $query = mysqli_query($conn, "SELECT * FROM cliente WHERE id='".$_POST['GetCliente']."'");
+                $query = mysqli_query($conn, "SELECT nome FROM cliente WHERE id='".$_POST['GetCliente']."'");
                 $dado = mysqli_fetch_array($query);
                 $clienteNome=$dado['nome'];
                 $this->Cell(276,5,$clienteNome,0,0,'C');
@@ -229,7 +229,7 @@ require "fpdf.php";
                     $count =$row[0];
                     if ($count==0)
                     {
-                        $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('".$_POST['GetCliente']."','".$_SESSION['userid']."','$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
+                        $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('".$_POST['GetCliente']."','".$_SESSION['perfilId']."','$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
                     
                                                 if (mysqli_query($conn, $sql2)) {
                                                     $id = mysqli_insert_id($conn);      

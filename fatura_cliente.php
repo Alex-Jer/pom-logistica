@@ -107,13 +107,7 @@ $timeRN = date("Y-m-d H:i:s");
                                     $sql6 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$armazemId'");
                                     $sql7 = mysqli_fetch_array($sql6);
                                     $custoCarga = $sql7['custo_carga'];
-                                    $custoDescarga = $sql7['custo_descarga'];
-
-                                    $datetime1 = new DateTime($dataPrevistaDescarga);
-                                    $datetime2 = new DateTime($dataCarga);
-                                    $intervalo = date_diff($datetime2, $datetime1);
-                                    $diasArmazenamento = $intervalo->format('%a');
-
+                                    $custoDescarga = $sql7['custo_descarga']; 
                                     $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
                                     $row = $result->fetch_row();
                                     $count = $row[0];
@@ -145,7 +139,9 @@ $timeRN = date("Y-m-d H:i:s");
                         ?>
                         </tbody>
                     </table>
-                    <form class="container" action="pdfFatura.php" method="post">
+                    
+            </form><!-- /form -->
+            <form class="container" action="pdfFatura.php" method="post">
                         <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
@@ -155,7 +151,6 @@ $timeRN = date("Y-m-d H:i:s");
                     }
                     ?>
                     </form>
-            </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
     <script type="text/javascript"></script>
