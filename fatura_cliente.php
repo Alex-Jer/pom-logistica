@@ -36,14 +36,8 @@ $timeRN = date("Y-m-d H:i:s");
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="fatura_cliente.php" method="post">
                 <h1 style="margin-bottom:1rem;">Fatura mensal</h1>
-                <?php
-                if (isset($clienteNome)) { ?>
-                    <p><?php echo  $clienteNome ?></p>
-                <?php
-            }
-            ?>
                 <div style="text-align:center">
-                    <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:200px; margin-bottom:1rem;" onchange="this.form.submit()">
+                    <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-bottom:1rem;" onchange="this.form.submit()">
                         <option value="" disabled selected>Cliente</option>
                         <?php
                         $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
@@ -140,7 +134,7 @@ $timeRN = date("Y-m-d H:i:s");
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                             <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:20rem; margin-top:-10rem; float:right;">PDF</button>
+                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:19.5rem; margin-top:-12.05rem; float:right;">PDF</button>
                         <?php
                     }
                     ?>

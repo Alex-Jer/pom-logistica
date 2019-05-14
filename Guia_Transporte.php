@@ -49,6 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles\style3.css">
 </head>
 
+<style>
+    #size {
+        font-size: 16px;
+    }
+</style>
+
 <body>
     <div class="container">
         <div class="card card-container" style="max-width:250%; width:60%; margin-top:3rem;">
@@ -65,16 +71,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 ?>
                 </select>
-                <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="artigoseID">
+                <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto;" id="size">
                     <option value="" disabled selected>Artigo</option>
                 </select>
-                <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
-                <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
+                <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto;" id="size" required>
+                <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto;" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="size">
                 <div style="text-align:center;" class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" style="height:2.35rem; margin-top:0.7rem; height:auto; font-size:14px" id="inputGroup-sizing">REQ-</span>
+                        <span class="input-group-text" style="height:2.35rem; margin-top:0.7rem; height:auto;" id="size">REQ-</span>
                     </div>
-                    <input type="text" class="form-control" style="width:5rem; margin-top:0.7rem; height:auto; font-size:14px;" placeholder="Número de requisição" name="Referencia" required>
+                    <input type="text" class="form-control" style="width:5rem; margin-top:0.7rem; height:auto;" placeholder="Número de requisição" name="Referencia" id="size" required>
                 </div>
                 <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
                 <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>

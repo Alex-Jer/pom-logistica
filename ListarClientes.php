@@ -21,6 +21,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+    tbody,
+    thead tr {
+        display: block;
+    }
+
+    tbody {
+        height: 18rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    tbody td,
+    thead th {
+        width: 260px;
+    }
+
+    thead th:last-child {
+        width: 260px;
+        /* 140px + 16px scrollbar width */
+    }
+</style>
+
 <body>
     <div class="container">
         <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
@@ -32,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Registar cliente
                     </button>
                     <form name="myForm" onsubmit="return validateForm()">
-                        <div class="container">
+                        <div class="container" style="margin-left:auto; margin-right:auto">
                             <div style="text-align:center">
                                 <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
                             </div>
@@ -119,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
     }
-    
+
     setInputFilter(document.getElementById("uintTextBox"), function(value) {
         return /^\d*$/.test(value);
     });

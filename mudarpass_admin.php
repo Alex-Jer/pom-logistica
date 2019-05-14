@@ -56,13 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="container">
     <div class="card card-container">
-      <form class="form-signin" action="mudarpass_admin.php" method="post">
+      <form action="mudarpass_admin.php" method="post">
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <br>
-        <input type="password" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
-        <input type="password" name="textNewPass" class="form-control" placeholder="Nova Password" required>
+        <input type="password" style="margin-bottom:1rem;" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
+        <input type="password" style="margin-bottom:1rem;" name="textNewPass" class="form-control" placeholder="Nova Password" required>
         <input type="password" name="textNewPass2" class="form-control" placeholder="Confirmar Nova Password" required>
-        <button class="btn btn btn-primary btn-block btn-signin" style="margin-top:7%" type="submit">Confirmar</button>
+        <button class="btn btn-primary" style="margin-top:2rem; width:100%" type="submit">Confirmar</button>
       </form><!-- /form -->
     </div>
   </div>

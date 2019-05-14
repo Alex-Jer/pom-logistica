@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </head>
 
 <body>
-    <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+    <div class="row align-items-center">
+        <div class="card card-container" style="text-align:center; width:80rem; max-width: 100000px">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="pdf.php" method="post">
                 <div style="text-align:center">
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     <th style="width:30%">Dia e hora da carga</th>
                                     <th style="width:15%">Nº de Paletes</th>
                                     <th style="width:20%">Artigo</th>
-                                    <th style="width:20%">Armazém</th>
+                                    <th style="width:30%">Armazém</th>
                                     <th style="width:15%"></th>
                                 </tr>
                             </thead>
