@@ -13,11 +13,11 @@ include 'db.php';
         $email = $_POST['email'];
         $passInput = $_POST['password'];
 
-        $stmt = $conn->prepare("SELECT id, perfil_id, password FROM utilizador WHERE Email=? LIMIT 1");
+        $stmt = $conn->prepare("SELECT id, perfil_id, password, nome FROM utilizador WHERE Email=? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($id, $perfilId, $password);
+        $stmt->bind_result($id, $perfilId, $password, $nome);
         $stmt->fetch();
 
         //echo "Email textbox: " . $email;
@@ -26,10 +26,11 @@ include 'db.php';
         $_SESSION['emailSession'] = $email;
         $_SESSION['user'] = $id;
         $_SESSION['perfilId'] = $perfilId;
+        $_SESSION['nome'] = $nome;
 
         if ($passInput == $password) {
             if ($perfilId == '1') {
-                header("Location: navbarAdmin.php");
+                header("Location: admin.php");
                 exit;
             } elseif ($perfilId == '2') {
                 header("Location: operador.php");
@@ -48,7 +49,10 @@ include 'db.php';
 }
 ?>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="js\bootstrap.js"></script>
+    <link rel="stylesheet" href="css\bootstrap.css">
     <link rel="stylesheet" href="styles\style4.css">
 </head>
 

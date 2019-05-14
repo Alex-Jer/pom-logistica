@@ -2,17 +2,6 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
-/*
-if ($_SESSION["perfilId"]==1)
-{
-  
-  include "navbarAdmin.php";
-}
-elseif($_SESSION["perfilId"]==2)
-{
-  include "operador.php";
-}*/
-
 include "db.php";
 include "navbarOperador.php";
 $NewPass = "";
@@ -44,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
     <script type="text/javascript">
       ;
-      alert("Pssword mudada com sucesso");
+      alert("Password alterada com sucesso.");
     </script>
     <?php
-    header("Location: showGuiaEntrega.php");
+    // header("Location: showGuiaEntrega.php");
   } elseif ($Fim == FALSE && $Show = TRUE) {
     ?>
     <script type="text/javascript">
@@ -67,11 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="container">
     <div class="card card-container">
-      <h1 style="text-align:center; margin-bottom:1rem;">Mudar Palavra-Passe</h1>
-      <input type="password" style="margin-bottom:1rem;" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
-      <input type="password" style="margin-bottom:1rem;" name="textNewPass" class="form-control" placeholder="Nova Password" required>
-      <input type="password" name="textNewPass2" class="form-control" placeholder="Confirmar Nova Password" required>
-      <button class="btn btn-primary btn-block btn-signin" style="margin-top:2rem" type="submit">Confirmar</button>
+      <form action="mudarpass_operador.php" method="post">
+        <h1 style="text-align:center">Mudar Palavra-Passe</h1>
+        <br>
+        <input type="password" style="margin-bottom:1rem;" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
+        <input type="password" style="margin-bottom:1rem;" name="textNewPass" class="form-control" placeholder="Nova Password" required>
+        <input type="password" name="textNewPass2" class="form-control" placeholder="Confirmar Nova Password" required>
+        <button class="btn btn-primary" style="margin-top:2rem; width:100%" type="submit">Confirmar</button>
+      </form><!-- /form -->
     </div>
   </div>
 </body>

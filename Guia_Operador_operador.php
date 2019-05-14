@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <p id="profile-name" class="profile-name-card"></p>
         <div style="text-align:center">
-          <h1 style="margin-bottom:1rem;">Confirmar Guias de Transporte</h1>
+          <h1 style="margin-bottom:1rem;">Guias de Transporte</h1>
           <div class="container">
             <!-- <nav role="navigation">
               <ul class="nav">
@@ -157,64 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
         $("#notConfirmed").addClass('btn3')
-        $("#Testeeee").html(data);
-      },
-    });
-  });
-</script>
-
-<script>
-  $("#notConfirmed").on("click", function() {
-    $.ajax({
-      url: 'ajaxTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-  });
-</script>
-
-<script>
-  $("#Confirmed").on("click", function() {
-    $.ajax({
-      url: 'ajaxTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#Confirmed").val()
-      },
-      success: function(data) {
-
-        $("#Confirmed").removeClass('btn2')
-        $("#Confirmed").addClass('btn3')
-        $("#notConfirmed").removeClass('btn3')
-        $("#notConfirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $.ajax({
-      url: 'ajaxTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
         $("#Testeeee").html(data);
       },
     });

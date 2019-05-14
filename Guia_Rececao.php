@@ -12,6 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+
 <body>
     <div class="row align-items-center">
         <div class="card card-container" style="text-align:center; width:80rem; max-width: 100000px">
