@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D;" name="comboboxCli" id="comboboxCli">
           <option value="" disabled selected>Cliente</option>
           <?php
-          $busca = mysqli_query($conn, "SELECT * FROM cliente");
+          $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
           foreach ($busca as $eachRow) {
             ?>
             <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['comboboxCli']) && $_POST['comboboxCli'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
           <option value="" disabled selected>Tipo de paletes</option>
           <?php
-          $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
+          $busca = mysqli_query($conn, "SELECT id,nome FROM tipo_palete");
           foreach ($busca as $eachRow) {
             ?>
             <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['comboboxTipo_Palete']) && $_POST['comboboxTipo_Palete'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>

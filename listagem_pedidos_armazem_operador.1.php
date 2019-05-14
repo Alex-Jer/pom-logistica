@@ -86,14 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     ?>
                     <div>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
-                        </li>
-                        <li class="nav-item">
-                            <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
-                        </li>
-                        </ul>
                         <table style="margin-top:2rem; margin-left:-25px; width: 1160px; text-align:center" class="table">
                             <thead>
                                 <tr>

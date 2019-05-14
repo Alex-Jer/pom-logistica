@@ -52,21 +52,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal");
       if (mysqli_query($conn, $sql10)) {
         ?>
-        <script type="text/javascript">
-          alert("New record created successfully");
-        </script>
       <?php
-    }
-    $sql11 = mysqli_query($conn, "UPDATE palete SET Data_Saida = $data  ORDER BY Data ASC LIMIT $npal");
-    if (mysqli_query($conn, $sql11)) {
-      ?>
-        <script type="text/javascript">
-          alert("New record created successfully");
-        </script>
-      <?php
+      }
+      $sql11 = mysqli_query($conn, "UPDATE palete SET Data_Saida = '$data'  where artigo_id= $artigo and Data_Saida IS NULL ORDER BY Data ASC LIMIT $npal");
+      if (mysqli_query($conn, $sql11)) {
+        ?>
+        <?php
+      }
+    
+    
     }
   }
-}
 }
 ?>
 
@@ -138,8 +134,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
         $("#Testeeee").html(data);
       },
     });
@@ -155,10 +149,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
         $("#Testeeee").html(data);
       },
     });
   });
 </script>
+

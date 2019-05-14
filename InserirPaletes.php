@@ -28,7 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $_POST['confirmTotal'];
 
     $updateGuia = mysqli_query($conn, "UPDATE guia SET confirmarTotal=1 WHERE id='" . $_POST['confirmTotal'] . "'");
-    if (mysqli_query($conn, $updateGuia)) { }
+    if (mysqli_query($conn, $updateGuia)) {
+
+     }
   } elseif (isset($_POST['Guia_ID2'])) {
     date_default_timezone_set("Europe/Lisbon");
     $timeRN = date("Y-m-d H:i:s");
@@ -120,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="row align-items-center">
     <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
       <p id="profile-name" class="profile-name-card"></p>
-      <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
+      <form class="container" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
         <div style="text-align:center">
           <h1 style="margin-top:1rem; margin-bottom:1rem;">Paletes</h1>
           <div class="container" style="margin-left:-5rem">

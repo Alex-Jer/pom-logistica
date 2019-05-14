@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
 echo $_POST['id'];
 
-$busca = mysqli_query($conn,"SELECT * FROM tipo_zona where id='".$_POST['id']."'");
+$busca = mysqli_query($conn,"SELECT id,nome FROM tipo_zona where id='".$_POST['id']."'");
 
 foreach ($busca as $eachRow){
     echo '<option value = "'.$eachRow['id'].'">'.$eachRow['nome'].'</option>';

@@ -15,7 +15,7 @@ if ($_SESSION["perfilId"] == 2) {
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cliente = $_POST["cbCliente"];
-    $query = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliente'");
+    $query = mysqli_query($conn, "SELECT nome FROM cliente WHERE id='$cliente'");
     $dado = mysqli_fetch_array($query);
     $clienteNome = $dado['nome'];
 }
@@ -40,7 +40,7 @@ $timeRN = date("Y-m-d H:i:s");
                     <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-bottom:1rem;" onchange="this.form.submit()">
                         <option value="" disabled selected>Cliente</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                        $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
                         foreach ($busca as $eachRow) {
                             ?>
                             <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
@@ -62,22 +62,35 @@ $timeRN = date("Y-m-d H:i:s");
                         <tbody>
                             <?php
                             if (isset($cliente)) {
-                                $query = mysqli_query($conn, "SELECT * FROM guia WHERE cliente_id='$cliente' and (tipo_guia_id=4 or tipo_guia_id=3)");
+                                $query = mysqli_query($conn, "SELECT cliente.id as cliente_id, artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id=$cliente and(tipo_guia_id=4 or tipo_guia_id=3)");
                                 foreach ($query as $eachRow) {
                                     $CargaFinal = 0;
-                                    $guiaid = $eachRow['id'];
                                     $clienteId = $eachRow['cliente_id'];
-                                    $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$clienteId'");
-                                    $sql3 = mysqli_fetch_array($sql2);
-                                    $tipoGuia = $eachRow['tipo_guia_id'];
+                                    $tipoGuia = $eachRow['tpg'];
                                     $numReq = $eachRow['numero_requisicao'];
                                     $numPaletes = $eachRow['numero_paletes'];
-                                    $dataCarga = $eachRow['data_carga'];
                                     $ArtigoIDD = $eachRow['artigo_id'];
-                                    $dataPrevistaDescarga = $eachRow['data_prevista'];
-                                    $tipozonaId = $eachRow['tipo_zona_id'];
-                                    $armazemId = $eachRow['armazem_id'];
-                                    $queryPalete = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$ArtigoIDD'");
+                                    $NomeGuia = $eachRow['tgn'];
+                                    $precoZona = $eachRow['precozona'];
+                                    $custoCarga= $eachRow['acg'];
+                                    $custoDescarga = $eachRow['asd']; 
+
+                                    $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
+                                    $row = $result->fetch_row();
+                                    $count = $row[0];
+
+                                    $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=4 AND cliente_id='$clienteId'");
+                                    $row = $result->fetch_row();
+                                    $count2 = $row[0];
+
+                                    if ($tipoGuia == 3) {
+                                        $CargaFinal = $custoCarga * $count;
+                                        $tipoLinha = 1;
+                                    } elseif ($tipoGuia == 4) {
+                                        $CargaFinal = $custoDescarga * $count2;
+                                        $tipoLinha = 2;
+                                    }
+                                    $queryPalete = mysqli_query($conn, "SELECT Data_Saida,Data FROM palete WHERE artigo_id='$ArtigoIDD'");
                                     foreach ($queryPalete as $eachRowPalete) {
                                         $dataDescarga = $eachRowPalete['Data_Saida'];
                                         $dataCarga = $eachRowPalete['Data'];
@@ -96,37 +109,12 @@ $timeRN = date("Y-m-d H:i:s");
                                             $diasArmazenamento = 1;
                                         }
                                     }
-                                    $sqlTGuia = mysqli_query($conn, "SELECT * FROM tipo_guia WHERE id='$tipoGuia'");
-                                    $sqlTipoG = mysqli_fetch_array($sqlTGuia);
-                                    $NomeGuia = $sqlTipoG['nome'];
-
-                                    $sql4 = mysqli_query($conn, "SELECT * FROM zona WHERE id='$tipozonaId'");
-                                    $sql5 = mysqli_fetch_array($sql4);
-                                    $precoZona = $sql5['preco_zona'];
-
-                                    $sql6 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$armazemId'");
-                                    $sql7 = mysqli_fetch_array($sql6);
-                                    $custoCarga = $sql7['custo_carga'];
-                                    $custoDescarga = $sql7['custo_descarga']; 
-                                    $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
-                                    $row = $result->fetch_row();
-                                    $count = $row[0];
-
-                                    $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=4 AND cliente_id='$clienteId'");
-                                    $row = $result->fetch_row();
-                                    $count2 = $row[0];
-
-                                    if ($tipoGuia == 3) {
-                                        $CargaFinal = $custoCarga * $count;
-                                        $tipoLinha = 1;
-                                    } elseif ($tipoGuia == 4) {
-                                        $CargaFinal = $custoDescarga * $count2;
-                                        $tipoLinha = 2;
-                                    }
                                     $Total = $CargaFinal + ($precoZona * $numPaletes * $diasArmazenamento);
+
+                                    
                                     ?>
                                     <tr>
-                                        <td><?php echo "$NomeGuia - $numReq" ?> </td>
+                                    <td><?php echo "$NomeGuia <br> --------- <br> $numReq" ?> </td>
                                         <td><?php echo $numPaletes ?> </td>
                                         <td><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
                                         <td><?php echo $CargaFinal . " €" ?></td>

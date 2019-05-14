@@ -79,24 +79,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                             </thead>
                             <tbody>
                                 <?php
-                                $dado = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id=4");
+                                $dado = mysqli_query($conn, "SELECT guia.id as idg,guia.artigo_id,guia.cliente_id,guia.numero_paletes, guia.data_prevista, guia.numero_requisicao,guia.armazem_id, guia.confirmar, guia.confirmarTotal, cliente.nome as clientenome ,armazem.nome as armazemnome,artigo.referencia as artigoreef FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id WHERE tipo_guia_id=4 ");
                                 foreach ($dado as $eachRow) {
-                                    $cliID = $eachRow['cliente_id'];
+                                    $GuiaID=$eachRow['idg'];
+                                    $qtPal=$eachRow['numero_paletes'];
+                                    $numeroReq=$eachRow['numero_requisicao'];
+                                    $nomeArmazem= $eachRow['armazemnome'];
+                                    $nomeCliente = $eachRow['clientenome'];
+                                    $refArtigo = $eachRow['artigoreef'];
                                     $timeRN = $eachRow['data_prevista'];
-                                    $getArtigo = $eachRow['artigo_id'];
-                                    $GuiaID = $eachRow['id'];
-                                    $qtPal = $eachRow['numero_paletes'];
-                                    $numeroReq = $eachRow['numero_requisicao'];
-                                    $arID = $eachRow['armazem_id'];
-                                    $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$cliID'");
-                                    $sql3 = mysqli_fetch_array($sql2);
-                                    $nomeCliente = $sql3['nome'];
-                                    $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$arID'");
-                                    $sql5 = mysqli_fetch_array($sql4);
-                                    $nomeArmazem = $sql5['nome'];
-                                    $sql6 = mysqli_query($conn, "SELECT * FROM artigo WHERE id='$getArtigo'");
-                                    $sql7 = mysqli_fetch_array($sql6);
-                                    $refArtigo = $sql7['referencia'];
                                     echo '<tr>';
                                     echo '<td>' . $nomeCliente . '</td>';
                                     echo '<td style="width:25%">' . $timeRN . '</td>';
@@ -120,20 +111,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </body>
 
 </html>
-<script>
-    $("#guia").on("change", function() {
-        $.ajax({
-            url: 'ajaxDevolucao.php',
-            type: 'POST',
-            data: {
-                id: $("#guia").val()
-            },
-            success: function(data) {
-                $("#pdf").css({
-                    'display': 'block'
-                })
-                $("#tabela").html(data);
-            },
-        });
-    });
-</script>

@@ -70,7 +70,7 @@ exit;
                     <select style="text-align-last:center" class="form-control" name="combobox2">
                         <option value="" disabled selected>Tipo de armazém</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM armazem");
+                        $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");
                         foreach ($busca as $eachRow) {
                             ?>
                             <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
@@ -81,7 +81,7 @@ exit;
                     <br>
                     <select style="text-align-last:center" class="form-control" name="combobox3">
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_zona");
+                        $busca = mysqli_query($conn, "SELECT id,nome FROM tipo_zona");
                         foreach ($busca as $eachRow) {
                             ?>
                             <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>

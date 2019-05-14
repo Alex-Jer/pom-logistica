@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                <input type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required> 
                         <select name="combobox">
                             <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM armazem");
+                              $busca = mysqli_query($conn,"SELECT id,nome FROM armazem");
                               foreach ($busca as $eachRow)
                               {
                                 ?>
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                         </select>
                         <select name="combobox2">
                             <?php
-                              $busca = mysqli_query($conn,"SELECT * FROM perfil");
+                              $busca = mysqli_query($conn,"SELECT id,nome FROM perfil");
                               foreach ($busca as $eachRow)
                               {
                                 ?>
