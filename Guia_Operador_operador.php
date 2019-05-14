@@ -149,9 +149,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
+        $("#notConfirmed").removeClass('btn2')
+        $("#notConfirmed").addClass('btn3')
         $("#Testeeee").html(data);
       },
     });
   });
 </script>
-
