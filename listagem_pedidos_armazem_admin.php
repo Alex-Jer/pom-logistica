@@ -86,6 +86,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     ?>
                     <div>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+                        </li>
+                        <li class="nav-item">
+                            <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+                        </li>
+                        </ul>
                         <table style="margin-top:2rem; margin-left:-25px; width: 1160px; text-align:center" class="table">
                             <thead>
                                 <tr>
@@ -105,9 +113,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                                     //$query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
-                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
+                                    // $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
+                                    $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
                                 } else {
-                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
+                                    //$query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
+                                    
+                                    $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
                                 }
                                 foreach ($query as $eachRow) {
                                     $clienteId = $eachRow['cliente_id'];

@@ -53,7 +53,7 @@ function echoActiveClassIfRequestMatches($requestUri)
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("listagem_pedidos_armazem_admin") ?>" href="listagem_pedidos_armazem_admin.php">Pedidos</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias.php") ?>" href="Listar_todas_as_guias.php">Pedidos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>

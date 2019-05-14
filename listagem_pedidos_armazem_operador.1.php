@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarOperador.php';
+include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST["data"];
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row align-items-center">
         <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="listagem_pedidos_armazem_operador.php" method="post">
+            <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
                 <div style="text-align:center;">
                     <h1 style="margin-bottom:1rem;">Pedidos do dia</h1>
                     <?php
@@ -105,24 +105,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                                     //$query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
-                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
+                                    // $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
+                                    $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
                                 } else {
-                                    $query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2  or tipo_guia_id = 1 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
+                                    //$query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
+                                    
+                                    $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
                                 }
                                 foreach ($query as $eachRow) {
                                     $clienteId = $eachRow['cliente_id'];
                                     $numReq = $eachRow['numero_requisicao'];
-                                    $armazem = $eachRow['armazem_id'];
                                     $numPaletes = $eachRow['numero_paletes'];
                                     $dataPrevista = $eachRow['data_prevista'];
                                     $dataCarga = $eachRow['data_carga'];
                                     $morada = $eachRow['morada'];
-                                    $sql2 = mysqli_query($conn, "SELECT * FROM cliente WHERE id='$clienteId'");
-                                    $sql3 = mysqli_fetch_array($sql2);
-                                    $nomeCliente = $sql3['nome'];
-                                    $sql4 = mysqli_query($conn, "SELECT * FROM armazem WHERE id='$armazem'");
-                                    $sql5 = mysqli_fetch_array($sql4);
-                                    $nomeArmazem = $sql5['nome'];
+                                    $nomeCliente = $eachRow['clinome'];
+                                    $nomeArmazem = $eachRow['armazemnome'];
                                     ?>
                                     <tr>
                                         <td><?php echo $nomeCliente ?></td>
