@@ -54,7 +54,7 @@ exit;
                     <select class="form-control" name="artigo" style="text-align-last:center">
                         <option value="" disabled selected>Artigo</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM artigo");
+                        $busca = mysqli_query($conn, "SELECT id,nome FROM artigo");
                         foreach ($busca as $eachRow) {
                             ?>
                             &nbsp;
@@ -69,7 +69,7 @@ exit;
                     <select class="form-control" style="text-align-last:center" name="tipopalete">
                         <option value="" disabled selected>Tipo de palete</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM tipo_palete");
+                        $busca = mysqli_query($conn, "SELECT id,nome FROM tipo_palete");
                         foreach ($busca as $eachRow) {
                             ?>
                             &nbsp;
@@ -84,7 +84,7 @@ exit;
                     <select class="form-control" style="text-align-last:center" name="localizacao">
                         <option value="" disabled selected>Localização</option>
                         <?php
-                        $busca = mysqli_query($conn, "SELECT * FROM localizacao");
+                        $busca = mysqli_query($conn, "SELECT id,referencia FROM localizacao");
                         foreach ($busca as $eachRow) {
                             ?>
                             &nbsp;

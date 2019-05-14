@@ -57,7 +57,7 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Rececao") ?>" href="Guia_Rececao.php">Imprimir Receção</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Devolucao") ?>" href="Guia_Devolucao.php">Imprimir Devolução</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="ListarGuia_Devolucao.php">Imprimir Devolução</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="index.php">Sair</a>

@@ -60,7 +60,7 @@ exit;
                 &nbsp;
                 <select class="form-control" name="combobox">
                     <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                    $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
                     foreach ($busca as $eachRow) {
                         ?>
                         &nbsp;

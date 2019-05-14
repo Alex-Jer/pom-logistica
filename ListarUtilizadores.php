@@ -59,22 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </thead>
                             <tbody>
                                 <?php
-                                $dado = mysqli_query($conn, "SELECT * FROM utilizador");
+                                $dado = mysqli_query($conn, "SELECT utilizador.id as id, utilizador.nome as nome, utilizador.email as email,utilizador.perfil_id as perfil_id,armazem_id, armazem.nome as nome, perfil.nome as pnome FROM utilizador INNER JOIN armazem on armazem.id=utilizador.armazem_id INNER JOIN perfil on perfil.id=utilizador.perfil_id");
                                 foreach ($dado as $eachRow) {
 
                                     $nomeID = $eachRow['id'];
                                     $Nome = $eachRow['nome'];
                                     $email = $eachRow['email'];
-                                    $EstatutoID = $eachRow['perfil_id'];
-                                    $ArmazemID = $eachRow['armazem_id'];
-
-                                    $query = mysqli_query($conn, "SELECT * FROM armazem WHERE id=$ArmazemID");
-                                    $getQuery = mysqli_fetch_array($query);
-                                    $ArmazemNome  = $getQuery['nome'];
-
-                                    $query2 = mysqli_query($conn, "SELECT * FROM perfil WHERE id=$EstatutoID");
-                                    $getQuery2 = mysqli_fetch_array($query2);
-                                    $PerfilNome  = $getQuery2['nome'];
+                                    $ArmazemNome  = $eachRow['nome'];
+                                    $PerfilNome  = $eachRow['pnome'];
 
                                     echo '<tr>';
                                     echo '<td> ' . $Nome . '</td>';
@@ -109,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
-                            $busca = mysqli_query($conn, "SELECT * FROM armazem");
+                            $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");
                             foreach ($busca as $eachRow) {
                                 ?>
                                 <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
@@ -120,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox2" required autofocus>
                             <option value="" disabled selected>Estatuto</option>
                             <?php
-                            $busca = mysqli_query($conn, "SELECT * FROM perfil");
+                            $busca = mysqli_query($conn, "SELECT id,nome FROM perfil");
                             foreach ($busca as $eachRow) {
                                 ?>
                                 <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>

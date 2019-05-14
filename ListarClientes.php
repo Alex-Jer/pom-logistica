@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $dado = mysqli_query($conn, "SELECT * FROM cliente");
+                                    $dado = mysqli_query($conn, "SELECT id,nif,nome,morada,localidade FROM cliente");
                                     foreach ($dado as $eachRow) {
                                         $nomeID = $eachRow['id'];
                                         $Nome = $eachRow['nome'];

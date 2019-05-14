@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
                 <option value="" disabled selected>Localização</option>
                 <?php
-                $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
+                $busca = mysqli_query($conn, "SELECT id,referencia FROM localizacao WHERE hasPalete=0");
                 foreach ($busca as $eachRow) {
                   ?>
                   <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>

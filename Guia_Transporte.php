@@ -14,20 +14,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Localidade = $_POST["Localidade"];
 
 
-    $sqlArtigo = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigoo'");
+    $sqlArtigo = mysqli_query($conn, "SELECT palete.tipo_palete_id as tipo_palete_id, palete.id as id, localizacao.zona_id as zona_id, zona.armazem_id as armazem_id, zona.tipo_zona_id as tipo_zona_id FROM palete INNER JOIN localizacao on localizacao.palete_id=palete.id INNER JOIN zona on zona.id=localizacao.zona_id WHERE artigo_id='$artigoo'");
     $sql3 = mysqli_fetch_array($sqlArtigo);
     $tipoPalete = $sql3['tipo_palete_id'];
     $paleteeID = $sql3['id'];
 
+    $zonaID = $sql3['zona_id'];
 
-    $sqlLocalizacao = mysqli_query($conn, "SELECT * FROM localizacao where palete_id='$paleteeID'");
-    $sql4 = mysqli_fetch_array($sqlLocalizacao);
-    $zonaID = $sql4['zona_id'];
-
-    $sqlZona = mysqli_query($conn, "SELECT * from zona WHERE id='$zonaID'");
-    $sql5 = mysqli_fetch_array($sqlZona);
-    $armazemID = $sql5['armazem_id'];
-    $tipoZona = $sql5['tipo_zona_id'];
+    $armazemID = $sql3['armazem_id'];
+    $tipoZona = $sql3['tipo_zona_id'];
     //echo $armazemID;
 
 
@@ -62,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="clienteCBID">
                     <option value="" disabled selected>Cliente</option>
                     <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM cliente");
+                    $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
                     foreach ($busca as $eachRow) {
                         ?>
                         <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
