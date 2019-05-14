@@ -39,25 +39,24 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("operador") ?>" href="operador.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes") ?>" href="ListarClientes.php">Clientes</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes_operador") ?>" href="ListarClientes_operador.php">Clientes</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?> <?= echoActiveClassIfRequestMatches("Guia_Rececao") ?> <?= echoActiveClassIfRequestMatches("Guia_Devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Operador</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Rececao") ?>" href="Guia_Rececao.php">Receção</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Devolucao") ?>" href="Guia_Devolucao.php">Devolução</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Guia do Operador</a></li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Registar Palete</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Paletes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("listagem_pedidos_armazem_operador") ?>" href="listagem_pedidos_armazem_operador.php">Pedidos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Rececao") ?>" href="Guia_Rececao.php">Imprimir Receção</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Guia_Devolucao") ?>" href="Guia_Devolucao.php">Imprimir Devolução</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="index.php">Sair</a>

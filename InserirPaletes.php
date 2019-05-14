@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p id="profile-name" class="profile-name-card"></p>
       <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
         <div style="text-align:center">
-          <h1 style="margin-top:1rem; margin-bottom:1rem;">Registar Paletes</h1>
+          <h1 style="margin-top:1rem; margin-bottom:1rem;">Paletes</h1>
           <div class="container" style="margin-left:-5rem">
             <ul class="nav nav-pills">
               <li class="nav-item">
@@ -154,9 +154,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Registar um cliente</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Registar palete</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
