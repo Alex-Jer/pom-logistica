@@ -64,6 +64,14 @@ foreach ($sql6 as $eachRow2) {
         </script>
       <?php
     }
+    $sql11 = mysqli_query($conn, "UPDATE palete SET Data_Saida = $data  ORDER BY Data ASC LIMIT $npal");
+    if (mysqli_query($conn, $sql11)) {
+      ?>
+        <script type="text/javascript">
+          alert("New record created successfully");
+        </script>
+      <?php
+    }
   }
 }
 }

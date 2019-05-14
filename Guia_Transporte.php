@@ -18,13 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql3 = mysqli_fetch_array($sqlArtigo);
     $tipoPalete = $sql3['tipo_palete_id'];
     $paleteeID = $sql3['id'];
-    //echo $paleteeID;
 
 
     $sqlLocalizacao = mysqli_query($conn, "SELECT * FROM localizacao where palete_id='$paleteeID'");
     $sql4 = mysqli_fetch_array($sqlLocalizacao);
     $zonaID = $sql4['zona_id'];
-    //echo $zonaID;
 
     $sqlZona = mysqli_query($conn, "SELECT * from zona WHERE id='$zonaID'");
     $sql5 = mysqli_fetch_array($sqlZona);
@@ -61,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card card-container" style="max-width:250%; width:60%; margin-top:3rem;">
             <form style="text-align:center" action="Guia_Transporte.php" method="post">
                 <h1>Guia de transporte</h1>
-                <select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px">
+                <select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="clienteCBID">
                     <option value="" disabled selected>Cliente</option>
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -74,14 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
                 <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="artigoseID">
                     <option value="" disabled selected>Artigo</option>
-                    <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM artigo");
-                    foreach ($busca as $eachRow) {
-                        ?>
-                        <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                    <?php
-                }
-                ?>
                 </select>
                 <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
                 <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type='datetime-local')" id="date">
@@ -94,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
                 <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
                 <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
-                <input class="form-control" type="number" id="inputqt" name="qt" placeholder="Quantidade de paletes neste artigo" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
                 <button style="margin-top:1rem; margin-left:auto; margin-right:auto; width:36.7rem; height:auto; font-size:14px" type="submit" class="btn btn-primary">Confirmar</button>
             </form><!-- /form -->
         </div>
@@ -116,3 +105,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     });
 </script>
+
+<script>
+  $("#clienteCBID").on("change", function() {
+    $.ajax({
+      url: 'ajaxaArtigoCliente.php',
+      type: 'POST',
+      data: {
+        id: $("#clienteCBID").val()
+      },
+      success: function(data) {
+        $("#artigoseID").html(data);
+
+      },
+    });
+  });
+</script> 

@@ -61,15 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <input class="form-control" style="text-align:center; margin-top:1rem;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type='datetime-local')" id="date" required>
         <select class="form-control" name="comboboxArtigo" style="text-align-last:center; margin-top:1rem; color: #6C757D;" id="comboboxArtigo">
-          <option value="" disabled selected>Artigo</option>
-          <?php
-          $busca = mysqli_query($conn, "SELECT * FROM artigo");
-          foreach ($busca as $eachRow) {
-            ?>
-            <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-          <?php
-        }
-        ?>
+        <option value="" disabled selected>Artigo</option> 
+          
         </select>
         <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:1rem; color: #6C757D;">
           <option value="" disabled selected>Tipo de paletes</option>
@@ -165,6 +158,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
   });
 </script>
+
+<script>
+  $("#comboboxCli").on("change", function() {
+    $.ajax({
+      url: 'ajaxaArtigoCliente.php',
+      type: 'POST',
+      data: {
+        id: $("#comboboxCli").val()
+      },
+      success: function(data) {
+        $("#comboboxArtigo").html(data);
+
+      },
+    });
+  });
+</script> 
+
 <script type="text/javascript">
   document.getElementById('comboboxCli').value = "<?php echo $_POST['comboboxCli']; ?>";
   document.getElementById('TipoPalete').value = "<?php echo $_POST['TipoPalete']; ?>";
