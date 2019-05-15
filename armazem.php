@@ -8,17 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carga = $_POST["carga"];
     $descarga = $_POST["descarga"];
     $espaco = $_POST["espaco"];
-    $sql = "INSERT INTO armazem (nome,espaco, custo_carga, custo_descarga) VALUES ('$guia', '$espaco', '$carga', '$descarga')";
-    if (mysqli_query($conn, $sql)) {
-        ?>
-        <script type="text/javascript">
-            alert("New record created successfully");
-        </script>
-    <?php
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
+    $nome = $_POST["nome"];
+    $stmt = $conn->prepare("INSERT INTO armazem (nome,espaco, custo_carga, custo_descarga) VALUES(?,?,?,?)");
+    $stmt->bind_param("sidd", $nome,$espaco,$carga,$descarga);
+    $stmt->execute();
+
+    
     //header("Location: navbarAdmin.php");
 }
 ?>
@@ -45,8 +40,12 @@ mysqli_close($conn);
                     </select>
                 </div>
                 <div style="text-align:center">
+                    <input style="text-align:center; margin-top:1rem;" class="form-control" type="text" name="nome" step="any" placeholder="Nome">
+                </div>
+                <div style="text-align:center">
                     <input style="text-align:center; margin-top:1rem;" class="form-control" type="number" name="carga" step="any" placeholder="Custo de carga">
                 </div>
+                
                 <div style="text-align:center">
                     <input style="text-align:center; margin-top:1rem;" class="form-control" type="number" name="descarga" step="any" placeholder="Custo de descarga">
                 </div>

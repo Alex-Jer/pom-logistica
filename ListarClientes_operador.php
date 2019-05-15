@@ -10,8 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Morada = $_POST["morada"];
     $localidade = $_POST["local"];
 
-    $sql = "INSERT INTO cliente (nome,nif,morada, localidade) VALUES ('$nome',$nifNumberr,'$Morada', '$localidade')";
-    if (mysqli_query($conn, $sql)) { }
+    $stmt = $conn->prepare("INSERT INTO cliente (nome,nif,morada, localidade) VALUES(?,?,?,?)");
+    $stmt->bind_param("ssss", $nome,$nifNumberr,$Morada, $localidade);
+    $stmt->execute();
 }
 ?>
 

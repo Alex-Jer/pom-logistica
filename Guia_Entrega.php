@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $getCBtz = $_POST["comboboxTipoZona"];
   $getREQ = $_POST["req"];
   $getArmazem = $_POST["Armazem"];
-  $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES ($nomeCli, 1, $getCBtp, $getCBtz, $getArmazem, '$getCBart', '$dataEntrega', $getQT, 'REQ-$getREQ')";
+  $getREQ="REQ-$getREQ";
+  $stmt = $conn->prepare("INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id,armazem_id,artigo_id,data_prevista,numero_paletes, numero_requisicao) VALUES (?,1,?,?,?,?,?,?,?)");
+    $stmt->bind_param("iiiiisis", $nomeCli, $getCBtp, $getCBtz, $getArmazem, $getCBart, $dataEntrega, $getQT, $getREQ);
+    $stmt->execute();
 
-  if (mysqli_query($conn, $sql)) { } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-  }
 }
 ?>
 

@@ -16,8 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["Email"];
 
     if ($pw == $pw2) {
-        $sql = "INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES ('$pfID', '$arID', '$nome', '$email', '$pw')";
-        if (mysqli_query($conn, $sql)) { }
+        $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
+    $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+    $stmt->execute();
     } else {
         ?>
         <script type="text/javascript">

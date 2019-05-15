@@ -21,21 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $peso = (float)$peso;
     $cli_id = $_POST["combobox"];
 
-    $sql = "INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES ('$cli_id','$ref','$nome','$peso')";
-    if (mysqli_query($conn, $sql)) {
-        ?>
-        <script type="text/javascript">
-            ;
-            alert("New record created successfully");
-        </script>
-    <?php
-
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
-
-exit;
+    $stmt = $conn->prepare("INSERT INTO artigo (cliente_id ,referencia,nome,peso VALUES(?,?,?,?)");
+    $stmt->bind_param("issd", $cli_id,$ref,$nome,$peso);
+    $stmt->execute();
 } ?>
 
 

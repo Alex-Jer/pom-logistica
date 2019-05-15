@@ -12,32 +12,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $npal = $_POST["NPaletes"];
     $artigoo = $_POST["artigo"];
     $Localidade = $_POST["Localidade"];
+    $nreq="REQ-$nreq";
 
 
-    $sqlArtigo = mysqli_query($conn, "SELECT palete.tipo_palete_id as tipo_palete_id, palete.id as id, localizacao.zona_id as zona_id, zona.armazem_id as armazem_id, zona.tipo_zona_id as tipo_zona_id FROM palete INNER JOIN localizacao on localizacao.palete_id=palete.id INNER JOIN zona on zona.id=localizacao.zona_id WHERE artigo_id='$artigoo'");
-    $sql3 = mysqli_fetch_array($sqlArtigo);
-    $tipoPalete = $sql3['tipo_palete_id'];
-    $paleteeID = $sql3['id'];
-
-    $zonaID = $sql3['zona_id'];
-
-    $armazemID = $sql3['armazem_id'];
-    $tipoZona = $sql3['tipo_zona_id'];
+    
+        $stmt = $conn->prepare("SELECT palete.tipo_palete_id as tipo_palete_id, palete.id as id, localizacao.zona_id as zona_id, zona.armazem_id as armazem_id, zona.tipo_zona_id as tipo_zona_id FROM palete INNER JOIN localizacao on localizacao.palete_id=palete.id INNER JOIN zona on zona.id=localizacao.zona_id WHERE artigo_id=?");
+        $stmt->bind_param("s", $artigoo);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($tipoPalete, $paleteeID, $zonaID,$armazemID,$tipoZona);
+        $stmt->fetch();
     //echo $armazemID;
 
+    $stmt = $conn->prepare("INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES (?,2,?,?,?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("iiiiisissss", $cliente, $tipoPalete, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal,$nreq, $morada, $Localidade, $matricula);
+    $stmt->execute();
+}
 
-    $sql = "INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES ($cliente, 2, $tipoPalete, $tipoZona, $armazemID, $artigoo, '$horadescarga', '$npal', 'REQ-$nreq', '$morada', '$Localidade', '$matricula')";
-    //echo "Palete ID: " . $paleteeID . " Zona id: " . $zonaID . "Cliente: " . $cliente . " Tipo guia: " . 2 . " Tipo palete id: " . $tipoPalete . " Tipo zona: " . $tipoZona . " Armazem id: " . $armazemID . " Artigo: " . $artigoo . " Hora descarga: " . $horadescarga . " Nº paletes: " . $npal . " Num req: " . "REQ-" . $nreq . " Morada: " . $morada . " Localidade: " . $Localidade . " Matricula: " . $matricula;
-    if (mysqli_query($conn, $sql)) {
-        ?>
-        <script type="text/javascript">
-            alert("New record created successfully");
-        </script>
-    <?php
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-}
+
 ?>
 
 <head>

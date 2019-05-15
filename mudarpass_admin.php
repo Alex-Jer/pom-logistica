@@ -9,12 +9,16 @@ $NewPass = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $NewPass = $_POST['textNewPass'];
   $emms = $_SESSION['emailSession'];
-  $busca = mysqli_query($conn, "SELECT password FROM utilizador WHERE Email='$emms'");
-  $dado = mysqli_fetch_array($busca);
-  $oLdPassword = $dado['password'];
   $pw = $_POST["textPass"];
   $pw2 = $_POST["textNewPass"];
   $pw3 = $_POST["textNewPass2"];
+
+  $stmt = $conn->prepare("SELECT password FROM utilizador WHERE Email=? LIMIT 1");
+        $stmt->bind_param("s", $emms);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($oLdPassword);
+        $stmt->fetch();
 
   if ($oLdPassword == $pw && $pw3 == $pw2) {
     $Fim = true;
@@ -25,15 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
   if ($Fim == TRUE) {
-    $sql = "UPDATE utilizador SET password='$NewPass' WHERE Email='$emms'";
-    if (mysqli_query($conn, $sql)) { } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    mysqli_close($conn);
+    $stmt = $conn->prepare("UPDATE utilizador SET password=? WHERE Email=?");
+    $stmt->bind_param("ss", $NewPass,$emms);
+    $stmt->execute();
     ?>
+
+    
     <script type="text/javascript">
       ;
-      alert("Pssword mudada com sucesso");
+      alert("Password mudada com sucesso");
     </script>
     <?php
     header("Location: showGuiaEntrega.php");

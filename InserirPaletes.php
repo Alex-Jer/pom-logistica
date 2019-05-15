@@ -5,6 +5,7 @@ include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
+    echo $_POST['Confirm'];
     $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='" . $_POST['Confirm'] . "'");
     $dado = mysqli_fetch_array($buscaId);
     $tpID = $dado['tipo_palete_id'];
@@ -36,6 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timeRN = date("Y-m-d H:i:s");
     $dataehora = $timeRN;
     $referencia = $_POST['refpal'];
+   
+    $referencia = "PAL-$referencia" ;
+    echo $referencia;
     $nomepal = $_POST['nomepal'];
     $eachLocalizacao = $_POST['comboBoxLocalizacao'];
 
@@ -51,10 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $getEspaco2 = $dado['armazemespaco'];
     $espacoTotal = $getEspaco2 - 1;
 
-    $result = $conn->query("SELECT count(*) FROM palete  WHERE referencia = '$referencia'");
-    $row = $result->fetch_row();
-    //echo '#: ', $row[0];
-    $count = $row[0];
+    $result = $conn->prepare("SELECT count(*) FROM palete  WHERE referencia = ?");
+    $result -> bind_param("s",$referencia);
+    $result->execute();
+    $result->store_result();
+        $result->bind_result($count);
+        $result->fetch();
+      echo $count;
 
     $countEspaco = $conn->query("SELECT count(*) FROM localizacao  WHERE hasPalete = 1 AND zona_id=$zonaID");
     $row12 = $countEspaco->fetch_row();
@@ -64,22 +71,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set("Europe/Lisbon");
     $timeRN = date("Y-m-d H:i:s");
     $nomepal = "Palete de $nomepal";
-    $referencia = "PAL-$referencia";
+    echo $referencia;
 
     if ($count == 0) {
-      $sql = "INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('" . $_POST['Guia_ID2'] . "', '$artigo','$tpID', '$referencia','$nomepal', '$timeRN')";
-      if (mysqli_query($conn, $sql)) {
-        ?>
-      <?php
+    $stmt = $conn->prepare("INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('" . $_POST['Guia_ID2'] . "',?,?,?,?,?)");
+    $stmt->bind_param("iisss",  $artigo,$tpID, $referencia,$nomepal, $timeRN);
+    $stmt->execute();
 
-    } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
+    $stmt = $conn->prepare("SELECT id FROM palete WHERE referencia=?");
+        $stmt->bind_param("s", $referencia);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($palete_idd);
+        $stmt->fetch();
 
-    $buscaPaleteID = mysqli_query($conn, "SELECT id FROM palete WHERE referencia='$referencia'");
-    $dado2 = mysqli_fetch_array($buscaPaleteID);
-    $palete_idd = $dado2['id'];
-    
     $sqlLocal = "UPDATE localizacao SET palete_id='$palete_idd', zona_id='$zonaID',data_entrada='$dataehora',hasPalete=1 WHERE id='$eachLocalizacao'";
     if (mysqli_query($conn, $sqlLocal)) { } else {
       echo "Error: " . $sqlLocal . "<br>" . mysqli_error($conn);
