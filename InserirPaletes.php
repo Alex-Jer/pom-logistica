@@ -155,8 +155,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <tbody id="Testeeee">
               </tbody>
             </table>
-            <div id="DivEntrega"></div>
           </div>
+          <div id="DivEntrega2"></div>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -188,6 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
                     </div>
                     <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+                    
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -271,3 +272,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       return false;
   });
 </script>
+

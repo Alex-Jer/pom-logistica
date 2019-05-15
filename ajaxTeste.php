@@ -37,10 +37,26 @@ foreach ($dado as $eachRow) {
     if ($confirm == NULL) {
         echo '<td ><button type="submit" style="font-size:12px; margin-top:-0.2rem" class="btn btn-primary"  name="Confirm" id="Confirm"  value="' . $GuiaID . '">Confirmar</button></td>';
     } else {
-        echo '<td><button type="button" style="font-size:12px; margin-top:-0.2rem" class="btn btn-primary" name="Guia_ID" id="Guia_ID" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '">Registar Palete</button></td>';
-        echo '<input type="hidden" value="' . $GuiaID . '" name="Guia_ID2">';
+        echo '<td><button type="button" style="font-size:12px; margin-top:-0.2rem" class="btn btn-primary" name="Guia_ID4" id="Guia_ID4" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '">Registar Palete</button></td>';
         echo '<td><button type="submit" style="font-size:12px; margin-top:-0.2rem" class="btn btn-primary" name="confirmTotal" id="confirmTotal" value="' . $GuiaID . '">Confirmar Guia</button></td>';
     }
 
     echo '</tr>';
 }
+
+
+?>
+<script>
+    $('button[name="Guia_ID4"]').on("click", function() {
+        $.ajax({
+            url: 'ajaxPaletes.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#DivEntrega2").html(data);
+            },
+        });
+    });
+</script>
