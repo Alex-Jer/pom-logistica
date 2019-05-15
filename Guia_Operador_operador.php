@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <p id="profile-name" class="profile-name-card"></p>
         <div style="text-align:center">
-          <h1 style="margin-bottom:1rem;">Confirmar Guias de Transporte</h1>
+          <h1 style="margin-bottom:1rem;">Guias de Transporte</h1>
           <div class="container">
             <!-- <nav role="navigation">
               <ul class="nav">
@@ -149,9 +149,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
+        $("#notConfirmed").removeClass('btn2')
+        $("#notConfirmed").addClass('btn3')
         $("#Testeeee").html(data);
       },
     });
   });
 </script>
-
