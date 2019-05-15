@@ -59,18 +59,10 @@ function echoActiveClassIfRequestMatches($requestUri)
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?>" href="mudarpass_admin.php">Mudar Palavra-Passe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("conta_admin") ?>" href="conta_admin.php">Sair</a>
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Guia_Entrega") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador_admin") ?> <?= echoActiveClassIfRequestMatches("Guia_Transporte") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_admin")?> data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Entrega") ?>" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_admin") ?>" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Transporte") ?>" href="Guia_Transporte.php">Transporte</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?>" href="mudarpass_admin.php">Alterar Palavra-Passe</a>
                 </div>
             </li>
             <li class="nav-item">

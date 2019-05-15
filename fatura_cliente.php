@@ -26,8 +26,8 @@ $timeRN = date("Y-m-d H:i:s");
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css\bootstrap.css">
 </head>
 
 <body>
@@ -72,8 +72,8 @@ $timeRN = date("Y-m-d H:i:s");
                                     $ArtigoIDD = $eachRow['artigo_id'];
                                     $NomeGuia = $eachRow['tgn'];
                                     $precoZona = $eachRow['precozona'];
-                                    $custoCarga= $eachRow['acg'];
-                                    $custoDescarga = $eachRow['asd']; 
+                                    $custoCarga = $eachRow['acg'];
+                                    $custoDescarga = $eachRow['asd'];
 
                                     $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
                                     $row = $result->fetch_row();
@@ -111,10 +111,10 @@ $timeRN = date("Y-m-d H:i:s");
                                     }
                                     $Total = $CargaFinal + ($precoZona * $numPaletes * $diasArmazenamento);
 
-                                    
+
                                     ?>
                                     <tr>
-                                    <td><?php echo "$NomeGuia <br> --------- <br> $numReq" ?> </td>
+                                        <td><?php echo "$NomeGuia <br> --------- <br> $numReq" ?> </td>
                                         <td><?php echo $numPaletes ?> </td>
                                         <td><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
                                         <td><?php echo $CargaFinal . " €" ?></td>
@@ -127,18 +127,18 @@ $timeRN = date("Y-m-d H:i:s");
                         ?>
                         </tbody>
                     </table>
-                    
+
             </form><!-- /form -->
             <form class="container" action="pdfFatura.php" method="post">
-                        <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            ?>
-                            <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:19.5rem; margin-top:-12.05rem; float:right;">PDF</button>
-                        <?php
-                    }
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
-                    </form>
+                    <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
+                    <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:19.5rem; margin-top:-12.05rem; float:right;">PDF</button>
+                <?php
+            }
+            ?>
+            </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
     <script type="text/javascript"></script>

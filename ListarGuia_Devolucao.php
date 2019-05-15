@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css\bootstrap.css">
 </head>
 
 <style>
@@ -66,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 <div style="text-align:center">
                     <h1 style="margin-bottom:1rem;">Guia de devolução</h1>
                     <div class="container" style="margin-left:6rem;">
-                    <table class="table" style="font-size:16px; margin-top:1.5rem; margin-left:-2rem; width:60rem;">
+                        <table class="table" style="font-size:16px; margin-top:1.5rem; margin-left:-2rem; width:60rem;">
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
@@ -81,10 +82,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                 <?php
                                 $dado = mysqli_query($conn, "SELECT guia.id as idg,guia.artigo_id,guia.cliente_id,guia.numero_paletes, guia.data_prevista, guia.numero_requisicao,guia.armazem_id, guia.confirmar, guia.confirmarTotal, cliente.nome as clientenome ,armazem.nome as armazemnome,artigo.referencia as artigoreef FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id WHERE tipo_guia_id=4 ");
                                 foreach ($dado as $eachRow) {
-                                    $GuiaID=$eachRow['idg'];
-                                    $qtPal=$eachRow['numero_paletes'];
-                                    $numeroReq=$eachRow['numero_requisicao'];
-                                    $nomeArmazem= $eachRow['armazemnome'];
+                                    $GuiaID = $eachRow['idg'];
+                                    $qtPal = $eachRow['numero_paletes'];
+                                    $numeroReq = $eachRow['numero_requisicao'];
+                                    $nomeArmazem = $eachRow['armazemnome'];
                                     $nomeCliente = $eachRow['clientenome'];
                                     $refArtigo = $eachRow['artigoreef'];
                                     $timeRN = $eachRow['data_prevista'];
