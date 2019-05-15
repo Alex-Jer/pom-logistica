@@ -4,336 +4,95 @@
 include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["Nome"];
-    $nifNumber = $_POST["nif"];
-    $nifNumberr = (int)$nifNumber;
-    $Morada = $_POST["morada"];
-    $localidade = $_POST["local"];
+    if ((isset($_POST['registar']))) {
+        $nome = $_POST["Nome"];
+        $nifNumber = $_POST["nif"];
+        $nifNumberr = (int)$nifNumber;
+        $Morada = $_POST["morada"];
+        $localidade = $_POST["local"];
 
-    $stmt = $conn->prepare("INSERT INTO cliente (nome,nif,morada, localidade) VALUES(?,?,?,?)");
-    $stmt->bind_param("ssss", $nome,$nifNumberr,$Morada, $localidade);
-    $stmt->execute();
+        $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
+        if (mysqli_query($conn, $sql)) { }
+    } elseif (isset($_POST['apagar'])) {
+        $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
+        if (mysqli_query($conn, $sql)) { }
+    }
 }
 ?>
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <style>
-        <style type="text/css">body {
-            color: #566787;
-            background: #f5f5f5;
-            font-family: 'Varela Round', sans-serif;
-            font-size: 13px;
-        }
-
-        .btn-success {
-            background-color: #00c02c;
-        }
-
-        .table-wrapper {
-            background: #fff;
-            padding: 20px 25px;
-            margin: 30px 0;
-            border-radius: 3px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-        }
-
-        .table-title {
-            padding-bottom: 15px;
-            background: #435d7d;
-            color: #fff;
-            padding: 16px 30px;
-            margin: -20px -25px 10px;
-            border-radius: 3px 3px 0 0;
-        }
-
-        .table-title h2 {
-            margin: 5px 0 0;
-            font-size: 24px;
-        }
-
-        .table-title .btn-group {
-            float: right;
-        }
-
-        .table-title .btn {
-            color: #fff;
-            float: right;
-            font-size: 13px;
-            border: none;
-            min-width: 50px;
-            border-radius: 2px;
-            border: none;
-            outline: none !important;
-            margin-left: 10px;
-        }
-
-        .table-title .btn i {
-            float: left;
-            font-size: 21px;
-            margin-right: 5px;
-        }
-
-        .table-title .btn span {
-            float: left;
-            margin-top: 2px;
-        }
-
-        table.table tr th,
-        table.table tr td {
-            border-color: #e9e9e9;
-            padding: 12px 15px;
-            vertical-align: middle;
-        }
-
-        table.table tr th:first-child {
-            width: 60px;
-        }
-
-        table.table tr th:last-child {
-            width: 100px;
-        }
-
-        table.table-striped tbody tr:nth-of-type(odd) {
-            background-color: #fcfcfc;
-        }
-
-        table.table-striped.table-hover tbody tr:hover {
-            background: #f5f5f5;
-        }
-
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        table.table td:last-child i {
-            opacity: 0.9;
-            font-size: 22px;
-            margin: 0 5px;
-        }
-
-        table.table td a {
-            font-weight: bold;
-            color: #566787;
-            display: inline-block;
-            text-decoration: none;
-            outline: none !important;
-        }
-
-        table.table td a:hover {
-            color: #2196F3;
-        }
-
-        table.table td a.edit {
-            color: #FFC107;
-        }
-
-        table.table td a.delete {
-            color: #F44336;
-        }
-
-        table.table td i {
-            font-size: 19px;
-        }
-
-        table.table .avatar {
-            border-radius: 50%;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .pagination {
-            float: right;
-            margin: 0 0 5px;
-        }
-
-        .pagination li a {
-            border: none;
-            font-size: 13px;
-            min-width: 30px;
-            min-height: 30px;
-            color: #999;
-            margin: 0 2px;
-            line-height: 30px;
-            border-radius: 2px !important;
-            text-align: center;
-            padding: 0 6px;
-        }
-
-        .pagination li a:hover {
-            color: #666;
-        }
-
-        .pagination li.active a,
-        .pagination li.active a.page-link {
-            background: #03A9F4;
-        }
-
-        .pagination li.active a:hover {
-            background: #0397d6;
-        }
-
-        .pagination li.disabled i {
-            color: #ccc;
-        }
-
-        .pagination li i {
-            font-size: 16px;
-            padding-top: 6px
-        }
-
-        .hint-text {
-            float: left;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        /* Custom checkbox */
-        .custom-checkbox {
-            position: relative;
-        }
-
-        .custom-checkbox input[type="checkbox"] {
-            opacity: 0;
-            position: absolute;
-            margin: 5px 0 0 3px;
-            z-index: 9;
-        }
-
-        .custom-checkbox label:before {
-            width: 18px;
-            height: 18px;
-        }
-
-        .custom-checkbox label:before {
-            content: '';
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: text-top;
-            background: white;
-            border: 1px solid #bbb;
-            border-radius: 2px;
-            box-sizing: border-box;
-            z-index: 2;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 3px;
-            width: 6px;
-            height: 11px;
-            border: solid #000;
-            border-width: 0 3px 3px 0;
-            transform: inherit;
-            z-index: 3;
-            transform: rotateZ(45deg);
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:before {
-            border-color: #03A9F4;
-            background: #03A9F4;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:after {
-            border-color: #fff;
-        }
-
-        .custom-checkbox input[type="checkbox"]:disabled+label:before {
-            color: #b8b8b8;
-            cursor: auto;
-            box-shadow: none;
-            background: #ddd;
-        }
-
-        /* Modal styles */
-        .modal .modal-dialog {
-            max-width: 400px;
-        }
-
-        .modal .modal-header,
-        .modal .modal-body,
-        .modal .modal-footer {
-            padding: 20px 30px;
-        }
-
-        .modal .modal-content {
-            border-radius: 3px;
-        }
-
-        .modal .modal-footer {
-            background: #ecf0f1;
-            border-radius: 0 0 3px 3px;
-        }
-
-        .modal .modal-title {
-            display: inline-block;
-        }
-
-        .modal .form-control {
-            border-radius: 2px;
-            box-shadow: none;
-            border-color: #dddddd;
-        }
-
-        .modal textarea.form-control {
-            resize: vertical;
-        }
-
-        .modal .btn {
-            border-radius: 2px;
-            min-width: 100px;
-        }
-
-        .modal form label {
-            font-weight: normal;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function() {
-                if (this.checked) {
-                    checkbox.each(function() {
-                        this.checked = true;
-                    });
-                } else {
-                    checkbox.each(function() {
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function() {
-                if (!this.checked) {
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="styles\table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
+<style>
+    .btn-success {
+        background-color: #01d932;
+    }
+
+    .btn-success:hover {
+        background-color: #01bc2c;
+    }
+
+    body {
+        color: #566787;
+        overflow: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+    tbody,
+    thead tr {
+        display: block;
+    }
+
+    tbody {
+        height: 21rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+     tbody td,
+    thead th {
+        width: 13.5rem;
+    } 
+
+    /* thead th:last-child {
+        width: 1rem;
+         140px + 16px scrollbar width 
+    } */
+</style>
+
 <body>
-    <form action="ListarClientes_operador.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarClientes_operador.php" method="post" novalidate>
         <div class="container">
-            <div class="table-wrapper">
-                <div class="table-title" style="background-color:#0275d8; margin-top:1rem;">
+            <div class="table-wrapper" style="margin-top:5rem">
+                <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
                         <div class="col-sm-6">
                             <h2>Gerir <b>Clientes</b></h2>
@@ -343,15 +102,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                 </div>
-                <!-- <form action="ListarClientes_operador.php" method="post" novalidate> -->
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:20%">Nome</th>
-                            <th>NIF</th>
-                            <th>Morada</th>
-                            <th>Localidade</th>
-                            <th>Ações</th>
+                            <th style="width:30%">Nome</th>
+                            <th style="width:20%">NIF</th>
+                            <th style="width:20%">Morada</th>
+                            <th style="width:20%">Localidade</th>
+                            <th style="width:20%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -364,34 +122,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
                             echo '<tr>';
-                            echo '<td> ' . $nome . '</td>';
-                            echo '<td> ' . $nif . '</td>';
-                            echo '<td style="width:25rem;"> ' . $morada . '</td>';
-                            echo '<td> ' . $localidade . '</td>';
-                            echo '<td>'
+                            echo '<td style="width:20%"> ' . $nome . '</td>';
+                            echo '<td style="width:20%"> ' . $nif . '</td>';
+                            echo '<td style="width:20%"> ' . $morada . '</td>';
+                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<td style="width:20%">';
+                            echo '<tr>';
+                            echo '<td style="width:20%"> ' . $nome . '</td>';
+                            echo '<td style="width:20%"> ' . $nif . '</td>';
+                            echo '<td style="width:20%"> ' . $morada . '</td>';
+                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<td style="width:20%">';
+                            echo '<tr>';
+                            echo '<td style="width:20%"> ' . $nome . '</td>';
+                            echo '<td style="width:20%"> ' . $nif . '</td>';
+                            echo '<td style="width:20%"> ' . $morada . '</td>';
+                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<td style="width:20%">';
                             ?>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" name="teste3" value="<?php echo $buscaId ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Apagar">&#xE872;</i></a>
-                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste4">
-                            <button type="button" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"></button>
+                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
                             <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
                             <?php '</td>';
                             echo '</tr>';
                         }
-                        ?><p id="Testeeee"></p><?php
-                                                // if (isset($_POST['teste4'])) {
-                                                //     // $sql = "DELETE FROM cliente WHERE id = '" . $_POST['teste'] . "' ";
-                                                //     // if (mysqli_query($conn, $sql)) { }
-                                                //     echo $_POST['teste'];
-                                                //     echo $_POST['teste2'];
-                                                //     echo $_POST['teste3'];
-                                                //     echo $_POST['teste4'];
-                                                // }
-                                                
-                                                ?>
+                        ?><div id="Testeeee"></div>
                     </tbody>
                 </table>
-                <!-- </form> -->
                 <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
@@ -406,44 +163,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-        <!-- <div id="addEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Adicionar Cliente</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nome</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Morada</label>
-                            <textarea class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Telemóvel</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-success" value="Adiionar">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
         <!-- Modal -->
         <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <!-- <form action="ListarClientes_operador.php" method="post"> -->
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Registar Cliente</h5>
@@ -462,7 +184,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="submit" name="registar" class="btn btn-primary">Registar</button>
                     </div>
                 </div>
-                <!-- </form> -->
             </div>
         </div>
         <!-- Edit Modal HTML -->
@@ -507,7 +228,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <!-- <form action="ListarClientes_operador.php" method="post" novalidate> -->
                     <div class="modal-header">
                         <h4 class="modal-title">Apagar Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -520,7 +240,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                         <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
                     </div>
-                    <!-- </form> -->
                 </div>
             </div>
         </div>
@@ -564,16 +283,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-    $('input[name="teste"]').on("click", function() {
+    $('button[name="teste2"]').on("click", function() {
         $.ajax({
             url: 'teste.php',
             type: 'POST',
             data: {
-                id: $('input[name="teste"]').val()
+                id: $(this).val()
             },
             success: function(data) {
                 $("#Testeeee").html(data);
             },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function() {
+            if (this.checked) {
+                checkbox.each(function() {
+                    this.checked = true;
+                });
+            } else {
+                checkbox.each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function() {
+            if (!this.checked) {
+                $("#selectAll").prop("checked", false);
+            }
         });
     });
 </script>
