@@ -564,12 +564,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-    $('input[name="teste"]').on("click", function() {
+    $('button[name="teste2"]').on("click", function() {
         $.ajax({
             url: 'teste.php',
             type: 'POST',
             data: {
-                id: $('input[name="teste"]').val()
+                id: $(this).val()
             },
             success: function(data) {
                 $("#Testeeee").html(data);
