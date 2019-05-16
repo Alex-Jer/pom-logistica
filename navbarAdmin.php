@@ -36,8 +36,9 @@ function echoActiveClassIfRequestMatches($requestUri)
 <body>
     <nav role="navigation">
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("admin") ?>" href="admin.php">Home</a>
+        <li class="nav-item">
+            <a class="d-block" style="margin-top:5px"href="MenuAdmin.php" rel="home"><img class="d-block" src="images/Logo.png" alt="logo"></a>
+        
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarUtilizadores") ?>" href="ListarUtilizadores.php">Utilizadores</a>
