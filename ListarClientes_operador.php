@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
                             <th style="width:15rem; padding: 0rem 1.1rem">Morada</th>
                             <th style="padding: 0 1rem">Localidade</th>
-                            <th style="padding: 0">Ações</th>
+                            <th style="padding: 0; width:9%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>

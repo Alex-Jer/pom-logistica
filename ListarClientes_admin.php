@@ -4,24 +4,32 @@
 include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["Nome"];
-    $nifNumber = $_POST["nif"];
-    $nifNumberr = (int)$nifNumber;
-    $Morada = $_POST["morada"];
-    $localidade = $_POST["local"];
+    if ((isset($_POST['registar']))) {
+        $nome = $_POST["Nome"];
+        $nifNumber = $_POST["nif"];
+        $nifNumberr = (int)$nifNumber;
+        $Morada = $_POST["morada"];
+        $localidade = $_POST["local"];
 
-    $stmt = $conn->prepare("INSERT INTO cliente (nome,nif,morada, localidade) VALUES(?,?,?,?)");
-    $stmt->bind_param("ssss", $nome,$nifNumberr,$Morada, $localidade);
-    $stmt->execute();
-
+        $sql = "INSERT INTO utilizador (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
+        if (mysqli_query($conn, $sql)) { }
+    } elseif (isset($_POST['apagar'])) {
+        $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
+        if (mysqli_query($conn, $sql)) { }
+    }
 }
 ?>
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css\bootstrap.css">
+    <link rel="stylesheet" href="styles\table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <style>
@@ -49,84 +57,101 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background: #0056b3;
     }
 
-    tbody,
-    thead tr {
-        display: block;
+    .btn-success {
+        background-color: #01d932;
+    }
+
+    .btn-success:hover {
+        background-color: #01bc2c;
+    }
+
+    body {
+        color: #566787;
+    }
+
+    table,
+    tr td {
+        /* border: 1px solid red */
     }
 
     tbody {
-        height: 18rem;
+        display: block;
+        max-height: 22rem;
         overflow-y: auto;
         overflow-x: hidden;
     }
 
-    tbody td,
-    thead th {
-        width: 230px;
+    thead,
+    tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        /* even columns width , fix width of table too*/
     }
 
-    thead th:last-child {
-        width: 196px;
-        /* 140px + 16px scrollbar width */
+    thead {
+        width: calc(100% - 0rem)
+            /* scrollbar is average 1em/16px width, remove it from thead width */
     }
 </style>
 
 <body>
-    <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="ListarClientes_admin.php" method="post">
-                <div style="text-align:center">
-                    <h1 style="margin-bottom:1rem;">Clientes</h1>
-                    <button type="button" class="btn btn-primary" style="margin-bottom:1rem;" data-toggle="modal" data-target="#exampleModal">
-                        Registar cliente
-                    </button>
-                    <form name="myForm" onsubmit="return validateForm()">
-                        <div class="container" style="margin-left:auto; margin-right:auto">
-                            <div style="text-align:center">
-                                <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
-                            </div>
-                            <div style="margin-left:5rem; margin-right:auto">
-                                <table style="margin-top:1rem; margin-left:-25px; text-align:center" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>NIF</th>
-                                            <th style="width:25rem;">Morada</th>
-                                            <th>Localidade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $dado = mysqli_query($conn, "SELECT * FROM cliente");
-                                        foreach ($dado as $eachRow) {
-                                            $nomeID = $eachRow['id'];
-                                            $Nome = $eachRow['nome'];
-                                            $nif = $eachRow['nif'];
-                                            $Morada = $eachRow['morada'];
-                                            $Localidade = $eachRow['localidade'];
-                                            echo '<tr>';
-                                            echo '<td> ' . $Nome . '</td>';
-                                            echo '<td> ' . $nif . '</td>';
-                                            echo '<td style="width:25rem;"> ' . $Morada . '</td>';
-                                            echo '<td> ' . $Localidade . '</td>';
-                                            echo '</tr>';
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarClientes_admin.php" method="post" novalidate>
+        <div class="container">
+            <div class="table-wrapper" style="margin-top:5rem">
+                <div class="table-title" style="background-color:#0275d8;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gerir <b>Clientes</b></h2>
                         </div>
-                    </form>
+                        <div class="col-sm-6">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
+                        </div>
+                    </div>
                 </div>
-            </form>
+                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
+                    <thead>
+                        <tr>
+                            <th style="width:20%">Nome</th>
+                            <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
+                            <th style="width:17rem; padding: 0rem 1.1rem">Morada</th>
+                            <th style="padding: 0 1rem">Localidade</th>
+                            <th style="padding: 0; width:10%">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $dados = mysqli_query($conn, "SELECT * FROM cliente");
+                        foreach ($dados as $eachRow) {
+                            $buscaId = $eachRow['id'];
+                            $nome = $eachRow['nome'];
+                            $nif = $eachRow['nif'];
+                            $morada = $eachRow['morada'];
+                            $localidade = $eachRow['localidade'];
+                            echo '<tr>';
+                            echo '<td style="width:20%"> ' . $nome . '</td>';
+                            echo '<td style="width:20%"> ' . $nif . '</td>';
+                            echo '<td style="width:17rem;"> ' . $morada . '</td>';
+                            echo '<td> ' . $localidade . '</td>';
+                            echo '<td style="padding: 0 3.6rem">';
+                            ?>
+                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                            <?php '</td>';
+                            echo '</tr>';
+                        }
+                        ?><div id="Testeeee"></div>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Registar um cliente</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Registar Cliente</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -139,12 +164,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Registar</button>
+                        <button type="submit" name="registar" class="btn btn-primary">Registar</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- /card-container -->
+        <!-- Edit Modal HTML -->
+        <div id="editEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Cliente</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <?php if (isset($_POST['teste'])) {
+                            $sql = "SELECT * FROM cliente WHERE id='" . $_POST['teste'] . "'";
+                            $sql2 = mysqli_fetch_array($sql);
+                            $nome = $sql2['nome'];
+                        } ?>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" value="<?php echo $nome ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Morada</label>
+                            <textarea class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Telemóvel</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-info" value="Guardar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Apagar Cliente</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem a certeza que quer apagar estes registos?</p>
+                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 
 </html>
@@ -174,5 +256,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     setInputFilter(document.getElementById("uintTextBox"), function(value) {
         return /^\d*$/.test(value);
+    });
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<script>
+    $('button[name="teste2"]').on("click", function() {
+        $.ajax({
+            url: 'teste.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#Testeeee").html(data);
+            },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function() {
+            if (this.checked) {
+                checkbox.each(function() {
+                    this.checked = true;
+                });
+            } else {
+                checkbox.each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function() {
+            if (!this.checked) {
+                $("#selectAll").prop("checked", false);
+            }
+        });
     });
 </script>

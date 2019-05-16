@@ -3,10 +3,6 @@
 <?php
 include 'navbarAdmin.php';
 include 'db.php';
-$pw2 = "";
-$Fim = false;
-$pw1 = "";
-$Show = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pw = $_POST["MainPw"];
     $pw2 = $_POST["Pw2"];
@@ -17,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($pw == $pw2) {
         $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
-    $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
-    $stmt->execute();
+        $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+        $stmt->execute();
     } else {
         ?>
         <script type="text/javascript">
@@ -31,66 +27,138 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="css\bootstrap.css">
+    <link rel="stylesheet" href="styles\table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+    .btn-success {
+        background-color: #01d932;
+    }
+
+    .btn-success:hover {
+        background-color: #01bc2c;
+    }
+
+    body {
+        color: #566787;
+    }
+
+    table,
+    tr td {
+        /* border: 1px solid red */
+    }
+
+    tbody {
+        display: block;
+        max-height: 22rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    thead,
+    tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        /* even columns width , fix width of table too*/
+    }
+
+    thead {
+        width: calc(100% - 0rem)
+            /* scrollbar is average 1em/16px width, remove it from thead width */
+    }
+</style>
+
 <body>
-    <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="ListarUtilizadores.php" method="post">
-                <div style="text-align:center">
-                    <h1 style="margin-bottom:1rem;">Utilizadores</h1>
-                    <button type="button" class="btn btn-primary" style="margin-bottom:1rem;" data-toggle="modal" data-target="#exampleModal">
-                        Registar utilizador
-                    </button>
-                    <div class="container">
-                        <div style="text-align:center">
-                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarUtilizadores.php" method="post" novalidate>
+        <div class="container">
+            <div class="table-wrapper" style="margin-top:5rem; margin-left:auto; margin-right:auto; width:65rem">
+                <div class="table-title" style="background-color:#0275d8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gerir <b>Utilizadores</b></h2>
                         </div>
-                        <table class="table" style="font-size:16px;">
-                            <thead>
-                                <tr>
-                                    <th style="width:20%">Nome</th>
-                                    <th style="width:30%">Email</th>
-                                    <th>Estatuto</th>
-                                    <th>Armazém</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $dado = mysqli_query($conn, "SELECT utilizador.id as id, utilizador.nome as nome, utilizador.email as email,utilizador.perfil_id as perfil_id,armazem_id, armazem.nome as nome, perfil.nome as pnome FROM utilizador INNER JOIN armazem on armazem.id=utilizador.armazem_id INNER JOIN perfil on perfil.id=utilizador.perfil_id");
-                                foreach ($dado as $eachRow) {
-
-                                    $nomeID = $eachRow['id'];
-                                    $Nome = $eachRow['nome'];
-                                    $email = $eachRow['email'];
-                                    $ArmazemNome  = $eachRow['nome'];
-                                    $PerfilNome  = $eachRow['pnome'];
-
-                                    echo '<tr>';
-                                    echo '<td> ' . $Nome . '</td>';
-                                    echo '<td> ' . $email . '</td>';
-                                    echo '<td> ' . $PerfilNome . '</td>';
-                                    echo '<td> ' . $ArmazemNome . '</td>';
-                                    echo '</tr>';
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                        <div class="col-sm-6">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Utilizador</span></a>
+                        </div>
                     </div>
                 </div>
-            </form>
+                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
+                    <thead>
+                        <tr>
+                            <th style="width:30%">Nome</th>
+                            <th style="width:35%">Email</th>
+                            <th style="width:25%">Estatuto</th>
+                            <th style="width:30%">Armazém</th>
+                            <th style="width:14%">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $dado = mysqli_query($conn, "SELECT utilizador.id as id, utilizador.nome as nome, utilizador.email as email,utilizador.perfil_id as perfil_id,armazem_id, armazem.nome as armazem_nome, perfil.nome as pnome FROM utilizador INNER JOIN armazem on armazem.id=utilizador.armazem_id INNER JOIN perfil on perfil.id=utilizador.perfil_id ORDER BY id ASC");
+                        foreach ($dado as $eachRow) {
+                            $buscaId = $eachRow['id'];
+                            $nomeID = $eachRow['id'];
+                            $Nome = $eachRow['nome'];
+                            $email = $eachRow['email'];
+                            $ArmazemNome  = $eachRow['armazem_nome'];
+                            $PerfilNome  = $eachRow['pnome'];
+                            echo '<tr>';
+                            echo '<td style="width:30%"> ' . $Nome . '</td>';
+                            echo '<td style="width:35%"> ' . $email . '</td>';
+                            echo '<td style="width:25%"> ' . $PerfilNome . '</td>';
+                            echo '<td style="width:30%"> ' . $ArmazemNome . '</td>';
+                            echo '<td style="width:15%">';
+                            ?>
+                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                            <?php '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        <!-- <div id="Testeeee"></div> -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <form name="myForm" onsubmit="return validateForm()">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Registar um utilizador</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Registar Utilizador</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -100,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
                         <input style="margin-top:1rem; height:auto;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
                         <input style="margin-top:1rem; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
-                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");
@@ -111,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         ?>
                         </select>
-                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" class="form-control" name="combobox2" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="combobox2" required autofocus>
                             <option value="" disabled selected>Estatuto</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM perfil");
@@ -125,7 +193,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Registar</button>
+                        <button type="submit" name="registar" class="btn btn-primary">Registar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Modal HTML -->
+        <div id="editEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Utilizador</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <?php if (isset($_POST['teste'])) {
+                            $sql = "SELECT * FROM utilizador WHERE id='" . $_POST['teste'] . "'";
+                            $sql2 = mysqli_fetch_array($sql);
+                            $nome = $sql2['nome'];
+                        } ?>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" value="<?php echo $nome ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Morada</label>
+                            <textarea class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Telemóvel</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-info" value="Guardar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Apagar Utilizador</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem a certeza que quer apagar estes registos?</p>
+                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
                     </div>
                 </div>
             </div>
@@ -160,5 +285,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     setInputFilter(document.getElementById("uintTextBox"), function(value) {
         return /^\d*$/.test(value);
+    });
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<script>
+    $('button[name="teste2"]').on("click", function() {
+        $.ajax({
+            url: 'teste.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#Testeeee").html(data);
+            },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function() {
+            if (this.checked) {
+                checkbox.each(function() {
+                    this.checked = true;
+                });
+            } else {
+                checkbox.each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function() {
+            if (!this.checked) {
+                $("#selectAll").prop("checked", false);
+            }
+        });
     });
 </script>

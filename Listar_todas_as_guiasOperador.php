@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     tbody {
-        height: 18rem;
+        max-height: 18rem;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -69,12 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timeRN = date("Y-m-d");
     ?>
     <div class="row align-items-center">
-        <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
+        <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="listagem_pedidos_armazem_operador.php" method="post">
                 <div style="text-align:center;">
-                    <h1 style="margin-bottom:1rem;">Consulta das Guias Diarias</h1>
-                    <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem;"  id="DataEntrega2"  type="date" name="DataEntrega2">
+                    <h1 style="margin-bottom:1rem;">Consulta das Guias Diárias</h1>
+                    <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:15rem;"  id="DataEntrega2"  type="date" name="DataEntrega2">
                     <div>
                     <ul class="nav nav-pills">
                     <li class="nav-item">

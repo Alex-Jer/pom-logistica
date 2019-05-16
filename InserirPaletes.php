@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <div class="row align-items-center">
-    <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
+    <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: 10000px;">
       <p id="profile-name" class="profile-name-card"></p>
       <form class="container" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
         <div style="text-align:center">
@@ -188,7 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
                     </div>
                     <input placeholder="Nome da palete" class="form-control" style="width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
-                    
                   </div>
                 </div>
                 <div class="modal-footer">
