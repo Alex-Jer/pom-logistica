@@ -53,16 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (mysqli_query($conn, $sql10)) {
         ?>
       <?php
-      }
-      $sql11 = mysqli_query($conn, "UPDATE palete SET Data_Saida = '$data'  where artigo_id= $artigo and Data_Saida IS NULL ORDER BY Data ASC LIMIT $npal");
-      if (mysqli_query($conn, $sql11)) {
-        ?>
-        <?php
-      }
-    
-    
+    }
+    $sql11 = mysqli_query($conn, "UPDATE palete SET Data_Saida = '$data'  where artigo_id= $artigo and Data_Saida IS NULL ORDER BY Data ASC LIMIT $npal");
+    if (mysqli_query($conn, $sql11)) {
+      ?>
+      <?php
     }
   }
+}
 }
 ?>
 
@@ -73,6 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="styles\style3.css">
   <link rel="stylesheet" href="css\bootstrap.css">
 </head>
+
+<style>
+  .nav-pills .nav-link.active,
+  .nav-pills .show>.nav-link {
+    background-color: #ffffff;
+  }
+</style>
 
 <body>
   <form class="container" action="Guia_Operador_operador.php" method="post" id="mainForm" novalidate>

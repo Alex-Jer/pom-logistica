@@ -54,7 +54,7 @@ function echoActiveClassIfRequestMatches($requestUri)
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasAdmin.php") ?>" href="Listar_todas_as_guiasAdmin.php">Pedidos</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasAdmin") ?>" href="Listar_todas_as_guiasAdmin.php">Pedidos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>

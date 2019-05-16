@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ::-webkit-scrollbar-thumb:hover {
         background: #0056b3;
     }
-
+    
     tbody,
     thead tr {
         display: block;
