@@ -11,11 +11,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Morada = $_POST["morada"];
         $localidade = $_POST["local"];
 
-        $sql = "INSERT INTO utilizador (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
+        $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
         if (mysqli_query($conn, $sql)) { }
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
         if (mysqli_query($conn, $sql)) { }
+    } elseif (isset($_POST['save'])) {
+        $eNome = $_POST['eNome'];
+        $eNif = $_POST['eNif'];
+        $eMorada = $_POST['eMorada'];
+        $eLocalidade = $_POST['eLocaliadade'];
+
+        $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
+        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
+        $stmt->execute();
     }
 }
 ?>
@@ -96,9 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarClientes_admin.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="ListarClientes_admin.php" method="post" novalidate>
         <div class="container">
-            <div class="table-wrapper" style="margin-top:5rem">
+            <div class="table-wrapper" style="margin-top:5rem;">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
                         <div class="col-sm-6">
@@ -114,9 +123,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <tr>
                             <th style="width:20%">Nome</th>
                             <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
-                            <th style="width:17rem; padding: 0rem 1.1rem">Morada</th>
-                            <th style="padding: 0 1rem">Localidade</th>
-                            <th style="padding: 0; width:10%">Ações</th>
+                            <th style="width:20rem; padding: 0rem 1.1rem">Morada</th>
+                            <th style="width:21%">Localidade</th>
+                            <th style="width:14%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             echo '<tr>';
                             echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:17rem;"> ' . $morada . '</td>';
-                            echo '<td> ' . $localidade . '</td>';
-                            echo '<td style="padding: 0 3.6rem">';
+                            echo '<td style="width:20rem;"> ' . $morada . '</td>';
+                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<td style="width: 15%">';
                             ?>
-                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
                             <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
                             <?php '</td>';
@@ -177,32 +186,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h4 class="modal-title">Editar Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body">
-                        <?php if (isset($_POST['teste'])) {
-                            $sql = "SELECT * FROM cliente WHERE id='" . $_POST['teste'] . "'";
-                            $sql2 = mysqli_fetch_array($sql);
-                            $nome = $sql2['nome'];
-                        } ?>
-                        <div class="form-group">
-                            <label>Nome</label>
-                            <input type="text" class="form-control" value="<?php echo $nome ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Morada</label>
-                            <textarea class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Telemóvel</label>
-                            <input type="text" class="form-control" required>
-                        </div>
+                    <div class="modal-body" id="OlaEdit">
+
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-info" value="Guardar">
+                        <input type="submit" class="btn btn-info" name="save" value="Guardar">
                     </div>
                 </div>
             </div>
@@ -279,6 +268,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     });
 </script>
+
+<script>
+    $('button[name="teste4"]').on("click", function() {
+        $.ajax({
+            url: 'ajaxEdit.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#OlaEdit").html(data);
+            },
+        });
+    });
+</script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {

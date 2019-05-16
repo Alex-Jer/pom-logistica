@@ -1,0 +1,71 @@
+<?php
+include 'db.php';
+
+
+echo '<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Guia Transporte</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  </button>
+</div>
+<div class="modal-body">
+<select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto; font-size:14px" id="clienteCBID">
+                    <option value="" disabled selected>Cliente</option>';
+                    $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
+                    foreach ($busca as $eachRow) {
+                        echo '<option value='.$eachRow['id'].'>'.$eachRow['nome'].'</option>';
+                }
+                echo'
+                </select>
+                <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto;" id="artigoseID">
+                    <option value="" disabled selected>Artigo</option>
+                </select>
+                <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto;" id="size" required>
+                <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto;" name=" horadescarga" class="textbox-n" type="datetime-local" onfocus="(this.type="datetime-local")" id="size">
+                <div style="text-align:center;" class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="height:2.35rem; margin-top:0.7rem; height:auto;" id="size">REQ-</span>
+                    </div>
+                    <input type="text" class="form-control" style="width:5rem; margin-top:0.7rem; height:auto;" placeholder="Número de requisição" name="Referencia" id="size" required>
+                </div>
+                <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Numero de Paletes" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+                <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto; font-size:14px" required>
+    
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="submit" class="btn btn-primary" name="saveTransporte">Save changes</button>
+</div>
+</div>';
+?>
+<script>
+    $("#artigoID").on("change", function() {
+        $.ajax({
+            url: 'ajaxMaxGuiaT.php',
+            type: 'POST',
+            data: {
+                id: $("#artigoID").val()
+            },
+            success: function(data) {
+                document.getElementById("inputNPaletes").setAttribute("max", data);
+            },
+        });
+    });
+</script>
+
+<script>
+  $("#clienteCBID").on("change", function() {
+    $.ajax({
+      url: 'ajaxaArtigoCliente.php',
+      type: 'POST',
+      data: {
+        id: $("#clienteCBID").val()
+      },
+      success: function(data) {
+        $("#artigoseID").html(data);
+
+      },
+    });
+  });
+</script> 
