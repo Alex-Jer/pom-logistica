@@ -33,11 +33,13 @@ function echoActiveClassIfRequestMatches($requestUri)
     <link rel="stylesheet" href="css\bootstrap.css">
 </head>
 
-<body>
+
+<body >
     <nav role="navigation">
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("operador") ?>" href="operador.php">Home</a>
+        <li class="nav-item">
+            <a class="d-block" style="margin-top:5px"href="Menu.php" rel="home"><img class="d-block" src="images/Logo.png" alt="logo"></a>
+        
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes_operador") ?>" href="ListarClientes_operador.php">Clientes</a>
@@ -64,6 +66,9 @@ function echoActiveClassIfRequestMatches($requestUri)
             </li>
         </ul>
     </nav>
+    
+
+
 </body>
 
 </html>
