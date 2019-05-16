@@ -43,16 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
-    .btn-success {
-        background-color: #01d932;
-    }
-
-    .btn-success:hover {
-        background-color: #01bc2c;
-    }
-
     body {
-        color: #566787;
         overflow: hidden;
     }
 
@@ -76,26 +67,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background: #0056b3;
     }
 
-    tbody,
-    thead tr {
-        display: block;
+    .btn-success {
+        background-color: #01d932;
+    }
+
+    .btn-success:hover {
+        background-color: #01bc2c;
+    }
+
+    body {
+        color: #566787;
+    }
+
+    table,
+    tr td {
+        /* border: 1px solid red */
     }
 
     tbody {
-        height: 21rem;
+        display: block;
+        max-height: 22rem;
         overflow-y: auto;
         overflow-x: hidden;
     }
 
-     tbody td,
-    thead th {
-        width: 13.5rem;
-    } 
+    thead,
+    tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        /* even columns width , fix width of table too*/
+    }
 
-    /* thead th:last-child {
-        width: 1rem;
-         140px + 16px scrollbar width 
-    } */
+    thead {
+        width: calc(100% - 1rem)
+            /* scrollbar is average 1em/16px width, remove it from thead width */
+    }
 </style>
 
 <body>
@@ -115,11 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:20%">Nome</th>
-                            <th style="width:20%">NIF</th>
-                            <th style="width:20%">Morada</th>
-                            <th style="width:20%">Localidade</th>
-                            <th style="width:20%">Ações</th>
+                            <th style="width:25%">Nome</th>
+                            <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
+                            <th style="width:15rem; padding: 0rem 1.1rem">Morada</th>
+                            <th style="padding: 0 1rem">Localidade</th>
+                            <th style="padding: 0">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -132,23 +139,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
                             echo '<tr>';
-                            echo '<td style="width:20%"> ' . $nome . '</td>';
+                            echo '<td style="width:25%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:20%"> ' . $morada . '</td>';
-                            echo '<td style="width:20%"> ' . $localidade . '</td>';
-                            echo '<td style="width:20%">';
-                            echo '<tr>';
-                            echo '<td style="width:20%"> ' . $nome . '</td>';
-                            echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:20%"> ' . $morada . '</td>';
-                            echo '<td style="width:20%"> ' . $localidade . '</td>';
-                            echo '<td style="width:20%">';
-                            echo '<tr>';
-                            echo '<td style="width:20%"> ' . $nome . '</td>';
-                            echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:20%"> ' . $morada . '</td>';
-                            echo '<td style="width:20%"> ' . $localidade . '</td>';
-                            echo '<td style="width:20%">';
+                            echo '<td style="width:15rem;"> ' . $morada . '</td>';
+                            echo '<td> ' . $localidade . '</td>';
+                            echo '<td style="padding: 0 3.495rem">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
@@ -159,18 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ?><div id="Testeeee"></div>
                     </tbody>
                 </table>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <!-- Modal -->
