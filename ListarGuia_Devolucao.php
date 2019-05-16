@@ -37,20 +37,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         background: #0056b3;
     }
 
+    .btn:focus,
+    .btn:active {
+        outline: none !important;
+        box-shadow: none;
+    }
+
     tbody,
     thead tr {
         display: block;
     }
 
     tbody {
-        height: 21rem;
+        max-height: 21rem;
         overflow-y: auto;
         overflow-x: hidden;
     }
 
     tbody td,
     thead th {
-        width: 190px;
+        width: 220px;
     }
 
     thead th:last-child {
@@ -61,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 
 <body>
     <div class="row align-items-center">
-        <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
+        <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="pdfDevolucao.php" method="post">
                 <div style="text-align:center">
@@ -71,11 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                             <thead>
                                 <tr>
                                     <th>Cliente</th>
-                                    <th style="width:25%">Dia e hora da carga</th>
+                                    <th style="width:25%;">Dia e hora da carga</th>
                                     <th style="width:15%">Nº de paletes</th>
                                     <th>Artigo</th>
                                     <th>Armazém</th>
-                                    <th></th>
+                                    <th>PDF</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                                     echo '<td>' . $nomeArmazem . '</td>';
                                     ?>
                                     <!-- <td><input type="submit" name="Ola" ></td> -->
-                                    <td><button type="submit" class="btn btn-primary" name="GuiaID" value="<?php echo $GuiaID ?>">PDF</button></td>
+                                    <td><button type="submit" style="width:2rem; height:2rem" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
                                     <?php
                                     echo '</tr>';
                                 }

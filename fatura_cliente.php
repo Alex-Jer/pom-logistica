@@ -30,9 +30,72 @@ $timeRN = date("Y-m-d H:i:s");
     <link rel="stylesheet" href="css\bootstrap.css">
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+    .btn:focus,
+    .btn:active {
+        outline: none !important;
+        box-shadow: none;
+    }
+
+    tbody,
+    thead tr {
+        display: block;
+    }
+
+    tbody {
+        max-height: 19rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    tbody td,
+    thead th {
+        width: 180px;
+    }
+
+    thead th:last-child {
+        width: 17rem;
+        /* 140px + 16px scrollbar width */
+    }
+</style>
+
 <body>
+    <form class="container" action="pdfFatura.php" method="post">
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            ?>
+            <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
+            <button type="submit" style="position:absolute; z-index:1; margin-left:42.5rem; margin-top:10.2rem;" id="pdf" class="btn"><i class="fa fa-file-pdf-o" style="font-size:34px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button>
+        <?php
+    }
+    ?>
+    </form>
     <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+        <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; margin-left:-8rem; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="fatura_cliente.php" method="post">
                 <h1 style="margin-bottom:1rem;">Fatura mensal</h1>
@@ -48,15 +111,16 @@ $timeRN = date("Y-m-d H:i:s");
                     }
                     ?>
                     </select>
-                    <table class="table">
+                    <table class="table" style="width: 75rem; margin-left:-3rem">
                         <thead>
                             <tr>
                                 <th style="width:15%">Tipo de Guia</th>
-                                <th style="width:15%">Nº Paletes</th>
-                                <th style="width:25%">Preço por palete / zona</th>
-                                <th style="width:25%">Preço de Carga/Descarga</th>
-                                <th style="width:10%">Dias</th>
-                                <th style="width:25%">Total</th>
+                                <th style="width:15%">Nº de requisição</th>
+                                <th style="width:10%">Nº Paletes</th>
+                                <th style="width:20%">Preço por palete / zona</th>
+                                <th style="width:20%">Preço de Carga/Descarga</th>
+                                <th>Dias</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,10 +178,11 @@ $timeRN = date("Y-m-d H:i:s");
 
                                     ?>
                                     <tr>
-                                        <td><?php echo "$NomeGuia <br> --------- <br> $numReq" ?> </td>
-                                        <td><?php echo $numPaletes ?> </td>
-                                        <td><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
-                                        <td><?php echo $CargaFinal . " €" ?></td>
+                                        <td style="width:15%;"><?php echo "$NomeGuia" ?> </td>
+                                        <td style="width:15%"><?php echo "$numReq" ?> </td>
+                                        <td style="width:10%"><?php echo $numPaletes ?> </td>
+                                        <td style="width:20%"><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
+                                        <td style="width:20%"><?php echo $CargaFinal . " €" ?></td>
                                         <td><?php echo $diasArmazenamento ?></td>
                                         <td><?php echo $Total . " €" ?></td>
                                     </tr>
@@ -127,22 +192,10 @@ $timeRN = date("Y-m-d H:i:s");
                         ?>
                         </tbody>
                     </table>
-
             </form><!-- /form -->
-            <form class="container" action="pdfFatura.php" method="post">
-                <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    ?>
-                    <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-                    <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.375rem; margin-right:19.5rem; margin-top:-12.05rem; float:right;">PDF</button>
-                <?php
-            }
-            ?>
-            </form>
         </div><!-- /card-container -->
     </div><!-- /container -->
-    <script type="text/javascript"></script>
-    <script type="text/javascript"></script>
+
 </body>
 
 </html>

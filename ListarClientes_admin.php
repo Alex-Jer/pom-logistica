@@ -16,16 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
         if (mysqli_query($conn, $sql)) { }
-    }elseif (isset($_POST['save']))
-    {
-        $eNome= $_POST['eNome'];
+    } elseif (isset($_POST['save'])) {
+        $eNome = $_POST['eNome'];
         $eNif = $_POST['eNif'];
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
 
         $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssss", $eNome,$eNif,$eMorada, $eLocalidade);
-       $stmt->execute();
+        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
+        $stmt->execute();
     }
 }
 ?>
@@ -100,15 +99,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     thead {
-        width: calc(100% - 1rem)
+        width: calc(100% - 0rem)
             /* scrollbar is average 1em/16px width, remove it from thead width */
     }
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarClientes_operador.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="ListarClientes_admin.php" method="post" novalidate>
         <div class="container">
-            <div class="table-wrapper" style="margin-top:5rem">
+            <div class="table-wrapper" style="margin-top:5rem;">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
                         <div class="col-sm-6">
@@ -122,11 +121,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:25%">Nome</th>
+                            <th style="width:20%">Nome</th>
                             <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
-                            <th style="width:15rem; padding: 0rem 1.1rem">Morada</th>
-                            <th style="padding: 0 1rem">Localidade</th>
-                            <th style="padding: 0">Ações</th>
+                            <th style="width:20rem; padding: 0rem 1.1rem">Morada</th>
+                            <th style="width:21%">Localidade</th>
+                            <th style="width:14%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,11 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
                             echo '<tr>';
-                            echo '<td style="width:25%"> ' . $nome . '</td>';
+                            echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:15rem;"> ' . $morada . '</td>';
-                            echo '<td> ' . $localidade . '</td>';
-                            echo '<td style="padding: 0 3.495rem">';
+                            echo '<td style="width:20rem;"> ' . $morada . '</td>';
+                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<td style="width: 15%">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
@@ -188,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="OlaEdit">
-                        
+
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
