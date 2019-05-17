@@ -236,12 +236,12 @@
                                         <div class="col sm-1 colop">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Confirmar</b></h5>
-                                                                <p>Guias Entrega</p>
+                                                                <h5><b>Pedidos</b></h5>
+                                                                <p>Diarias</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="inserirPaletes.php" class="small-box-footer">
+                                                        <a href="Listar_todas_as_guiasOperador.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
@@ -250,12 +250,12 @@
                                         <div class="col sm-1 colop">
                                                  <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Confirmar</b></h5>
-                                                                <p>Guias Entrega</p>
+                                                                <h5><b>Sair</b></h5>
+                                                                <p>Terminar sessão</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="inserirPaletes.php" class="small-box-footer">
+                                                        <a href="index.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
