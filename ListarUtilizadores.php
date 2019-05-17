@@ -4,24 +4,45 @@
 include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pw = $_POST["MainPw"];
-    $pw2 = $_POST["Pw2"];
-    $nome = $_POST["Nome"];
-    $arID = $_POST["combobox"];
-    $pfID = $_POST["combobox2"];
-    $email = $_POST["Email"];
+    if (isset($_POST["registar"]))
+    { $pw = $_POST["MainPw"];
+        $pw2 = $_POST["Pw2"];
+        $nome = $_POST["Nome"];
+        $arID = $_POST["combobox"];
+        $pfID = $_POST["combobox2"];
+        $email = $_POST["Email"];
+    
+        if ($pw == $pw2) {
+            $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
+            $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+            $stmt->execute();
+        } else {
+            ?>
+            <script type="text/javascript">
+                alert("As passwords não coincidem");
+            </script>
+        <?php
 
-    if ($pw == $pw2) {
-        $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
-        $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+      }
+    }
+    elseif (isset($_POST['apagar']))
+
+    {
+        $id = $_POST["ola"];
+        $stmt = $conn->prepare("DELETE FROM utilizador WHERE id=?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
-    } else {
-        ?>
-        <script type="text/javascript">
-            alert("As passwords não coincidem");
-        </script>
-    <?php
-}
+    }
+    elseif (isset($_POST['save'])) {
+        $eNome = $_POST['eNome'];
+        $eArmazem = $_POST["eArmazem"];
+        $eMail = $_POST['eEmail'];
+
+        $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
+        $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
+        $stmt->execute();
+    }
+   
 }
 ?>
 
@@ -135,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             echo '<td style="width:30%"> ' . $ArmazemNome . '</td>';
                             echo '<td style="width:15%">';
                             ?>
-                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
                             <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
                             <?php '</td>';
@@ -146,6 +167,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div id="Testeeee">
+
         </div>
         <!-- Modal -->
         <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -208,32 +232,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h4 class="modal-title">Editar Utilizador</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body">
-                        <?php if (isset($_POST['teste'])) {
-                            $sql = "SELECT * FROM utilizador WHERE id='" . $_POST['teste'] . "'";
-                            $sql2 = mysqli_fetch_array($sql);
-                            $nome = $sql2['nome'];
-                        } ?>
-                        <div class="form-group">
-                            <label>Nome</label>
-                            <input type="text" class="form-control" value="<?php echo $nome ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Morada</label>
-                            <textarea class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Telemóvel</label>
-                            <input type="text" class="form-control" required>
-                        </div>
+                    <div class="modal-body" id="OlaEdit">
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-info" value="Guardar">
+                        <input type="submit" class="btn btn-info" name="save" value="Guardar">
                     </div>
                 </div>
             </div>
@@ -364,4 +367,19 @@ function myFunction() {
     $("#ieye2").addClass('fa fa-eye-open');
   }
 }
+</script>
+
+<script>
+    $('button[name="teste4"]').on("click", function() {
+        $.ajax({
+            url: 'ajaxEditUtilizador.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#OlaEdit").html(data);
+            },
+        });
+    });
 </script>
