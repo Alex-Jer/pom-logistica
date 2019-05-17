@@ -37,11 +37,11 @@ foreach ($query as $eachRow) {
     $nomeArmazem = $eachRow['armazemnome'];
     //Inacabado
     echo '<tr>';
-    echo '<td style="width:20%"> ' . $nomeCliente . '</t>';
-    echo '<td style="width:20%; padding: 0 0"> ' . $numReq . '</td>';
-    echo '<td style="width:20%; padding: 0 0"> ' . $nomeArmazem . '</td>';
-    echo '<td style="width:20%; padding: 0 0"> ' . date($dataPrevista) . '</td>';
-    echo '<td style="width:17%"> ' . $numPaletes . '</td>';
+    echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
+    echo '<td style="width:20%;"> ' . $numReq . '</td>';
     echo '<td style="width:25%;"> ' . $morada . '</td>';
+    echo '<td style="width:20%;"> ' . date($dataPrevista) . '</td>';
+    echo '<td style="width:17%;"> ' . $numPaletes . '</td>';
+    echo '<td style="width:20%;"> ' . $nomeArmazem . '</td>';
     echo '</tr>';
 }

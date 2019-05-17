@@ -38,7 +38,7 @@ function echoActiveClassIfRequestMatches($requestUri)
     <nav role="navigation">
         <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="d-block" style="margin-top:5px"href="Menu.php" rel="home"><img class="d-block" src="images/Logo.png" alt="logo"></a>
+            <a class="d-block" style="margin-top:5px"href="MenuOperador.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
         
             </li>
             <li class="nav-item">
