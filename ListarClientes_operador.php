@@ -79,11 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: #566787;
     }
 
-    table,
-    tr td {
-        /* border: 1px solid red */
-    }
-
     tbody {
         display: block;
         max-height: 22rem;

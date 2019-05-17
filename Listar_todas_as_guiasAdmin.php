@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px">
+  <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute; z-index:1; margin-left:12rem;">
     <p id="profile-name" class="profile-name-card"></p>
     <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post">
       <div class="table-wrapper" style="margin-top:10rem;">
@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
           </li>
           <li style="margin-top:-8.5rem;">
-            <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; margin-right:auto; width:17rem;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+            <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; margin-right:auto; width:17rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
           </li>
         </ul>
         <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem"></div>

@@ -186,44 +186,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-  <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
-    <div class="container" style="margin-left:-6rem">
-      <ul class="nav nav-pills" style="margin-top:4rem;">
-        <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
-        </li>
-        <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
-        </li>
-      </ul>
-      <div class="table-wrapper" style="margin-top:0.3rem; width:80rem">
-        <div class="table-title" style="background-color:#0275d8; width:80rem">
-          <div class="row">
-            <div class="col-sm-6">
-              <h2>Gerir <b>Paletes</b></h2>
-            </div>
-          </div>
-        </div>
-        <div style="text-align:center; width:80rem">
-          <div class="container">
-            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem">
-              <thead style="width:77rem">
+  <div class="row align-items-center">
+    <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: 10000px;">
+      <p id="profile-name" class="profile-name-card"></p>
+      <form class="container" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
+        <div style="text-align:center">
+          <h1 style="margin-top:1rem; margin-bottom:1rem;">Paletes</h1>
+          <div class="container" style="margin-left:-5rem">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+              </li>
+              <li class="nav-item">
+                <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+              </li>
+            </ul>
+            <table class="table" style="font-size:16px; margin-top:1.5rem; width:75rem;">
+              <thead>
                 <tr>
-                  <th style="width:20%">Cliente</th>
-                  <th style="width:20%">Nº requisição</th>
+                  <th style="width:15%">Cliente</th>
+                  <th style="width:10%">Nº guia</th>
                   <th style="width:20%">Dia e hora da carga</th>
-                  <th style="width:15%">Nº de paletes</th>
-                  <th style="width:20%">Artigo</th>
-                  <th style="width:20%">Armazém</th>
-                  <th style="width:15%">Confirmar</th>
-                  <th style="width:15%">Registar Palete</th>
+                  <th style="width:10%">Nº de paletes</th>
+                  <th style="width:15%">Artigo</th>
+                  <th style="width:10%">Armazém</th>
+                  <th style="width:10%"></th>
+                  <th style="width:10%"></th>
                 </tr>
               </thead>
               <tbody id="Testeeee">
               </tbody>
             </table>
           </div>
-          <!-- <div id="DivEntrega2"></div> -->
+          <div id="DivEntrega2"></div>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -265,13 +260,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </body>
 
 </html>
-
 
 <script>
   $("#notConfirmed").on("click", function() {

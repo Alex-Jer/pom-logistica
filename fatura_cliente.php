@@ -100,11 +100,10 @@ $timeRN = date("Y-m-d H:i:s");
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-            <!-- <button type="submit" style="position:absolute; z-index:1; margin-left:42.5rem; margin-top:10.2rem;" id="pdf" class="btn"><i class="fa fa-file-pdf-o" style="font-size:34px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button> -->
             <button type="submit" class="btn btn-danger" id="pdf" style="margin-left:26rem;"><i class="fa fa-file-pdf-o"></i> <span>Consultar PDF</span></button>
         <?php
-        }
-        ?>
+    }
+    ?>
     </form>
     <form style="font-family: 'Varela Round', sans-serif; font-size:13px; margin-left:6.5rem; position:absolute; z-index:1;" action="fatura_cliente.php" method="post" novalidate>
         <div class="container">
@@ -130,7 +129,7 @@ $timeRN = date("Y-m-d H:i:s");
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover" style="margin-top:-0.65rem;">
+                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
                             <th style="width:15%">Tipo de Guia</th>
@@ -138,8 +137,8 @@ $timeRN = date("Y-m-d H:i:s");
                             <th style="width:10%">Nº Paletes</th>
                             <th style="width:20%">Preço por palete / zona</th>
                             <th style="width:20%">Preço de Carga/Descarga</th>
-                            <th>Dias</th>
-                            <th>Total</th>
+                            <th style="width:10%">Dias</th>
+                            <th style="width:10%">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -199,11 +198,11 @@ $timeRN = date("Y-m-d H:i:s");
                                 <tr>
                                     <td style="width:15%;"><?php echo "$NomeGuia" ?> </td>
                                     <td style="width:15%"><?php echo "$numReq" ?> </td>
-                                    <td style="width:10%"><?php echo $numPaletes ?> </td>
-                                    <td style="width:20%"><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
-                                    <td style="width:20%"><?php echo $CargaFinal . " €" ?></td>
-                                    <td><?php echo $diasArmazenamento ?></td>
-                                    <td><?php echo $Total . " €" ?></td>
+                                    <td style="width:10%; text-indent:1.5rem"><?php echo $numPaletes ?> </td>
+                                    <td style="width:20%; text-indent:3rem"><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
+                                    <td style="width:20%; text-indent:3rem"><?php echo $CargaFinal . " €" ?></td>
+                                    <td style="width:10%; text-indent:0.8rem"><?php echo $diasArmazenamento ?></td>
+                                    <td style="width:10%; text-indent:0.2rem"><?php echo $Total . " €" ?></td>
                                 </tr>
                             <?php
                         }

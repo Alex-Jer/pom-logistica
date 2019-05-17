@@ -236,7 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-info" name="save" value="Guardar">
+                        <input type="submit" class="btn btn-primary" name="save" value="Guardar">
                     </div>
                 </div>
             </div>

@@ -83,56 +83,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px">
-    <p id="profile-name" class="profile-name-card"></p>
-    <form class="container" action="Listar_todas_as_guiasAdmin.php" style="width:80rem; max-width:80rem;" method="post">
-      <div class="table-wrapper" style="margin-top:10rem;">
-        <ul class="nav nav-pills">
-          <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-            <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
-          </li>
-          <li class="nav-item" style="margin-top:-8.5rem;">
-            <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
-          </li>
-          <li style="margin-top:-8.5rem;">
-            <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:17rem; margin-right:auto; width:15rem;" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
-          </li>
-        </ul>
-        <!-- <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:75rem"></div> -->
-        <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
-          <div class="row">
-            <div class="col-sm-6">
-              <h2>Gerir <b>Clientes</b></h2>
-            </div>
-          </div>
-        </div>
-        <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th style="width:20%">Cliente</th>
-              <th style="width:20%; padding: 0 2.2rem;">Nº de requisição</th>
-              <th style="width:25%; padding: 0 2rem;">Morada</th>
-              <th style="width:20%; padding: 0 2.2rem;">Data e hora prevista</th>
-              <th style="width:17%">Nº paletes</th>
-              <th style="width:20%; padding: 0 4rem">Armazém</th>
-            </tr>
-          </thead>
-          <tbody id="Testeeee">
-            <?php
-            date_default_timezone_set("Europe/Lisbon");
-            ?>
-          </tbody>
-        </table>
-        <!--MODAL HERE -->
-        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content" id="ModalGuia">
-            </div>
+  <form class="container" action="Listar_todas_as_guiasAdmin.php" style="width:80rem; max-width:80rem; font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1; margin-left:7.5rem" method="post">
+    <div class="table-wrapper" style="margin-top:10rem;">
+      <ul class="nav nav-pills">
+        <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
+          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
+        </li>
+        <li class="nav-item" style="margin-top:-8.5rem;">
+          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
+        </li>
+        <li style="margin-top:-8.5rem;">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:18rem; margin-right:auto; width:15rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+        </li>
+      </ul>
+      <!-- <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:75rem"></div> -->
+      <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Gerir <b>Clientes</b></h2>
           </div>
         </div>
       </div>
-    </form>
-  </div>
+      <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th style="width:20%">Cliente</th>
+            <th style="width:20%; padding: 0 2.2rem;">Nº de requisição</th>
+            <th style="width:25%; padding: 0 2rem;">Morada</th>
+            <th style="width:20%; padding: 0 2.2rem;">Data e hora prevista</th>
+            <th style="width:17%">Nº paletes</th>
+            <th style="width:20%; padding: 0 4rem">Armazém</th>
+          </tr>
+        </thead>
+        <tbody id="Testeeee">
+          <?php
+          date_default_timezone_set("Europe/Lisbon");
+          ?>
+        </tbody>
+      </table>
+      <!--MODAL HERE -->
+      <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" id="ModalGuia">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </body>
 
 </html>
