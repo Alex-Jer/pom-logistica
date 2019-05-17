@@ -97,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         table-layout: fixed;
         /* even columns width , fix width of table too*/
     }
+  
 
     thead {
         width: calc(100% - 0rem)
