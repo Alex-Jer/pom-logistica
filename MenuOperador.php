@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>POM Logistica</title>
         <link rel="stylesheet" href="styles\style3.css">
         <link rel="stylesheet" href="node_modules\admin-lte\dist\css\AdminLTE.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
         <link rel="stylesheet" href="styles\style3.css">
         <link rel="stylesheet" href="css\bootstrap.css">
+        <link rel = "icon" type = "image/png" href = "images/titlelogo.png  ">
 </head>
 
 
