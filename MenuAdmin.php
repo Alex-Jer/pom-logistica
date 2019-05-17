@@ -129,7 +129,7 @@ padding:5px;
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="ListarUtilizadores.php" class="small-box-footer">
+                            <a href="ListarClientes_admin.php" class="small-box-footer">
                             Ir <i class="fa fa-arrow-circle-right"></i>
                             </a>
                 </div>
@@ -145,7 +145,7 @@ padding:5px;
                             </div>
                             <div class="icon">
                             </div>
-                            <a href="ListarClientes_admin.php" class="small-box-footer">
+                            <a href="ListarUtilizadores.php" class="small-box-footer">
                             Ir <i class="fa fa-arrow-circle-right"></i>
                             </a>
                 </div>

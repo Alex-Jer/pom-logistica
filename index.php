@@ -54,6 +54,7 @@ include 'db.php';
     <script src="js\bootstrap.js"></script>
     <link rel="stylesheet" href="css\bootstrap.css">
     <link rel="stylesheet" href="styles\style4.css">
+    <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
 </head>
 
 <style>
@@ -77,11 +78,10 @@ include 'db.php';
                             <div class="form-label-group">
                                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
                                 <label for="inputPassword">Password</label>
+                                <button type="button" style="font-size:24px; width:24px; height:24px; margin-left:350px; margin-top:-50px"  class="btn-eye" onclick="myFunction()" ><i class="fa fa-eye" id="ieye" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Mostrar Password"></i></button>
                             </div>
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember password</label>
-                            </div>
+                            <br>
+                            
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
                         </form>
                     </div>
@@ -92,3 +92,18 @@ include 'db.php';
 </body>
 
 </html>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("inputPassword");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye").removeClass('fa fa-eye-open');
+    $("#ieye").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye").removeClass('fa fa-eye-slash');
+    $("#ieye").addClass('fa fa-eye-open');
+  }
+}
+</script>
