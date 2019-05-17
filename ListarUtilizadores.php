@@ -30,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -161,8 +160,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-body">
                         <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
                         <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="password" id="inputPassword" name="MainPw" class="form-control" placeholder="Password" required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+                        <div class="row" style=" width:388px; margin-top:1rem;">
+                        <input style=" margin-left:15px; height:auto;" type="password" id="PasswordInput" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+                        <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction2()" ><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+                        </div>
+                        <div class="row" style=" width:388px; margin-top:1rem;">
+                        <input style=" margin-left:15px; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+                        <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction()" ><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+                        </div>
+                        
+                
                         <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
@@ -328,4 +335,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
     });
+</script>
+
+<script>
+function myFunction2() {
+  var x = document.getElementById("PasswordInput");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye").removeClass('fa fa-eye-open');
+    $("#ieye").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye").removeClass('fa fa-eye-slash');
+    $("#ieye").addClass('fa fa-eye-open');
+  }
+}
+</script>
+<script>
+function myFunction() {
+  var x = document.getElementById("input2Password");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye2").removeClass('fa fa-eye-open');
+    $("#ieye2").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye2").removeClass('fa fa-eye-slash');
+    $("#ieye2").addClass('fa fa-eye-open');
+  }
+}
 </script>

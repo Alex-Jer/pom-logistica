@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'ajaxPedidosTotais.php',
+      url: 'ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
