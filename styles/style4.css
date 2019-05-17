@@ -28,34 +28,26 @@ body {
   width: 100%;
 }
 
- .btn-eye{
- border:none;
- background-color:transparent;
- outline:none;
-
-
- } 
- .btn-eye:active{
-  border:none;
-  background-color:transparent;
-  outline:none;
- 
- 
-  }
-  .btn-eye:focus{
-    border:none;
-    background-color:transparent;
-    outline:none;
-   
-   
-  }  
-  .btn-eye:checked{
-    border:none;
-    background-color:transparent;
-    outline:none;
-   
-   
-  } 
+.btn-eye {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.btn-eye:active {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.btn-eye:focus {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.btn-eye:checked {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
 .form-signin .btn {
   font-size: 80%;
   border-radius: 5rem;

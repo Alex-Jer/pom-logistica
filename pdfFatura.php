@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -41,6 +40,7 @@ class myPDF extends FPDF
         $query = mysqli_query($conn, "SELECT nome FROM cliente WHERE id='" . $_POST['GetCliente'] . "'");
         $dado = mysqli_fetch_array($query);
         $clienteNome = $dado['nome'];
+        $clienteNome = iconv('UTF-8', 'windows-1252', $clienteNome);
         $this->Cell(276, 5, $clienteNome, 0, 0, 'C');
         $this->Ln();
         date_default_timezone_set("Europe/Lisbon");
