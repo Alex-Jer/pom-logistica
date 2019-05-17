@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css\bootstrap.css">
+  <link rel="stylesheet" href="styles\table.css">
 </head>
 
 <body>
@@ -62,9 +63,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <form action="mudarpass_admin.php" method="post">
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <br>
-        <input type="password" style="margin-bottom:1rem;" name="textPass" class="form-control" placeholder="Password antiga" required autofocus>
-        <input type="password" style="margin-bottom:1rem;" name="textNewPass" class="form-control" placeholder="Nova Password" required>
-        <input type="password" name="textNewPass2" class="form-control" placeholder="Confirmar Nova Password" required>
+        
+        <div class="row">
+            <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" class="form-control" placeholder="Password antiga" required autofocus>
+            <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction()" ><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+        </div>
+        <div class="row">
+             <input type="password" style="margin-bottom:1rem;" name="textNewPass" id="newPass" class="form-control" placeholder="Nova Password" required>
+             <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction2()" ><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+        </div>
+        <div class="row">
+               <input type="password" name="textNewPass2" class="form-control" id="newPass2"placeholder="Confirmar Nova Password" required>
+               <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction3()" ><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+        </div>
+        
+        
+       
         <button class="btn btn-primary" style="margin-top:2rem; width:100%" type="submit">Confirmar</button>
       </form><!-- /form -->
     </div>
@@ -72,3 +86,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("oldPass");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye").removeClass('fa fa-eye-open');
+    $("#ieye").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye").removeClass('fa fa-eye-slash');
+    $("#ieye").addClass('fa fa-eye-open');
+  }
+}
+</script>
+
+<script>
+function myFunction2() {
+  var x = document.getElementById("newPass");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye2").removeClass('fa fa-eye-open');
+    $("#ieye2").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye2").removeClass('fa fa-eye-slash');
+    $("#ieye2").addClass('fa fa-eye-open');
+  }
+}
+</script>
+
+<script>
+function myFunction3() {
+  var x = document.getElementById("newPass2");
+  if (x.type === "password") {
+    x.type = "text";
+    $("#ieye3").removeClass('fa fa-eye-open');
+    $("#ieye3").addClass('fa fa-eye-slash');
+  } else {
+    x.type = "password";
+    $("#ieye3").removeClass('fa fa-eye-slash');
+    $("#ieye3").addClass('fa fa-eye-open');
+  }
+}
+</script>

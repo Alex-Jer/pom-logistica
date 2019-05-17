@@ -46,16 +46,8 @@ function echoActiveClassIfRequestMatches($requestUri)
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes_admin") ?>" href="ListarClientes_admin.php">Clientes</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Guia_Entrega") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador_admin") ?> <?= echoActiveClassIfRequestMatches("Guia_Transporte") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Entrega") ?>" href="Guia_Entrega.php">Entrega</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_admin") ?>" href="Guia_Operador_admin.php">Operador</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Transporte") ?>" href="Guia_Transporte.php">Transporte</a>
-                </div>
-            </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasAdmin") ?>" href="Listar_todas_as_guiasAdmin.php">Pedidos</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasAdmin") ?>" href="Listar_todas_as_guiasAdmin.php">Lista de Guias</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>

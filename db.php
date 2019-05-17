@@ -4,6 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "estagio";
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
@@ -14,9 +15,11 @@ if ($conn->connect_error) {
 }
 
 ?>
+
 <html lang="en">
 
 <head>
+    
     <title>POM Logistica</title>
 
     <!-- Required meta tags -->
@@ -41,6 +44,7 @@ if ($conn->connect_error) {
     <!-- Styles -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" crossorigin="anonymous"> -->
     <!-- <link href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> -->
+    <link rel = "icon" type = "image/png" href = "images/titlelogo.png  ">
     <link rel="stylesheet" type="text/css" href="styles\style.css">
     <link rel="stylesheet" type="text/css" href="styles\style3.css">
     <link rel="stylesheet" type="text/css" href="css\bootstrap.css">

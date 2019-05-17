@@ -41,19 +41,21 @@ function echoActiveClassIfRequestMatches($requestUri)
             <a class="d-block" style="margin-top:5px"href="MenuOperador.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
         
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes_operador") ?>" href="ListarClientes_operador.php">Clientes</a>
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?> <?= echoActiveClassIfRequestMatches("ListarGuia_Rececao") ?> <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Guias</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("ListarGuia_Rececao") ?> <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Imprimir</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Operador</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Rececao") ?>" href="ListarGuia_Rececao.php">Receção</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="ListarGuia_Devolucao.php">Devolução</a>
+                    
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Rececao") ?>" href="ListarGuia_Rececao.php">Guia Receção</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="ListarGuia_Devolucao.php">Guia Devolução</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Paletes</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar</a>
+                <div class="dropdown-menu">
+                    
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Guia Entrega</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Guia Transporte</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasOperador") ?>" href="Listar_todas_as_guiasOperador.php">Pedidos</a>

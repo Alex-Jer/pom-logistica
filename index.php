@@ -64,10 +64,15 @@ include 'db.php';
 </style>
 
 <body>
+
     <div class="container" style="margin-top:6rem; margin-bottom:auto">
+  
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
+                <div class="text-center" >
+                        <img src="images\logogrande.png" style="width:19rem; height:3rem; margin-top:2rem;">
+</div>
                     <div class="card-body">
                         <h5 class="card-title text-center">Log In</h5>
                         <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
