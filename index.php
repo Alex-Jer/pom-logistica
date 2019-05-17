@@ -30,10 +30,10 @@ include 'db.php';
 
         if ($passInput == $password) {
             if ($perfilId == '1') {
-                header("Location: admin.php");
+                header("Location: MenuAdmin.php");
                 exit;
             } elseif ($perfilId == '2') {
-                header("Location: operador.php");
+                header("Location: MenuOperador.php");
                 exit;
             }
         } else {

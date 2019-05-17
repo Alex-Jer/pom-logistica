@@ -1,5 +1,5 @@
 <?php
-//include 'navbarAdmin.php'; 
+// include 'navbarOperador.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -140,12 +140,12 @@
                                         <div class="col sm-1">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Listar</b></h5>
-                                                                <p>Clientes</p>
+                                                                <h5><b>Imprimir</b></h5>
+                                                                <p>Guia Rececao</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="ListarClientes_admin.php" class="small-box-footer">
+                                                        <a href="ListarGuia_Rececao.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
@@ -154,12 +154,14 @@
                                         <div class="col sm-1">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Listar</b></h5>
-                                                                <p>Utilizadores</p>
+                                                                <h5><b>Confirmar</b></h5>
+
+
+                                                                <p>Guias Transporte</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="ListarUtilizadores.php" class="small-box-footer">
+                                                        <a href="Guia_Operador_operador.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
@@ -168,12 +170,14 @@
                                         <div class="col sm-1">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Listar</b></h5>
-                                                                <p>Todas as guias</p>
+                                                                <h5><b>Imprimir</b></h5>
+
+
+                                                                <p>Guia Devolução</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="Listar_todas_as_guiasAdmin.php" class="small-box-footer">
+                                                        <a href="ListarGuia_Devolucao.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
@@ -186,12 +190,12 @@
                                         <div class="col sm-1">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Criar</b></h5>
-                                                                <p>Faturas</p>
+                                                                <h5><b>Confirmar</b></h5>
+                                                                <p>Guias Entrega</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="fatura_cliente.php" class="small-box-footer">
+                                                        <a href="inserirPaletes.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>
@@ -200,12 +204,14 @@
                                         <div class="col sm-1">
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
-                                                                <h5><b>Criar</b></h5>
-                                                                <p>Artigo</p>
+                                                                <h5><b>Listar</b></h5>
+
+
+                                                                <p>Guias Diarias</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
-                                                        <a href="artigo.php" class="small-box-footer">
+                                                        <a href="Listar_todas_as_guiasOperador.php" class="small-box-footer">
                                                                 Ir <i class="fa fa-arrow-circle-right"></i>
                                                         </a>
                                                 </div>

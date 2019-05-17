@@ -58,19 +58,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   tbody {
-    max-height: 18rem;
+    max-height: 20rem;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
   tbody td,
   thead th {
-    width: 210px;
+    width: 14rem !important;
+    max-width: 30rem !important;
   }
 
   thead th:last-child {
-    width: 250px;
+    width: 280px !important;
     /* 140px + 16px scrollbar width */
+  }
+
+  .btn-success {
+    background-color: #01d932 !important;
   }
 </style>
 
@@ -80,29 +85,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
   <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px">
     <p id="profile-name" class="profile-name-card"></p>
-    <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post">
+    <form class="container" action="Listar_todas_as_guiasAdmin.php" style="width:80rem; max-width:80rem;" method="post">
       <div class="table-wrapper" style="margin-top:10rem;">
         <ul class="nav nav-pills">
           <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-            <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
+            <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
           </li>
           <li class="nav-item" style="margin-top:-8.5rem;">
-            <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
+            <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
           </li>
           <li style="margin-top:-8.5rem;">
-            <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; margin-right:auto; width:17rem;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+            <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:17rem; margin-right:auto; width:15rem;" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
           </li>
         </ul>
-        <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem"></div>
-        <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table">
+        <!-- <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:75rem"></div> -->
+        <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Gerir <b>Clientes</b></h2>
+            </div>
+          </div>
+        </div>
+        <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
           <thead>
             <tr>
               <th style="width:20%">Cliente</th>
-              <th style="width:20%">Nº de requisição</th>
-              <th style="width:20%; padding: 0 2rem">Armazém</th>
-              <th style="width:20%; padding: 0 2rem">Data e hora prevista</th>
+              <th style="width:20%; padding: 0 2.2rem;">Nº de requisição</th>
+              <th style="width:25%; padding: 0 2rem;">Morada</th>
+              <th style="width:20%; padding: 0 2.2rem;">Data e hora prevista</th>
               <th style="width:17%">Nº paletes</th>
-              <th style="width:25%; padding: 0 3rem">Morada</th>
+              <th style="width:20%; padding: 0 4rem">Armazém</th>
             </tr>
           </thead>
           <tbody id="Testeeee">
@@ -229,7 +241,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
-
       },
       success: function(data) {
         $("#guiaTeste").html(data);

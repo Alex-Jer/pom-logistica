@@ -32,6 +32,4 @@ foreach ($busca2 as $eachRow)
  
   }
 
-}  
-
-?>
+}

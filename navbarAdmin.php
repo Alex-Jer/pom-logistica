@@ -37,7 +37,7 @@ function echoActiveClassIfRequestMatches($requestUri)
     <nav role="navigation">
         <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="d-block" style="margin-top:5px"href="MenuAdmin.php" rel="home"><img class="d-block" src="images/Logo.png" alt="logo"></a>
+            <a class="d-block" style="margin-top:5px"href="MenuAdmin.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
         
             </li>
             <li class="nav-item">
@@ -59,6 +59,9 @@ function echoActiveClassIfRequestMatches($requestUri)
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="artigo.php">Artigo</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_admin")?> data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
