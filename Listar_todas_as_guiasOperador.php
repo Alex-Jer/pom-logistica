@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   thead th:last-child {
-    width: 280px !important;
+    width: 230px !important;
     /* 140px + 16px scrollbar width */
   }
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Listar_todas_as_guiasAdmin.php" style="width:80rem; max-width:80rem; font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1; margin-left:7.5rem" method="post">
+  <form class="container" action="Listar_todas_as_guiasOperador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem;">
-          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:18rem; margin-right:auto; width:15rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; width:15rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
         </li>
       </ul>
       <!-- <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:75rem"></div> -->
@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <thead>
           <tr>
             <th style="width:20%">Cliente</th>
-            <th style="width:20%; padding: 0 2.2rem;">Nº de requisição</th>
-            <th style="width:25%; padding: 0 2rem;">Morada</th>
-            <th style="width:20%; padding: 0 2.2rem;">Data e hora prevista</th>
-            <th style="width:17%">Nº paletes</th>
-            <th style="width:20%; padding: 0 4rem">Armazém</th>
+            <th style="width:20%;">Nº de requisição</th>
+            <th style="width:25%;">Morada</th>
+            <th style="width:20%">Data e hora prevista</th>
+            <th style="width:17%; text-align:center">Nº paletes</th>
+            <th style="width:20%;">Armazém</th>
           </tr>
         </thead>
         <tbody id="Testeeee">

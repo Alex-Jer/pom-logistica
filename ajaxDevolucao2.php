@@ -26,6 +26,6 @@ foreach ($dado as $eachRow) {
     echo '<td> ' . $qtPal . '</td>';
     echo '<td> ' . $refArtigo . '</td>';
     echo '<td> ' . $nomeArmazem . '</td>';
-    echo '<td ><button type="submit"  class="btn btn-primary" style="margin-top:-0.2rem; height:2rem; padding: 0 0.3rem; border-radius:0.3rem;" name="Confirm3" id="Confirm3"  value="' . $GuiaID . '">Confirmar</button></td>';
+    echo '<td><button type="submit"  class="btn" style="margin-top:-0.2rem; height:2rem; padding: 0 0.3rem; border-radius:0.3rem;" name="Confirm3" id="Confirm3"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
     echo '</tr>';
 }

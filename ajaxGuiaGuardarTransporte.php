@@ -1,7 +1,5 @@
 <?php
 include 'db.php';
-
-
 echo '<div class="modal-content">
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Guia Transporte</h5>
@@ -31,7 +29,6 @@ echo '
   <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Número de paletes" style="text-align:center; margin-top:1rem; height:auto;" required>
   <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto;" required>
   <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto;" required>
-    
   </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -64,7 +61,6 @@ echo '
       },
       success: function(data) {
         $("#artigoseID").html(data);
-
       },
     });
   });

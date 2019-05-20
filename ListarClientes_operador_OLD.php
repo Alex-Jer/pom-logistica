@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="container">
-        <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+        <div class="card card-container" style="text-align:center; width:100%; max-width: none">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="ListarClientes_operador.php" method="post">
                 <div style="text-align:center">

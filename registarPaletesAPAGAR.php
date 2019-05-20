@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <div class="container">
-    <div class="card card-container" style="text-align:center; width:100%; max-width: 100000px">
+    <div class="card card-container" style="text-align:center; width:100%; max-width: none">
       <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
       <p id="profile-name" class="profile-name-card"></p>
       <form class="container" action="pdf.php" method="post">
