@@ -95,18 +95,19 @@ $timeRN = date("Y-m-d H:i:s");
 </style>
 
 <body>
-    <form class="container" action="pdfFatura.php" method="post" style="margin-top:5.8rem; margin-left:50rem; z-index:10000; position:absolute">
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            ?>
-            <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
-            <button type="submit" class="btn btn-danger" id="pdf" style="margin-left:26rem;"><i class="fa fa-file-pdf-o"></i> <span>Consultar PDF</span></button>
-        <?php
-    }
-    ?>
-    </form>
+<div class="container">
+    <form class="container" action="pdfFatura.php" method="post" style="margin-top:7rem; margin-left:50rem; z-index:10000; position:absolute">
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                ?>
+                <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
+                <button type="submit" class="btn btn-danger" id="pdf" style="margin-left:26rem;"><i class="fa fa-file-pdf-o"></i> <span>Consultar PDF</span></button>
+            <?php
+        }
+        ?>
+        </form>
     <!-- <form style="font-family: 'Varela Round', sans-serif; font-size:13px; margin-left:6.5rem; position:absolute; z-index:1;" action="fatura_cliente.php" method="post" novalidate> -->
-    <form class="container" action="Listar_todas_as_guiasAdmin.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
+    <form class="container" action="fatura_cliente.php" style="font-family: 'Varela Round', sans-serif; font-size:13px;" method="post">
         <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
         <div class="table-wrapper" style="margin-top:6rem">
             <div class="table-title" style="background-color:#0275d8;">
@@ -212,6 +213,8 @@ $timeRN = date("Y-m-d H:i:s");
             </table>
         </div>
     </form>
+</div>
+    
 </body>
 
 </html>
