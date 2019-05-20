@@ -36,7 +36,6 @@ foreach ($query as $eachRow) {
     echo '<tr>';
     echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
     echo '<td style="width:20%;"> ' . $numReq . '</td>';
-    echo '<td style="width:25%;"> ' . $morada . '</td>';
     echo '<td style="width:15%;"> ' . date($dataPrevista) . '</td>';
     echo '<td style="width:17%; text-align:center"> ' . $numPaletes . '</td>';
     echo '<td style="width:20%;"> ' . $nomeArmazem . '</td>';

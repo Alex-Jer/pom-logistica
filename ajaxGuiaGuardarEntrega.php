@@ -30,22 +30,22 @@ echo '
 <select class="form-control" name="comboboxTipoZona" id="TipoZona" style="display:none; text-align-last:center; margin-top:1rem; color: #6C757D;" required>
 <option value="" disabled selected>Tipo de zona</option>
 </select>
+<input style="text-align:center; margin-top:1rem;" type="number" min="0"; id="inputqt" name="qt" class="form-control" placeholder="Número de paletes" required>
 <div style="text-align:center" class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" style="height:2.37rem; margin-top:1rem; font-size:15px" id="inputGroup-sizing-lg">REQ-</span>
-  </div>
-  <input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Número de requisição" name="req" required>
+<div class="input-group-prepend">
+<span class="input-group-text" style="height:2.37rem; margin-top:1rem; font-size:15px" id="inputGroup-sizing-lg">REQ-</span>
+</div>
+<input type="text" class="form-control" style="width:5rem; margin-top:1rem;" placeholder="Número de requisição" name="req" required>
 </div>
 <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:1rem; color: #6C757D;" required>
 </select>
 <div id="Espaco"></div>
 <div id="HiddenTeste" name="HiddenTeste">
 </div>
-<input style="text-align:center; margin-top:1rem;" type="number" id="inputqt" name="qt" class="form-control" placeholder="Quantidade de paletes neste artigo" required>
   </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="submit" class="btn btn-primary" name="saveEntrega">Save changes</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-primary" name="saveEntrega">Adicionar</button>
 </div>';
 ?>
 <script>

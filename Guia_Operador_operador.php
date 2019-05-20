@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   tbody,
   thead tr {
-    display: block;
+    /* display: block; */
   }
 
   tbody {
@@ -121,12 +121,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   tbody td,
   thead th {
-    width: 14rem !important;
+    width: 25rem !important;
     max-width: 30rem !important;
   }
 
   thead th:last-child {
-    width: 230px !important;
+    width: 25rem !important;
     /* 140px + 16px scrollbar width */
   }
 
@@ -138,31 +138,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <form class="container" action="Guia_Operador_operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
-      <ul class="nav nav-pills">
-        <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
-        </li>
-        <li class="nav-item" style="margin-top:-8.5rem;">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
-        </li>
-      </ul>
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
         <div class="row">
           <div class="col-sm-6">
-            <h2>Guias de <b>Transporte</b></h2>
+            <h2>Guias de <b>Transporte</b> por confirmar</h2>
           </div>
         </div>
       </div>
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%">Cliente</th>
-            <th style="width:15%">Nº de Guia</th>
-            <th style="width:25%">Dia e hora da carga</th>
-            <th style="width:13%">Nº de Paletes</th>
-            <th style="width:20%">Artigo</th>
-            <th style="width:20%">Armazém</th>
-            <th style="width:10%"></th>
+            <th style="text-align:center">Cliente</th>
+            <th style="text-align:center">Nº de Guia</th>
+            <th style="text-align:center">Dia e hora da carga</th>
+            <th style="text-align:center">Nº de Paletes</th>
+            <th style="text-align:center">Artigo</th>
+            <th style="text-align:center">Armazém</th>
+            <th style="text-align:center">Confirmar</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -193,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'ajaxConfirmar.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),

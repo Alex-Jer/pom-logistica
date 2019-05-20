@@ -15,12 +15,13 @@ foreach ($busca as $eachRow) {
 }
 echo '
 </select>
-  <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto;" id="artigoseID" required>
-      <option value="" disabled selected>Artigo</option>
-  </select>
-  <input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto;" id="size" required>
-  <input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto;" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type=\'datetime-local\')" id="size">
-  <div style="text-align:center;" class="input-group">
+<select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem; color: #6C757D; height:auto;" id="artigoseID" required>
+<option value="" disabled selected>Artigo</option>
+</select>
+<input class="form-control" type="input" name="matricula" placeholder="Matrícula do transporte" style="text-align:center; margin-top:1rem; height:auto;" id="size" required>
+<input class="form-control" placeholder="Hora prevista" style="text-align:center; margin-top:1rem; height:auto;" name=" horadescarga" class="textbox-n" type="text" onfocus="(this.type=\'datetime-local\')" id="size">
+<input class="form-control" type="number" id="inputNPaletes" min="0" name="NPaletes" placeholder="Número de paletes" style="text-align:center; margin-top:1rem; height:auto;" required>
+<div style="text-align:center;" class="input-group">
       <div class="input-group-prepend">
           <span class="input-group-text" style="height:2.35rem; margin-top:0.7rem; height:auto;" id="size">REQ-</span>
       </div>
@@ -31,8 +32,8 @@ echo '
   <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto;" required>
   </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="submit" class="btn btn-primary" name="saveTransporte">Save changes</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-primary" name="saveTransporte">Adicionar</button>
 </div>
 </div>';
 ?>

@@ -83,26 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Gerir <b>Clientes</b></h2>
+                        <h2>Guia de <b>Devolução</b></h2>
                     </div>
                 </div>
             </div>
-            <!-- <div class="row align-items-center"> -->
-            <!-- <div class="card card-container" style="text-align:center; max-height:35rem; margin-bottom:auto; max-width: none;"> -->
-            <!-- <p id="profile-name" class="profile-name-card"></p> -->
-            <!-- <form class="container" action="pdfDevolucao.php" method="post"> -->
-            <!-- <div style="text-align:center"> -->
-            <!-- <h1 style="margin-bottom:1rem;">Guia de devolução</h1> -->
-            <!-- <div class="container"> -->
             <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Cliente</th>
                         <th style="width:25%;">Dia e hora da carga</th>
                         <th style="width:15%; text-align:center">Nº de paletes</th>
-                        <th>Artigo</th>
-                        <th>Armazém</th>
-                        <th>PDF</th>
+                        <th style="width:15%">Artigo</th>
+                        <th style="width:15%">Armazém</th>
+                        <th style="width:15%">PDF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,10 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                         echo '<td>' . $nomeCliente . '</td>';
                         echo '<td style="width:25%;">' . $timeRN . '</td>';
                         echo '<td style="width:15%; text-align:center">' . $qtPal . '</td>';
-                        echo '<td>' . $refArtigo . '</td>';
-                        echo '<td>' . $nomeArmazem . '</td>';
+                        echo '<td style="width:15%">' . $refArtigo . '</td>';
+                        echo '<td style="width:15%">' . $nomeArmazem . '</td>';
                         ?>
-                        <!-- <td><input type="submit" name="Ola" ></td> -->
                         <td><button type="submit" style="width:2rem; height:2rem" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
                         <?php
                         echo '</tr>';

@@ -109,7 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <tr>
             <th style="width:20%">Cliente</th>
             <th style="width:20%;">Nº de requisição</th>
-            <th style="width:25%;">Morada</th>
             <th style="width:20%">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
             <th style="width:20%;">Armazém</th>

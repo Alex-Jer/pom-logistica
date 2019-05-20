@@ -5,7 +5,7 @@ include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
-    echo $_POST['Confirm'];
+    //echo $_POST['Confirm'];
     $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='" . $_POST['Confirm'] . "'");
     $dado = mysqli_fetch_array($buscaId);
     $tpID = $dado['tipo_palete_id'];
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
     }
   } elseif (isset($_POST['confirmTotal'])) {
-    echo $_POST['confirmTotal'];
+    //echo $_POST['confirmTotal'];
 
     $updateGuia = mysqli_query($conn, "UPDATE guia SET confirmarTotal=1 WHERE id='" . $_POST['confirmTotal'] . "'");
     if (mysqli_query($conn, $updateGuia)) { }
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST['refpal'];
 
     $referencia = "PAL-$referencia";
-    echo $referencia;
+    // echo $referencia;
     $nomepal = $_POST['nomepal'];
     $eachLocalizacao = $_POST['comboBoxLocalizacao'];
 
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result->store_result();
     $result->bind_result($count);
     $result->fetch();
-    echo $count;
+    // echo $count;
 
     $countEspaco = $conn->query("SELECT count(*) FROM localizacao  WHERE hasPalete = 1 AND zona_id=$zonaID");
     $row12 = $countEspaco->fetch_row();
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set("Europe/Lisbon");
     $timeRN = date("Y-m-d H:i:s");
     $nomepal = "Palete de $nomepal";
-    echo $referencia;
+    // echo $referencia;
 
     if ($count == 0) {
       $stmt = $conn->prepare("INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('" . $_POST['Guia_ID2'] . "',?,?,?,?,?)");
@@ -152,11 +152,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   .btn-success:hover {
     background-color: #01bc2c;
-  }
-
-  table,
-  tr td {
-    /* border: 1px solid red */
   }
 
   tbody {

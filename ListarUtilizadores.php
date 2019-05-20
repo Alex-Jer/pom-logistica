@@ -4,14 +4,14 @@
 include 'navbarAdmin.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["registar"]))
-    { $pw = $_POST["MainPw"];
+    if (isset($_POST["registar"])) {
+        $pw = $_POST["MainPw"];
         $pw2 = $_POST["Pw2"];
         $nome = $_POST["Nome"];
         $arID = $_POST["combobox"];
         $pfID = $_POST["combobox2"];
         $email = $_POST["Email"];
-    
+
         if ($pw == $pw2) {
             $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
             $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
@@ -23,26 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>
         <?php
 
-      }
     }
-    elseif (isset($_POST['apagar']))
+} elseif (isset($_POST['apagar'])) {
+    $id = $_POST["ola"];
+    $stmt = $conn->prepare("DELETE FROM utilizador WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+} elseif (isset($_POST['save'])) {
+    $eNome = $_POST['eNome'];
+    $eArmazem = $_POST["eArmazem"];
+    $eMail = $_POST['eEmail'];
 
-    {
-        $id = $_POST["ola"];
-        $stmt = $conn->prepare("DELETE FROM utilizador WHERE id=?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-    }
-    elseif (isset($_POST['save'])) {
-        $eNome = $_POST['eNome'];
-        $eArmazem = $_POST["eArmazem"];
-        $eMail = $_POST['eEmail'];
-
-        $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
-        $stmt->execute();
-    }
-   
+    $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
+    $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
+    $stmt->execute();
+}
 }
 ?>
 
@@ -51,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -182,19 +177,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-                        <div class="row" style=" width:388px; margin-top:1rem;">
-                        <input style=" margin-left:15px; height:auto;" type="password" id="PasswordInput" name="MainPw" class="form-control" placeholder="Password" required autofocus>
-                        <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction2()" ><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+                        <div class="row" style=" width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
+                            <input style="margin-left:19px; height:auto;" type="password" id="PasswordInput" name="MainPw" class="form-control" placeholder="Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        <div class="row" style=" width:388px; margin-top:1rem;">
-                        <input style=" margin-left:15px; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
-                        <button type="button" style="font-size:20px; width:20px; height:20px ; margin-left:3px;"  class="btn-eye" onclick="myFunction()" ><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostra Password"></i></button>
+                        <div class="row" style="width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
+                            <input style="margin-left:19px; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        
-                
-                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="combobox" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");
@@ -205,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         ?>
                         </select>
-                        <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="combobox2" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" class="form-control" name="combobox2" required autofocus>
                             <option value="" disabled selected>Estatuto</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM perfil");
@@ -341,32 +334,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-function myFunction2() {
-  var x = document.getElementById("PasswordInput");
-  if (x.type === "password") {
-    x.type = "text";
-    $("#ieye").removeClass('fa fa-eye-open');
-    $("#ieye").addClass('fa fa-eye-slash');
-  } else {
-    x.type = "password";
-    $("#ieye").removeClass('fa fa-eye-slash');
-    $("#ieye").addClass('fa fa-eye-open');
-  }
-}
+    function myFunction2() {
+        var x = document.getElementById("PasswordInput");
+        if (x.type === "password") {
+            x.type = "text";
+            $("#ieye").removeClass('fa fa-eye-open');
+            $("#ieye").addClass('fa fa-eye-slash');
+        } else {
+            x.type = "password";
+            $("#ieye").removeClass('fa fa-eye-slash');
+            $("#ieye").addClass('fa fa-eye-open');
+        }
+    }
 </script>
 <script>
-function myFunction() {
-  var x = document.getElementById("input2Password");
-  if (x.type === "password") {
-    x.type = "text";
-    $("#ieye2").removeClass('fa fa-eye-open');
-    $("#ieye2").addClass('fa fa-eye-slash');
-  } else {
-    x.type = "password";
-    $("#ieye2").removeClass('fa fa-eye-slash');
-    $("#ieye2").addClass('fa fa-eye-open');
-  }
-}
+    function myFunction() {
+        var x = document.getElementById("input2Password");
+        if (x.type === "password") {
+            x.type = "text";
+            $("#ieye2").removeClass('fa fa-eye-open');
+            $("#ieye2").addClass('fa fa-eye-slash');
+        } else {
+            x.type = "password";
+            $("#ieye2").removeClass('fa fa-eye-slash');
+            $("#ieye2").addClass('fa fa-eye-open');
+        }
+    }
 </script>
 
 <script>

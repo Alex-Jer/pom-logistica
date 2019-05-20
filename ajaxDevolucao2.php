@@ -20,12 +20,12 @@ foreach ($dado as $eachRow) {
     $time = $eachRow['data_prevista'];
     //Inacabado
     echo '<tr>';
-    echo '<td> ' . $nomeCliente . '</td>';
-    echo '<td> ' . $numeroReq . '</td>';
-    echo '<td> ' . $time . '</td>';
-    echo '<td> ' . $qtPal . '</td>';
-    echo '<td> ' . $refArtigo . '</td>';
-    echo '<td> ' . $nomeArmazem . '</td>';
-    echo '<td><button type="submit"  class="btn" style="margin-top:-0.2rem; height:2rem; padding: 0 0.3rem; border-radius:0.3rem;" name="Confirm3" id="Confirm3"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
+    echo '<td style="text-align:center"> ' . $nomeCliente . '</td>';
+    echo '<td style="text-align:center"> ' . $numeroReq . '</td>';
+    echo '<td style="text-align:center"> ' . $time . '</td>';
+    echo '<td style="text-align:center"> ' . $qtPal . '</td>';
+    echo '<td style="text-align:center"> ' . $refArtigo . '</td>';
+    echo '<td style="text-align:center"> ' . $nomeArmazem . '</td>';
+    echo '<td style="text-align:center"><button type="submit"  class="btn" style="padding: 1px 1px; border-radius:0.3rem;" name="Confirm3" id="Confirm3"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-top:5px">check_circle</i></button></td>';
     echo '</tr>';
 }
