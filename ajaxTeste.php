@@ -26,24 +26,7 @@ foreach ($dado as $eachRow) {
     $nomeCliente = $eachRow['clientenome'];
     $refArtigo = $eachRow['artigoreef'];
     $time = $eachRow['data_prevista'];
-    echo '<tr>';
-    echo '<td style="width:20%"> ' . $nomeCliente . '</td>';
-    echo '<td style="width:20%"> ' . $numeroReq . '</td>';
-    echo '<td style="width:20%"> ' . $time . '</td>';
-    echo '<td style="width:15%"> ' . $qtPal . '</td>';
-    echo '<td style="width:20%"> ' . $refArtigo . '</td>';
-    echo '<td style="width:20%"> ' . $nomeArmazem . '</td>';
-
-    if ($confirm == NULL) {
-        echo '<td style="width:15%"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="Confirm" id="Confirm"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
-        echo '<td style="width:15%"></td>';
-    } else {
-        echo '<td style="width:15%"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="confirmTotal" id="confirmTotal" value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
-        echo '<td style="width:15%"><button type="button" style="width:1px; height:1.5rem;" class="btn" name="Guia_ID4" id="Guia_ID4" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '"><i class="material-icons" style="color:#01d932; margin-left:-11px; margin-top:-15px; font-size:22px">add_circle</i></button></td>';
-    }
-
-    echo '</tr>';
-    echo '<tr>';
+    echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
     echo '<td style="width:20%"> ' . $nomeCliente . '</td>';
     echo '<td style="width:20%"> ' . $numeroReq . '</td>';
     echo '<td style="width:20%"> ' . $time . '</td>';
@@ -64,6 +47,7 @@ foreach ($dado as $eachRow) {
 
 
 ?>
+
 <script>
     $('button[name="Guia_ID4"]').on("click", function() {
         $.ajax({
@@ -77,4 +61,20 @@ foreach ($dado as $eachRow) {
             },
         });
     });
+</script>
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxTesteasd.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
 </script>

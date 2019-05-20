@@ -5,7 +5,7 @@ include 'navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
-    //echo $_POST['Confirm'];
+   
     $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='" . $_POST['Confirm'] . "'");
     $dado = mysqli_fetch_array($buscaId);
     $tpID = $dado['tipo_palete_id'];
@@ -173,6 +173,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: calc(100% - 1rem)
       /* scrollbar is average 1em/16px width, remove it from thead width */
   }
+  .table-row{
+  cursor:pointer;
+  }
 
   .nav-pills .nav-link.active,
   .nav-pills .show>.nav-link {
@@ -259,6 +262,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
             </div>
           </div>
+          <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body" id="TableDetails">
+                <?php
+                $ola = $_POST["TableClick"];
+                ?>
+                <input type="text" value="<?php echo $Ola; ?>">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" name="save">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -286,6 +309,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
   });
 </script>
+
+
 
 <script>
   $("#Confirmed").on("click", function() {
