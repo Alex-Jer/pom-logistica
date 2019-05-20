@@ -216,14 +216,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <th style="width:20%">Artigo</th>
                   <th style="width:20%">Armazém</th>
                   <th style="width:15%">Confirmar</th>
-                  <th style="width:15%">Registar Palete</th>
+                  <th style="width:15%;">Registar Palete</th>
                 </tr>
               </thead>
               <tbody id="Testeeee">
               </tbody>
             </table>
           </div>
-          <!-- <div id="DivEntrega2"></div> -->
+          <div id="DivEntrega2"></div>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">

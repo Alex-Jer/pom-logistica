@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <div class="row align-items-center">
-    <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: 10000px;">
+    <div class="card card-container" style="text-align:center; width:85rem; max-height:35rem; margin-bottom:auto; max-width: none;">
       <p id="profile-name" class="profile-name-card"></p>
       <form class="container" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
         <div style="text-align:center">

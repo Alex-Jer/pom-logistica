@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timeRN = date("Y-m-d");
     ?>
     <div class="row align-items-center">
-        <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
+        <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: none;">
             <p id="profile-name" class="profile-name-card"></p>
             <form class="container" action="listagem_pedidos_armazem_admin.php" method="post">
                 <div style="text-align:center;">

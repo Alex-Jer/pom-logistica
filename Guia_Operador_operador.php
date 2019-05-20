@@ -65,66 +65,111 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-  <meta charset="utf-8">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="jquery.js"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles\table.css">
+  <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
   <link rel="stylesheet" href="styles\style3.css">
   <link rel="stylesheet" href="css\bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <style>
+  body {
+    overflow: hidden;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+
   .nav-pills .nav-link.active,
   .nav-pills .show>.nav-link {
     background-color: #ffffff;
   }
+
+  tbody,
+  thead tr {
+    display: block;
+  }
+
+  tbody {
+    max-height: 20rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  tbody td,
+  thead th {
+    width: 14rem !important;
+    max-width: 30rem !important;
+  }
+
+  thead th:last-child {
+    width: 230px !important;
+    /* 140px + 16px scrollbar width */
+  }
+
+  .btn-success {
+    background-color: #01d932 !important;
+  }
 </style>
 
 <body>
-  <form class="container" action="Guia_Operador_operador.php" method="post" id="mainForm" novalidate>
-    <div class="container" id="onLoad">
-      <div class="card card-container" style="text-align:center; margin-right:auto; margin-left:auto; max-width: 100000px">
-        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-        <p id="profile-name" class="profile-name-card"></p>
-        <div style="text-align:center">
-          <h1 style="margin-bottom:1rem;">Guias de Transporte</h1>
-          <div class="container">
-            <!-- <nav role="navigation">
-              <ul class="nav">
-                <li class="nav-item">
-                  <button class="btn2" type="button" value="1" id="notConfirmed">Por Confirmar</button>
-                </li>
-              </ul>
-            </nav> -->
-            <!-- <div style="text-align:center">
-                            <button type="submit" id="pdf" class="btn btn-primary" style="width:3.5rem; height:2.2rem; display:none; margin-top:-3.3rem; margin-right:17rem; text-align:center; float:right;">PDF</button>
-                        </div> -->
-            <ul class="nav nav-pills">
-              <li class="nav-item">
-                <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
-              </li>
-              <!-- <li class="nav-item">
-                <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
-              </li> -->
-            </ul>
-            <table class="table" style="font-size:16px; margin-top:1.5rem;">
-              <thead>
-                <tr>
-                  <th style="width:15%">Cliente</th>
-                  <th style="width:15%">Nº de Guia</th>
-                  <th style="width:25%">Dia e hora da carga</th>
-                  <th style="width:13%">Nº de Paletes</th>
-                  <th style="width:20%">Artigo</th>
-                  <th style="width:20%">Armazém</th>
-                  <th style="width:20%"></th>
-                </tr>
-              </thead>
-              <tbody id="Testeeee">
-              </tbody>
-            </table>
-            <div id="DivEntrega"></div>
+  <form class="container" action="Guia_Operador_operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+    <div class="table-wrapper" style="margin-top:10rem;">
+      <ul class="nav nav-pills">
+        <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
+          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+        </li>
+        <li class="nav-item" style="margin-top:-8.5rem;">
+          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+        </li>
+      </ul>
+      <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Guias de <b>Transporte</b></h2>
           </div>
-        </div><!-- /card-container -->
-      </div><!-- /container -->
+        </div>
+      </div>
+      <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th style="width:20%">Cliente</th>
+            <th style="width:15%">Nº de Guia</th>
+            <th style="width:25%">Dia e hora da carga</th>
+            <th style="width:13%">Nº de Paletes</th>
+            <th style="width:20%">Artigo</th>
+            <th style="width:20%">Armazém</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody id="Testeeee">
+        </tbody>
+      </table>
+      <div id="DivEntrega"></div>
+    </div>
   </form>
 </body>
 
@@ -139,6 +184,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
+        $("#Testeeee").html(data);
+      },
+    });
+  });
+</script>
+
+<script>
+  $("#Confirmed").on("click", function() {
+    $.ajax({
+      url: 'ajaxPedidosTotaisOP.php',
+      type: 'POST',
+      data: {
+        id: $("#Confirmed").val(),
+        dataescolhida: $("#DataEntrega2").val()
+
+      },
+      success: function(data) {
+
+        $("#Confirmed").removeClass('btn2')
+        $("#Confirmed").addClass('btn3')
+        $("#notConfirmed").removeClass('btn3')
+        $("#notConfirmed").addClass('btn2')
         $("#Testeeee").html(data);
       },
     });

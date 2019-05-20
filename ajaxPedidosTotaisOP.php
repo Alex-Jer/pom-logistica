@@ -11,17 +11,14 @@ $timeRN = date("Y-m-d");
 date_default_timezone_set("Europe/Lisbon");
 if ($_POST['id'] == 1) {
     if ($_POST['dataescolhida'] != NULL) {
-
         $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 AND DATE(data_prevista)='" . $_POST['dataescolhida'] . "' ORDER BY data_carga ASC");
     } else {
-
         $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
     }
 } elseif ($_POST['id'] == 2) {
     if ($_POST['dataescolhida'] != NULL) {
         $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 AND DATE(data_prevista)='" . $_POST['dataescolhida'] . "' ORDER BY data_carga ASC");
     } else {
-
         $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
     }
 }
@@ -40,8 +37,8 @@ foreach ($query as $eachRow) {
     echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
     echo '<td style="width:20%;"> ' . $numReq . '</td>';
     echo '<td style="width:25%;"> ' . $morada . '</td>';
-    echo '<td style="width:20%;"> ' . date($dataPrevista) . '</td>';
-    echo '<td style="width:17%;"> ' . $numPaletes . '</td>';
+    echo '<td style="width:15%;"> ' . date($dataPrevista) . '</td>';
+    echo '<td style="width:17%; text-align:center"> ' . $numPaletes . '</td>';
     echo '<td style="width:20%;"> ' . $nomeArmazem . '</td>';
     echo '</tr>';
 }
