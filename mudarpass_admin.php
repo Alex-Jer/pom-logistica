@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       alert("Password mudada com sucesso");
     </script>
     <?php
-    header("Location: showGuiaEntrega.php");
   } elseif ($Fim == FALSE && $Show = TRUE) {
     ?>
     <script type="text/javascript">
