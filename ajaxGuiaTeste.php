@@ -7,14 +7,14 @@ echo '<div class="row">';
 if ($_POST['id'] == 1) {
 
   echo '<div class="col-sm-6">';
-  echo '<h2 style="text-align:left">Guias <b>Entrega</b></h2>';
+  echo '<h2 style="text-align:left">Guias de <b>Entrega</b></h2>';
   echo '</div>';
   echo '<div class="col-sm-6">';
   echo '<button type = "button" data-target="#addEmployeeModal" style="background-color:#01d932" class="btn btn-success" name="Entrega" value = "1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Guia</span></button>';
   echo '</div>';
 } elseif ($_POST['id'] == 2) {
   echo '<div class="col-sm-6">';
-  echo '<h2 style="text-align:left">Guias <b>Transporte</b></h2>';
+  echo '<h2 style="text-align:left">Guias de <b>Transporte</b></h2>';
   echo '</div>';
   echo '<div class="col-sm-6">';
   echo '<button type = "button"data-target="#addEmployeeModal" style="background-color:#01d932" class="btn btn-success" name="Transporte" value = "2" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Guia</span></button>';

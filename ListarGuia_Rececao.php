@@ -53,6 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     background-color: #01bc2c;
   }
 
+  .btn:focus,
+  .btn:active {
+    outline: none !important;
+    box-shadow: none;
+  }
+
   tbody {
     display: block;
     max-height: 22rem;
@@ -66,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     /* width: 100%; */
     /* table-layout: fixed; */
     /* even columns width , fix width of table too*/
-  }  
+  }
 </style>
 
 <body>
@@ -108,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             echo '<td style="width:20%; text-align:center"> ' . $refArtigo . '</td>';
             echo '<td style="width:20%; text-align:center"> ' . $nomeArmazem . '</td>';
             ?>
-            <td style="width:20%"><button type="submit" style="margin-bottom:1rem; height:0px; width:0px" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
+            <td style="width:20%"><button type="submit" style="font-size:8px; height:1.5rem; width:1px; margin-left:1rem;" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
             <?php
             echo '</tr>';
           }

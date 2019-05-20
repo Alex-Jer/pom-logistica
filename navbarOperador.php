@@ -59,8 +59,11 @@ function echoActiveClassIfRequestMatches($requestUri)
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasOperador") ?>" href="Listar_todas_as_guiasOperador.php">Pedidos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Mudar Palavra-Passe</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Alterar Palavra-Passe</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="index.php">Sair</a>
