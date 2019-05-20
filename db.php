@@ -55,8 +55,28 @@ if ($conn->connect_error) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
 </head>
+<style>
+  .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 1.5rem;
+                border-top: 6px solid #0159b7;
+                background-color: white;
+                color: black;
+                text-align: right;
+                font-size: 10px
+                
+
+        }
+</style>
 
 <body>
+    <div class="footer">
+                <p style="margin-right:10px; color:black;">Direitos reservados a POM Logistica, LDA 2019</p>
+        </div>
+
     <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
     <script type='text/javascript' src='js/swiper.min.js'></script>
@@ -66,5 +86,6 @@ if ($conn->connect_error) {
     <script type='text/javascript' src='js/jquery.barfiller.js'></script>
     <script type='text/javascript' src='js/custom.js'></script>
 </body>
+
 
 </html>
