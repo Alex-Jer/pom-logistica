@@ -84,6 +84,7 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin-left: 3.5rem;
+                
 
 
         }
@@ -141,7 +142,8 @@
                 max-width:160px;
                 }    
         .rowi{
-        margin-left:10em;       
+               
+        margin-left:10em;
         width:500px;
     }   
     .rowGrande{
@@ -238,7 +240,7 @@
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Pedidos</b></h5>
-                                                                <p>Diarias</p>
+                                                                <p>Diarios</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>

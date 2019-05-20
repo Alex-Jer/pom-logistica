@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute; z-index:1; margin-left:12rem;">
+  <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute; margin-left:12rem;">
     <p id="profile-name" class="profile-name-card"></p>
     <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post">
       <div class="table-wrapper" style="margin-top:10rem;">

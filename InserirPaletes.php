@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $updateGuia = mysqli_query($conn, "UPDATE guia SET confirmarTotal=1 WHERE id='" . $_POST['confirmTotal'] . "'");
     if (mysqli_query($conn, $updateGuia)) { }
-  } elseif (isset($_POST['Guia_ID2'])) {
+  } elseif (isset($_POST['save'])) {
     date_default_timezone_set("Europe/Lisbon");
     $timeRN = date("Y-m-d H:i:s");
     $dataehora = $timeRN;
@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </tbody>
             </table>
           </div>
-          <!-- <div id="DivEntrega2"></div> -->
+          <div id="DivEntrega2"></div>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
