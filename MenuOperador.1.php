@@ -142,7 +142,7 @@
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Imprimir</b></h5>
-                                                                <p>Guia Rececao</p>
+                                                                <p>Guia de Receção</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -156,9 +156,7 @@
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Confirmar</b></h5>
-
-
-                                                                <p>Guias Transporte</p>
+                                                                <p>Guias de Transporte</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -172,9 +170,7 @@
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Imprimir</b></h5>
-
-
-                                                                <p>Guia Devolução</p>
+                                                                <p>Guia de Devolução</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -192,7 +188,7 @@
                                                 <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Confirmar</b></h5>
-                                                                <p>Guias Entrega</p>
+                                                                <p>Guias de Entrega</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -206,7 +202,7 @@
                                         <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Confirmar</b></h5>
-                                                                <p>Guias Entrega</p>
+                                                                <p>Guias de Entrega</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -220,7 +216,7 @@
                                         <div class="small-box bg-aqua" style="width:150px">
                                                         <div class="inner">
                                                                 <h5><b>Confirmar</b></h5>
-                                                                <p>Guias Entrega</p>
+                                                                <p>Guias de Entrega</p>
                                                         </div>
                                                         <div class="icon">
                                                         </div>
@@ -230,7 +226,6 @@
                                                 </div>
                                         </div>
                                         <!-- <div class="row" style="height:100px;">
-                
                 </div>  -->
                                 </div>
                                 <div class="row" style="height:350px;">
