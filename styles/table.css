@@ -71,7 +71,6 @@ body {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 450px;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
@@ -216,7 +215,6 @@ table.table .avatar {
 
 /* Modal styles */
 .modal .modal-dialog {
-  max-width: 400px;
 }
 
 .modal .modal-header,

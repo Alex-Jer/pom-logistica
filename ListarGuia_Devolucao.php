@@ -71,6 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         width: 230px !important;
         /* 140px + 16px scrollbar width */
     }
+    .table-row{
+  cursor:pointer;
+  }
 
     .btn-success {
         background-color: #01d932 !important;
@@ -109,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                         $nomeCliente = $eachRow['clientenome'];
                         $refArtigo = $eachRow['artigoreef'];
                         $timeRN = $eachRow['data_prevista'];
-                        echo '<tr>';
+                        echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
                         echo '<td>' . $nomeCliente . '</td>';
                         echo '<td style="width:25%;">' . $timeRN . '</td>';
                         echo '<td style="width:15%; text-align:center">' . $qtPal . '</td>';
@@ -125,6 +128,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             </table>
         </div>
     </form>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body" id="TableDetails">
+                </diV>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
 </body>
 
 </html>
+
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxTesteasd.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
+</script>

@@ -41,6 +41,7 @@ if ($_POST['id'] == 1) {
 }
 
 foreach ($query as $eachRow) {
+    $GuiaID=$eachRow['guiaid'];
     $clienteId = $eachRow['cliente_id'];
     $numReq = $eachRow['numero_requisicao'];
     $numPaletes = $eachRow['numero_paletes'];
@@ -49,7 +50,7 @@ foreach ($query as $eachRow) {
     $morada = $eachRow['morada'];
     $nomeCliente = $eachRow['clinome'];
     $nomeArmazem = $eachRow['armazemnome'];
-    echo '<tr>';
+    echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
     echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
     echo '<td style="width:20%;"> ' . $numReq . '</td>';
     echo '<td style="width:15%;"> ' . date($dataPrevista) . '</td>';
@@ -57,3 +58,20 @@ foreach ($query as $eachRow) {
     echo '<td style="width:20%;"> ' . $nomeArmazem . '</td>';
     echo '</tr>';
 }
+?>
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxTesteasd.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
+</script>

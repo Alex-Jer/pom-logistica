@@ -271,13 +271,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </button>
                 </div>
                 <div class="modal-body" id="TableDetails">
-                <?php
-                $ola = $_POST["TableClick"];
-                ?>
-                <input type="text" value="<?php echo $ola; ?>">
+                </diV>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" name="save">Save changes</button>
                 </div>
               </div>
             </div>

@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: #566787;
     }
 
+
     tbody {
         display: block;
         max-height: 22rem;
@@ -102,9 +103,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* even columns width , fix width of table too*/
     }
 
-    tbody tr {
-        cursor: pointer;
+    .table-row{
+    cursor:pointer;
     }
+
 
     thead {
         width: calc(100% - 0rem)
@@ -145,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $nif = $eachRow['nif'];
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
-                            echo '<tr class="table-row" data-toggle="modal" data-target="#exampleModal3">';
+                            echo '<tr class="table-row" data-value="'.$buscaId.'" data-toggle="modal" data-target="#modalDetails">';
                             echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
                             echo '<td style="width:20rem;"> ' . $morada . '</td>';
@@ -221,25 +223,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-            <!-- Delete Modal HTML -->
-            <div id="deleteEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Apagar Cliente</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Tem a certeza que quer apagar estes registos?</p>
-                            <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
-                        </div>
+        </div>
+
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Apagar Cliente</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem a certeza que quer apagar estes registos?</p>
+                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
                     </div>
                 </div>
             </div>
+        </div>
+    
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="modalDetails" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header">
+                        <h4 class="modal-title">Detalhes sobre o Cliente</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" id="TableDetails">
+                
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    </div>
+    </div>
+  </div>
+</div>
     </form>
 </body>
 
@@ -345,4 +366,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     });
+</script>
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxClientesDetail.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
 </script>

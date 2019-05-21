@@ -112,6 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       /* scrollbar is average 1em/16px width, remove it from thead width */
   }
 
+  .table-row{
+  cursor:pointer;
+  }
   .modal-backdrop {
     opacity: 0.3 !important;
   }
@@ -163,6 +166,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body" id="TableDetails">
+                </diV>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
   </form>
 </body>
 
