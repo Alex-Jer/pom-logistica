@@ -13,16 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["Email"];
 
         if ($pw == $pw2) {
-            $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
-            $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
-            $stmt->execute();
+            if ((($nome && $pw && $pw2 && $pfID && $email && $arID) != "")) {
+                $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
+                $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+                $stmt->execute();
+            } else {
+                echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
+                echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
+            }
         } else {
             ?>
             <script type="text/javascript">
                 alert("As passwords não coincidem");
             </script>
         <?php
-
     }
 } elseif (isset($_POST['apagar'])) {
     $id = $_POST["ola"];
@@ -34,9 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eArmazem = $_POST["eArmazem"];
     $eMail = $_POST['eEmail'];
 
-    $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
-    $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
-    $stmt->execute();
+    if ((($eNome && $eArmazem && $eMail) != "") && (($eNif != 0))) {
+        $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
+        $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
+        $stmt->execute();
+    } else {
+        echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
+        echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
+    }
 }
 }
 ?>
@@ -172,22 +181,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Registar Utilizador</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" tabindex="-1" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="1" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="2" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
                         <div class="row" style=" width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
-                            <input style="margin-left:19px; height:auto;" type="password" id="PasswordInput" name="MainPw" class="form-control" placeholder="Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                            <input style="margin-left:19px; height:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
                         <div class="row" style="width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
-                            <input style="margin-left:19px; height:auto;" type="password" id="input2Password" name="Pw2" class="form-control" placeholder="Confirmar Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                            <input style="margin-left:19px; height:auto;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" class="form-control" name="combobox" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto;" tabindex="5" color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");
@@ -198,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         ?>
                         </select>
-                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" class="form-control" name="combobox2" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" tabindex="6" class="form-control" name="combobox2" required autofocus>
                             <option value="" disabled selected>Estatuto</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM perfil");

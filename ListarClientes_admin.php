@@ -10,8 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nifNumberr = (int)$nifNumber;
         $Morada = $_POST["morada"];
         $localidade = $_POST["local"];
-
-        $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
+        if ((($nome && $Morada && $localidade) != "") && (($nifNumberr != 0))) {
+            $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
+        } else {
+            echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
+            echo '<script type="text/javascript">location.replace("ListarClientes_admin.php");</script>';
+        }
         if (mysqli_query($conn, $sql)) { }
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
@@ -22,9 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
 
-        $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
-        $stmt->execute();
+        if ((($eNome && $eMorada && $eLocalidade) != "") && (($eNif != 0))) {
+            $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
+            $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
+            $stmt->execute();
+        } else {
+            echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
+            echo '<script type="text/javascript">location.replace("ListarClientes_admin.php");</script>';
+        }
     }
 }
 ?>
@@ -92,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         table-layout: fixed;
         /* even columns width , fix width of table too*/
     }
-  
+
 
     thead {
         width: calc(100% - 0rem)
@@ -101,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="ListarClientes_admin.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="ListarClientes_admin.php" method="post" id="teste123" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem;">
                 <div class="table-title" style="background-color:#0275d8;">
@@ -186,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-primary" name="save" value="Guardar">
+                        <input type="submit" class="btn btn-primary" name="save" id="editar123" value="Guardar">
                     </div>
                 </div>
             </div>
@@ -304,5 +313,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $("#selectAll").prop("checked", false);
             }
         });
+    });
+
+    $(document).on("keydown", function(e) {
+        var keyCode = e.which || e.keyCode;
+        var edit = document.getElementById("editar123");
+        if (keyCode == 13) // enter key code
+        {
+            document.getElementById("editar123").click();
+        }
+
     });
 </script>
