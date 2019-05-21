@@ -102,6 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* even columns width , fix width of table too*/
     }
 
+    tbody tr {
+        cursor: pointer;
+    }
 
     thead {
         width: calc(100% - 0rem)
@@ -142,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $nif = $eachRow['nif'];
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
-                            echo '<tr>';
+                            echo '<tr class="table-row" data-toggle="modal" data-target="#exampleModal3">';
                             echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
                             echo '<td style="width:20rem;"> ' . $morada . '</td>';
@@ -184,41 +187,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
+        <div id="exampleModal3" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body" id="OlaEdit">
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-primary" name="save" id="editar123" value="Guardar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Apagar Cliente</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
                     <div class="modal-body">
-                        <p>Tem a certeza que quer apagar estes registos?</p>
-                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
+                        <div class="form-group">
+                            <label style="margin-left:1.2rem;">Nome</label>
+                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eNome" value="<?php echo "$nome"?>" required>
+                            <input type="hidden" value="' . $id . '" name="editID">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-left:1.2rem;">NIF</label>
+                            <input style="margin-left:auto; margin-right:auto" class="form-control" type="number" id="uintTextBox" name="eNif" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." value="' . $nif . '" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-left:1.2rem;">Morada</label>
+                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eMorada" value="' . $morada . '" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-left:1.2rem;">Localidade</label>
+                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eLocaliadade" value="' . $localidade . '" required>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-primary" name="save" id="editar123" value="Guardar">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Delete Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Apagar Cliente</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem a certeza que quer apagar estes registos?</p>
+                            <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
 </body>
 

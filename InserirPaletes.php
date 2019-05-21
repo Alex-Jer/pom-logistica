@@ -274,7 +274,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 $ola = $_POST["TableClick"];
                 ?>
-                <input type="text" value="<?php echo $Ola; ?>">
+                <input type="text" value="<?php echo $ola; ?>">
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" name="save">Save changes</button>
@@ -289,7 +289,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
-
 
 <script>
   $("#notConfirmed").on("click", function() {
@@ -309,8 +308,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
   });
 </script>
-
-
 
 <script>
   $("#Confirmed").on("click", function() {

@@ -87,16 +87,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
+          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link btn2" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
         </li>
         <li class="nav-item" style="margin-top:-8.5rem;">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
+          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem;">
-          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; width:15rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; width:15rem; position:absolute; z-index:500; margin-top:3.8rem; border-radius:2px" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+        </li>
+        <li>
+          <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; margin-left:38rem; width:15rem; position:absolute; z-index:500; margin-top:-4.7rem; border-radius:2px">
+            <option value="0" selected>Cliente</option>
+            <?php
+            $busca = mysqli_query($conn, "SELECT * FROM cliente");
+            foreach ($busca as $eachRow) {
+              ?>
+              <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['nome'] ?></option>
+            <?php
+          }
+          ?>
+          </select>
         </li>
       </ul>
-      <!-- <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:75rem"></div> -->
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
         <div class="row">
           <div class="col-sm-6">
@@ -140,7 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
@@ -160,8 +173,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
-
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
 
@@ -182,7 +195,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
@@ -202,7 +216,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
@@ -252,7 +267,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
+      },
+      success: function(data) {
+        $("#notConfirmed").removeClass('btn2')
+        $("#notConfirmed").addClass('btn3')
+        $("#Confirmed").removeClass('btn3')
+        $("#Confirmed").addClass('btn2')
+        $("#Testeeee").html(data);
+      },
+    });
+  });
+</script>
+
+<script>
+  $("#cliente").on("change", function() {
+    $.ajax({
+      url: 'ajaxPedidosTotaisOP.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val(),
+        dataescolhida: $("#DataEntrega2").val(),
+        tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
