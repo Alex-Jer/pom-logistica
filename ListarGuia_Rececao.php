@@ -65,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .table-row{
+  cursor:pointer;
+  }
 
   thead,
   tbody tr {
@@ -107,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             $nomeCliente = $eachRow['clientenome'];
             $refArtigo = $eachRow['artigoreef'];
             $timeRN = $eachRow['data_prevista'];
-            echo '<tr>';
+            echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
             echo '<td style="width:20%; text-align:center"> ' . $nomeCliente . '</td>';
             echo '<td style="width:20%; text-align:center"> ' . $timeRN . '</td>';
             echo '<td style="width:15%; text-align:center"> ' . $qtPal . '</td>';
@@ -122,7 +125,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         </tbody>
       </table>
     </div><!-- /card-container -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body" id="TableDetails">
+                </diV>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
   </form>
 </body>
 
 </html>
+
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxTesteasd.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
+</script>

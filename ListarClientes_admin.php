@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: #566787;
     }
 
+
     tbody {
         display: block;
         max-height: 22rem;
@@ -100,6 +101,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         width: 100%;
         table-layout: fixed;
         /* even columns width , fix width of table too*/
+    }
+
+    .table-row{
+    cursor:pointer;
     }
 
 
@@ -142,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $nif = $eachRow['nif'];
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
-                            echo '<tr>';
+                            echo '<tr class="table-row" data-value="'.$buscaId.'" data-toggle="modal" data-target="#modalDetails">';
                             echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
                             echo '<td style="width:20rem;"> ' . $morada . '</td>';
@@ -200,17 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="centralModalFluidSuccessDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-modal="true" style="display: block; padding-right: 17px;">
-    <div class="modal-dialog modal-fluid modal-notify modal-success" role="document">
-      <!--Content-->
-      <div class="modal-content">
-        <!--Header-->
-        <div class="modal-header">
-          <p class="heading lead">Modal Success</p>
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="white-text">×</span>
-        <!-- Delete Modal HTML -->
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -229,6 +224,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
+    
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="modalDetails" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header">
+                        <h4 class="modal-title">Detalhes sobre o Cliente</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" id="TableDetails">
+                
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    </div>
+    </div>
+  </div>
+</div>
     </form>
 </body>
 
@@ -334,4 +347,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     });
+</script>
+
+<script>
+    $(".table-row").click(function() {
+        $.ajax({
+            url: 'ajaxClientesDetail.php',
+            type: 'POST',
+            data: {
+                id: $(this).data('value')
+            },
+            success: function(data) {
+                $("#TableDetails").html(data);
+            },
+        });
+    });
+
 </script>
