@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $eNif = $_POST['eNif'];
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
-
         if ((($eNome && $eMorada && $eLocalidade) != "") && (($eNif != 0))) {
             $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
             $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
@@ -87,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: #566787;
     }
 
-
     tbody {
         display: block;
         max-height: 22rem;
@@ -103,10 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* even columns width , fix width of table too*/
     }
 
-    .table-row{
-    cursor:pointer;
+    .table-row {
+        cursor: pointer;
     }
-
 
     thead {
         width: calc(100% - 0rem)
@@ -147,12 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $nif = $eachRow['nif'];
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
-                            echo '<tr class="table-row" data-value="'.$buscaId.'" data-toggle="modal" data-target="#modalDetails">';
+                            echo '<tr class="table-row" data-value="' . $buscaId . '" data-toggle="modal" data-target="#modalDetails">';
                             echo '<td style="width:20%"> ' . $nome . '</td>';
                             echo '<td style="width:20%"> ' . $nif . '</td>';
                             echo '<td style="width:20rem;"> ' . $morada . '</td>';
                             echo '<td style="width:20%"> ' . $localidade . '</td>';
-                            echo '<td style="width:15%">';
+                            echo '<td style="width:15%;">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
@@ -189,37 +186,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <!-- Edit Modal HTML -->
-        <div id="exampleModal3" class="modal fade">
+        <div id="editEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label style="margin-left:1.2rem;">Nome</label>
-                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eNome" value="<?php echo "$nome"?>" required>
-                            <input type="hidden" value="' . $id . '" name="editID">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-left:1.2rem;">NIF</label>
-                            <input style="margin-left:auto; margin-right:auto" class="form-control" type="number" id="uintTextBox" name="eNif" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." value="' . $nif . '" required>
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-left:1.2rem;">Morada</label>
-                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eMorada" value="' . $morada . '" required>
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-left:1.2rem;">Localidade</label>
-                            <input type="text" style="margin-left:auto; margin-right:auto" class="form-control" name="eLocaliadade" value="' . $localidade . '" required>
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input type="submit" class="btn btn-primary" name="save" id="editar123" value="Guardar">
-                        </div>
+                    <div class="modal-body" id="OlaEdit">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btn-primary" name="save" id="editar123" value="Guardar">
                     </div>
                 </div>
             </div>
@@ -243,24 +221,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-    
 
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="modalDetails" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-    <div class="modal-header">
+
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="modalDetails" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
                         <h4 class="modal-title">Detalhes sobre o Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="TableDetails">
-                
+
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     </div>
-    </div>
-  </div>
-</div>
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 
@@ -288,7 +266,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
     }
-
     setInputFilter(document.getElementById("uintTextBox"), function(value) {
         return /^\d*$/.test(value);
     });
@@ -310,33 +287,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             },
             success: function(data) {
                 $("#Testeeee").html(data);
+                $("#modalDetails").modal("hide");
             },
         });
     });
 </script>
-
-<script>
-    $('button[name="teste4"]').on("click", function() {
-        $.ajax({
-            url: 'ajaxEdit.php',
-            type: 'POST',
-            data: {
-                id: $(this).val()
-            },
-            success: function(data) {
-                $("#OlaEdit").html(data);
-            },
-        });
-    });
-</script>
-
-
 
 <script type="text/javascript">
     $(document).ready(function() {
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
-
         // Select/Deselect checkboxes
         var checkbox = $('table tbody input[type="checkbox"]');
         $("#selectAll").click(function() {
@@ -356,7 +316,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
     });
-
     $(document).on("keydown", function(e) {
         var keyCode = e.which || e.keyCode;
         var edit = document.getElementById("editar123");
@@ -364,7 +323,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             document.getElementById("editar123").click();
         }
-
     });
 </script>
 
@@ -381,5 +339,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             },
         });
     });
-
 </script>
+
+<script>
+    $('button[name="teste4"]').on("click", function(e) {
+        $.ajax({
+            url: 'ajaxEdit.php',
+            type: 'POST',
+            data: {
+                id: $(this).val()
+            },
+            success: function(data) {
+                $("#OlaEdit").html(data);
+                // e.stopPropagation();
+                // $("#modalDetails").modal("hide");
+            },
+        });
+    });
+</script>
+
+<script>
+    $('button[name="teste4"]').on("click", function(e) {
+        this.find('#modalDetails').modal("hide");
+        // modal.find('#modalDetails');
+        e.stopPropagation();
+    });
+</script>
+
+
+<!-- <script>
+    $('button[name="teste4"]').on("click", function(event) {
+        event.stopPropagation();
+        $("#editEmployeeModal").modal("show");
+    });
+</script> -->
+
+<!-- <script>
+    $('button[name="teste4"]').on('click', function(e) {
+        $(this).find('#editEmployeeModal').modal('toggle');
+        e.stopPropagation();
+    });
+</script> -->

@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
         <li>
           <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; margin-left:38rem; width:15rem; position:absolute; z-index:500; margin-top:-4.7rem; border-radius:2px">
-            <option value="0" selected>Cliente</option>
+            <option value="0" selected>Todos os clientes</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM cliente");
             foreach ($busca as $eachRow) {
