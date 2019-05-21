@@ -191,6 +191,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="centralModalFluidSuccessDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-modal="true" style="display: block; padding-right: 17px;">
+    <div class="modal-dialog modal-fluid modal-notify modal-success" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <p class="heading lead">Modal Success</p>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">×</span>
         <!-- Delete Modal HTML -->
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
