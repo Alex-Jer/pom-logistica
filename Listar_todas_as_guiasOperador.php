@@ -136,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tbody>
       </table>
       <!--MODAL HERE -->
+      <input type="hidden" id="getConfirm">
       <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content" id="ModalGuia">
@@ -179,6 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#notConfirmed").addClass('btn3')
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
+        $("#getConfirm").val($("#notConfirmed").val());
         $("#Testeeee").html(data);
       },
     });
@@ -201,6 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Confirmed").addClass('btn3')
         $("#notConfirmed").removeClass('btn3')
         $("#notConfirmed").addClass('btn2')
+        $("#getConfirm").val($("#Confirmed").val());
         $("#Testeeee").html(data);
       },
     });
@@ -222,32 +225,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#notConfirmed").addClass('btn3')
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
+        $("#getConfirm").val($("#notConfirmed").val());
         $("#Testeeee").html(data);
       },
     });
   });
 </script>
 
-<script>
-  $("#DataEntrega2").on("change", function() {
-    $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val(),
-        tipo_cliente_id: $("#cliente").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-  });
-</script>
+
 
 <script>
   $(document).ready(function() {
@@ -285,15 +270,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       url: 'ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
-        id: $("#notConfirmed").val(),
+        id: $("#getConfirm").val(),
         dataescolhida: $("#DataEntrega2").val(),
         tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
         $("#Testeeee").html(data);
       },
     });
@@ -306,15 +287,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       url: 'ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
-        id: $("#notConfirmed").val(),
+        id: $("#getConfirm").val(),
         dataescolhida: $("#DataEntrega2").val(),
         tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
         $("#Testeeee").html(data);
       },
     });

@@ -23,7 +23,7 @@ echo '<input type="hidden" value="' . $_POST['datai']. '" name="GetDataInicial">
     $dado = mysqli_fetch_array($query);
     $clienteNome = $dado['nome'];
 
-                        if (isset($cliente)) {
+                        if ($cliente !=NULL) {
                             $query = mysqli_query($conn, "SELECT cliente.id as cliente_id, artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id=$cliente and(tipo_guia_id=4 or tipo_guia_id=3) and date(data_prevista) BETWEEN '$dataInicial' and '$dataFinal'");
                             foreach ($query as $eachRow) {
                                 $CargaFinal = 0;
