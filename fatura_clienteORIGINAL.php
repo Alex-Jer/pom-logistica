@@ -110,19 +110,25 @@ else
 
 <body>
     <div class="container">
-        
-               
-
-    
-        <!-- <form style="font-family: 'Varela Round', sans-serdif; font-size:13px; margin-left:6.5rem; position:absolute; z-index:1;" action="fatura_cliente.php" method="post" novalidate> -->
-        <form class="container" action="pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
+        <form class="container" action="pdfFatura.php" method="post" style="margin-left:64rem; margin-top:0.8rem; z-index:10000; position:absolute">
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                ?>
+                <input type="hidden" name="GetCliente" value=<?php echo $cliente ?>>
+                <button type="submit" class="btn btn-danger" id="pdf" style=""><i class="fa fa-file-pdf-o"></i> <span></span></button>
+            <?php
+        }
+        ?>
+        </form>
+        <!-- <form style="font-family: 'Varela Round', sans-serif; font-size:13px; margin-left:6.5rem; position:absolute; z-index:1;" action="fatura_cliente.php" method="post" novalidate> -->
+        <form class="container" action="fatura_cliente.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
             <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
                         <div class="col-sm-6" style="height:2rem">
                             <h2>Fatura <b>Mensal</b></h2>
-                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-left:12rem; margin-top:-2.3rem; position:absolute; z-index:500;">// onchange="this.form.submit()">
+                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-left:12rem; margin-top:-2.3rem; position:absolute; z-index:500;" onchange="this.form.submit()">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
@@ -136,7 +142,7 @@ else
 
                             <input class="form-control" style="text-align-last:center; width:15.5rem; margin-left:29rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
                             <input class="form-control" style="text-align-last:center; width:15.5rem; margin-left:46rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;" id="FinalDay" type="date" value="<?php echo $dataFinal ?>"  name="FinalDay">
-                            <button type="submit" class="btn btn-danger"  style="text-align-last:center; width:8px; margin-left:62rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;display:none;" id="pdf" style=""><i class="fa fa-file-pdf-o"></i> <span></span></button>
+                           
                         </div>
                   
                     </div>
@@ -153,8 +159,73 @@ else
                             <th style="width:10%">Total</th>
                         </tr>
                     </thead>
-                    <tbody id="Fatura">
-                        
+                    <tbody>
+                        <?php
+                        if (isset($cliente)) {
+                            $query = mysqli_query($conn, "SELECT cliente.id as cliente_id, artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id=$cliente and(tipo_guia_id=4 or tipo_guia_id=3) and data_prevista BETWEEN '$dataInicial' and '$dataFinal'");
+                            foreach ($query as $eachRow) {
+                                $CargaFinal = 0;
+                                $clienteId = $eachRow['cliente_id'];
+                                $tipoGuia = $eachRow['tpg'];
+                                $numReq = $eachRow['numero_requisicao'];
+                                $numPaletes = $eachRow['numero_paletes'];
+                                $ArtigoIDD = $eachRow['artigo_id'];
+                                $NomeGuia = $eachRow['tgn'];
+                                $precoZona = $eachRow['precozona'];
+                                $custoCarga = $eachRow['acg'];
+                                $custoDescarga = $eachRow['asd'];
+
+                                $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=1 AND numero_requisicao='$numReq'");
+                                $row = $result->fetch_row();
+                                $count = $row[0];
+
+                                $result = $conn->query("SELECT count(*) FROM guia WHERE tipo_guia_id=4 AND cliente_id='$clienteId'");
+                                $row = $result->fetch_row();
+                                $count2 = $row[0];
+
+                                if ($tipoGuia == 3) {
+                                    $CargaFinal = $custoCarga * $count;
+                                    $tipoLinha = 1;
+                                } elseif ($tipoGuia == 4) {
+                                    $CargaFinal = $custoDescarga * $count2;
+                                    $tipoLinha = 2;
+                                }
+                                $queryPalete = mysqli_query($conn, "SELECT Data_Saida,Data FROM palete WHERE artigo_id='$ArtigoIDD'");
+                                foreach ($queryPalete as $eachRowPalete) {
+                                    $dataDescarga = $eachRowPalete['Data_Saida'];
+                                    $dataCarga = $eachRowPalete['Data'];
+
+                                    if ($dataDescarga == 0) {
+                                        $datetime1 = new DateTime($timeRN);
+                                        $datetime3 = $timeRN;
+                                    } else {
+                                        $datetime1 = new DateTime($dataDescarga);
+                                        $datetime3 = $dataDescarga;
+                                    }
+                                    $datetime2 = new DateTime($dataCarga);
+                                    $intervalo = date_diff($datetime1, $datetime2);
+                                    $diasArmazenamento = $intervalo->format('%a');
+                                    if ($diasArmazenamento == 0) {
+                                        $diasArmazenamento = 1;
+                                    }
+                                }
+                                $Total = $CargaFinal + ($precoZona * $numPaletes * $diasArmazenamento);
+
+
+                                ?>
+                                <tr>
+                                    <td style="width:15%;"><?php echo "$NomeGuia" ?> </td>
+                                    <td style="width:15%"><?php echo "$numReq" ?> </td>
+                                    <td style="width:10%; text-indent:1.5rem"><?php echo $numPaletes ?> </td>
+                                    <td style="width:20%; text-indent:3rem"><?php echo $precoZona * $numPaletes * $diasArmazenamento . " €" ?></td>
+                                    <td style="width:20%; text-indent:3rem"><?php echo $CargaFinal . " €" ?></td>
+                                    <td style="width:10%; text-indent:0.8rem"><?php echo $diasArmazenamento ?></td>
+                                    <td style="width:10%; text-indent:0.2rem"><?php echo $Total . " €" ?></td>
+                                </tr>
+                            <?php
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -227,68 +298,6 @@ else
         });
     });
 </script>
-
-<script>
-    $("#cbCliente").on("change", function() {
-        $.ajax({
-            url: 'ajaxFatura2.php',
-            type: 'POST',
-            data: {
-                id: $(this).val(),
-                datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
-            },
-            success: function(data) {
-                $("#Fatura").html(data);
-                $("#pdf").css({
-                'display': 'block'
-                });
-            },
-        });
-    });
-</script>
-
-<script>
-    $("#FirstDay").on("change", function() {
-        $.ajax({
-            url: 'ajaxFatura2.php',
-            type: 'POST',
-            data: {
-                id: $("#cbCliente").val(),
-                datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
-            },
-            success: function(data) {
-                $("#Fatura").html(data);
-                $("#pdf").css({
-                'display': 'block'
-                });
-            },
-        });
-    });
-</script>
-
-<script>
-    $("#FinalDay").on("change", function() {
-        $.ajax({
-            url: 'ajaxFatura2.php',
-            type: 'POST',
-            data: {
-                id: $("#cbCliente").val(),
-                datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
-            },
-            success: function(data) {
-                $("#Fatura").html(data);
-                $("#pdf").css({
-                'display': 'block'
-                });
-            },
-        });
-    });
-</script>
-
-
 
 
 

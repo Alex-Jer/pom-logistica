@@ -53,9 +53,9 @@ class myPDF extends FPDF
         $teste = $teste - 20;
         $this->SetX($teste);
         // $this->Cell(1,5,"$FirstDay -",0,0,'C');
-        $this->Cell(20, 5, "$FirstDay -", 0, 0, 'C');
+        $this->Cell(20, 5, "" . $_POST['GetDataInicial'] . " -", 0, 0, 'C');
         $this->SetX($teste + 30);
-        $this->Cell(5, 5, $FinalDay, 0, 0, 'C');
+        $this->Cell(5, 5, "" . $_POST['GetDataFinal'] . "", 0, 0, 'C');
         $this->Ln(20);
     }
     function footer()
@@ -85,7 +85,7 @@ class myPDF extends FPDF
         $FinalDay = date("Y-m-t H:i:s");
         $FirstDay = date("Y-m-01 H:i:s");
 
-        $query = mysqli_query($conn, "SELECT guia.id as id, artigo.referencia as artigoreferencia,cliente.id as cliente_id, artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id='" . $_POST['GetCliente'] . "' and(tipo_guia_id=4 or tipo_guia_id=3)");
+        $query = mysqli_query($conn, "SELECT guia.data_prevista as guiadata,cliente.id as cliente_id, artigo.referencia as artigoreferencia, guia.id as id,artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id='" . $_POST['GetCliente'] . "' and(tipo_guia_id=4 or tipo_guia_id=3) and date(data_prevista) BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "'");
         foreach ($query as $eachRow) {
             $CargaFinal = 0;
             $clienteId = $eachRow['cliente_id'];
@@ -97,6 +97,8 @@ class myPDF extends FPDF
             $precoZona = $eachRow['precozona'];
             $custoCarga = $eachRow['acg'];
             $custoDescarga = $eachRow['asd'];
+            $dataGuia = $eachRow['guiadata'];
+
             $guiaid = $eachRow['id'];
             $ArtigoRef = $eachRow['artigoreferencia'];
 
@@ -144,7 +146,7 @@ class myPDF extends FPDF
             $row = $result->fetch_row();
             $count = $row[0];
             if ($count == 0) {
-                $sql = "INSERT INTO linha (cliente_id, tipo_linha_id, guia_id, artigo_id,quantidade,valor) VALUES ('" . $_POST['GetCliente'] . "',$tipoLinha,$guiaid, $ArtigoIDD ,$numPaletes,'$Total')";
+                $sql = "INSERT INTO linha (cliente_id, tipo_linha_id, guia_id, artigo_id,quantidade,valor,data_guia) VALUES ('" . $_POST['GetCliente'] . "',$tipoLinha,$guiaid, $ArtigoIDD ,$numPaletes,'$Total','$dataGuias')";
 
                 if (mysqli_query($conn, $sql)) { }
             }
@@ -173,7 +175,7 @@ class myPDF extends FPDF
     {
         $this->SetFont('Times', 'B', 12);
 
-        $res = $conn->query("SELECT sum(valor) as suma FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "'");
+        $res = $conn->query("SELECT sum(valor) as suma FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
         $val = $res->fetch_array();
         $tech_total = $val['suma'];
         $iva = $tech_total * 0.23;
@@ -184,7 +186,7 @@ class myPDF extends FPDF
         $FinalDay = date("Y-m-t");
         $FirstDay = date("Y-m-01");
 
-        $res2 = $conn->query("SELECT sum(quantidade) as sumpal FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "'");
+        $res2 = $conn->query("SELECT sum(quantidade) as sumpal FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
         $val2 = $res2->fetch_array();
         $totalpal = $val2['sumpal'];
         $this->Cell(25, 10, "TOTAL:", 'B,L', 0, 'C');
@@ -194,7 +196,7 @@ class myPDF extends FPDF
         $this->Cell(35, 10, $tech_total . chr(128), 'B,R', 0, 'C');
         $this->Ln();
 
-        $result = $conn->query("SELECT count(*) FROM documento  WHERE cliente_id = '" . $_POST['GetCliente'] . "' AND data_inicio='$FirstDay' AND data_fim='$FinalDay'");
+        $result = $conn->query("SELECT count(*) FROM documento  WHERE cliente_id = '" . $_POST['GetCliente'] . "' AND data_inicio='" . $_POST['GetDataInicial'] . "' AND data_fim='" . $_POST['GetDataFinal'] . "'");
         $row = $result->fetch_row();
         $count = $row[0];
         if ($count == 0) {
