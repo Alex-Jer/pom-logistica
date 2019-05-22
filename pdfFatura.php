@@ -88,7 +88,7 @@ class myPDF extends FPDF
             $precoZona = $eachRow['precozona'];
             $custoCarga = $eachRow['acg'];
             $custoDescarga = $eachRow['asd'];
-            $dataGuia = $eachRow['guiadata'];
+            $dataGuias = $eachRow['guiadata'];
             //OLA;
             $guiaid = $eachRow['id'];
             $ArtigoRef = $eachRow['artigoreferencia'];
@@ -185,6 +185,8 @@ class myPDF extends FPDF
                 $id = mysqli_insert_id($conn);
             }
         }
+    }
+}
         $pdf = new myPDF();
         $pdf->AliasNbPages();
         $pdf->AddPage('L', 'A4', 0);
@@ -196,3 +198,4 @@ class myPDF extends FPDF
         $pdf->SetX(164);
         $pdf->viewTableBot($conn);
         $pdf->Output();
+        

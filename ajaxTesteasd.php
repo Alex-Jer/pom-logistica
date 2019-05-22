@@ -16,25 +16,25 @@ $dados = mysqli_fetch_array($sql);
 
 echo '<div class="form-group">';
 echo    '<label style="margin-left:2.4rem;">Referência da Guia</label>';
-echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%" class="form-control" name="TableClick" value="' . $dados['guiareq'] . '" readonly>';
+echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%; cursor:default;" class="form-control" name="TableClick" value="' . $dados['guiareq'] . '" readonly>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo    '<label style="margin-left:2.4rem;">Nome do Artigo</label>';
-echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%" class="form-control" name="TableClick" value="' . $dados['nomeartigo'] . '" readonly>';
+echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%; cursor:default;" class="form-control" name="TableClick" value="' . $dados['nomeartigo'] . '" readonly>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo    '<label style="margin-left:2.4rem;">Referência do Artigo</label>';
-echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%" class="form-control" name="TableClick" value="' . $dados['artigo_referencia'] . '" readonly>';
+echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%; cursor:default;" class="form-control" name="TableClick" value="' . $dados['artigo_referencia'] . '" readonly>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo    '<label style="margin-left:2.4rem;">Tipo de Palete</label>';
-echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%" class="form-control" name="TableClick" value="' . $dados['tipopalete'] . '" readonly>';
+echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%; cursor:default;" class="form-control" name="TableClick" value="' . $dados['tipopalete'] . '" readonly>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo    '<label style="margin-left:2.4rem;">Número de Paletes</label>';
-echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%" class="form-control" name="TableClick" value="' . $dados['numeropaletes'] . '" readonly>';
+echo    '<input type="text" style="margin-left:auto; margin-right:auto; background-color:#fff; width:80%; cursor:default;" class="form-control" name="TableClick" value="' . $dados['numeropaletes'] . '" readonly>';
 echo '</div>';

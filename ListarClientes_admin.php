@@ -115,6 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         width: calc(100% - 0rem)
             /* scrollbar is average 1em/16px width, remove it from thead width */
     }
+
+    summary {
+        outline:none;
+    }
 </style>
 
 <body>
