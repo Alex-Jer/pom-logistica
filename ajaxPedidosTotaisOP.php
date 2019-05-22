@@ -9,7 +9,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
 $timeRN = date("Y-m-d");
 date_default_timezone_set("Europe/Lisbon");
-// echo $_POST['tipo_cliente_id'];
 if ($_POST['id'] == 1) {
     if ($_POST['dataescolhida'] != NULL) {
         if ($_POST['tipo_cliente_id'] != 0) {
