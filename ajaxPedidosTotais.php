@@ -39,7 +39,7 @@ foreach ($query as $eachRow) {
     echo '<td style="width:25%"> ' . $nomeArmazem . '</td>';
     echo '<td style="width:23%"> ' . date($dataPrevista) . '</td>';
     echo '<td style="width:15%"> ' . $numPaletes . '</td>';
-    echo '<td style="width:27%"> ' . $morada . '</td>';
+    echo '<td style="width:27%;" id="moradaD"> ' . $morada . '</td>';
     echo '</tr>';
 }
 
@@ -57,5 +57,18 @@ foreach ($query as $eachRow) {
             },
         });
     });
+
+  $("#Confirmed").on("click", function() {
+    // alert("transporte ");
+    document.getElementById("moradaH").style.visibility = "visible";
+    document.getElementById("moradaD").style.visibility = "visible";
+  });
+
+  $("#notConfirmed").on("click", function() {
+    // alert("entrega ");
+    document.getElementById("moradaH").style.visibility = "collapse";
+    document.getElementById("moradaD").style.visibility = "collapse";
+  });
+
 
 </script>

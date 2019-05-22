@@ -214,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <th style="width:20%">Artigo</th>
                   <th style="width:20%">Armazém</th>
                   <th style="width:15%">Confirmar</th>
-                  <th style="width:15%;">Registar Palete</th>
+                  <th style="width:15%; visibility:collapse;" id="registarH">Registar Palete</th>
                 </tr>
               </thead>
               <tbody id="Testeeee">

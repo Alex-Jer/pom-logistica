@@ -106,6 +106,11 @@ else
         width: calc(100% - 0rem)
             /* scrollbar is average 1em/16px width, remove it from thead width */
     }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 0px solid #dee2e6;
+    }
 </style>
 
 <body>

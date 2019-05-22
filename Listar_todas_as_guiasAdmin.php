@@ -132,10 +132,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <!-- <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post"> -->
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-          <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
+          <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed" name="entrega">Entrega</button>
         </li>
         <li class="nav-item" style="margin-top:-8.5rem;">
-          <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
+          <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed" name="transporte">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem;">
           <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; margin-right:auto; width:17rem; position:absolute; z-index:500; margin-top:3.8rem" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th style="width:25%">Armazém</th>
             <th style="width:20%">Data e hora prevista</th>
             <th style="width:17%">Nº paletes</th>
-            <th style="width:25%">Morada</th>
+            <th style="width:25%; visibility:collapse;" id="moradaH">Morada</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -204,6 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Testeeee").html(data);
       },
     });
+
     $.ajax({
       url: 'ajaxGuiaTeste.php',
       type: 'POST',
@@ -216,9 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
     });
   });
-</script>
 
-<script>
   $("#Confirmed").on("click", function() {
     $.ajax({
       url: 'ajaxPedidosTotais.php',
@@ -237,6 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Testeeee").html(data);
       },
     });
+
     $.ajax({
       url: 'ajaxGuiaTeste.php',
       type: 'POST',
@@ -249,9 +249,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
     });
   });
-</script>
 
-<script>
   $(document).ready(function() {
     $.ajax({
       url: 'ajaxPedidosTotais.php',
@@ -268,6 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Testeeee").html(data);
       },
     });
+
     $.ajax({
       url: 'ajaxGuiaTeste.php',
       type: 'POST',
@@ -280,9 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
     });
   });
-</script>
 
-<script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
       url: 'ajaxPedidosTotais.php',
@@ -300,10 +297,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
     });
   });
-</script>
 
-<script>
   $(".modal").on("hidden.bs.modal", function() {
     $(".modal-body1").html("");
   });
+
+
+  var visible = false;
+  $("#Confirmed").on("click", function() {
+    visible = true;
+    // alert("transporte " + visible);
+    document.getElementById("moradaH").style.visibility = "visible";
+    document.getElementById("moradaD").style.display = "visible";
+  });
+
+  $("#notConfirmed").on("click", function() {
+    visible = false;
+    // alert("entrega " + visible);
+    document.getElementById("moradaH").style.visibility = "collapse";
+    document.getElementById("moradaD").style.visibility = "collapse";
+  });
+
+
+
+
+  // var visible = false;
+  // var transporte = document.getElementsByName("transporte");
+  // var entrega = document.getElementsByName("entrega");
+  // function transporteClick() {
+  //   visible = true;
+  //   return visible;
+  // }
+  // function entregaClick() {
+  //   visible = false;
+  //   return visible;
+  // }
+  // transporte.onclick = function() {
+  //   alert("Bbb");
+  //   visible = true;
+  //   if (visible) {
+  //     document.getElementsByName("moradaH").style.display = "block";
+  //     document.getElementsByName("moradaD").style.display = "block";
+  //   } else {
+  //     document.getElementsByName("moradaH").style.display = "none";
+  //     document.getElementsByName("moradaD").style.display = "none";
+  //   }
+  // }
+  // entrega.onclick = function() {
+  //   alert("aaa");
+  //   visible = false;
+  //   if (visible) {
+  //     document.getElementsByName("moradaH").style.display = "block";
+  //     document.getElementsByName("moradaD").style.display = "block";
+  //   } else {
+  //     document.getElementsByName("moradaH").style.display = "none";
+  //     document.getElementsByName("moradaD").style.display = "none";
+  //   }
+  // }
 </script>
