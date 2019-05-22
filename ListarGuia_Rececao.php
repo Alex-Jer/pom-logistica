@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     overflow-y: auto;
     overflow-x: hidden;
   }
+
   .table-row{
   cursor:pointer;
   }
@@ -110,14 +111,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             $nomeCliente = $eachRow['clientenome'];
             $refArtigo = $eachRow['artigoreef'];
             $timeRN = $eachRow['data_prevista'];
-            echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
-            echo '<td style="width:20%; text-align:center"> ' . $nomeCliente . '</td>';
-            echo '<td style="width:20%; text-align:center"> ' . $timeRN . '</td>';
-            echo '<td style="width:15%; text-align:center"> ' . $qtPal . '</td>';
-            echo '<td style="width:20%; text-align:center"> ' . $refArtigo . '</td>';
-            echo '<td style="width:20%; text-align:center"> ' . $nomeArmazem . '</td>';
+            echo '<tr class="table-row" data-value="'.$GuiaID.'">';
+            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $nomeCliente . '</td>';
+            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $timeRN . '</td>';
+            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:15%; text-align:center"> ' . $qtPal . '</td>';
+            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $refArtigo . '</td>';
+            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $nomeArmazem . '</td>';
             ?>
-            <td style="width:20%"><button type="submit" style="font-size:8px; height:1.5rem; width:1px; margin-left:1rem;" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
+            <td style="width:20%; cursor:context-menu;"><button type="submit" style="font-size:8px; height:1.5rem; width:1px; margin-left:1rem;" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
             <?php
             echo '</tr>';
           }

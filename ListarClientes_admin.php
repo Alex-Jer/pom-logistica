@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/jquery.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -144,11 +145,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $nif = $eachRow['nif'];
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
-                            echo '<tr class="table-row" data-value="' . $buscaId . '" data-toggle="modal" data-target="#modalDetails">';
-                            echo '<td style="width:20%"> ' . $nome . '</td>';
-                            echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:20rem;"> ' . $morada . '</td>';
-                            echo '<td style="width:20%"> ' . $localidade . '</td>';
+                            echo '<tr class="table-row" data-value="' . $buscaId . '">';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nome . '</td>';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nif . '</td>';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20rem;"> ' . $morada . '</td>';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $localidade . '</td>';
                             echo '<td style="width:15%;">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
@@ -227,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Detalhes sobre o Cliente</h4>
+                        <h4 class="modal-title">Detalhes do Cliente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="TableDetails">
@@ -294,28 +295,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        // Activate tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-        // Select/Deselect checkboxes
-        var checkbox = $('table tbody input[type="checkbox"]');
-        $("#selectAll").click(function() {
-            if (this.checked) {
-                checkbox.each(function() {
-                    this.checked = true;
-                });
-            } else {
-                checkbox.each(function() {
-                    this.checked = false;
-                });
-            }
-        });
-        checkbox.click(function() {
-            if (!this.checked) {
-                $("#selectAll").prop("checked", false);
-            }
-        });
-    });
     $(document).on("keydown", function(e) {
         var keyCode = e.which || e.keyCode;
         var edit = document.getElementById("editar123");
@@ -357,26 +336,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     });
 </script>
-
-<script>
-    $('button[name="teste4"]').on("click", function(e) {
-        this.find('#modalDetails').modal("hide");
-        // modal.find('#modalDetails');
-        e.stopPropagation();
-    });
-</script>
-
-
-<!-- <script>
-    $('button[name="teste4"]').on("click", function(event) {
-        event.stopPropagation();
-        $("#editEmployeeModal").modal("show");
-    });
-</script> -->
-
-<!-- <script>
-    $('button[name="teste4"]').on('click', function(e) {
-        $(this).find('#editEmployeeModal').modal('toggle');
-        e.stopPropagation();
-    });
-</script> -->

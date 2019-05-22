@@ -2,7 +2,7 @@
 include 'db.php';
 echo '<div class="modal-content">
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Guia Transporte</h5>
+  <h5 class="modal-title" id="exampleModalLabel">Guia de Transporte</h5>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
   </button>
 </div>

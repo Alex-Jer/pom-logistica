@@ -114,7 +114,7 @@ $timeRN = date("Y-m-d H:i:s");
                     <div class="row">
                         <div class="col-sm-6" style="height:2rem">
                             <h2>Fatura <b>Mensal</b></h2>
-                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-left:26rem; margin-top:-2.3rem; position:absolute; z-index:500;" onchange="this.form.submit()">
+                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-left:26rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px" onchange="this.form.submit()">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
