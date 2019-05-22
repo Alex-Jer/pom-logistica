@@ -80,6 +80,7 @@ class myPDF extends FPDF
         $timeRN = date("Y-m-d H:i:s");
         $FinalDay = date("Y-m-t H:i:s");
         $FirstDay = date("Y-m-01 H:i:s");
+    
 
         $query = mysqli_query($conn, "SELECT guia.data_prevista as guiadata,cliente.id as cliente_id, artigo.referencia as artigoreferencia, guia.id as id,artigo.id as artigo_id,guia.numero_paletes as numero_paletes, guia.data_prevista as data_prevista, guia.numero_requisicao as numero_requisicao, tipo_guia.nome as tgn ,guia.tipo_guia_id as tpg, zona.id as zona, zona.preco_zona as precozona, armazem.id as armazemid, armazem.custo_carga as acg, armazem.custo_descarga as asd FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id INNER JOIN tipo_guia on tipo_guia.id=guia.tipo_guia_id INNER JOIN zona ON (zona.armazem_id=guia.armazem_id and zona.tipo_palete_id=guia.tipo_palete_id ) WHERE guia.cliente_id='" . $_POST['GetCliente'] . "' and(tipo_guia_id=4 or tipo_guia_id=3) and date(data_prevista) BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "'");
         foreach ($query as $eachRow) {
@@ -94,6 +95,7 @@ class myPDF extends FPDF
             $custoCarga = $eachRow['acg'];
             $custoDescarga = $eachRow['asd'];
             $dataGuia = $eachRow['guiadata'];
+            //OLA;
 
             $guiaid = $eachRow['id'];
             $ArtigoRef = $eachRow['artigoreferencia'];
