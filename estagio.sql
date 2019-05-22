@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Maio-2019 às 17:56
+-- Generation Time: 22-Maio-2019 às 18:35
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -68,7 +68,9 @@ CREATE TABLE `artigo` (
 
 INSERT INTO `artigo` (`id`, `cliente_id`, `referencia`, `nome`, `peso`) VALUES
 (1, 6, 'PRA-123', 'Pratos', '429.75'),
-(3, 5, 'TAL-123', 'Talheres', '2.30');
+(3, 5, 'TAL-123', 'Talheres', '2.30'),
+(4, 7, 'LAP-001', 'Lapis', '20.32'),
+(5, 5, 'LAP-002', 'Lapis', '17.98');
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nome`, `nif`, `morada`, `localidade`) VALUES
-(5, 'Adriano Horta', 123123123, 'Quinta Nova Lote 3 Ponte Seca', 'Óbidos'),
+(5, 'Adriano Horta', 963852741, 'Rua Principal', 'Gaeiras'),
 (6, 'João', 123123123, 'Rua Principal', 'Marinha Grande'),
 (7, 'Zézoca', 123456789, 'Rua de Obidos', 'Óbidos');
 
@@ -115,7 +117,16 @@ CREATE TABLE `documento` (
 --
 
 INSERT INTO `documento` (`id`, `cliente_id`, `utilizador_id`, `data_emissao`, `data_inicio`, `data_fim`, `iva`, `total`) VALUES
-(22, 5, 2, '2019-05-09', '2019-05-01', '2019-05-31', '44.61', '193.94');
+(8, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '15.64', '67.98'),
+(9, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '15.64', '67.98'),
+(10, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '15.64', '67.98'),
+(11, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '0.00', '0.00'),
+(12, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '6.44', '27.99'),
+(13, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '15.64', '67.98'),
+(14, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '9.20', '39.99'),
+(15, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '15.64', '67.98'),
+(16, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '6.44', '27.99'),
+(17, 5, 1, '2019-05-22', '2019-05-01', '2019-05-31', '9.20', '39.99');
 
 -- --------------------------------------------------------
 
@@ -148,12 +159,10 @@ CREATE TABLE `guia` (
 --
 
 INSERT INTO `guia` (`id`, `cliente_id`, `guia_id`, `tipo_guia_id`, `tipo_palete_id`, `tipo_zona_id`, `armazem_id`, `artigo_id`, `data_prevista`, `data_carga`, `numero_paletes`, `numero_requisicao`, `morada`, `localidade`, `matricula`, `confirmar`, `confirmarTotal`) VALUES
-(1, 5, 1, 1, 1, 1, 4, 1, '2019-05-03 00:00:00', '2019-05-25 00:00:00', 5, 'REQ-102', 'Òbidos', 'óbidos', '12-ST-76', 1, NULL),
-(168, 7, NULL, 1, 2, 2, 6, 1, '2019-05-14 11:11:00', '0000-00-00 00:00:00', 4, 'REQ-684', NULL, NULL, NULL, 1, NULL),
-(169, 7, 168, 3, 2, 2, 6, 1, '2019-05-13 12:04:18', '0000-00-00 00:00:00', 4, 'REQ-684', NULL, NULL, NULL, 1, 1),
-(170, 7, 168, 3, 2, 2, 6, 1, '2019-05-13 12:04:18', '0000-00-00 00:00:00', 4, 'REQ-684', NULL, NULL, NULL, 1, 1),
-(171, 7, 168, 3, 2, 2, 6, 1, '2019-05-13 12:37:06', '0000-00-00 00:00:00', 4, 'REQ-684', NULL, NULL, NULL, 1, 1),
-(172, 5, NULL, 2, 2, 2, 8, 3, '2019-05-14 11:01:00', '0000-00-00 00:00:00', 2, 'REQ-651', 'Óbidos', 'Óbidos', '11-11-AA', NULL, NULL);
+(237, 5, NULL, 1, 2, 2, 3, 5, '2019-05-21 14:25:00', '0000-00-00 00:00:00', 2, 'REQ-001', NULL, NULL, NULL, 1, NULL),
+(238, 5, 237, 3, 2, 2, 3, 5, '2019-05-21 14:17:55', '0000-00-00 00:00:00', 2, 'REQ-001', NULL, NULL, NULL, 1, 1),
+(239, 5, NULL, 2, 2, 2, 3, 5, '2019-05-22 11:11:00', '0000-00-00 00:00:00', 1, 'REQ-003', 'Rua de Obidos', 'Óbidos', '11-11-AA', 1, NULL),
+(240, 5, 239, 4, 2, 2, 3, 5, '2019-05-22 09:29:24', '0000-00-00 00:00:00', 1, 'REQ-003', 'Rua de Obidos', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -169,18 +178,17 @@ CREATE TABLE `linha` (
   `guia_id` int(5) DEFAULT NULL,
   `artigo_id` int(5) DEFAULT NULL,
   `quantidade` int(4) DEFAULT NULL,
-  `valor` decimal(7,2) DEFAULT NULL
+  `valor` decimal(7,2) DEFAULT NULL,
+  `data_guia` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `linha`
 --
 
-INSERT INTO `linha` (`id`, `documento_id`, `cliente_id`, `tipo_linha_id`, `guia_id`, `artigo_id`, `quantidade`, `valor`) VALUES
-(513, 22, 5, 1, 28, 1, 2, '45.98'),
-(514, 22, 5, 2, 38, 1, 1, '49.98'),
-(515, 22, 5, 2, 40, 1, 1, '49.98'),
-(516, 22, 5, 1, 42, 3, 3, '48.00');
+INSERT INTO `linha` (`id`, `documento_id`, `cliente_id`, `tipo_linha_id`, `guia_id`, `artigo_id`, `quantidade`, `valor`, `data_guia`) VALUES
+(1, 8, 5, 1, 238, 5, 2, '39.99', '2019-05-21'),
+(2, 8, 5, 2, 240, 5, 1, '27.99', '2019-05-22');
 
 -- --------------------------------------------------------
 
@@ -203,22 +211,22 @@ CREATE TABLE `localizacao` (
 --
 
 INSERT INTO `localizacao` (`id`, `palete_id`, `zona_id`, `referencia`, `data_entrada`, `data_saida`, `hasPalete`) VALUES
-(1, 65, 1, 'A-1', '2019-11-11', NULL, 1),
-(2, 67, 3, 'A-2', '2019-05-08', NULL, 1),
-(3, 66, 1, 'A-3', '2019-11-11', NULL, 1),
-(4, 68, 3, 'A-4', '2019-05-08', NULL, 1),
-(5, 69, 3, 'A-5', '2019-05-08', NULL, 1),
-(6, 72, 1, 'A-6', '2019-05-13', NULL, 1),
-(7, 73, 1, 'A-7', '2019-05-13', NULL, 1),
-(8, 74, 1, 'A-8', '2019-05-13', NULL, 1),
-(9, 75, 1, 'A-9', '2019-05-13', NULL, 1),
-(10, 84, 5, 'A-10', '2019-05-13', NULL, 1),
-(11, 85, 5, 'A-11', '2019-05-13', NULL, 1),
-(12, 86, 5, 'A-12', '2019-05-13', NULL, 1),
-(13, 87, 5, 'A-13', '2019-05-13', NULL, 1),
-(14, 88, 5, 'A-14', '2019-05-13', NULL, 1),
-(15, 89, 5, 'A-15', '2019-05-13', NULL, 1),
-(16, 90, 5, 'A-16', '2019-05-13', NULL, 1),
+(1, NULL, NULL, 'A-1', NULL, NULL, 0),
+(2, 114, 2, 'A-2', '2019-05-21', NULL, 1),
+(3, NULL, NULL, 'A-3', NULL, NULL, 0),
+(4, NULL, NULL, 'A-4', NULL, NULL, 0),
+(5, NULL, NULL, 'A-5', NULL, NULL, 0),
+(6, NULL, NULL, 'A-6', NULL, NULL, 0),
+(7, NULL, NULL, 'A-7', NULL, NULL, 0),
+(8, NULL, NULL, 'A-8', NULL, NULL, 0),
+(9, NULL, NULL, 'A-9', NULL, NULL, 0),
+(10, NULL, NULL, 'A-10', NULL, NULL, 0),
+(11, NULL, NULL, 'A-11', NULL, NULL, 0),
+(12, NULL, NULL, 'A-12', NULL, NULL, 0),
+(13, NULL, NULL, 'A-13', NULL, NULL, 0),
+(14, NULL, NULL, 'A-14', NULL, NULL, 0),
+(15, NULL, NULL, 'A-15', NULL, NULL, 0),
+(16, NULL, NULL, 'A-16', NULL, NULL, 0),
 (17, NULL, NULL, 'A-17', NULL, NULL, 0),
 (18, NULL, NULL, 'A-18', NULL, NULL, 0),
 (19, NULL, NULL, 'A-19', NULL, NULL, 0),
@@ -398,29 +406,8 @@ CREATE TABLE `palete` (
 --
 
 INSERT INTO `palete` (`id`, `guia_entrada_id`, `guia_saida_id`, `artigo_id`, `tipo_palete_id`, `referencia`, `nome`, `Data`, `Data_Saida`) VALUES
-(64, 27, NULL, 1, 2, 'PAL-002', 'Palete de pratos', '2019-05-06 17:00:22', '2019-05-08 11:11:25'),
-(65, 1, NULL, 1, 1, 'PAL-045', 'Palete de pratos', '2019-05-08 10:48:42', NULL),
-(66, 1, NULL, 1, 1, 'PAL-029', 'Palete de pratos', '2019-05-12 10:58:49', NULL),
-(67, 41, NULL, 3, 2, 'PAL-051', 'Palete de talheres', '2019-05-08 11:31:43', NULL),
-(68, 41, NULL, 3, 2, 'PAL-052', 'Palete de talheres', '2019-05-08 11:32:03', NULL),
-(69, 41, NULL, 3, 2, 'PAL-054', 'Palete de talheres', '2019-05-08 11:32:28', NULL),
-(73, 165, NULL, 3, 1, 'PAL-055', 'Palete de + Pratos', '2019-05-13 10:36:58', NULL),
-(75, 165, NULL, 3, 1, 'PAL-115', 'Palete de Pratos', '2019-05-13 10:40:17', NULL),
-(76, 165, NULL, 3, 1, 'PAL-115', 'Palete de Pratos', '2019-05-13 10:55:32', NULL),
-(77, 165, NULL, 3, 1, 'PAL-115', 'Palete de Pratos', '2019-05-13 10:55:52', NULL),
-(78, 165, NULL, 3, 1, 'PAL-115', 'Palete de Pratos', '2019-05-13 10:56:12', NULL),
-(79, 165, NULL, 3, 1, 'PAL-115', 'Palete de Pratos', '2019-05-13 10:56:19', NULL),
-(80, 165, NULL, 3, 1, 'PAL-', 'Palete de ', '2019-05-13 11:38:31', NULL),
-(81, 165, NULL, 3, 1, 'PAL-', 'Palete de ', '2019-05-13 11:39:36', NULL),
-(82, 167, NULL, 3, 2, 'PAL-', 'Palete de ', '2019-05-13 11:43:33', NULL),
-(83, 167, NULL, 3, 2, 'PAL-', 'Palete de ', '2019-05-13 11:51:23', NULL),
-(84, 169, NULL, 1, 2, 'PAL-005', 'Palete de Pratos', '2019-05-13 12:04:41', NULL),
-(85, 169, NULL, 1, 2, 'PAL-006', 'Palete de Pratos', '2019-05-13 12:04:49', NULL),
-(86, 169, NULL, 1, 2, 'PAL-007', 'Palete de Pratos', '2019-05-13 12:04:58', NULL),
-(87, 169, NULL, 1, 2, 'PAL-008', 'Palete de Pratos', '2019-05-13 12:05:08', NULL),
-(88, 170, NULL, 1, 2, 'PAL-PAL-458', 'Palete de Pratos', '2019-05-13 14:18:17', NULL),
-(89, 170, NULL, 1, 2, 'PAL-PAL-459', 'Palete de Pratos', '2019-05-13 14:18:25', NULL),
-(90, 170, NULL, 1, 2, 'PAL-PAL-475', 'Palete de Pratos', '2019-05-13 14:19:10', NULL);
+(113, 238, NULL, 5, 2, 'PAL-001', 'Palete de Pratos', '2019-05-21 14:18:13', '2019-05-22 09:29:24'),
+(114, 238, NULL, 5, 2, 'PAL-002', 'Palete de Pratos', '2019-05-21 14:18:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -569,12 +556,12 @@ CREATE TABLE `zona` (
 --
 
 INSERT INTO `zona` (`id`, `armazem_id`, `tipo_zona_id`, `nome`, `preco_zona`, `espaco`, `tipo_palete_id`) VALUES
-(1, 4, 1, 'Zona de paletes baixas no Armazem B', 5, 80, 1),
-(2, 3, 2, 'Zona de paletes altas no Armazem A', 10, 49, 2),
-(3, 8, 2, 'Zona de paletes altas no armazem 8', 6, 22, 2),
+(1, 4, 1, 'Zona de paletes baixas no Armazem B', 5, 78, 1),
+(2, 3, 2, 'Zona de paletes altas no Armazem A', 10, 39, 2),
+(3, 8, 2, 'Zona de paletes altas no armazem 8', 6, 20, 2),
 (4, 5, 3, 'Zona de paletes frias no armazem F', 25, 24, 3),
 (5, 6, 2, 'Zona de Paletes altas no Armazem D', 10, 22, 2),
-(6, 6, 1, 'Zona de Paletes baixas no Armazem D', 8, 44, 1);
+(6, 6, 1, 'Zona de Paletes baixas no Armazem D', 8, 34, 1);
 
 --
 -- Indexes for dumped tables
@@ -635,7 +622,9 @@ ALTER TABLE `linha`
 -- Indexes for table `localizacao`
 --
 ALTER TABLE `localizacao`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `palete_id` (`palete_id`),
+  ADD KEY `zona_id` (`zona_id`);
 
 --
 -- Indexes for table `palete`
@@ -708,7 +697,7 @@ ALTER TABLE `armazem`
 -- AUTO_INCREMENT for table `artigo`
 --
 ALTER TABLE `artigo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cliente`
@@ -720,19 +709,19 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT for table `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `guia`
 --
 ALTER TABLE `guia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
 
 --
 -- AUTO_INCREMENT for table `linha`
 --
 ALTER TABLE `linha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=517;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `localizacao`
@@ -744,7 +733,7 @@ ALTER TABLE `localizacao`
 -- AUTO_INCREMENT for table `palete`
 --
 ALTER TABLE `palete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `perfil`
@@ -826,6 +815,13 @@ ALTER TABLE `linha`
   ADD CONSTRAINT `linha_ibfk_3` FOREIGN KEY (`guia_id`) REFERENCES `guia` (`id`),
   ADD CONSTRAINT `linha_ibfk_4` FOREIGN KEY (`tipo_linha_id`) REFERENCES `tipo_linha` (`id`),
   ADD CONSTRAINT `linha_ibfk_5` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`);
+
+--
+-- Limitadores para a tabela `localizacao`
+--
+ALTER TABLE `localizacao`
+  ADD CONSTRAINT `localizacao_ibfk_1` FOREIGN KEY (`palete_id`) REFERENCES `palete` (`id`),
+  ADD CONSTRAINT `localizacao_ibfk_2` FOREIGN KEY (`zona_id`) REFERENCES `zona` (`id`);
 
 --
 -- Limitadores para a tabela `palete`
