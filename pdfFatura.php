@@ -1,13 +1,9 @@
 <?php
-
 session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "estagio";
-
-
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
@@ -205,22 +201,16 @@ class myPDF extends FPDF
             if (mysqli_query($conn, $sql2)) {
                 $id = mysqli_insert_id($conn);
             }
-
-            $sqllinha = "UPDATE linha SET documento_id=$id WHERE documento_id IS NULL";
-
-            if (mysqli_query($conn, $sqllinha)) { }
         }
-    }
-}
 
-$pdf = new myPDF();
-$pdf->AliasNbPages();
-$pdf->AddPage('L', 'A4', 0);
-$pdf->SetLeftMargin('34');
-$pdf->headerTable();
-$pdf->viewTable($conn);
-$pdf->SetX(164);
-$pdf->headerTableBot();
-$pdf->SetX(164);
-$pdf->viewTableBot($conn);
-$pdf->Output();
+        $pdf = new myPDF();
+        $pdf->AliasNbPages();
+        $pdf->AddPage('L', 'A4', 0);
+        $pdf->SetLeftMargin('34');
+        $pdf->headerTable();
+        $pdf->viewTable($conn);
+        $pdf->SetX(164);
+        $pdf->headerTableBot();
+        $pdf->SetX(164);
+        $pdf->viewTableBot($conn);
+        $pdf->Output();

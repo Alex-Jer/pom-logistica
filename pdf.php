@@ -1,7 +1,4 @@
 <?php
-
-
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -52,19 +49,21 @@ class myPDF extends FPDF
         // $eachRow = mysqli_fetch_array($dado);
         $dado = mysqli_query($conn, "SELECT guia.id as idg,guia.artigo_id,guia.cliente_id,guia.numero_paletes, guia.data_prevista, guia.numero_requisicao,guia.armazem_id, guia.confirmar, guia.confirmarTotal, cliente.nome as clientenome ,armazem.nome as armazemnome,artigo.referencia as artigoreef FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id WHERE guia.id='" . $_POST['GuiaID'] . "'");
         $eachRow = mysqli_fetch_array($dado);
-                                    $GuiaID=$eachRow['idg'];
-                                    $qtPal=$eachRow['numero_paletes'];
-                                    $numeroReq=$eachRow['numero_requisicao'];
-                                    $nomeArmazem= $eachRow['armazemnome'];
-                                    $nomeCliente = $eachRow['clientenome'];
-                                    $refArtigo = $eachRow['artigoreef'];
-                                    $timeRN = $eachRow['data_prevista'];
+        $GuiaID = $eachRow['idg'];
+        $qtPal = $eachRow['numero_paletes'];
+        $numeroReq = $eachRow['numero_requisicao'];
+        $nomeArmazem = $eachRow['armazemnome'];
+        $nomeCliente = $eachRow['clientenome'];
+        $refArtigo = $eachRow['artigoreef'];
+        $timeRN = $eachRow['data_prevista'];
         $this->Cell(40, 10, $numeroReq, 1, 0, 'C');
         // $this->Cell(40,10,$data->nome,1,0,'L');
+        $nomeCliente = iconv('UTF-8', 'windows-1252', $nomeCliente);
         $this->Cell(40, 10, $nomeCliente, 1, 0, 'C');
         $this->Cell(60, 10, $timeRN, 1, 0, 'C');
         $this->Cell(25, 10, $qtPal, 1, 0, 'C');
         $this->Cell(30, 10, $refArtigo, 1, 0, 'C');
+        $nomeArmazem = iconv('UTF-8', 'windows-1252', $nomeArmazem);
         $this->Cell(50, 10, $nomeArmazem, 1, 0, 'C');
         $this->Ln();
     }

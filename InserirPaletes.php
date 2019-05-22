@@ -188,10 +188,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container" style="margin-left:-6rem">
       <ul class="nav nav-pills" style="margin-top:4rem;">
         <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+          <button style="border-radius:0.2rem; background-color:#f5f5f5; margin-right:1rem;" class="nav-link active btn2" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
         </li>
         <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link btn2" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
         </li>
       </ul>
       <div class="table-wrapper" style="margin-top:0.3rem; width:80rem">
@@ -266,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   </button>
                 </div>
@@ -289,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxTeste.php',
+      url: 'ajaxTeste2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxTeste.php',
+      url: 'ajaxTeste2.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val()
@@ -328,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'ajaxTeste.php',
+      url: 'ajaxTeste2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
