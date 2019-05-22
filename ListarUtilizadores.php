@@ -113,6 +113,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* even columns width , fix width of table too*/
     }
 
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 0px solid #dee2e6;
+    }
+
     thead {
         width: calc(100% - 0rem)
             /* scrollbar is average 1em/16px width, remove it from thead width */

@@ -102,6 +102,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* even columns width , fix width of table too*/
     }
 
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 0px solid #dee2e6;
+    }
+
     .table-row {
         cursor: pointer;
     }
@@ -203,7 +208,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -222,8 +226,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-
-
         <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="modalDetails" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">

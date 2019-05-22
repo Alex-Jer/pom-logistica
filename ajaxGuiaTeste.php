@@ -20,8 +20,6 @@ if ($_POST['id'] == 1) {
   echo '<button type = "button"data-target="#addEmployeeModal" style="background-color:#01d932" class="btn btn-success" name="Transporte" value = "2" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Guia de Transporte</span></button>';
   echo '</div>';
 }
-
-
 echo '</div>';
 echo '</div>';
 
