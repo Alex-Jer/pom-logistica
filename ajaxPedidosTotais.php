@@ -9,15 +9,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, "utf8");
 if ($_POST['id'] == 1) {
     if ($_POST['dataescolhida'] != NULL) {
-        $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 AND DATE(data_prevista)='" . $_POST['dataescolhida'] . "' ORDER BY data_carga ASC");
+        $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga, guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 AND DATE(data_prevista)='" . $_POST['dataescolhida'] . "' ORDER BY data_carga ASC");
     } else {
-        $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 ORDER BY data_carga ASC");
+        $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga, guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 1 ORDER BY data_carga ASC");
     }
 } elseif ($_POST['id'] == 2) {
     if ($_POST['dataescolhida'] != NULL) {
         $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 AND DATE(data_prevista)='" . $_POST['dataescolhida'] . "' ORDER BY data_carga ASC");
     } else {
-
         $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 ORDER BY data_carga ASC");
     }
 }
@@ -32,14 +31,13 @@ foreach ($query as $eachRow) {
     $morada = $eachRow['morada'];
     $nomeCliente = $eachRow['clinome'];
     $nomeArmazem = $eachRow['armazemnome'];
-    //Inacabado
     echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
-    echo '<td style="width:20%"> ' . $nomeCliente . '</td>';
-    echo '<td style="width:20%"> ' . $numReq . '</td>';
-    echo '<td style="width:25%"> ' . $nomeArmazem . '</td>';
-    echo '<td style="width:23%"> ' . date($dataPrevista) . '</td>';
-    echo '<td style="width:15%"> ' . $numPaletes . '</td>';
-    echo '<td style="width:27%;" id="moradaD"> ' . $morada . '</td>';
+    echo '<td style="width:20%; text-align:center"> ' . $nomeCliente . '</td>';
+    echo '<td style="width:20%; text-align:center"> ' . $numReq . '</td>';
+    echo '<td style="width:25%; text-align:center"> ' . $nomeArmazem . '</td>';
+    echo '<td style="width:20%; text-align:center"> ' . date($dataPrevista) . '</td>';
+    echo '<td style="width:20%; text-align:center"> ' . $numPaletes . '</td>';
+    echo '<td style="width:25%;; text-align:center" id="moradaD"> ' . $morada . '</td>';
     echo '</tr>';
 }
 

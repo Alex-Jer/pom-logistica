@@ -138,11 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:20%">Nome</th>
-                            <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
-                            <th style="width:20rem; padding: 0rem 1.1rem">Morada</th>
-                            <th style="width:21%">Localidade</th>
-                            <th style="width:14%">Ações</th>
+                            <th style="width:20%;">Nome</th>
+                            <th style="width:20%; text-align:center">NIF</th>
+                            <th style="width:20rem; text-align:center">Morada</th>
+                            <th style="width:21%; text-align:center">Localidade</th>
+                            <th style="width:14%; text-align:center">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,10 +156,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $localidade = $eachRow['localidade'];
                             echo '<tr class="table-row" data-value="' . $buscaId . '">';
                             echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nome . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nif . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20rem;"> ' . $morada . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $localidade . '</td>';
-                            echo '<td style="width:15%;">';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $nif . '</td>';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20rem; text-align:center"> ' . $morada . '</td>';
+                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $localidade . '</td>';
+                            echo '<td style="width:15%; text-align:center">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>

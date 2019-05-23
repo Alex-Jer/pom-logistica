@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ::-webkit-scrollbar-thumb:hover {
         background: #0056b3;
     }
-    
+
     tbody,
     thead tr {
         display: block;
@@ -79,12 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ?>
                         <input class="form-control" onchange="this.form.submit()" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem; border-color:#007bff;" type="date" value="<?php echo $data ?>" name="data">
                     <?php
-                    } else {
+                } else {
                     ?>
                         <input class="form-control" onchange="this.form.submit()" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem; border-color:#007bff;" type="date" value="<?php echo $timeRN ?>" name="data">
                     <?php
-                    }
-                    ?>
+                }
+                ?>
                     <div>
                         <table style="margin-top:2rem; margin-left:-25px; width: 1160px; text-align:center" class="table">
                             <thead>

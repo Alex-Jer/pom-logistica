@@ -57,14 +57,18 @@ class myPDF extends FPDF
     }
     function headerTable()
     {
+        $referencia = iconv('UTF-8', 'windows-1252', 'Referência');
+        $nPaletes = iconv('UTF-8', 'windows-1252', 'Nº Paletes');
+        $precoPalete = iconv('UTF-8', 'windows-1252', 'Preço/Palete');
+        $precoCargaDescarga = iconv('UTF-8', 'windows-1252', 'Preço Carga/Descarga');
         $this->SetFont('Times', 'B', 12);
         $this->Cell(30, 10, 'Tipo de guia', 'B,T,L', 0, 'C');
-        $this->Cell(30, 10, 'Referencia', 'B,T', 0, 'C');
-        $this->Cell(20, 10, 'N Paletes', 'B,T', 0, 'C');
+        $this->Cell(30, 10, $referencia, 'B,T', 0, 'C');
+        $this->Cell(20, 10, $nPaletes, 'B,T', 0, 'C');
         $this->Cell(25, 10, 'Artigo', 'B,T', 0, 'C');
         $this->Cell(15, 10, 'Dias', 'B,T', 0, 'C');
-        $this->Cell(40, 10, 'Preco/Palete', 'B,T', 0, 'C');
-        $this->Cell(50, 10, 'Preco Carga/Descarga', 'B,T', 0, 'C');
+        $this->Cell(40, 10, $precoPalete, 'B,T', 0, 'C');
+        $this->Cell(50, 10, $precoCargaDescarga, 'B,T', 0, 'C');
         $this->Cell(30, 10, 'Total', 'B,R,T', 0, 'C');
         $this->Ln();
     }

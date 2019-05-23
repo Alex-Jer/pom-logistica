@@ -153,13 +153,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:15%">Tipo de Guia</th>
-                            <th style="width:15%">Nº de requisição</th>
-                            <th style="width:10%">Nº Paletes</th>
-                            <th style="width:20%">Preço por palete / zona</th>
-                            <th style="width:20%">Preço de Carga/Descarga</th>
-                            <th style="width:10%">Dias</th>
-                            <th style="width:10%">Total</th>
+                            <th style="width:15%; text-align:center">Tipo de Guia</th>
+                            <th style="width:15%; text-align:center">Nº de requisição</th>
+                            <th style="width:10%; text-align:center">Nº Paletes</th>
+                            <th style="width:20%; text-align:center">Preço por palete / zona</th>
+                            <th style="width:20%; text-align:center">Preço de Carga/Descarga</th>
+                            <th style="width:10%; text-align:center">Dias</th>
+                            <th style="width:10%; text-align:center">Total</th>
                         </tr>
                     </thead>
                     <tbody id="Fatura">

@@ -16,16 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
         if (mysqli_query($conn, $sql)) { }
-    }elseif (isset($_POST['save']))
-    {
-        $eNome= $_POST['eNome'];
+    } elseif (isset($_POST['save'])) {
+        $eNome = $_POST['eNome'];
         $eNif = $_POST['eNif'];
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
 
         $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssss", $eNome,$eNif,$eMorada, $eLocalidade);
-       $stmt->execute();
+        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
+        $stmt->execute();
     }
 }
 ?>
@@ -183,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="OlaEdit">
-                        
+
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
