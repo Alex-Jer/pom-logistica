@@ -26,9 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $dataInicial = $_POST['FirstDay'];
     $dataFinal = $_POST['FinalDay'];
-}
-else
-{
+} else {
     $dataFinal = $FinalDay;
     $dataInicial = $FirstDay;
 }
@@ -111,15 +109,15 @@ else
         vertical-align: bottom;
         border-bottom: 0px solid #dee2e6;
     }
+
+    input[type=date]::-webkit-inner-spin-button,
+    input[type=date]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
 </style>
 
 <body>
     <div class="container">
-        
-               
-
-    
-        <!-- <form style="font-family: 'Varela Round', sans-serdif; font-size:13px; margin-left:6.5rem; position:absolute; z-index:1;" action="fatura_cliente.php" method="post" novalidate> -->
         <form class="container" action="pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
             <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
@@ -127,23 +125,29 @@ else
                     <div class="row">
                         <div class="col-sm-6" style="height:2rem">
                             <h2>Fatura <b>Mensal</b></h2>
-                            <select class="custom-select" name="cbCliente" id="cbCliente" style="text-align-last:center; width:15.5rem; margin-left:12rem; margin-top:-2.3rem; position:absolute; z-index:500;">// onchange="this.form.submit()">
-                                <option value="" disabled selected>Cliente</option>
-                                <?php
-                                $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
-                                foreach ($busca as $eachRow) {
-                                    ?>
-                                    <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
-                                <?php
-                            }
-                            ?>
-                            </select>
-
-                            <input class="form-control" style="text-align-last:center; width:15.5rem; margin-left:29rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
-                            <input class="form-control" style="text-align-last:center; width:15.5rem; margin-left:46rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;" id="FinalDay" type="date" value="<?php echo $dataFinal ?>"  name="FinalDay">
-                            <button type="submit" class="btn btn-danger"  style="text-align-last:center; width:8px; margin-left:62rem; margin-top:-2.3rem; position:absolute; z-index:500; border-radius:2px;display:none;" id="pdf" style=""><i class="fa fa-file-pdf-o"></i> <span></span></button>
+                            <div>
+                                <select class="form-control" name="cbCliente" id="cbCliente" style="text-align-last:center; width:13rem; height:2rem; font-size:15px; margin-left:13rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;">// onchange="this.form.submit()">
+                                    <option value="" disabled selected>Cliente</option>
+                                    <?php
+                                    $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
+                                    foreach ($busca as $eachRow) {
+                                        ?>
+                                        <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
+                                    <?php
+                                }
+                                ?>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="position:absolute; margin-top:-3rem; margin-left:29rem; display:inline-block; width:5rem; font-size:11px;">Data Inicial</label>
+                                <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:29rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
+                            </div>
+                            <div>
+                                <label style="position:absolute; margin-top:-3rem; margin-left:45rem; display:inline-block; width:5rem; font-size:11px;">Data Final</label>
+                                <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:45rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="text-align-last:center; width:1rem; height:2rem; font-size:15px; margin-left:60.5rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px; display:none;" id="pdf" style=""><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
                         </div>
-                  
                     </div>
                 </div>
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
@@ -159,7 +163,7 @@ else
                         </tr>
                     </thead>
                     <tbody id="Fatura">
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -241,12 +245,12 @@ else
             data: {
                 id: $(this).val(),
                 datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
+                dataf: $("#FinalDay").val()
             },
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                'display': 'block'
+                    'display': 'block'
                 });
             },
         });
@@ -261,12 +265,12 @@ else
             data: {
                 id: $("#cbCliente").val(),
                 datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
+                dataf: $("#FinalDay").val()
             },
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                'display': 'block'
+                    'display': 'block'
                 });
             },
         });
@@ -281,21 +285,17 @@ else
             data: {
                 id: $("#cbCliente").val(),
                 datai: $("#FirstDay").val(),
-                dataf:$("#FinalDay").val()
+                dataf: $("#FinalDay").val()
             },
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                'display': 'block'
+                    'display': 'block'
                 });
             },
         });
     });
 </script>
-
-
-
-
 
 <script type="text/javascript">
     $(document).ready(function() {
