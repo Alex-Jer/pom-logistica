@@ -48,10 +48,14 @@ class myPDF extends FPDF
         $teste = $teste / 2;
         $teste = $teste - 20;
         $this->SetX($teste);
+        $DataInicial=$_POST['GetDataInicial'];
+        $DataFinal = $_POST['GetDataFinal'];
+        $newDate = date("d-m-Y", strtotime($DataInicial));
+        $newDateFinal = date("d-m-Y", strtotime($DataFinal));
         // $this->Cell(1,5,"$FirstDay -",0,0,'C');
-        $this->Cell(20, 5, "" . $_POST['GetDataInicial'] . " -", 0, 0, 'C');
+        $this->Cell(20, 5, "$newDate -", 0, 0, 'C');
         $this->SetX($teste + 30);
-        $this->Cell(5, 5, "" . $_POST['GetDataFinal'] . "", 0, 0, 'C');
+        $this->Cell(5, 5, $newDateFinal, 0, 0, 'C');
         $this->Ln(20);
     }
     function footer()
@@ -94,7 +98,7 @@ class myPDF extends FPDF
             $precoZona = $eachRow['precozona'];
             $custoCarga = $eachRow['acg'];
             $custoDescarga = $eachRow['asd'];
-            $dataGuia = $eachRow['guiadata'];
+            $dataGuias = $eachRow['guiadata'];
             //OLA;
 
             $guiaid = $eachRow['id'];
@@ -203,7 +207,9 @@ class myPDF extends FPDF
             if (mysqli_query($conn, $sql2)) {
                 $id = mysqli_insert_id($conn);
             }
-        }
+    }
+    }
+}
 
         $pdf = new myPDF();
         $pdf->AliasNbPages();
