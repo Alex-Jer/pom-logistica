@@ -158,7 +158,7 @@
                 </div>
                 <div class="colunaEsquerda">
                         <div class="text-center">
-                                <img src="images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
+                                <img src="..\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
@@ -177,7 +177,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="ListarGuia_Rececao.php" class="small-box-footer">
+                                                <a href="Listar_guia_rececao.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

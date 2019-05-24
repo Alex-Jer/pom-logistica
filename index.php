@@ -35,7 +35,7 @@ include 'db.php';
                 header("Location: Admin\Menu.php");
                 exit;
             } elseif ($perfilId == '2') {
-                header("Location: MenuOperador.php");
+                header("Location: Operador\Menu.php");
                 exit;
             }
         } else {

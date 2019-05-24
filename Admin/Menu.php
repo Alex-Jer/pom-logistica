@@ -156,7 +156,7 @@
                 </div>
                 <div class="colunaEsquerda">
                         <div class="text-center">
-                                <img src="images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
+                                <img src="..\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
@@ -175,7 +175,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Admin\Listar_clientes.php" class="small-box-footer">
+                                                <a href="..\Admin\Listar_clientes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -201,7 +201,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Admin\Listar_todas_as_guias.php" class="small-box-footer">
+                                                <a href="..\Admin\Listar_todas_as_guias.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -242,7 +242,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="index.php" class="small-box-footer">
+                                                <a href="..\index.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
