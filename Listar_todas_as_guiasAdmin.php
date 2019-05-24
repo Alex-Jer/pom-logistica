@@ -126,10 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $timeRN = date("Y-m-d");
   ?>
   <form class="container" action="Listar_todas_as_guiasAdmin.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
-    <!-- <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute;; margin-left:12rem;"> -->
     <div class="table-wrapper" style="margin-top:10rem;">
-      <!-- <p id="profile-name" class="profile-name-card"></p> -->
-      <!-- <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post"> -->
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
           <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed" name="entrega">Entrega</button>
@@ -145,12 +142,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%">Cliente</th>
-            <th style="width:20%">Nº de requisição</th>
-            <th style="width:25%">Armazém</th>
-            <th style="width:20%">Data e hora prevista</th>
-            <th style="width:17%">Nº paletes</th>
-            <th style="width:25%; visibility:collapse;" id="moradaH">Morada</th>
+            <th style="width:20%; text-align:center">Cliente</th>
+            <th style="width:20%; text-align:center">Nº de requisição</th>
+            <th style="width:25%; text-align:center">Armazém</th>
+            <th style="width:20%; text-align:center">Data e hora prevista</th>
+            <th style="width:20%; text-align:center">Nº paletes</th>
+            <th style="width:25%; text-align:center; visibility:collapse;" id="moradaH">Morada</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -167,6 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </div>
+    <!--Modal Detalhes-->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content" style="margin-left:auto; margin-right:auto; width:90%">

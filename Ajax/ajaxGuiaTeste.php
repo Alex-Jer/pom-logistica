@@ -5,7 +5,6 @@ echo '<div class="table-title" style="background-color:#0275d8;">';
 echo '<div class="row">';
 
 if ($_POST['id'] == 1) {
-
   echo '<div class="col-sm-6">';
   echo '<h2 style="text-align:left">Guias de <b>Entrega</b></h2>';
   echo '</div>';
