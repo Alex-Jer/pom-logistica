@@ -3,7 +3,7 @@
 <?php
 session_start();
 include "db.php";
-include "navbarAdmin.php";
+include "Navbar\navbarOperador.php";
 $NewPass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,6 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bind_result($oLdPassword);
   $stmt->fetch();
 
+  // var_dump($pw);
+  // var_dump($oLdPassword);
+  // var_dump($pw2);
+  // var_dump($pw3);
   // if ($oLdPassword == $pw && $pw3 == $pw2) {
   if ((password_verify($pw, $oLdPassword)) && $pw2 == $pw3) {
     $Fim = true;
@@ -58,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="container">
     <div class="card card-container">
-      <form action="mudarpass_admin.php" method="post">
+      <form action="Operador\mudar_pass.php" method="post">
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <div class="row" style="margin-left:20px; margin-top:2rem;">
           <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>

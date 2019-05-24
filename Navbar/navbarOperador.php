@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include 'db.php';
+include '..\db.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -139,20 +139,20 @@ function echoActiveClassIfRequestMatches($requestUri)
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Operador\Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
                     <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Guia Entrega</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador_operador") ?>" href="Guia_Operador_operador.php">Guia Transporte</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Operador\Guia_Operador") ?>" href="Operador\Guia_Operador.php">Guia Transporte</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasOperador") ?>" href="Listar_todas_as_guiasOperador.php">Consultar Pedidos</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Operador\Listar_todas_as_guias") ?>" href="Operador\Listar_todas_as_guias.php">Consultar Pedidos</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Operador\mudar_pass") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudarpass_operador") ?>" href="mudarpass_operador.php">Alterar Palavra-Passe</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Operador\mudar_pass") ?>" href="Operador\mudar_pass.php">Alterar Palavra-Passe</a>
                 </div>
             </li>
             <li class="nav-item">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarAdmin.php';
+include 'Navbar\navbarOperador.php';
 include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = $_POST["data"];
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="styles\table.css">
   <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
   <link rel="stylesheet" href="styles\style3.css">
+  <link rel="stylesheet" href="styles\style5.css">
   <link rel="stylesheet" href="css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
@@ -73,8 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: 230px !important;
     /* 140px + 16px scrollbar width */
   }
-  .table-row{
-  cursor:pointer;
+
+  .table-row {
+    cursor: pointer;
   }
 
   .btn-success {
@@ -86,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Listar_todas_as_guiasOperador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+  <form class="container" action="Operador\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
@@ -96,10 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem;">
-          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:39rem; width:14rem; position:absolute; z-index:500; margin-top:3.85rem; border-radius:2px" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:39rem; width:14rem; position:absolute; z-index:500; margin-top:3.85rem; border-radius:1px" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
         </li>
         <li>
-          <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; margin-left:13rem; width:15rem; position:absolute; z-index:500; margin-top:-4.65rem; border-radius:2px">
+          <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; margin-left:13rem; width:15rem; position:absolute; z-index:500; margin-top:-4.65rem; border-radius:1px">
             <option value="0" selected>Todos os clientes</option>
             <?php
             $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -122,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%">Cliente</th>
+            <th style="width:20%; text-align:center">Cliente</th>
             <th style="width:20%; text-align:center">Nº de requisição</th>
             <th style="width:20%; text-align:center">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
@@ -144,21 +146,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
       <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body" id="TableDetails">
-                </diV>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body" id="TableDetails">
+            </diV>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </form>
 </body>

@@ -1,5 +1,5 @@
 <?php
-//include 'navbarAdmin.php'; 
+//include 'Navbar\navbarAdmin.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -175,7 +175,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="ListarClientes_admin.php" class="small-box-footer">
+                                                <a href="Admin\Listar_clientes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="ListarUtilizadores.php" class="small-box-footer">
+                                                <a href="Listar_utilizadores.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -201,7 +201,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Listar_todas_as_guiasAdmin.php" class="small-box-footer">
+                                                <a href="Admin\Listar_todas_as_guias.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

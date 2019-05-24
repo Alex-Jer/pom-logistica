@@ -3,7 +3,7 @@
 <script type="text/javascript" src="jquery.js"></script>
 <?php
 session_start();
-include 'navbarAdmin.php';
+include 'Navbar\navbarAdmin.php';
 include 'db.php';
 if ($_SESSION["perfilId"]==2)
 {

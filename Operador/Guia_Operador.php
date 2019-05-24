@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarOperador.php';
+include 'Navbar\navbarOperador.php';
 include 'db.php';
 if ($_SESSION["perfilId"] == 1) {
   header("Location: index.php");
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-  <form class="container" action="Guia_Operador_operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+  <form class="container" action="Operador\Guia_Operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
         <div class="row">

@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include 'db.php';
-include 'navbarOperador.php';
+include 'Navbar\navbarOperador.php';
 if ($_SESSION["perfilId"] == 1) {
 
     header("Location: index.php");

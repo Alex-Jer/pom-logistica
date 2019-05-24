@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include '../navbarAdmin.php';
+include '../Navbar\navbarAdmin.php';
 include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["data"])) {
@@ -125,11 +125,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Listar_todas_as_guiasAdmin.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
+  <form class="container" action="Admin\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
     <!-- <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute;; margin-left:12rem;"> -->
     <div class="table-wrapper" style="margin-top:10rem;">
       <!-- <p id="profile-name" class="profile-name-card"></p> -->
-      <!-- <form class="container" action="Listar_todas_as_guiasAdmin.php" method="post"> -->
+      <!-- <form class="container" action="Admin\Listar_todas_as_guias.php" method="post"> -->
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
           <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed" name="entrega">Entrega</button>

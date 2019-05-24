@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarOperador.php';
+include 'Navbar\navbarOperador.php';
 include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST['data'];

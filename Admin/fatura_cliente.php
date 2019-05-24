@@ -2,8 +2,8 @@
 <html lang=pt dir="ltr">
 <?php
 session_start();
-include 'navbarAdmin.php';
-include 'db.php';
+include '..\Navbar\navbarAdmin.php';
+include '..\db.php';
 date_default_timezone_set("Europe/Lisbon");
 $timeRN = date("Y-m-d H:i:s");
 $timeRN2 = date("Y-m-d");

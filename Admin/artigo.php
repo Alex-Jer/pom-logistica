@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php
-include 'navbarAdmin.php';
-include 'db.php';
+include '..\Navbar\navbarAdmin.php';
+include '..\db.php';
 if ($_SESSION["perfilId"] == 2) {
 
     header("Location: index.php");

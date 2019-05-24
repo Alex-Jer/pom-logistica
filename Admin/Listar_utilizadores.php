@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarAdmin.php';
-include 'db.php';
+include '..\Navbar\navbarAdmin.php';
+include '..\db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["registar"])) {
         $pw = $_POST["MainPw"];
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
             } else {
                 echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-                echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
+                echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
             }
         } else {
             if ($pw == $pw2) {
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->execute();
                 } else {
                     echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-                    echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
+                    echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
                 }
             } else {
                 ?>
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     } else {
         echo '<script type="text/javascript">alert("Preencha todos os campos! ola");</script>';
-        echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
+        echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
     }
 }
 }
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarUtilizadores.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="Listar_utilizadores.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem; margin-left:auto; margin-right:auto; width:65rem">
                 <div class="table-title" style="background-color:#0275d8">

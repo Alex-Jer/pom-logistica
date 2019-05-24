@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarOperador.php';
+include 'Navbar\navbarOperador.php';
 include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((isset($_POST['registar']))) {
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="ListarClientes_operador.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="Operador\Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
                 <div class="table-title" style="background-color:#0275d8;">

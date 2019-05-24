@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarAdmin.php';
-include 'db.php';
+include '..\Navbar\navbarAdmin.php';
+include '..\db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["data"])) {
     $data = $_POST["data"];
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Listar_todas_as_guiasAdmin.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
+  <form class="container" action="Admin\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">

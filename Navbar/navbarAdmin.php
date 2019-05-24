@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include 'db.php';
+include '..\db.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -194,34 +194,34 @@ function echoActiveClassIfRequestMatches($requestUri)
     <nav role="navigation">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="d-block" style="margin-top:5px" href="MenuAdmin.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
+                <a class="d-block" style="margin-top:5px" href="Menu.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
             </li>
             <li class="nav-item" style="margin-left:1rem">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarClientes_admin") ?>" href="ListarClientes_admin.php">Clientes</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="Listar_clientes.php">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("ListarUtilizadores") ?>" href="ListarUtilizadores.php">Utilizadores</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_utilizadores") ?>" href="..\Admin\Listar_utilizadores.php">Utilizadores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasAdmin") ?>" href="Listar_todas_as_guiasAdmin.php">Lista de Guias</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="Listar_todas_as_guias.php">Lista de Guias</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasDiariasAdmin") ?>" href="Listar_todas_as_guiasDiariasAdmin.php">Pedidos Diários</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="Listar_todas_as_guias_diarias.php">Pedidos Diários</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="artigo.php">Artigo</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudar_pass") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?>" href="mudarpass_admin.php">Alterar Palavra-Passe</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" href="mudar_pass.php">Alterar Palavra-Passe</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="index.php">Sair</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="..\index.php">Sair</a>
             </li>
         </ul>
     </nav>

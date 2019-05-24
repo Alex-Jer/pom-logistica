@@ -1,5 +1,5 @@
 <?php
-//include 'navbarAdmin.php'; 
+//include 'Navbar\navbarAdmin.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -190,7 +190,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Guia_Operador_operador.php" class="small-box-footer">
+                                                <a href="Operador\Guia_Operador.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -233,7 +233,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Listar_todas_as_guiasOperador.php" class="small-box-footer">
+                                                <a href="Operador\Listar_todas_as_guias.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

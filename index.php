@@ -32,7 +32,7 @@ include 'db.php';
         // if ($passInput == $password) {
         if (password_verify($passInput, $password)) {
             if ($perfilId == '1') {
-                header("Location: MenuAdmin.php");
+                header("Location: Admin\Menu.php");
                 exit;
             } elseif ($perfilId == '2') {
                 header("Location: MenuOperador.php");

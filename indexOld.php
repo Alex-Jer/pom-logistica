@@ -23,7 +23,7 @@ include 'db.php';
         $_SESSION['userid'] = $iduser;
         if ($passInput == $pass) {
             if ($id == '1') {
-                header("Location: navbarAdmin.php");
+                header("Location: Navbar\navbarAdmin.php");
                 exit;
             } elseif ($id == '2') {
                 header("Location: operador.php");
