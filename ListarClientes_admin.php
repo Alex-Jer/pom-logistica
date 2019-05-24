@@ -6,10 +6,14 @@ include 'db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((isset($_POST['registar']))) {
         $nome = $_POST["Nome"];
+        $nome = htmlspecialchars($nome);
         $nifNumber = $_POST["nif"];
         $nifNumberr = (int)$nifNumber;
+        $nifNumberr = htmlspecialchars($nifNumberr);
         $Morada = $_POST["morada"];
+        $Morada = htmlspecialchars($Morada);
         $localidade = $_POST["local"];
+        $localidade = htmlspecialchars($localidade);
         if ((($nome && $Morada && $localidade) != "") && (($nifNumberr != 0))) {
             $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
         } else {

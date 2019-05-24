@@ -8,9 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pw = $_POST["MainPw"];
         $pw2 = $_POST["Pw2"];
         $nome = $_POST["Nome"];
+        $nome = htmlspecialchars($nome);
         $arID = $_POST["combobox"];
         $pfID = $_POST["combobox2"];
         $email = $_POST["Email"];
+        $email = htmlspecialchars($email);
         $hashed_password = password_hash($pw, PASSWORD_DEFAULT);
 
         if (($pw && $pw2 == "")) {

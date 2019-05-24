@@ -62,17 +62,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <div class="row" style="margin-left:20px; margin-top:2rem;">
           <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:3px;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
         </div>
         <div class="row" style="margin-left:20px">
           <input type="password" style="margin-bottom:1rem;" name="textNewPass" id="newPass" tabindex="2" class="form-control" placeholder="Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:3px;" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
         </div>
         <div class="row" style="margin-left:20px">
           <input type="password" name="textNewPass2" class="form-control" id="textNewPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:3px;" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
         </div>
-        <button class="btn btn-primary" style="margin-top:2rem; margin-left:20px; width:371.7px" type="submit">Confirmar</button>
+        <button class="btn btn-primary" style="margin-top:2rem; margin-left:20px; width:371.7px; margin-bottom:1rem;" type="submit">Confirmar</button>
       </form><!-- /form -->
     </div>
   </div>
