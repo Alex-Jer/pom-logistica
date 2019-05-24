@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarOperador.php';
-include 'db.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 ?>
 
@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
-    <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-    <link rel="stylesheet" href="styles\style3.css">
-    <link rel="stylesheet" href="css\bootstrap.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
+    <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
+    <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
+    <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -100,12 +100,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
             <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th style="text-align:center">Cliente</th>
-                        <th style="width:25%; text-align:center">Dia e hora da carga</th>
+                        <th>Cliente</th>
+                        <th style="width:25%;">Dia e hora da carga</th>
                         <th style="width:15%; text-align:center">Nº de paletes</th>
-                        <th style="width:15%; text-align:center">Artigo</th>
-                        <th style="width:15%; text-align:center">Armazém</th>
-                        <th style="width:15%; text-align:center">PDF</th>
+                        <th style="width:15%">Artigo</th>
+                        <th style="width:15%">Armazém</th>
+                        <th style="width:15%">PDF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,13 +120,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                         $refArtigo = $eachRow['artigoreef'];
                         $timeRN = $eachRow['data_prevista'];
                         echo '<tr class="table-row" data-value="' . $GuiaID . '" data-toggle="modal" data-target="#exampleModal2">';
-                        echo '<td style="text-align:center">' . $nomeCliente . '</td>';
-                        echo '<td style="width:25%; text-align:center">' . $timeRN . '</td>';
+                        echo '<td>' . $nomeCliente . '</td>';
+                        echo '<td style="width:25%;">' . $timeRN . '</td>';
                         echo '<td style="width:15%; text-align:center">' . $qtPal . '</td>';
-                        echo '<td style="width:15%; text-align:center">' . $refArtigo . '</td>';
-                        echo '<td style="width:15%; text-align:center">' . $nomeArmazem . '</td>';
+                        echo '<td style="width:15%">' . $refArtigo . '</td>';
+                        echo '<td style="width:15%">' . $nomeArmazem . '</td>';
                         ?>
-                        <td style="text-align:center"><button type="submit" style="width:2rem; height:2rem" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
+                        <td><button type="submit" style="width:2rem; height:2rem" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
                         <?php
                         echo '</tr>';
                     }
@@ -139,14 +139,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body" id="TableDetails">
                 </diV>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

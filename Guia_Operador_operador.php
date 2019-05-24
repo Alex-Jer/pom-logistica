@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxDevolucao2.php',
+      url: 'Ajax/ajaxDevolucao2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxConfirmar.php',
+      url: 'Ajax/ajaxConfirmar.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'ajaxDevolucao2.php',
+      url: 'Ajax/ajaxDevolucao2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()

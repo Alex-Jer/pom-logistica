@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'ajaxEntrega.php',
+      url: 'Ajax/ajaxEntrega.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'ajaxArmazem.php',
+      url: 'Ajax/ajaxArmazem.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Armazem").on("change", function() {
     $.ajax({
-      url: 'ajaxEspaco.php',
+      url: 'Ajax/ajaxEspaco.php',
       type: 'POST',
       data: {
         id: $("#Armazem").val(),
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#comboboxCli").on("change", function() {
     $.ajax({
-      url: 'ajaxaArtigoCliente.php',
+      url: 'Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#comboboxCli").val()

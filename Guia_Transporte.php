@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#artigoID").on("change", function() {
         $.ajax({
-            url: 'ajaxMaxGuiaT.php',
+            url: 'Ajax/ajaxMaxGuiaT.php',
             type: 'POST',
             data: {
                 id: $("#artigoID").val()
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#clienteCBID").on("change", function() {
     $.ajax({
-      url: 'ajaxaArtigoCliente.php',
+      url: 'Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#clienteCBID").val()

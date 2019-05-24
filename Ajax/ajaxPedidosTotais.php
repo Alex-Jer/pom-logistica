@@ -45,7 +45,7 @@ foreach ($query as $eachRow) {
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: 'ajaxTesteasd.php',
+            url: 'Ajax/ajaxTesteasd.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')

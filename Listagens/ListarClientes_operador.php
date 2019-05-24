@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarOperador.php';
-include 'db.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((isset($_POST['registar']))) {
         $nome = $_POST["Nome"];
@@ -16,15 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
         if (mysqli_query($conn, $sql)) { }
-    } elseif (isset($_POST['save'])) {
-        $eNome = $_POST['eNome'];
+    }elseif (isset($_POST['save']))
+    {
+        $eNome= $_POST['eNome'];
         $eNif = $_POST['eNif'];
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
 
         $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
-        $stmt->execute();
+        $stmt->bind_param("ssss", $eNome,$eNif,$eMorada, $eLocalidade);
+       $stmt->execute();
     }
 }
 ?>
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -182,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="OlaEdit">
-
+                        
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">

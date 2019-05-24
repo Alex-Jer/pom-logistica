@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarOperador.php';
-include 'db.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = $_POST["data"];
 }
@@ -15,11 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles\table.css">
-  <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="styles\style3.css">
-  <link rel="stylesheet" href="styles\style5.css">
-  <link rel="stylesheet" href="css\bootstrap.css">
+  <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
+  <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
+  <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
+  <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -74,9 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: 230px !important;
     /* 140px + 16px scrollbar width */
   }
-
-  .table-row {
-    cursor: pointer;
+  .table-row{
+  cursor:pointer;
   }
 
   .btn-success {
@@ -124,11 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%; text-align:center">Cliente</th>
-            <th style="width:20%; text-align:center">Nº de requisição</th>
-            <th style="width:20%; text-align:center">Data e hora prevista</th>
+            <th style="width:20%">Cliente</th>
+            <th style="width:20%;">Nº de requisição</th>
+            <th style="width:20%">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
-            <th style="width:20%; text-align:center">Armazém</th>
+            <th style="width:20%;">Armazém</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -146,21 +144,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
       <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              </button>
-            </div>
-            <div class="modal-body" id="TableDetails">
-            </diV>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body" id="TableDetails">
+                </diV>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   </form>
 </body>

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 // echo $_POST['id'];
 echo '<div class="table-title" style="background-color:#0275d8;">';
 echo '<div class="row">';
@@ -28,7 +28,7 @@ echo '</div>';
 <script>
   $('button[name="Entrega"]').on("click", function() {
     $.ajax({
-      url: 'ajaxGuiaGuardarEntrega.php',
+      url: 'Ajax/ajaxGuiaGuardarEntrega.php',
       type: 'POST',
       data: {
         id: $(this).val(),
@@ -44,7 +44,7 @@ echo '</div>';
 <script>
   $('button[name="Transporte"]').on("click", function() {
     $.ajax({
-      url: 'ajaxGuiaGuardarTransporte.php',
+      url: 'Ajax/ajaxGuiaGuardarTransporte.php',
       type: 'POST',
       data: {
         id: $(this).val(),

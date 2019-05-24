@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarAdmin.php';
-include 'db.php';
+include '../navbarAdmin.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["registar"])) {
         $pw = $_POST["MainPw"];
@@ -11,34 +11,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $arID = $_POST["combobox"];
         $pfID = $_POST["combobox2"];
         $email = $_POST["Email"];
-        $hashed_password = password_hash($pw, PASSWORD_DEFAULT);
 
-        if (($pw && $pw2 == "")) {
-            if ((($nome && $pfID && $email && $arID) != "")) {
-                $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email) VALUES(?,?,?,?)");
-                $stmt->bind_param("iisss", $pfID, $arID, $nome, $email);
+        if ($pw == $pw2) {
+            if ((($nome && $pw && $pw2 && $pfID && $email && $arID) != "")) {
+                $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password ) VALUES(?,?,?,?,?)");
+                $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
                 $stmt->execute();
             } else {
                 echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
                 echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
             }
         } else {
-            if ($pw == $pw2) {
-                if ((($nome && $pw && $pw2 && $pfID && $email && $arID) != "")) {
-                    $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password) VALUES(?,?,?,?,?)");
-                    $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $hashed_password);
-                    $stmt->execute();
-                } else {
-                    echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-                    echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
-                }
-            } else {
-                ?>
-                <script type="text/javascript">
-                    alert("As passwords não coincidem");
-                </script>
-            <?php
-        }
+            ?>
+            <script type="text/javascript">
+                alert("As passwords não coincidem");
+            </script>
+        <?php
     }
 } elseif (isset($_POST['apagar'])) {
     $id = $_POST["ola"];
@@ -47,16 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 } elseif (isset($_POST['save'])) {
     $eNome = $_POST['eNome'];
-    $eMail = $_POST['eEmail'];
-    $ePerfil = $_POST['ePerfil'];
     $eArmazem = $_POST["eArmazem"];
+    $eMail = $_POST['eEmail'];
 
-    if ((($eNome && $eArmazem && $eMail && $ePerfil) != "")) {
-        $stmt = $conn->prepare("UPDATE utilizador SET nome=?, email=?, perfil_id=?, armazem_id=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssii", $eNome, $eMail, $ePerfil, $eArmazem);
+    if ((($eNome && $eArmazem && $eMail) != "") && (($eNif != 0))) {
+        $stmt = $conn->prepare("UPDATE utilizador SET nome=?, armazem_id=?,email=? WHERE id = '" . $_POST['editID'] . "'");
+        $stmt->bind_param("sis", $eNome, $eArmazem, $eMail);
         $stmt->execute();
     } else {
-        echo '<script type="text/javascript">alert("Preencha todos os campos! ola");</script>';
+        echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
         echo '<script type="text/javascript">location.replace("ListarUtilizadores.php");</script>';
     }
 }
@@ -70,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -154,11 +141,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:20%">Nome</th>
-                            <th style="width:30%; text-align:center">Email</th>
-                            <th style="width:25%; text-align:center">Estatuto</th>
-                            <th style="width:25%; text-align:center">Armazém</th>
-                            <th style="width:20%; text-align:center">Ações</th>
+                            <th style="width:30%">Nome</th>
+                            <th style="width:35%">Email</th>
+                            <th style="width:25%">Estatuto</th>
+                            <th style="width:30%">Armazém</th>
+                            <th style="width:14%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -172,11 +159,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $ArmazemNome  = $eachRow['armazem_nome'];
                             $PerfilNome  = $eachRow['pnome'];
                             echo '<tr>';
-                            echo '<td style="width:20%"> ' . $Nome . '</td>';
-                            echo '<td style="width:30%; text-align:center"> ' . $email . '</td>';
-                            echo '<td style="width:25%; text-align:center"> ' . $PerfilNome . '</td>';
-                            echo '<td style="width:25%; text-align:center"> ' . $ArmazemNome . '</td>';
-                            echo '<td style="width:20%; text-align:center">';
+                            echo '<td style="width:30%"> ' . $Nome . '</td>';
+                            echo '<td style="width:35%"> ' . $email . '</td>';
+                            echo '<td style="width:25%"> ' . $PerfilNome . '</td>';
+                            echo '<td style="width:30%"> ' . $ArmazemNome . '</td>';
+                            echo '<td style="width:15%">';
                             ?>
                             <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
                             <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
@@ -206,15 +193,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-body">
                         <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="1" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
                         <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="2" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-                        <div class="row" style=" width:437px; margin-top:1rem; margin-left:0.2rem; margin-right:auto;">
+                        <div class="row" style=" width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
                             <input style="margin-left:19px; height:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
                             <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        <div class="row" style="width:437px; margin-top:1rem; margin-left:0.2rem; margin-right:auto;">
+                        <div class="row" style="width:388px; margin-top:1rem; margin-left:auto; margin-right:auto;">
                             <input style="margin-left:19px; height:auto;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
                             <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color:#6c757d;" tabindex="5" color: #6C757D;" class="form-control" name="combobox" required autofocus>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto;" tabindex="5" color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");

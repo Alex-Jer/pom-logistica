@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 echo '
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Adicionar Guia de Entrega</h5>
@@ -51,7 +51,7 @@ echo '
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'ajaxEntrega.php',
+      url: 'Ajax/ajaxEntrega.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -68,7 +68,7 @@ echo '
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'ajaxArmazem.php',
+      url: 'Ajax/ajaxArmazem.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -91,7 +91,7 @@ echo '
 <script>
   $("#Armazem").on("change", function() {
     $.ajax({
-      url: 'ajaxEspaco.php',
+      url: 'Ajax/ajaxEspaco.php',
       type: 'POST',
       data: {
         id: $("#Armazem").val(),
@@ -107,7 +107,7 @@ echo '
 <script>
   $("#comboboxCli").on("change", function() {
     $.ajax({
-      url: 'ajaxaArtigoCliente.php',
+      url: 'Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#comboboxCli").val()

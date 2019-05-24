@@ -1,6 +1,6 @@
 <?php 
 
-include 'db.php';
+include '../db.php';
 
 $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['id']."'");
         $dado = mysqli_fetch_array($buscaId);

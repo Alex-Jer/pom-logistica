@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 
 ?>
 
+<<<<<<< HEAD
 <html lang="en">
 
 <head>
@@ -87,3 +88,5 @@ if ($conn->connect_error) {
 
 
 </html>
+=======
+>>>>>>> 286827c6d49ebce2f719aef8e346553eed8c76f0

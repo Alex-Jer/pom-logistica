@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -213,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //   },
     // });
     $.ajax({
-      url: 'ajaxGuiaTeste.php',
+      url: 'Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -267,7 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),
@@ -284,7 +284,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#cliente").on("change", function() {
     $.ajax({
-      url: 'ajaxPedidosTotaisOP.php',
+      url: 'Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),
