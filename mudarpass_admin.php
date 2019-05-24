@@ -20,27 +20,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bind_result($oLdPassword);
   $stmt->fetch();
 
-  if ($oLdPassword == $pw && $pw3 == $pw2) {
+  // if ($oLdPassword == $pw && $pw3 == $pw2) {
+  if ((password_verify($pw, $oLdPassword)) && $pw2 == $pw3) {
     $Fim = true;
   } else {
-    $Fim = FALSE;
-    $Show = TRUE;
+    $Fim = false;
+    $Show = true;
   }
 
-
-  if ($Fim == TRUE) {
+  if ($Fim == true) {
+    $hashed_password = password_hash($NewPass, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("UPDATE utilizador SET password=? WHERE Email=?");
-    $stmt->bind_param("ss", $NewPass, $emms);
+    $stmt->bind_param("ss", $hashed_password, $emms);
     $stmt->execute();
     ?>
-
-
     <script type="text/javascript">
-      alert("Password mudada com sucesso");
+      alert("Password alterada com sucesso");
     </script>
-    <?php
-  } elseif ($Fim == FALSE && $Show = TRUE) {
-    ?>
+  <?php
+} elseif ($Fim == false && $Show = true) {
+  ?>
     <script type="text/javascript">
       alert("As passwords não coincidem");
     </script>
@@ -70,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:3px;" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
         </div>
         <div class="row" style="margin-left:20px">
-          <input type="password" name="textNewPass2" class="form-control" id="newPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
+          <input type="password" name="textNewPass2" class="form-control" id="textNewPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
           <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:3px;" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
         </div>
         <button class="btn btn-primary" style="margin-top:2rem; margin-left:20px; width:371.7px" type="submit">Confirmar</button>
@@ -113,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script>
   function myFunction3() {
-    var x = document.getElementById("newPass2");
+    var x = document.getElementById("textNewPass2");
     if (x.type === "password") {
       x.type = "text";
       $("#ieye3").removeClass('fa fa-eye-open');

@@ -51,9 +51,9 @@ foreach ($query as $eachRow) {
     $nomeCliente = $eachRow['clinome'];
     $nomeArmazem = $eachRow['armazemnome'];
     echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
-    echo '<td style="width:20%; text-align:center;"> ' . $nomeCliente . '</t>';
+    echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
     echo '<td style="width:20%; text-align:center;"> ' . $numReq . '</td>';
-    echo '<td style="width:15%; text-align:center;"> ' . date($dataPrevista) . '</td>';
+    echo '<td style="width:20%; text-align:center;"> ' . date($dataPrevista) . '</td>';
     echo '<td style="width:17%; text-align:center"> ' . $numPaletes . '</td>';
     echo '<td style="width:20%; text-align:center;"> ' . $nomeArmazem . '</td>';
     echo '</tr>';

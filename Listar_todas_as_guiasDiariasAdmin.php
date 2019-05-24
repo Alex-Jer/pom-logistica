@@ -123,10 +123,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <thead>
           <tr>
             <th style="width:20%">Cliente</th>
-            <th style="width:20%;">Nº de requisição</th>
-            <th style="width:20%">Data e hora prevista</th>
+            <th style="width:20%; text-align:center">Nº de requisição</th>
+            <th style="width:20%; text-align:center">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
-            <th style="width:20%;">Armazém</th>
+            <th style="width:20%; text-align:center">Armazém</th>
           </tr>
         </thead>
         <tbody id="Testeeee">

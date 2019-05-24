@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="styles\table.css">
   <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
   <link rel="stylesheet" href="styles\style3.css">
+  <link rel="stylesheet" href="styles\style5.css">
   <link rel="stylesheet" href="css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
@@ -73,8 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: 230px !important;
     /* 140px + 16px scrollbar width */
   }
-  .table-row{
-  cursor:pointer;
+
+  .table-row {
+    cursor: pointer;
   }
 
   .btn-success {
@@ -144,21 +146,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
       <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body" id="TableDetails">
-                </diV>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-              </div>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body" id="TableDetails">
+            </diV>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </form>
 </body>

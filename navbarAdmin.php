@@ -33,6 +33,61 @@ function echoActiveClassIfRequestMatches($requestUri)
     <link rel="stylesheet" href="css\bootstrap.css">
 </head>
 
+<style>
+    @media (min-width: 992px) {
+        .animate {
+            animation-duration: 0.3s;
+            -webkit-animation-duration: 0.3s;
+            animation-fill-mode: both;
+            -webkit-animation-fill-mode: both;
+        }
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(1rem);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0rem);
+            opacity: 1;
+        }
+
+        0% {
+            transform: translateY(1rem);
+            opacity: 0;
+        }
+    }
+
+    @-webkit-keyframes slideIn {
+        0% {
+            -webkit-transform: transform;
+            -webkit-opacity: 0;
+        }
+
+        100% {
+            -webkit-transform: translateY(0);
+            -webkit-opacity: 1;
+        }
+
+        0% {
+            -webkit-transform: translateY(1rem);
+            -webkit-opacity: 0;
+        }
+    }
+
+    .slideIn {
+        -webkit-animation-name: slideIn;
+        animation-name: slideIn;
+    }
+
+    .dropdown-menu {
+        margin-top: -0.3rem !important;
+        border-radius: 3px !important;
+    }
+</style>
+
 <body>
     <nav role="navigation">
         <ul class="nav nav-tabs">
@@ -52,14 +107,14 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="fatura_cliente.php">Fatura</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasDiariasAdmin") ?>" href="Listar_todas_as_guiasDiariasAdmin.php">Pedidos Diarios</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guiasDiariasAdmin") ?>" href="Listar_todas_as_guiasDiariasAdmin.php">Pedidos Diários</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="artigo.php">Artigo</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudarpass_admin") ?>" href="mudarpass_admin.php">Alterar Palavra-Passe</a>
                 </div>
             </li>

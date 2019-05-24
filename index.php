@@ -20,6 +20,7 @@ include 'db.php';
         $stmt->bind_result($id, $perfilId, $password, $nome);
         $stmt->fetch();
 
+
         //echo "Email textbox: " . $email;
         //echo " Id: " . $id . " Perfil id: " . $perfilId . " Email: " . $email . " Password: " . $password;
 
@@ -28,7 +29,8 @@ include 'db.php';
         $_SESSION['perfilId'] = $perfilId;
         $_SESSION['nome'] = $nome;
 
-        if ($passInput == $password) {
+        // if ($passInput == $password) {
+        if (password_verify($passInput, $password)) {
             if ($perfilId == '1') {
                 header("Location: MenuAdmin.php");
                 exit;
@@ -49,7 +51,6 @@ include 'db.php';
 }
 ?>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="js\bootstrap.js"></script>
     <link rel="stylesheet" href="css\bootstrap.css">
@@ -64,7 +65,6 @@ include 'db.php';
 </style>
 
 <body>
-
     <div class="container" style="margin-top:6rem; margin-bottom:auto">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

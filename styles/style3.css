@@ -11,8 +11,8 @@
   text-decoration: none;
   background-color: #f8f9fa;
   border-width: 0.1px;
-  border-color: #dee2e6;
-  border-style: solid;
+  /* border-color: #dee2e6; */
+  /* border-style: solid; */
 }
 ::placeholder {
   text-align: center;

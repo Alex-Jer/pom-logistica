@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $arID = $_POST["combobox"];
         $pfID = $_POST["combobox2"];
         $email = $_POST["Email"];
+        $hashed_password = password_hash($pw, PASSWORD_DEFAULT);
 
         if (($pw && $pw2 == "")) {
             if ((($nome && $pfID && $email && $arID) != "")) {
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($pw == $pw2) {
                 if ((($nome && $pw && $pw2 && $pfID && $email && $arID) != "")) {
                     $stmt = $conn->prepare("INSERT INTO utilizador (perfil_id, armazem_id, nome, email, password) VALUES(?,?,?,?,?)");
-                    $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $pw);
+                    $stmt->bind_param("iisss", $pfID, $arID, $nome, $email, $hashed_password);
                     $stmt->execute();
                 } else {
                     echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
