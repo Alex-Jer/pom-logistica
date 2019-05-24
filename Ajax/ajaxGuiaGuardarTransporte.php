@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 echo '<div class="modal-content">
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Guia de Transporte</h5>
@@ -40,7 +40,7 @@ echo '
 <script>
   $("#artigoID").on("change", function() {
     $.ajax({
-      url: 'ajaxMaxGuiaT.php',
+      url: 'Ajax/ajaxMaxGuiaT.php',
       type: 'POST',
       data: {
         id: $("#artigoID").val()
@@ -55,7 +55,7 @@ echo '
 <script>
   $("#clienteCBID").on("change", function() {
     $.ajax({
-      url: 'ajaxaArtigoCliente.php',
+      url: 'Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#clienteCBID").val()

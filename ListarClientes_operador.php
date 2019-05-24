@@ -253,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste2"]').on("click", function() {
         $.ajax({
-            url: 'teste.php',
+            url: 'Ajax/teste.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -268,7 +268,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste4"]').on("click", function() {
         $.ajax({
-            url: 'ajaxEdit.php',
+            url: 'Ajax/ajaxEdit.php',
             type: 'POST',
             data: {
                 id: $(this).val()

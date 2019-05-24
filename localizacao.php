@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#TipoPalete").on("change", function() {
         $.ajax({
-            url: 'ajaxLocal.php',
+            url: 'Ajax/ajaxLocal.php',
             type: 'POST',
             data: {
                 id: $("#TipoPalete").val()

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'navbarAdmin.php';
-include 'db.php';
+include '../navbarAdmin.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = $_POST["data"];
 }
@@ -15,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles\table.css">
-  <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="styles\style3.css">
-  <link rel="stylesheet" href="css\bootstrap.css">
+  <link rel="stylesheet" href="..\styles\table.css">
+  <link rel="stylesheet" href="..\node_modules\jquery\dist\jquery.js">
+  <link rel="stylesheet" href="..\styles\style3.css">
+  <link rel="stylesheet" href="..\css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '../Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '../Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -213,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '../Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //   },
     // });
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '../Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -267,7 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '../Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),
@@ -284,7 +284,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#cliente").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '../Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),

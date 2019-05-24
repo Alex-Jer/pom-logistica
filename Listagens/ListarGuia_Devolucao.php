@@ -2,7 +2,7 @@
 <html lang=pt dir="ltr">
 <?php
 include 'navbarOperador.php';
-include 'db.php';
+include '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 ?>
 
@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
-    <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-    <link rel="stylesheet" href="styles\style3.css">
-    <link rel="stylesheet" href="css\bootstrap.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
+    <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
+    <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
+    <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
