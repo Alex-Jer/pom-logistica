@@ -142,12 +142,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%; text-align:center">Cliente</th>
-            <th style="width:20%; text-align:center">Nº de requisição</th>
-            <th style="width:25%; text-align:center">Armazém</th>
-            <th style="width:20%; text-align:center">Data e hora prevista</th>
-            <th style="width:20%; text-align:center">Nº paletes</th>
-            <th style="width:25%; text-align:center; visibility:collapse;" id="moradaH">Morada</th>
+            <?php
+            echo '<th style="width:20%; text-align:center">Cliente</th>';
+            echo '<th style="width:20%; text-align:center">Nº de requisição</th>';
+            echo '<th style="width:20%; text-align:center">Data e hora prevista</th>';
+            echo '<th style="width:20%; text-align:center">Nº paletes</th>';
+            ?>
+            <th style="width:23%; text-align:center" id="armazemOuMorada"></th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -214,6 +215,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#guiaTeste").html(data);
       },
     });
+    $.ajax({
+      url: 'Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
+      },
+    });
   });
 
   $("#Confirmed").on("click", function() {
@@ -246,6 +258,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#guiaTeste").html(data);
       },
     });
+    $.ajax({
+      url: 'Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#Confirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
+      },
+    });
   });
 
   $(document).ready(function() {
@@ -274,6 +297,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       },
       success: function(data) {
         $("#guiaTeste").html(data);
+      },
+    });
+    $.ajax({
+      url: 'Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
       },
     });
   });

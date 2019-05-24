@@ -27,7 +27,6 @@ echo '
       </div>
       <input type="text" class="form-control" style="width:5rem; margin-top:0.7rem; height:auto;" placeholder="Número de requisição" name="Referencia" id="size" required>
   </div>
-  <input class="form-control" type="number" id="inputNPaletes" name="NPaletes" placeholder="Número de paletes" style="text-align:center; margin-top:1rem; height:auto;" required>
   <input class="form-control" type="input" id="inputMorada" name="morada" placeholder="Morada" style="text-align:center; margin-top:1rem; height:auto;" required>
   <input class="form-control" type="input" id="inputLocalidade" name="Localidade" placeholder="Localidade" style="text-align:center; margin-top:1rem; height:auto;" required>
   </div>
