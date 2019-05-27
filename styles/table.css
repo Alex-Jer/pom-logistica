@@ -65,6 +65,7 @@ body {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 .modal-content {
   position: relative;
   display: -ms-flexbox;
@@ -214,9 +215,6 @@ table.table .avatar {
 }
 
 /* Modal styles */
-.modal .modal-dialog {
-}
-
 .modal .modal-header,
 .modal .modal-body,
 .modal .modal-footer {

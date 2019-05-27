@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'Navbar\navbarOperador.php';
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST['data'];
 }
@@ -10,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css">
     <link rel="stylesheet" href="styles\style.css">
     <link rel="stylesheet" href="css\bootstrap.css">
@@ -71,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row align-items-center">
         <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="listagem_pedidos_armazem_operador.php" method="post">
+            <form class="container" action="/POM-Logistica/Operador/Listagens/listagem_pedidos_armazem_operador.php" method="post">
                 <div style="text-align:center;">
                     <h1 style="margin-bottom:1rem;">Pedidos do dia</h1>
                     <?php

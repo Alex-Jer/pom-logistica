@@ -127,11 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%">Cliente</th>
-            <th style="width:20%;">Nº de requisição</th>
-            <th style="width:20%">Data e hora prevista</th>
+            <th style="width:20%; text-align:center">Cliente</th>
+            <th style="width:20%; text-align:center">Nº de requisição</th>
+            <th style="width:20%; text-align:center">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
-            <th style="width:20%;">Armazém</th>
+            <th style="width:20%; text-align:center">Armazém</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
