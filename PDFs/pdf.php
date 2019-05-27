@@ -12,7 +12,8 @@ mysqli_set_charset($conn, "utf8");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-require "/POM-Logistica/PDFs/fpdf.php";
+// require "/POM-Logistica/PDFs/fpdf.php";
+require(dirname(__FILE__).'\..\fpdf.php');
 
 class myPDF extends FPDF
 {
