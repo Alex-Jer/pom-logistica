@@ -10,13 +10,13 @@ mysqli_set_charset($conn, "utf8");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-require "/POM-Logistica/PDFs/fpdf.php";
+require(dirname(__FILE__).'\..\fpdf.php');
 class myPDF extends FPDF
 {
     function header()
     {
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(276, 5, 'GUIA DE DEVOLUCAO', 0, 0, 'C');
+        $this->Cell(276, 5, iconv('UTF-8', 'windows-1252', 'GUIA DE DEVOLUÇÃO'), 0, 0, 'C');
         $this->Ln();
         $this->SetFont('Times', '', 12);
         $this->Ln(20);
@@ -25,18 +25,18 @@ class myPDF extends FPDF
     {
         $this->SetY(-15);
         $this->SetFont('Arial', '', 8);
-        $this->Cell(0, 10, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+        $this->Cell(0, 10, iconv('UTF-8', 'windows-1252', 'PÁGINA ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
     function headerTable()
     {
         $this->SetFont('Times', 'B', 12);
-        $this->Cell(40, 10, 'Referencia', 1, 0, 'C');
+        $this->Cell(40, 10, iconv('UTF-8', 'windows-1252', 'Referência'), 1, 0, 'C');
         // $this->Cell(40,10,'Name',1,0,'C');
         $this->Cell(40, 10, 'Nome', 1, 0, 'C');
         $this->Cell(60, 10, 'Data e Hora', 1, 0, 'C');
-        $this->Cell(25, 10, 'N Paletes', 1, 0, 'C');
+        $this->Cell(25, 10, iconv('UTF-8', 'windows-1252', 'Nº Paletes'), 1, 0, 'C');
         $this->Cell(30, 10, 'Artigo', 1, 0, 'C');
-        $this->Cell(50, 10, 'Armazem', 1, 0, 'C');
+        $this->Cell(50, 10, iconv('UTF-8', 'windows-1252', 'Armazém'), 1, 0, 'C');
         $this->Ln();
     }
     function viewTable($conn)
