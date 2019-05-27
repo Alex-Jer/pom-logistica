@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </style>
 
 <body>
-    <form class="container" action="/POM-Logistica/pdfDevolucao.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+    <form class="container" action="/POM-Logistica/PDFs/pdfDevolucao.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
         <div class="table-wrapper" style="margin-top:10rem;">
             <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
                 <div class="row">
