@@ -1,5 +1,7 @@
 <?php
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 echo '
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Adicionar Guia de Entrega</h5>
@@ -51,7 +53,7 @@ echo '
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxEntrega.php',
+      url: '/POM-Logistica/Ajax/ajaxEntrega.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -68,7 +70,7 @@ echo '
 <script>
   $("#TipoPalete").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxArmazem.php',
+      url: '/POM-Logistica/Ajax/ajaxArmazem.php',
       type: 'POST',
       data: {
         id: $("#TipoPalete").val()
@@ -91,7 +93,7 @@ echo '
 <script>
   $("#Armazem").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxEspaco.php',
+      url: '/POM-Logistica/Ajax/ajaxEspaco.php',
       type: 'POST',
       data: {
         id: $("#Armazem").val(),
@@ -107,7 +109,7 @@ echo '
 <script>
   $("#comboboxCli").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxaArtigoCliente.php',
+      url: '/POM-Logistica/Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#comboboxCli").val()

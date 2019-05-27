@@ -63,7 +63,7 @@ foreach ($query as $eachRow) {
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: 'Ajax/ajaxTesteasd.php',
+            url: '/POM-Logistica/Ajax/ajaxTesteasd.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')

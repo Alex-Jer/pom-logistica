@@ -1,5 +1,7 @@
 <?php
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 echo '<div class="modal-content">
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Guia de Transporte</h5>
@@ -39,7 +41,7 @@ echo '
 <script>
   $("#artigoID").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxMaxGuiaT.php',
+      url: '/POM-Logistica/Ajax/ajaxMaxGuiaT.php',
       type: 'POST',
       data: {
         id: $("#artigoID").val()
@@ -54,7 +56,7 @@ echo '
 <script>
   $("#clienteCBID").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxaArtigoCliente.php',
+      url: '/POM-Logistica/Ajax/ajaxaArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#clienteCBID").val()

@@ -1,6 +1,8 @@
 <?php 
 
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 
 $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='".$_POST['id']."'");
         $dado = mysqli_fetch_array($buscaId);

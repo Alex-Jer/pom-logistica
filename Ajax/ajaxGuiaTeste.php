@@ -1,5 +1,7 @@
 <?php
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 // echo $_POST['id'];
 echo '<div class="table-title" style="background-color:#0275d8;">';
 echo '<div class="row">';
@@ -28,7 +30,7 @@ echo '</div>';
 <script>
   $('button[name="Entrega"]').on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxGuiaGuardarEntrega.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaGuardarEntrega.php',
       type: 'POST',
       data: {
         id: $(this).val(),
@@ -44,7 +46,7 @@ echo '</div>';
 <script>
   $('button[name="Transporte"]').on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxGuiaGuardarTransporte.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaGuardarTransporte.php',
       type: 'POST',
       data: {
         id: $(this).val(),

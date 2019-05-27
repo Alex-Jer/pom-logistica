@@ -49,7 +49,7 @@ foreach ($dado as $eachRow) {
 <script>
     $('button[name="Guia_ID4"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/ajaxPaletes.php',
+            url: '/POM-Logistica/Ajax/ajaxPaletes.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -64,7 +64,7 @@ foreach ($dado as $eachRow) {
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: 'Ajax/ajaxTesteasd.php',
+            url: '/POM-Logistica/Ajax/ajaxTesteasd.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')
