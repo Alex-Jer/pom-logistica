@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row align-items-center">
         <div class="card card-container" style="text-align:center; width:85rem; height:35rem; margin-bottom:auto; max-width: 10000px;">
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="container" action="/POM-Logistica/Operador/Listagens/listagem_pedidos_armazem_operador.php" method="post">
+            <form class="container" action="/POM-Logistica/Operador/Listagens/listagem_pedidos_armazem.php" method="post">
                 <div style="text-align:center;">
                     <h1 style="margin-bottom:1rem;">Pedidos do dia</h1>
                     <?php
