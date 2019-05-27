@@ -127,19 +127,22 @@ function echoActiveClassIfRequestMatches($requestUri)
             <li class="nav-item">
                 <a class="d-block" style="margin-top:5px" href="\POM-Logistica\Operador\Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/logosemsombra.png" alt="logo"></a>
             </li>
-            <li class="nav-item dropdown" style="margin-left:1rem;">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?> <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Imprimir Guias</a>
+            <li class="nav-item" style="margin-left:1rem;">
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Operador/Listagens/Listar_clientes.php">Clientes</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?> <?= echoActiveClassIfRequestMatches("Listar_guia_devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Imprimir Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
                     <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?>" href="/POM-Logistica/Operador/Listagens/Listar_guia_rececao.php">Guia Receção</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="/POM-Logistica/Operador/Listagens/ListarGuia_Devolucao.php">Guia Devolução</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Listar_guia_devolucao") ?>" href="/POM-Logistica/Operador/Listagens/Listar_guia_devolucao.php">Guia Devolução</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserir_paletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="/POM-Logistica/inserirPaletes.php">Guia Entrega</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserir_paletes") ?>" href="/POM-Logistica/Operador/inserir_paletes.php">Guia Entrega</a>
                     <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" href="/POM-Logistica/Operador/Guia_Operador.php">Guia Transporte</a>
                 </div>
             </li>

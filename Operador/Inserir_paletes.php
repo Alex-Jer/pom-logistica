@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'Navbar\navbarOperador.php';
-include 'db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
    
@@ -115,10 +119,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="styles\style3.css">
-  <link rel="stylesheet" href="css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
 </head>
 
 <style>
@@ -184,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-  <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="InserirPaletes.php" method="post" id="mainForm" novalidate>
+  <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="/POM-Logistica/Operador/inserir_paletes.php" method="post" id="mainForm" novalidate>
     <div class="container" style="margin-left:-6rem">
       <ul class="nav nav-pills" style="margin-top:4rem;">
         <li class="nav-item">
@@ -198,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="table-title" style="background-color:#0275d8; width:80rem">
           <div class="row">
             <div class="col-sm-6">
-              <h2>Gerir <b>Paletes</b></h2>
+              <h2>Guias de <b>Entrega</b></h2>
             </div>
           </div>
         </div>

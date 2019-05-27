@@ -12,7 +12,7 @@ if ($_SESSION["perfilId"] == 2) {
     header("Location: \POM-Logistica\index.php");
     ?>
     <script type="text/javascript">
-        alert("Voce nao tem permissoes para acessar a isso");
+        alert("Voce não tem permissões para aceder a essa página.");
     </script>
 <?php
 }
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $peso = (float)$peso;
     $cli_id = $_POST["combobox"];
 
-    $stmt = $conn->prepare("INSERT INTO artigo (cliente_id ,referencia,nome,peso) VALUES(?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO artigo (cliente_id, referencia, nome, peso) VALUES(?,?,?,?)");
     $stmt->bind_param("issd", $cli_id, $ref, $nome, $peso);
     $stmt->execute();
 } ?>

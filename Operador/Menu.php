@@ -202,7 +202,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\ListarGuia_Devolucao.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Listar_guia_devolucao.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -219,7 +219,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\inserirPaletes.php" class="small-box-footer">
+                                                <a href="/POM-Logistica/Operador/inserir_paletes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

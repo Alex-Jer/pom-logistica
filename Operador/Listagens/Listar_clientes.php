@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'Navbar\navbarOperador.php';
-include 'db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((isset($_POST['registar']))) {
         $nome = $_POST["Nome"];
@@ -16,15 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['apagar'])) {
         $sql = "DELETE FROM cliente WHERE id = '" . $_POST['ola'] . "' ";
         if (mysqli_query($conn, $sql)) { }
-    } elseif (isset($_POST['save'])) {
-        $eNome = $_POST['eNome'];
+    }elseif (isset($_POST['save']))
+    {
+        $eNome= $_POST['eNome'];
         $eNif = $_POST['eNif'];
         $eMorada = $_POST['eMorada'];
         $eLocalidade = $_POST['eLocaliadade'];
 
         $stmt = $conn->prepare("UPDATE cliente SET nome=?, nif=?,morada=?,localidade=? WHERE id = '" . $_POST['editID'] . "'");
-        $stmt->bind_param("ssss", $eNome, $eNif, $eMorada, $eLocalidade);
-        $stmt->execute();
+        $stmt->bind_param("ssss", $eNome,$eNif,$eMorada, $eLocalidade);
+       $stmt->execute();
     }
 }
 ?>
@@ -37,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles/table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -94,19 +99,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     thead {
-        width: calc(100% - 1rem)
+        width: calc(100% - 0rem)
             /* scrollbar is average 1em/16px width, remove it from thead width */
     }
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="Operador\Listar_clientes.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Operador\Listagens\Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gerir <b>Clientes</b></h2>
+                            <h2>Lista de <b>Clientes</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
@@ -116,11 +121,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
                     <thead>
                         <tr>
-                            <th style="width:25%">Nome</th>
-                            <th style="width:20%; padding: 0rem 1.1rem">NIF</th>
-                            <th style="width:15rem; padding: 0rem 1.1rem">Morada</th>
-                            <th style="padding: 0 1rem">Localidade</th>
-                            <th style="padding: 0; width:9%">Ações</th>
+                            <th style="width:30%; text-align:center;">Nome</th>
+                            <th style="width:30%; text-align:center;">NIF</th>
+                            <th style="width:30%; text-align:center;">Morada</th>
+                            <th style="width:30%; text-align:center;">Localidade</th>
+                            <!-- <th style="padding: 0; width:9%">Ações</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -133,19 +138,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $morada = $eachRow['morada'];
                             $localidade = $eachRow['localidade'];
                             echo '<tr>';
-                            echo '<td style="width:25%"> ' . $nome . '</td>';
-                            echo '<td style="width:20%"> ' . $nif . '</td>';
-                            echo '<td style="width:15rem;"> ' . $morada . '</td>';
-                            echo '<td> ' . $localidade . '</td>';
-                            echo '<td style="padding: 0 3.495rem">';
-                            ?>
-                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
-                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
-                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
-                            <?php '</td>';
+                            echo '<td style="width:30%; text-align:center;"> ' . $nome . '</td>';
+                            echo '<td style="width:30%; text-align:center;"> ' . $nif . '</td>';
+                            echo '<td style="width:30%; text-align:center;"> ' . $morada . '</td>';
+                            echo '<td style="width:30%; text-align:center;"> ' . $localidade . '</td>';
                             echo '</tr>';
+                            // echo '<td style="padding: 0 3.495rem">';
                         }
-                        ?><div id="Testeeee"></div>
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body" id="OlaEdit">
-
+                        
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste2"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/teste.php',
+            url: '/POM-Logistica/Ajax/teste.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -267,7 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste4"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/ajaxEdit.php',
+            url: '/POM-Logistica/Ajax/ajaxEdit.php',
             type: 'POST',
             data: {
                 id: $(this).val()
