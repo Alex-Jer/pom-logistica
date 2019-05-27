@@ -10,18 +10,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>POM Logistica</title>
-        <link rel="stylesheet" href="styles\style3.css">
-        <link rel="stylesheet" href="node_modules\admin-lte\dist\css\AdminLTE.css">
+        <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+        <link rel="stylesheet" href="\POM-Logistica\node_modules\admin-lte\dist\css\AdminLTE.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles\table.css">
-        <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-        <link rel="stylesheet" href="styles\style3.css">
-        <link rel="stylesheet" href="css\bootstrap.css">
-        <link rel="icon" type="image/png" href="images/titlelogo.png  ">
+        <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
+        <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
+        <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+        <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+        <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
 </head>
 
 
@@ -54,7 +54,7 @@
         }
 
         .Imagem {
-                background-image: url("images/Carrinho6.jpg");
+                background-image: url("/POM-Logistica/images/Carrinho6.jpg");
 
                 /* Full height */
                 margin-left: 50px;
@@ -73,7 +73,7 @@
         }
 
         .ImagemPequena {
-                background-image: url("images/paletes.png");
+                background-image: url("/POM-Logistica/images/paletes.png");
                 /* Full height */
                 width: 28.5rem;
                 height: 20rem;
@@ -156,7 +156,7 @@
                 </div>
                 <div class="colunaEsquerda">
                         <div class="text-center">
-                                <img src="..\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
+                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
@@ -175,7 +175,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="..\Admin\Listar_clientes.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Admin\Listagens\Listar_clientes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="Listar_utilizadores.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Admin\Listagens\Listar_utilizadores.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -201,7 +201,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="..\Admin\Listar_todas_as_guias.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Admin\Listagens\Listar_todas_as_guias.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -216,7 +216,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="fatura_cliente.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Admin\fatura_cliente.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -229,7 +229,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="artigo.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Admin\artigo.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -242,7 +242,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="..\index.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\index.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

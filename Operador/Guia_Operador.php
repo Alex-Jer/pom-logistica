@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'Navbar\navbarOperador.php';
-include 'db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
+// include 'Navbar\navbarOperador.php';
+// include 'db.php';
 if ($_SESSION["perfilId"] == 1) {
-  header("Location: index.php");
+  header("Location: /POM-Logistica/index.php");
   ?>
   <script type="text/javascript">
-    alert("Voce nao tem permissoes para acessar a isso");
+    alert("Voce nao tem permissões para acessar isso.");
   </script>
 <?php
 }
@@ -71,10 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles\table.css">
-  <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="styles\style3.css">
-  <link rel="stylesheet" href="css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
+  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -136,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-  <form class="container" action="Operador\Guia_Operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+  <form class="container" action="\POM-Logisitca\Operador\Guia_Operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
         <div class="row">
@@ -170,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxDevolucao2.php',
+      url: '/POM-Logisitca/Ajax/ajaxDevolucao2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -185,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxConfirmar.php',
+      url: '/POM-Logistica/Ajax/ajaxConfirmar.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -207,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'Ajax/ajaxDevolucao2.php',
+      url: '/POM-Logisitca/Ajax/ajaxDevolucao2.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()

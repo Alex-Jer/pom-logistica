@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-include '..\db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -28,10 +30,6 @@ function echoActiveClassIfRequestMatches($requestUri)
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\style3.css">
-    <link rel="stylesheet" href="css\bootstrap.css">
-     
     <title>POM Logistica</title>
 
     <!-- Required meta tags -->
@@ -39,34 +37,33 @@ function echoActiveClassIfRequestMatches($requestUri)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="\POM-Logistica\css\bootstrap.css">
 
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="/POM-Logistica/css/font-awesome.css">
 
     <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="css/elegant-fonts.css">
+    <link rel="stylesheet" href="/POM-Logistica/css/elegant-fonts.css">
 
     <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="/POM-Logistica/css/themify-icons.css">
 
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="/POM-Logistica/css/swiper.min.css">
 
     <!-- Styles -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" crossorigin="anonymous"> -->
     <!-- <link href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> -->
-    <link rel = "icon" type = "image/png" href = "images/titlelogo.png  ">
-    <link rel="stylesheet" type="text/css" href="styles\style.css">
-    <link rel="stylesheet" type="text/css" href="styles\style3.css">
-    <link rel="stylesheet" type="text/css" href="css\bootstrap.css">
+    <link rel="icon" type="image/png" href="/POM-Logistica/images/titlelogo.png">
+    <link rel="stylesheet" type="text/css" href="/POM-Logistica/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="/POM-Logistica/styles/style3.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
-</head>
 </head>
 
 <style>
@@ -128,41 +125,38 @@ function echoActiveClassIfRequestMatches($requestUri)
     <nav role="navigation">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="d-block" style="margin-top:5px" href="MenuOperador.php" rel="home"><img class="d-block" src="images/Logosemsombra.png" alt="logo"></a>
+                <a class="d-block" style="margin-top:5px" href="\POM-Logistica\Operador\Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/logosemsombra.png" alt="logo"></a>
             </li>
             <li class="nav-item dropdown" style="margin-left:1rem;">
                 <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?> <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Imprimir Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?>" href="Listar_guia_rececao.php">Guia Receção</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="ListarGuia_Devolucao.php">Guia Devolução</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Listar_guia_rececao") ?>" href="/POM-Logistica/Operador/Listagens/Listar_guia_rececao.php">Guia Receção</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("ListarGuia_Devolucao") ?>" href="/POM-Logistica/Operador/Listagens/ListarGuia_Devolucao.php">Guia Devolução</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Operador\Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserirPaletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="inserirPaletes.php">Guia Entrega</a>
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Operador\Guia_Operador") ?>" href="Operador\Guia_Operador.php">Guia Transporte</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserirPaletes") ?>" href="/POM-Logistica/inserirPaletes.php">Guia Entrega</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" href="/POM-Logistica/Operador/Guia_Operador.php">Guia Transporte</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Operador\Listar_todas_as_guias") ?>" href="Operador\Listar_todas_as_guias.php">Consultar Pedidos</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Operador/Listagens/Listar_todas_as_guias.php">Consultar Pedidos</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("Operador\mudar_pass") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudar_pass") ?> data-toggle=" dropdown href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Operador\mudar_pass") ?>" href="Operador\mudar_pass.php">Alterar Palavra-Passe</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" href="/POM-Logistica/Operador/mudar_pass.php">Alterar Palavra-Passe</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="index.php">Sair</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="/POM-Logistica/index.php">Sair</a>
             </li>
         </ul>
     </nav>
-
-
-
 </body>
 
 </html>

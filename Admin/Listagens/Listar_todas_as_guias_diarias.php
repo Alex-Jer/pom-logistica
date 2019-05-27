@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include '../Navbar\navbarAdmin.php';
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = $_POST["data"];
 }
@@ -15,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
-  <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
-  <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
+  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -86,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Operador\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+  <form class="container" action="\POM-Logistica\Admin\Listagens\Listar_todas_as_guias_diarias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
@@ -123,10 +127,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <thead>
           <tr>
             <th style="width:20%">Cliente</th>
-            <th style="width:20%;">Nº de requisição</th>
-            <th style="width:20%">Data e hora prevista</th>
+            <th style="width:20%; text-align:center">Nº de requisição</th>
+            <th style="width:20%; text-align:center">Data e hora prevista</th>
             <th style="width:17%; text-align:center">Nº paletes</th>
-            <th style="width:20%;">Armazém</th>
+            <th style="width:20%; text-align:center">Armazém</th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -168,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -190,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -213,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -252,7 +256,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //   },
     // });
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -267,7 +271,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),
@@ -284,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#cliente").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),

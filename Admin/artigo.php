@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php
-include '..\Navbar\navbarAdmin.php';
-include '..\db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 if ($_SESSION["perfilId"] == 2) {
 
-    header("Location: index.php");
+    header("Location: \POM-Logistica\index.php");
     ?>
     <script type="text/javascript">
         alert("Voce nao tem permissoes para acessar a isso");
@@ -29,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css\bootstrap.css">
+    <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
 </head>
 
 <body>
     <div class="container">
         <div class="card card-container">
-            <form action="artigo.php" method="post">
+            <form action="/POM-Logistica/Admin/artigo.php" method="post">
                 <h1 style="text-align:center; margin-bottom:2rem;">Registar Artigo</h1>
                 <input type="input" style="margin-bottom:1rem;" id="inputNome" name="Nome" class="form-control" placeholder="Nome do artigo" required autofocus>
                 <input type="input" style="margin-bottom:1rem;" id="inputRef" name="ref" class="form-control" placeholder="Referência do artigo" required autofocus>

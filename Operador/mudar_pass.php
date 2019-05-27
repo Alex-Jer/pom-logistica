@@ -2,8 +2,14 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
-include "db.php";
-include "Navbar\navbarOperador.php";
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
+// include '/POM-Logistica/db.php';
+// include "/POM-Logistica/Navbar/navbarOperador.php";
 $NewPass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,8 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="css\bootstrap.css">
-  <link rel="stylesheet" href="styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
 </head>
 
 <body>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include '../Navbar\navbarAdmin.php';
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST["data"])) {
     $data = $_POST["data"];
@@ -52,10 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
-  <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
-  <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
+  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -125,11 +129,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Admin\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
-    <!-- <div class="row align-items-center" style="font-family: 'Varela Round', sans-serif; font-size:13px; position:absolute;; margin-left:12rem;"> -->
+  <form class="container" action="\POM-Logistica\Admin\Listagens\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
-      <!-- <p id="profile-name" class="profile-name-card"></p> -->
-      <!-- <form class="container" action="Admin\Listar_todas_as_guias.php" method="post"> -->
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
           <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed" name="entrega">Entrega</button>
@@ -145,12 +146,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width:20%">Cliente</th>
-            <th style="width:20%">Nº de requisição</th>
-            <th style="width:25%">Armazém</th>
-            <th style="width:20%">Data e hora prevista</th>
-            <th style="width:17%">Nº paletes</th>
-            <th style="width:25%; visibility:collapse;" id="moradaH">Morada</th>
+            <?php
+            echo '<th style="width:20%; text-align:center">Cliente</th>';
+            echo '<th style="width:20%; text-align:center">Nº de requisição</th>';
+            echo '<th style="width:20%; text-align:center">Data e hora prevista</th>';
+            echo '<th style="width:20%; text-align:center">Nº paletes</th>';
+            ?>
+            <th style="width:23%; text-align:center" id="armazemOuMorada"></th>
           </tr>
         </thead>
         <tbody id="Testeeee">
@@ -167,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </div>
+    <!--Modal Detalhes-->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content" style="margin-left:auto; margin-right:auto; width:90%">
@@ -174,8 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" id="TableDetails">
-          </diV>
+          <div class="modal-body" id="TableDetails"></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           </div>
@@ -190,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotais.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -206,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
 
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -216,11 +218,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#guiaTeste").html(data);
       },
     });
+    $.ajax({
+      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
+      },
+    });
   });
 
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotais.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -238,7 +251,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
 
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -248,11 +261,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#guiaTeste").html(data);
       },
     });
+    $.ajax({
+      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#Confirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
+      },
+    });
   });
 
   $(document).ready(function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotais.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -268,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
 
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -278,11 +302,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#guiaTeste").html(data);
       },
     });
+    $.ajax({
+      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      type: 'POST',
+      data: {
+        id: $("#notConfirmed").val(),
+
+      },
+      success: function(data) {
+        $("#armazemOuMorada").html(data);
+      },
+    });
   });
 
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotais.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),

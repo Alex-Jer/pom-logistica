@@ -2,8 +2,12 @@
 <html lang=pt dir="ltr">
 <?php
 session_start();
-include '..\Navbar\navbarAdmin.php';
-include '..\db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 date_default_timezone_set("Europe/Lisbon");
 $timeRN = date("Y-m-d H:i:s");
 $timeRN2 = date("Y-m-d");
@@ -11,10 +15,10 @@ $FinalDay = date("Y-m-t");
 $FirstDay = date("Y-m-01");
 if ($_SESSION["perfilId"] == 2) {
 
-    header("Location: index.php");
+    header("Location: /POM-Logistica/index.php");
     ?>
     <script type="text/javascript">
-        alert("Você não tem permissões para essa página.");
+        alert("Você não tem permissões para acessar essa página.");
     </script>
 <?php
 }
@@ -30,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataFinal = $FinalDay;
     $dataInicial = $FirstDay;
 }
-
-
-
 ?>
 
 
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -118,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="container">
-        <form class="container" action="pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
+        <form class="container" action="/POM-Logistica/pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
             <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
                 <div class="table-title" style="background-color:#0275d8;">
@@ -162,9 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th style="width:10%; text-align:center">Total</th>
                         </tr>
                     </thead>
-                    <tbody id="Fatura">
-
-                    </tbody>
+                    <tbody id="Fatura"></tbody>
                 </table>
             </div>
         </form>
@@ -210,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste2"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/teste.php',
+            url: '/POM-Logistica/Ajax/teste.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -225,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste4"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/ajaxEdit.php',
+            url: '/POM-Logistica/Ajax/ajaxEdit.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -240,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#cbCliente").on("change", function() {
         $.ajax({
-            url: 'Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
             type: 'POST',
             data: {
                 id: $(this).val(),
@@ -260,7 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#FirstDay").on("change", function() {
         $.ajax({
-            url: 'Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
             type: 'POST',
             data: {
                 id: $("#cbCliente").val(),
@@ -280,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#FinalDay").on("change", function() {
         $.ajax({
-            url: 'Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
             type: 'POST',
             data: {
                 id: $("#cbCliente").val(),

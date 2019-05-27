@@ -2,7 +2,9 @@
 <html lang=pt dir="ltr">
 <?php
 session_start();
-include 'db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
 ?>
 
 <head>
@@ -32,10 +34,10 @@ include 'db.php';
         // if ($passInput == $password) {
         if (password_verify($passInput, $password)) {
             if ($perfilId == '1') {
-                header("Location: Admin\Menu.php");
+                header("Location: /POM-Logistica/Admin/Menu.php");
                 exit;
             } elseif ($perfilId == '2') {
-                header("Location: Operador\Menu.php");
+                header("Location: /POM-Logistica/Operador/Menu.php");
                 exit;
             }
         } else {

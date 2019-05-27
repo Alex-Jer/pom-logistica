@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include 'Navbar\navbarOperador.php';
-include '../db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $data = $_POST["data"];
 }
@@ -15,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/POM-Logistica/styles\table.css">
-  <link rel="stylesheet" href="/POM-Logistica/node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="/POM-Logistica/styles\style3.css">
-  <link rel="stylesheet" href="/POM-Logistica/css\bootstrap.css">
+  <link rel="stylesheet" href="/POM-Logistica/styles/table.css">
+  <link rel="stylesheet" href="/POM-Logistica/node_modules/jquery/dist/jquery.js">
+  <link rel="stylesheet" href="/POM-Logistica/styles/style3.css">
+  <link rel="stylesheet" href="/POM-Logistica/css/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -73,8 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: 230px !important;
     /* 140px + 16px scrollbar width */
   }
-  .table-row{
-  cursor:pointer;
+
+  .table-row {
+    cursor: pointer;
   }
 
   .btn-success {
@@ -86,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php
   $timeRN = date("Y-m-d");
   ?>
-  <form class="container" action="Operador\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
+  <form class="container" action="\POM-Logistica\Operador\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
@@ -144,21 +149,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
       <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body" id="TableDetails">
-                </diV>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body" id="TableDetails">
+            </diV>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </form>
 </body>
@@ -168,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -190,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val(),
@@ -213,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -252,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //   },
     // });
     $.ajax({
-      url: 'Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
@@ -267,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#DataEntrega2").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),
@@ -284,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#cliente").on("change", function() {
     $.ajax({
-      url: 'Ajax/ajaxPedidosTotaisOP.php',
+      url: '/POM-Logistica/Ajax/ajaxPedidosTotaisOP.php',
       type: 'POST',
       data: {
         id: $("#getConfirm").val(),

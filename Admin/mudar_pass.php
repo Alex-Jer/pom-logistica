@@ -2,8 +2,12 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
-include "..\db.php";
-include "..\Navbar\\navbarAdmin.php";
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 $NewPass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -51,14 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="css\bootstrap.css">
-  <link rel="stylesheet" href="styles\table.css">
+  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
 </head>
 
 <body>
   <div class="container">
     <div class="card card-container">
-      <form action="Admin\mudar_pass.php" method="post">
+      <form action="\POM-Logistica\Admin\mudar_pass.php" method="post">
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         <div class="row" style="margin-left:20px; margin-top:2rem;">
           <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>

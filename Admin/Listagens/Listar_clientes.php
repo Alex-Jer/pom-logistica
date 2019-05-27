@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include '..\Navbar\navbarAdmin.php';
-include '..\db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((isset($_POST['registar']))) {
         $nome = $_POST["Nome"];
@@ -18,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
         } else {
             echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-            echo '<script type="text/javascript">location.replace("Admin\Listar_clientes.php");</script>';
+            echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_clientes.php");</script>';
         }
         if (mysqli_query($conn, $sql)) { }
     } elseif (isset($_POST['apagar'])) {
@@ -35,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
         } else {
             echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-            echo '<script type="text/javascript">location.replace("Admin\Listar_clientes.php");</script>';
+            echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_clientes.php");</script>';
         }
     }
 }
@@ -44,13 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="/POM-Logistica/js/jquery.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -126,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="Admin\Listar_clientes.php" method="post" id="teste123" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="\POM-Logistica\Admin\Listagens\Listar_clientes.php" method="post" id="teste123" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem;">
                 <div class="table-title" style="background-color:#0275d8;">
@@ -291,7 +295,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste2"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/teste.php',
+            url: '/POM-Logistica/Ajax/teste.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -318,7 +322,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: 'Ajax/ajaxClientesDetail.php',
+            url: '/POM-Logistica/Ajax/ajaxClientesDetail.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')
@@ -333,7 +337,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste4"]').on("click", function(e) {
         $.ajax({
-            url: 'Ajax/ajaxEdit.php',
+            url: '/POM-Logistica/Ajax/ajaxEdit.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -345,5 +349,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             },
         });
     });
-
 </script>

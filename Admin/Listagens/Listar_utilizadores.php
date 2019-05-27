@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang=pt dir="ltr">
 <?php
-include '..\Navbar\navbarAdmin.php';
-include '..\db.php';
+$db = $_SERVER['DOCUMENT_ROOT'];
+$db .= "/POM-Logistica/db.php";
+include_once($db);
+$navbar = $_SERVER['DOCUMENT_ROOT'];
+$navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
+include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["registar"])) {
         $pw = $_POST["MainPw"];
@@ -22,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
             } else {
                 echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-                echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
+                echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_utilizadores.php");</script>';
             }
         } else {
             if ($pw == $pw2) {
@@ -32,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->execute();
                 } else {
                     echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-                    echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
+                    echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_utilizadores.php");</script>';
                 }
             } else {
                 ?>
@@ -59,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     } else {
         echo '<script type="text/javascript">alert("Preencha todos os campos! ola");</script>';
-        echo '<script type="text/javascript">location.replace("Listar_utilizadores.php");</script>';
+        echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_utilizadores.php");</script>';
     }
 }
 }
@@ -70,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles\table.css">
+    <link rel="stylesheet" href="\POM-Logistica\node_modules\font-awesome\css\font-awesome.min.css">
+    <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -140,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="Listar_utilizadores.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Admin\Listagens\Listar_utilizadores.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem; margin-left:auto; margin-right:auto; width:65rem">
                 <div class="table-title" style="background-color:#0275d8">
@@ -324,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste2"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/teste.php',
+            url: '/POM-Logistica/Ajax/teste.php',
             type: 'POST',
             data: {
                 id: $(this).val()
@@ -394,7 +398,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $('button[name="teste4"]').on("click", function() {
         $.ajax({
-            url: 'Ajax/ajaxEditUtilizador.php',
+            url: '/POM-Logistica/Ajax/ajaxEditUtilizador.php',
             type: 'POST',
             data: {
                 id: $(this).val()
