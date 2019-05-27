@@ -33,14 +33,14 @@ function echoActiveClassIfRequestMatches($requestUri)
     <title>POM Logistica</title>
 
     <!-- Required meta tags -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="\POM-Logistica\css\bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" href="\POM-Logistica\css\bootstrap.css"> -->
 
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="/POM-Logistica/css/font-awesome.css">
+    <!-- <link rel="stylesheet" href="/POM-Logistica/css/font-awesome.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- ElegantFonts CSS -->
     <link rel="stylesheet" href="/POM-Logistica/css/elegant-fonts.css">
@@ -58,12 +58,11 @@ function echoActiveClassIfRequestMatches($requestUri)
     <link rel="stylesheet" type="text/css" href="/POM-Logistica/styles/style.css">
     <link rel="stylesheet" type="text/css" href="/POM-Logistica/styles/style3.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script> -->
 </head>
 
 <style>
