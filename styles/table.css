@@ -39,11 +39,13 @@ body {
   background-color: transparent;
   outline: none;
 }
+
 .btn-eye:focus {
   border: none;
   background-color: transparent;
   outline: none;
 }
+
 .btn-eye:checked {
   border: none;
   background-color: transparent;

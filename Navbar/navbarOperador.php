@@ -118,6 +118,10 @@ function echoActiveClassIfRequestMatches($requestUri)
         margin-top: -0.3rem !important;
         border-radius: 3px !important;
     }
+
+    body {
+        background-color: #f5f5f5 !important;
+    }
 </style>
 
 <body>
