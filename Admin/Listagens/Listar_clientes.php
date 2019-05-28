@@ -46,41 +46,108 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="/POM-Logistica/js/jquery.js"></script>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="/POM-Logistica/styles/table.min.css">
+    <link rel="stylesheet" href="/POM-Logistica/styles/style3.css">
+    <link rel="stylesheet" href="/POM-Logistica/css/bootstrap.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" href="/POM-Logistica/css/datatables.css"> -->
+
+    <!-- DataTables JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/pdfmake.min.js.map"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
+
+    <!-- DataTable -->
+    <script>
+        $(document).ready(function() {
+            var dataTable = $('#myTable').DataTable({
+                "language": {
+                    url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json'
+                },
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copy',
+                        text: 'Copiar',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        }
+                    },
+                ],
+                "paging": true,
+                "pageLength": 6,
+                "bLengthChange": false,
+                "ordering": false,
+                "info": false,
+                initComplete: function() {
+                    $('.buttons-copy').removeClass('dt-button');
+                    $('.buttons-copy').addClass('btn');
+                    $('.buttons-copy').addClass('btn-outline-warning');
+
+                    $('.buttons-csv').removeClass('dt-button');
+                    $('.buttons-csv').addClass('btn');
+                    $('.buttons-csv').addClass('btn-outline-warning');
+
+                    $('.buttons-excel').removeClass('dt-button');
+                    $('.buttons-excel').addClass('btn');
+                    $('.buttons-excel').addClass('btn-outline-warning');
+
+                    $('.buttons-pdf').removeClass('dt-button');
+                    $('.buttons-pdf').addClass('btn');
+                    $('.buttons-pdf').addClass('btn-outline-warning');
+
+                    $('.buttons-print').removeClass('dt-button');
+                    $('.buttons-print').addClass('btn');
+                    $('.buttons-print').addClass('btn-outline-warning');
+                }
+            });
+            $("#searchbox").on("keyup search input paste cut", function() {
+                dataTable.search(this.value).draw();
+            });
+        });
+    </script>
 </head>
 
 <style>
     body {
-        overflow: hidden;
-    }
-
-    /* width */
-    ::-webkit-scrollbar {
-        width: 0.3rem;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #007bff;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0056b3;
+        background-color: #f5f5f5 !important;
     }
 
     .btn-success {
@@ -92,58 +159,134 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     body {
-        color: #566787;
-    }
-
-    tbody {
-        display: block;
-        max-height: 22rem;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    thead,
-    tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
-        /* even columns width , fix width of table too*/
-    }
-
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 0px solid #dee2e6;
+        background-color: #f5f5f5 !important;
     }
 
     .table-row {
         cursor: pointer;
     }
 
-    thead {
-        width: calc(100% - 0rem)
-            /* scrollbar is average 1em/16px width, remove it from thead width */
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 0px solid #dee2e6;
+        border-top: 0px solid #dee2e6;
     }
 
-    summary {
-        outline:none;
+    .table-title {
+        margin: -20px -25px 0px !important;
+        padding: 32px;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    .pagination>li>a,
+    .pagination>li>span {
+        /* margin-top: 2rem; */
+        text-align: center;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        background-color: #fff !important;
+        border-radius: 1px !important;
+        margin: 2rem -1px !important;
+        font-size: 14.4px !important;
+        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+    }
+
+    .pagination>li.active>a,
+    .pagination>li.active>span {
+        /* margin-top: 2rem; */
+        font-size: 14.4px !important;
+        background-color: #007bff !important;
+        border-radius: 1px !important;
+        margin: 2rem 0 !important;
+        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+    }
+
+    #myTable_previous a {
+        /* background-color: black !important; */
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        border-radius: 3px 1px 1px 3px !important;
+        color: #007bff !important;
+    }
+
+    #myTable_next a {
+        /* background-color: black !important; */
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        border-radius: 1px 3px 3px 1px !important;
+        color: #007bff !important;
+    }
+
+    .dataTables_wrapper .dt-buttons {
+        position: absolute;
+        margin-top: -7.3rem;
+        margin-left: -1.6rem;
+        float: none;
+        text-align: left;
+    }
+
+    .btn-outline-warning {
+        border-radius: 1px;
+    }
+
+    .buttons-copy {
+        border-radius: 3px 1px 1px 3px;
+        border-right: none;
+    }
+
+    .buttons-csv {
+        margin-left: -4px;
+        border-left: none;
+        border-right: none;
+    }
+
+    .buttons-excel {
+        margin-left: -4px;
+        border-left: none;
+        border-right: none;
+    }
+
+    .buttons-pdf {
+        margin-left: -4px;
+        border-left: none;
+        border-right: none;
+    }
+
+    .buttons-print {
+        margin-left: -4px;
+        border-radius: 1px 3px 3px 1px;
+        border-left: none;
+    }
+
+    .btn:focus,
+    .btn:active {
+        outline: none !important;
+        box-shadow: none;
     }
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="\POM-Logistica\Admin\Listagens\Listar_clientes.php" method="post" id="teste123" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Operador\Listagens\Listar_clientes.php" method="post" novalidate>
         <div class="container">
-            <div class="table-wrapper" style="margin-top:5rem;">
+            <div class="table-wrapper" style="margin-top:5rem">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <h2>Gerir <b>Clientes</b></h2>
+                        <div class="col-sm-6" z-index="5" style="position:fixed; height:6rem;">
+                            <h2 style="position:fixed; margin-top:-0.7rem">Lista de <b>Clientes</b></h2>
+                            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:fixed; margin-left:27rem; margin-top:-1rem; border-radius:2px" id="searchbox">
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" style="position:fixed; margin-left:56rem; margin-top:-1rem"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
+                <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
                     <thead>
                         <tr>
                             <th style="width:20%;">Nome</th>

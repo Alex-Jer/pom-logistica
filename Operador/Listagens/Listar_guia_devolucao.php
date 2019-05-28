@@ -60,9 +60,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
                 dom: 'Bfrtip',
                 buttons: [{
                         extend: 'copy',
-                        text: 'Copiar'
+                        text: 'Copiar',
                     },
-                    'csv', 'excel', 'pdf',
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
                     {
                         extend: 'print',
                         text: 'Imprimir',

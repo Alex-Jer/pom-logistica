@@ -53,71 +53,200 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-  <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
   <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
+  <!-- <link rel="stylesheet" href="/POM-Logistica/css/datatables.css"> -->
+
+  <!-- DataTables JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/pdfmake.min.js.map"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
+
+  <!-- DataTable -->
+  <script>
+    $(document).ready(function() {
+      var dataTable = $('#myTable').DataTable({
+        "language": {
+          url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json'
+        },
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'copy',
+            text: 'Copiar',
+          },
+          {
+            extend: 'csv',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+          {
+            extend: 'excel',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+          {
+            extend: 'pdf',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+          {
+            extend: 'print',
+            text: 'Imprimir',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+        ],
+        "processing": true,
+        "paging": true,
+        "pageLength": 6,
+        "bLengthChange": false,
+        "ordering": false,
+        "info": false,
+        initComplete: function() {
+          $('.buttons-copy').removeClass('dt-button');
+          $('.buttons-copy').addClass('btn');
+          $('.buttons-copy').addClass('btn-outline-warning');
+
+          $('.buttons-csv').removeClass('dt-button');
+          $('.buttons-csv').addClass('btn');
+          $('.buttons-csv').addClass('btn-outline-warning');
+
+          $('.buttons-excel').removeClass('dt-button');
+          $('.buttons-excel').addClass('btn');
+          $('.buttons-excel').addClass('btn-outline-warning');
+
+          $('.buttons-pdf').removeClass('dt-button');
+          $('.buttons-pdf').addClass('btn');
+          $('.buttons-pdf').addClass('btn-outline-warning');
+
+          $('.buttons-print').removeClass('dt-button');
+          $('.buttons-print').addClass('btn');
+          $('.buttons-print').addClass('btn-outline-warning');
+        }
+      });
+    });
+  </script>
 </head>
 
 <style>
   body {
-    overflow: hidden;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 0.3rem;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #007bff;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
-  }
-
-  .btn-success {
-    background-color: #01d932;
-  }
-
-  .btn-success:hover {
-    background-color: #01bc2c;
-  }
-
-  tbody {
-    display: block;
-    max-height: 22rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  thead,
-  tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    /* even columns width , fix width of table too*/
-  }
-
-  thead {
-    width: calc(100% - 1rem)
-      /* scrollbar is average 1em/16px width, remove it from thead width */
+    background-color: #f5f5f5 !important;
   }
 
   .table-row {
     cursor: pointer;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
+  }
+
+  .table-title {
+    margin: -20px -25px 0px !important;
+  }
+
+  .dataTables_filter {
+    display: none;
+  }
+
+  .pagination>li>a,
+  .pagination>li>span {
+    /* margin-top: 2rem; */
+    text-align: center;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #dfe3e7 !important;
+    background-color: #fff !important;
+    border-radius: 1px !important;
+    margin: 2rem -1px !important;
+    font-size: 14.4px !important;
+    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+  }
+
+  .pagination>li.active>a,
+  .pagination>li.active>span {
+    /* margin-top: 2rem; */
+    font-size: 14.4px !important;
+    background-color: #007bff !important;
+    border-radius: 1px !important;
+    margin: 2rem 0 !important;
+    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+  }
+
+  #myTable_previous a {
+    /* background-color: black !important; */
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #dfe3e7 !important;
+    border-radius: 3px 1px 1px 3px !important;
+    color: #007bff !important;
+  }
+
+  #myTable_next a {
+    /* background-color: black !important; */
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #dfe3e7 !important;
+    border-radius: 1px 3px 3px 1px !important;
+    color: #007bff !important;
+  }
+
+  .dataTables_wrapper .dt-buttons {
+    position: absolute;
+    margin-top: -7.3rem;
+    margin-left: 46.7rem;
+    float: none;
+    text-align: left;
+  }
+
+  .btn-outline-warning {
+    border-radius: 1px;
+  }
+
+  .buttons-copy {
+    border-radius: 3px 1px 1px 3px;
+    border-right: none;
+  }
+
+  .buttons-csv {
+    margin-left: -4px;
+    border-left: none;
+    border-right: none;
+  }
+
+  .buttons-excel {
+    margin-left: -4px;
+    border-left: none;
+    border-right: none;
+  }
+
+  .buttons-pdf {
+    margin-left: -4px;
+    border-left: none;
+    border-right: none;
+  }
+
+  .buttons-print {
+    margin-left: -4px;
+    border-radius: 1px 3px 3px 1px;
+    border-left: none;
   }
 
   .modal-backdrop {
@@ -138,12 +267,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <li class="nav-item" style="margin-top:-8.5rem;">
           <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed" name="transporte">Transporte</button>
         </li>
-        <li style="margin-top:-8.5rem;">
-          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:13rem; margin-right:auto; width:17rem; position:absolute; z-index:500; margin-top:3.8rem; border-radius:1.5px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+        <li style="margin-top:-8.5rem">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:15rem; margin-right:auto; width:15rem; height:2rem; position:fixed; z-index:500; margin-top:4rem; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
         </li>
       </ul>
-      <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem"></div>
-      <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
+      <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem;"></div>
+      <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
         <thead>
           <tr>
             <?php

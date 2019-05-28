@@ -221,7 +221,7 @@ include_once($db);
                         <img src="images\logogrande.png" style="width:19rem; height:3rem; margin-top:2rem;">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Sign In</h5>
+                        <h5 class="card-title text-center">Iniciar Sessão</h5>
                         <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="form-label-group">
                                 <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" pattern="[A-Za-z0-9\s@-. ]+" required autofocus>
@@ -232,7 +232,7 @@ include_once($db);
                                 <label for="inputPassword">Password</label>
                                 <button type="button" style="font-size:20px; width:24px; height:24px; margin-left:21.2rem; margin-top:-3.5rem; z-index:500; position:absolute" class="btn btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="margin-left:-15px" data-toggle="tooltip" title="Mostrar Password"></i></button>
                             </div>
-                            <button style="margin-top:3rem; margin-bottom:1rem;" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                            <button style="margin-top:3rem; margin-bottom:1rem;" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Iniciar Sessão</button>
                         </form>
                     </div>
                 </div>

@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         border-left: none;
         border-right: none;
     }
-    
+
     .buttons-excel {
         margin-left: -4px;
         border-left: none;

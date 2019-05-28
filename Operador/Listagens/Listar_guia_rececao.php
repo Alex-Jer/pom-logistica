@@ -58,9 +58,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         dom: 'Bfrtip',
         buttons: [{
             extend: 'copy',
-            text: 'Copiar'
+            text: 'Copiar',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
           },
-          'csv', 'excel', 'pdf',
+          {
+            extend: 'csv',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+          {
+            extend: 'excel',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
+          {
+            extend: 'pdf',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4]
+            }
+          },
           {
             extend: 'print',
             text: 'Imprimir',
@@ -181,31 +201,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 
   .buttons-copy {
     border-radius: 3px 1px 1px 3px;
-    border-right:none;
+    border-right: none;
   }
 
   .buttons-csv {
     margin-left: -4px;
-    border-left:none;
-    border-right:none;
+    border-left: none;
+    border-right: none;
   }
 
   .buttons-excel {
     margin-left: -4px;
-    border-left:none;
-    border-right:none;
+    border-left: none;
+    border-right: none;
   }
 
   .buttons-pdf {
     margin-left: -4px;
-    border-left:none;
-    border-right:none;
+    border-left: none;
+    border-right: none;
   }
 
   .buttons-print {
     margin-left: -4px;
     border-radius: 1px 3px 3px 1px;
-    border-left:none;
+    border-left: none;
   }
 </style>
 
