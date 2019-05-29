@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         extend: 'copy',
                         text: 'Copiar'
                     },
-                    'csv', 'excel', 'pdf',
+                    'excel', 'pdf',
                     {
                         extend: 'print',
                         text: 'Imprimir'
@@ -85,10 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $('.buttons-copy').removeClass('dt-button');
                     $('.buttons-copy').addClass('btn');
                     $('.buttons-copy').addClass('btn-outline-warning');
-
-                    $('.buttons-csv').removeClass('dt-button');
-                    $('.buttons-csv').addClass('btn');
-                    $('.buttons-csv').addClass('btn-outline-warning');
 
                     $('.buttons-excel').removeClass('dt-button');
                     $('.buttons-excel').addClass('btn');
@@ -202,12 +198,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .buttons-copy {
         border-radius: 3px 1px 1px 3px;
-        border-right: none;
-    }
-
-    .buttons-csv {
-        margin-left: -4px;
-        border-left: none;
         border-right: none;
     }
 

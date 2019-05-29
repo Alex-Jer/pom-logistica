@@ -20,7 +20,18 @@ if ($_POST['id'] == 1) {
         $query = mysqli_query($conn, "SELECT guia.id as guiaid,cliente.nome as clinome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id WHERE tipo_guia_id = 2 ORDER BY data_carga ASC");
     }
 }
-
+echo '<table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
+    <thead>
+    <input type="search" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:34rem; margin-top:-3.45rem; border-radius:2px" id="searchbox">
+      <tr>
+        <th style="width:20%; text-align:center">Cliente</th>
+        <th style="width:20%; text-align:center">Nº de requisição</th>
+        <th style="width:20%; text-align:center">Data e hora prevista</th>
+        <th style="width:20%; text-align:center">Nº paletes</th>
+        <th style="width:23%; text-align:center" id="armazemOuMorada"></th>
+      </tr>
+    </thead>
+    <tbody>';
 foreach ($query as $eachRow) {
     $GuiaID = $eachRow['guiaid'];
     $clienteId = $eachRow['cliente_id'];
@@ -44,7 +55,9 @@ foreach ($query as $eachRow) {
         echo '<td style="width:25%; text-align:center" id="moradaD"> ' . $morada . '</td>';
     }
     echo '</tr>';
+    date_default_timezone_set("Europe/Lisbon");
 }
+echo '</tbody> </table>';
 
 ?>
 <script>
@@ -61,19 +74,120 @@ foreach ($query as $eachRow) {
         });
     });
 
+    // $("#Confirmed").on("click", function() {
+    //     document.getElementById("moradaD").style.visibility = "visible";
+    //     document.getElementById("armazemD").style.visibility = "collapse";
+    // });
+
+    // $("#notConfirmed").on("click", function() {
+    //     document.getElementById("moradaD").style.visibility = "collapse";
+    //     document.getElementById("armazemD").style.visibility = "visible";
+    // });
+
+    // $("#Confirmed").on("click", function() {
+    //     document.getElementById("moradaD").style.display = "visible";
+    // });
+
+    // $("#notConfirmed").on("click", function() {
+    //     document.getElementById("moradaD").style.visibility = "collapse";
+    // });
+
+    $(document).ready(function() {
+        $.ajax({
+            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+            type: 'POST',
+            data: {
+                id: $("#notConfirmed").val(),
+            },
+            success: function(data) {
+                $("#armazemOuMorada").html(data);
+            },
+        });
+    });
+
     $("#Confirmed").on("click", function() {
-        // alert("transporte ");
-        document.getElementById("moradaH").style.visibility = "visible";
-        document.getElementById("moradaD").style.visibility = "visible";
-        document.getElementById("armazemH").style.visibility = "collapse";
-        document.getElementById("armazemD").style.visibility = "collapse";
+        $.ajax({
+            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+            type: 'POST',
+            data: {
+                id: $("#Confirmed").val(),
+            },
+            success: function(data) {
+                $("#armazemOuMorada").html(data);
+            },
+        });
     });
 
     $("#notConfirmed").on("click", function() {
-        // alert("entrega ");
-        document.getElementById("moradaH").style.visibility = "collapse";
-        document.getElementById("moradaD").style.visibility = "collapse";
-        document.getElementById("armazemH").style.visibility = "visible";
-        document.getElementById("armazemD").style.visibility = "visible";
+        $.ajax({
+            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+            type: 'POST',
+            data: {
+                id: $("#notConfirmed").val(),
+            },
+            success: function(data) {
+                $("#armazemOuMorada").html(data);
+            },
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#myTable').DataTable({
+            "language": {
+                url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json'
+            },
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    text: 'Copiar',
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4]
+                    }
+                },
+            ],
+            "paging": true,
+            "pageLength": 6,
+            "bLengthChange": false,
+            "ordering": false,
+            "info": false,
+            initComplete: function() {
+                $('.buttons-copy').removeClass('dt-button');
+                $('.buttons-copy').addClass('btn');
+                $('.buttons-copy').addClass('btn-outline-warning');
+
+                $('.buttons-excel').removeClass('dt-button');
+                $('.buttons-excel').addClass('btn');
+                $('.buttons-excel').addClass('btn-outline-warning');
+
+                $('.buttons-pdf').removeClass('dt-button');
+                $('.buttons-pdf').addClass('btn');
+                $('.buttons-pdf').addClass('btn-outline-warning');
+
+                $('.buttons-print').removeClass('dt-button');
+                $('.buttons-print').addClass('btn');
+                $('.buttons-print').addClass('btn-outline-warning');
+            }
+        });
+        $("#searchbox").on("keyup search input paste cut", function() {
+            dataTable.search(this.value).draw();
+        });
     });
 </script>

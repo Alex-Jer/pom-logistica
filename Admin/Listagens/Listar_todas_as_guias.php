@@ -86,12 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text: 'Copiar',
           },
           {
-            extend: 'csv',
-            exportOptions: {
-              columns: [0, 1, 2, 3, 4]
-            }
-          },
-          {
             extend: 'excel',
             exportOptions: {
               columns: [0, 1, 2, 3, 4]
@@ -121,10 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $('.buttons-copy').removeClass('dt-button');
           $('.buttons-copy').addClass('btn');
           $('.buttons-copy').addClass('btn-outline-warning');
-
-          $('.buttons-csv').removeClass('dt-button');
-          $('.buttons-csv').addClass('btn');
-          $('.buttons-csv').addClass('btn-outline-warning');
 
           $('.buttons-excel').removeClass('dt-button');
           $('.buttons-excel').addClass('btn');
@@ -225,12 +215,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     border-right: none;
   }
 
-  .buttons-csv {
-    margin-left: -4px;
-    border-left: none;
-    border-right: none;
-  }
-
   .buttons-excel {
     margin-left: -4px;
     border-left: none;
@@ -268,28 +252,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed" name="transporte">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem">
-          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:15rem; margin-right:auto; width:15rem; height:2rem; position:fixed; z-index:500; margin-top:4rem; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+          <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:5rem; margin-right:auto; width:15rem; height:2rem; position:fixed; z-index:500; margin-top:4rem; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
         </li>
       </ul>
       <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem;"></div>
-      <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
-        <thead>
-          <tr>
-            <?php
-            echo '<th style="width:20%; text-align:center">Cliente</th>';
-            echo '<th style="width:20%; text-align:center">Nº de requisição</th>';
-            echo '<th style="width:20%; text-align:center">Data e hora prevista</th>';
-            echo '<th style="width:20%; text-align:center">Nº paletes</th>';
-            ?>
-            <th style="width:23%; text-align:center" id="armazemOuMorada"></th>
-          </tr>
-        </thead>
-        <tbody id="Testeeee">
-          <?php
-          date_default_timezone_set("Europe/Lisbon");
-          ?>
-        </tbody>
-      </table>
+      <div id="Testeeee"></div>
       <!--MODAL HERE -->
       <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -314,208 +281,158 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </form>
+
+  <script>
+    $("#notConfirmed").on("click", function() {
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
+        type: 'POST',
+        data: {
+          id: $("#notConfirmed").val(),
+          dataescolhida: $("#DataEntrega2").val()
+        },
+        success: function(data) {
+          $("#notConfirmed").removeClass('btn2')
+          $("#notConfirmed").addClass('btn3')
+          $("#Confirmed").removeClass('btn3')
+          $("#Confirmed").addClass('btn2')
+          $("#Testeeee").html(data);
+        },
+      });
+
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        type: 'POST',
+        data: {
+          id: $("#notConfirmed").val(),
+
+        },
+        success: function(data) {
+          $("#guiaTeste").html(data);
+        },
+      });
+
+      // $.ajax({
+      //   url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      //   type: 'POST',
+      //   data: {
+      //     id: $("#notConfirmed").val(),
+
+      //   },
+      //   success: function(data) {
+      //     $("#armazemOuMorada").html(data);
+      //   },
+      // });
+    });
+
+    $("#Confirmed").on("click", function() {
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
+        type: 'POST',
+        data: {
+          id: $("#Confirmed").val(),
+          dataescolhida: $("#DataEntrega2").val()
+
+        },
+        success: function(data) {
+
+          $("#Confirmed").removeClass('btn2')
+          $("#Confirmed").addClass('btn3')
+          $("#notConfirmed").removeClass('btn3')
+          $("#notConfirmed").addClass('btn2')
+          $("#Testeeee").html(data);
+        },
+      });
+
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        type: 'POST',
+        data: {
+          id: $("#Confirmed").val(),
+
+        },
+        success: function(data) {
+          $("#guiaTeste").html(data);
+        },
+      });
+
+      // $.ajax({
+      //   url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      //   type: 'POST',
+      //   data: {
+      //     id: $("#Confirmed").val(),
+
+      //   },
+      //   success: function(data) {
+      //     $("#armazemOuMorada").html(data);
+      //   },
+      // });
+    });
+
+    $(document).ready(function() {
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
+        type: 'POST',
+        data: {
+          id: $("#notConfirmed").val(),
+          dataescolhida: $("#DataEntrega2").val()
+        },
+        success: function(data) {
+          $("#notConfirmed").removeClass('btn2')
+          $("#notConfirmed").addClass('btn3')
+          $("#Confirmed").removeClass('btn3')
+          $("#Confirmed").addClass('btn2')
+          $("#Testeeee").html(data);
+        },
+      });
+
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        type: 'POST',
+        data: {
+          id: $("#notConfirmed").val(),
+
+        },
+        success: function(data) {
+          $("#guiaTeste").html(data);
+        },
+      });
+
+      // $.ajax({
+      //   url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
+      //   type: 'POST',
+      //   data: {
+      //     id: $("#notConfirmed").val(),
+
+      //   },
+      //   success: function(data) {
+      //     $("#armazemOuMorada").html(data);
+      //   },
+      // });
+    });
+
+    $("#DataEntrega2").on("change", function() {
+      $.ajax({
+        url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
+        type: 'POST',
+        data: {
+          id: $("#notConfirmed").val(),
+          dataescolhida: $("#DataEntrega2").val()
+        },
+        success: function(data) {
+          $("#notConfirmed").removeClass('btn2')
+          $("#notConfirmed").addClass('btn3')
+          $("#Confirmed").removeClass('btn3')
+          $("#Confirmed").addClass('btn2')
+          $("#Testeeee").html(data);
+        },
+      });
+    });
+
+    $(".modal").on("hidden.bs.modal", function() {
+      $(".modal-body1").html("");
+    });
+  </script>
 </body>
 
 </html>
-
-<script>
-  $("#notConfirmed").on("click", function() {
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-
-      },
-      success: function(data) {
-        $("#guiaTeste").html(data);
-      },
-    });
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-
-      },
-      success: function(data) {
-        $("#armazemOuMorada").html(data);
-      },
-    });
-  });
-
-  $("#Confirmed").on("click", function() {
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
-      type: 'POST',
-      data: {
-        id: $("#Confirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
-
-      },
-      success: function(data) {
-
-        $("#Confirmed").removeClass('btn2')
-        $("#Confirmed").addClass('btn3')
-        $("#notConfirmed").removeClass('btn3')
-        $("#notConfirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#Confirmed").val(),
-
-      },
-      success: function(data) {
-        $("#guiaTeste").html(data);
-      },
-    });
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-      type: 'POST',
-      data: {
-        id: $("#Confirmed").val(),
-
-      },
-      success: function(data) {
-        $("#armazemOuMorada").html(data);
-      },
-    });
-  });
-
-  $(document).ready(function() {
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-
-      },
-      success: function(data) {
-        $("#guiaTeste").html(data);
-      },
-    });
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-
-      },
-      success: function(data) {
-        $("#armazemOuMorada").html(data);
-      },
-    });
-  });
-
-  $("#DataEntrega2").on("change", function() {
-    $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxPedidosTotais.php',
-      type: 'POST',
-      data: {
-        id: $("#notConfirmed").val(),
-        dataescolhida: $("#DataEntrega2").val()
-      },
-      success: function(data) {
-        $("#notConfirmed").removeClass('btn2')
-        $("#notConfirmed").addClass('btn3')
-        $("#Confirmed").removeClass('btn3')
-        $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
-      },
-    });
-  });
-
-  $(".modal").on("hidden.bs.modal", function() {
-    $(".modal-body1").html("");
-  });
-
-
-  var visible = false;
-  $("#Confirmed").on("click", function() {
-    visible = true;
-    // alert("transporte " + visible);
-    document.getElementById("moradaH").style.visibility = "visible";
-    document.getElementById("moradaD").style.display = "visible";
-  });
-
-  $("#notConfirmed").on("click", function() {
-    visible = false;
-    // alert("entrega " + visible);
-    document.getElementById("moradaH").style.visibility = "collapse";
-    document.getElementById("moradaD").style.visibility = "collapse";
-  });
-
-
-
-
-  // var visible = false;
-  // var transporte = document.getElementsByName("transporte");
-  // var entrega = document.getElementsByName("entrega");
-  // function transporteClick() {
-  //   visible = true;
-  //   return visible;
-  // }
-  // function entregaClick() {
-  //   visible = false;
-  //   return visible;
-  // }
-  // transporte.onclick = function() {
-  //   alert("Bbb");
-  //   visible = true;
-  //   if (visible) {
-  //     document.getElementsByName("moradaH").style.display = "block";
-  //     document.getElementsByName("moradaD").style.display = "block";
-  //   } else {
-  //     document.getElementsByName("moradaH").style.display = "none";
-  //     document.getElementsByName("moradaD").style.display = "none";
-  //   }
-  // }
-  // entrega.onclick = function() {
-  //   alert("aaa");
-  //   visible = false;
-  //   if (visible) {
-  //     document.getElementsByName("moradaH").style.display = "block";
-  //     document.getElementsByName("moradaD").style.display = "block";
-  //   } else {
-  //     document.getElementsByName("moradaH").style.display = "none";
-  //     document.getElementsByName("moradaD").style.display = "none";
-  //   }
-  // }
-</script>
