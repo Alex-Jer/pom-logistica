@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1 style="text-align:center; margin-bottom:2rem;">Registar Artigo</h1>
                 <input type="input" style="margin-bottom:1rem;" id="inputNome" name="Nome" class="form-control" placeholder="Nome do artigo" required autofocus>
                 <input type="input" style="margin-bottom:1rem;" id="inputRef" name="ref" class="form-control" placeholder="Referência do artigo" required autofocus>
-                <input type="number" style="margin-bottom:1rem;" id="inputPeso" name="peso" class="form-control" placeholder="Peso do artigo" step="any" required>
+                <input type="number" style="margin-bottom:1rem;" id="inputPeso" name="peso" class="form-control" placeholder="Peso do artigo (Kg)" step="any" required>
                 <select class="form-control" style="text-align-last:center; color:#6c757d" name="combobox" required autofocus>
                     <option value="" disabled selected>Cliente</option>
                     <?php

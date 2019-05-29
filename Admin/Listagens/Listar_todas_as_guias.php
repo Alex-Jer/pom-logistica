@@ -34,16 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Localidade = $_POST["Localidade"];
     $nreq = "REQ-$nreq";
 
-    $stmt = $conn->prepare("SELECT palete.tipo_palete_id as tipo_palete_id, palete.id as id, localizacao.zona_id as zona_id, zona.armazem_id as armazem_id, zona.tipo_zona_id as tipo_zona_id FROM palete INNER JOIN localizacao on localizacao.palete_id=palete.id INNER JOIN zona on zona.id=localizacao.zona_id WHERE artigo_id=?");
+    $stmt = $conn->prepare("SELECT palete.tipo_palete_id as tipo_palete_id, palete.id as id, localizacao.zona_id as zona_id, zona.armazem_id as armazem_id, zona.tipo_zona_id as tipo_zona_id FROM palete INNER JOIN localizacao ON localizacao.palete_id=palete.id INNER JOIN zona on zona.id=localizacao.zona_id WHERE artigo_id=?");
     $stmt->bind_param("s", $artigoo);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($tipoPalete, $paleteeID, $zonaID, $armazemID, $tipoZona);
+    $stmt->bind_result($tipoPaleteId, $paleteeID, $zonaID, $armazemID, $tipoZona);
     $stmt->fetch();
     //echo $armazemID;
 
     $stmt = $conn->prepare("INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES (?,2,?,?,?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("iiiiisissss", $cliente, $tipoPalete, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
+    $stmt->bind_param("iiiiisissss", $cliente, $tipoPaleteId, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
+    var_dump($cliente, $tipoPaleteId, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
     $stmt->execute();
   }
 }
@@ -201,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   .dataTables_wrapper .dt-buttons {
     position: absolute;
     margin-top: -7.3rem;
-    margin-left: 46.7rem;
+    margin-left: 50.1rem;
     float: none;
     text-align: left;
   }

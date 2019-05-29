@@ -175,7 +175,7 @@
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\Admin\Listagens\Listar_clientes.php" class="small-box-footer">
+                                                <a href="/POM-Logistica/Admin/Listagens/Listar_clientes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>

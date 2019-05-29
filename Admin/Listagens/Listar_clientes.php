@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO cliente (nome, nif, morada, localidade) VALUES ('$nome', $nifNumberr, '$Morada', '$localidade')";
         } else {
             echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-            echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_clientes.php");</script>';
+            echo '<script type="text/javascript">location.replace("/POM-Logistica/Admin/Listagens/Listar_clientes.php");</script>';
         }
         if (mysqli_query($conn, $sql)) { }
     } elseif (isset($_POST['apagar'])) {
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
         } else {
             echo '<script type="text/javascript">alert("Preencha todos os campos!");</script>';
-            echo '<script type="text/javascript">location.replace("\POM-Logistica\Admin\Listagens\Listar_clientes.php");</script>';
+            echo '<script type="text/javascript">location.replace("/POM-Logistica/Admin/Listagens/Listar_clientes.php");</script>';
         }
     }
 }
@@ -256,7 +256,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Operador\Listagens\Listar_clientes.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="/POM-Logistica/Admin/Listagens/Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
                 <div class="table-title" style="background-color:#0275d8;">

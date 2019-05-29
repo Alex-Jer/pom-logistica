@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
         <div class="row">
           <div class="col-sm-6">
-            <h2>Gerir <b>Clientes</b></h2>
+            <h2><b>Guias</b></h2>
           </div>
         </div>
       </div>

@@ -74,13 +74,11 @@ foreach ($dado as $eachRow) {
     });
 
     $("#Confirmed").on("click", function() {
-        // alert("transporte ");
         document.getElementById("registarH").style.visibility = "visible";
         document.getElementById("registarD").style.visibility = "visible";
     });
 
     $("#notConfirmed").on("click", function() {
-        // alert("entrega ");
         document.getElementById("registarH").style.visibility = "collapse";
         document.getElementById("registarD").style.visibility = "collapse";
     });

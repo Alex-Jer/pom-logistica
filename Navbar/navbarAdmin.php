@@ -10,7 +10,7 @@ if ($_SESSION["perfilId"] == 2) {
     header("Location: /POM-Logistica/index.php");
     ?>
     <script type="text/javascript">
-        alert("Voce nao tem permissoes para acessar a isso");
+        alert("Voce não tem permissões para aceder a essa página.");
     </script>
 <?php
 }
@@ -142,10 +142,13 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Lista de Guias</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="/POM-Logistica/Admin/fatura_cliente.php">Fatura</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Lista de Paletes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias_diarias.php">Pedidos Diários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="/POM-Logistica/Admin/fatura_cliente.php">Fatura</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="/POM-Logistica/Admin/artigo.php">Artigo</a>

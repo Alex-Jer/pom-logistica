@@ -7,7 +7,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if ($_SESSION["perfilId"] == 1) {
-    header("Location: index.php");
+    header("Location: /POM-Logistica/index.php");
     ?>
     <script type="text/javascript">
         alert("Voce nao tem permissoes para acessar a isso");
@@ -145,7 +145,7 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("inserir_paletes") ?> <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Confirmar Guias</a>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn">
 
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserir_paletes") ?>" href="/POM-Logistica/Operador/inserir_paletes.php">Guia Entrega</a>
+                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("inserir_paletes") ?>" href="/POM-Logistica/Operador/Listagens/inserir_paletes.php">Guia Entrega</a>
                     <a class="dropdown-item <?= echoActiveClassIfRequestMatches("Guia_Operador") ?>" href="/POM-Logistica/Operador/Guia_Operador.php">Guia Transporte</a>
                 </div>
             </li>
