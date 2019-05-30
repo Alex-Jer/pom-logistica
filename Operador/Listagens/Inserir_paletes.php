@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <body>
-  <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="/POM-Logistica/Operador/inserir_paletes.php" method="post" id="mainForm" novalidate>
+  <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="/POM-Logistica/Operador/Listagens/inserir_paletes.php" method="post" id="mainForm" novalidate>
     <div class="container" style="margin-left:-6rem">
       <ul class="nav nav-pills" style="margin-top:4rem;">
         <li class="nav-item">

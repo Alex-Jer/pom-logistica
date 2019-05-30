@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $conn->prepare("INSERT INTO guia (cliente_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, localidade, matricula) VALUES (?,2,?,?,?,?,?,?,?,?,?,?)");
     $stmt->bind_param("iiiiisissss", $cliente, $tipoPaleteId, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
-    var_dump($cliente, $tipoPaleteId, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
+    // var_dump($cliente, $tipoPaleteId, $tipoZona, $armazemID, $artigoo, $horadescarga, $npal, $nreq, $morada, $Localidade, $matricula);
     $stmt->execute();
   }
 }
