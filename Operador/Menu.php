@@ -157,13 +157,13 @@
                 </div>
                 <div class="colunaEsquerda">
                         <div class="text-center">
-                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
+                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:6.5rem;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
                                 ?>
                                 <div class="row">
-                                        <h5 style="margin-left:15.5em"><?php echo $timeRN ?></h5>
+                                        <h5 style="margin-left:20.5rem"><?php echo $timeRN ?></h5>
                                         <h5 id="txt" style="font-size: 1.3rem; margin-left:0.8rem;"></h5>
                                 </div>
                         </div>
@@ -171,12 +171,12 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Imprimir</b></h5>
-                                                        <p>Guias Receção</p>
+                                                        <h5><b>Confirmar</b></h5>
+                                                        <p>Guias Entrega</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\Operador\Listagens\Listar_guia_rececao.php" class="small-box-footer">
+                                                <a href="/POM-Logistica/Operador/Listagens/inserir_paletes.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -197,12 +197,12 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Imprimir</b></h5>
-                                                        <p>Guias Devolução</p>
+                                                        <h5><b>Pedidos</b></h5>
+                                                        <p>Diários</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\Operador\Listagens\Listar_guia_devolucao.php" class="small-box-footer">
+                                                <a href="/POM-Logistica/Operador/Listagens/Listar_todas_as_guias.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -214,12 +214,12 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Confirmar</b></h5>
-                                                        <p>Guias Entrega</p>
+                                                        <h5><b>Imprimir</b></h5>
+                                                        <p>Guias Receção</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="/POM-Logistica/Operador/Listagens/inserir_paletes.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Operador\Listagens\Listar_guia_rececao.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
@@ -227,17 +227,16 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Pedidos</b></h5>
-                                                        <p>Diários</p>
+                                                        <h5><b>Imprimir</b></h5>
+                                                        <p>Guias Devolução</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="/POM-Logistica/Operador/Listagens/Listar_todas_as_guias.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\Operador\Listagens\Listar_guia_devolucao.php" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
                                 </div>
-
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">

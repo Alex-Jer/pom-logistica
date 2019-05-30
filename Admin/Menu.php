@@ -156,13 +156,13 @@
                 </div>
                 <div class="colunaEsquerda">
                         <div class="text-center">
-                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:2rem;">
+                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:6.5rem;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
                                 ?>
                                 <div class="row">
-                                        <h5 style="margin-left:15.5em"><?php echo $timeRN ?></h5>
+                                        <h5 style="margin-left:20.5rem"><?php echo $timeRN ?></h5>
                                         <h5 id="txt" style="margin-left:0.8rem;"></h5>
                                 </div>
                         </div>
@@ -170,7 +170,7 @@
                                 <div class="col sm-1 colop" style="">
                                         <div class="small-box bg-aqua" style="width:150px;">
                                                 <div class="inner">
-                                                        <h5><b>Listar</b></h5>
+                                                        <h5><b>Gerir</b></h5>
                                                         <p>Clientes</p>
                                                 </div>
                                                 <div class="icon">
@@ -183,7 +183,7 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Listar</b></h5>
+                                                        <h5><b>Gerir</b></h5>
                                                         <p>Utilizadores</p>
                                                 </div>
                                                 <div class="icon">

@@ -261,12 +261,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="table-wrapper" style="margin-top:5rem">
                 <div class="table-title" style="background-color:#0275d8;">
                     <div class="row">
-                        <div class="col-sm-6" z-index="5" style="position:fixed; height:6rem;">
-                            <h2 style="position:fixed; margin-top:-0.7rem">Lista de <b>Clientes</b></h2>
-                            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:fixed; margin-left:27rem; margin-top:-1rem; border-radius:2px" id="searchbox">
+                        <div class="col-sm-6" z-index="5" style="position:absolute; height:6rem;">
+                            <h2 style="position:absolute; margin-top:-0.7rem">Gerir <b>Clientes</b></h2>
+                            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:27rem; margin-top:-1rem; border-radius:2px" id="searchbox">
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" style="position:fixed; margin-left:56rem; margin-top:-1rem"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" style="position:absolute; margin-left:56rem; margin-top:-1rem; width:10rem;"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
                         </div>
                     </div>
                 </div>
