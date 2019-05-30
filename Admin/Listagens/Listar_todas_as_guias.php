@@ -312,18 +312,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#guiaTeste").html(data);
         },
       });
-
-      // $.ajax({
-      //   url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-      //   type: 'POST',
-      //   data: {
-      //     id: $("#notConfirmed").val(),
-
-      //   },
-      //   success: function(data) {
-      //     $("#armazemOuMorada").html(data);
-      //   },
-      // });
     });
 
     $("#Confirmed").on("click", function() {
@@ -356,18 +344,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#guiaTeste").html(data);
         },
       });
-
-      // $.ajax({
-      //   url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-      //   type: 'POST',
-      //   data: {
-      //     id: $("#Confirmed").val(),
-
-      //   },
-      //   success: function(data) {
-      //     $("#armazemOuMorada").html(data);
-      //   },
-      // });
     });
 
     $(document).ready(function() {

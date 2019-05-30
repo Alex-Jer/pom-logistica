@@ -27,8 +27,13 @@ echo '<table style="margin-left:auto; margin-right:auto;" class="table table-str
         <th style="width:20%; text-align:center">Cliente</th>
         <th style="width:20%; text-align:center">Nº de requisição</th>
         <th style="width:20%; text-align:center">Data e hora prevista</th>
-        <th style="width:20%; text-align:center">Nº paletes</th>
-        <th style="width:23%; text-align:center" id="armazemOuMorada"></th>
+        <th style="width:20%; text-align:center">Nº paletes</th>';
+        if ($_POST['id'] == 1) {
+            echo'<th style="width:23%; text-align:center">Armazém</th>';
+        } else {
+            echo'<th style="width:23%; text-align:center">Morada</th>';
+        }
+        echo'
       </tr>
     </thead>
     <tbody>';
@@ -70,63 +75,6 @@ echo '</tbody> </table>';
             },
             success: function(data) {
                 $("#TableDetails").html(data);
-            },
-        });
-    });
-
-    // $("#Confirmed").on("click", function() {
-    //     document.getElementById("moradaD").style.visibility = "visible";
-    //     document.getElementById("armazemD").style.visibility = "collapse";
-    // });
-
-    // $("#notConfirmed").on("click", function() {
-    //     document.getElementById("moradaD").style.visibility = "collapse";
-    //     document.getElementById("armazemD").style.visibility = "visible";
-    // });
-
-    // $("#Confirmed").on("click", function() {
-    //     document.getElementById("moradaD").style.display = "visible";
-    // });
-
-    // $("#notConfirmed").on("click", function() {
-    //     document.getElementById("moradaD").style.visibility = "collapse";
-    // });
-
-    $(document).ready(function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-            type: 'POST',
-            data: {
-                id: $("#notConfirmed").val(),
-            },
-            success: function(data) {
-                $("#armazemOuMorada").html(data);
-            },
-        });
-    });
-
-    $("#Confirmed").on("click", function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-            type: 'POST',
-            data: {
-                id: $("#Confirmed").val(),
-            },
-            success: function(data) {
-                $("#armazemOuMorada").html(data);
-            },
-        });
-    });
-
-    $("#notConfirmed").on("click", function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxArmazemOuMorada.php',
-            type: 'POST',
-            data: {
-                id: $("#notConfirmed").val(),
-            },
-            success: function(data) {
-                $("#armazemOuMorada").html(data);
             },
         });
     });
