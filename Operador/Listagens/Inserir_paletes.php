@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div style="text-align:center; width:80rem">
           <div class="container">
-            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem; font-size:14px">
+            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem; font-size:13px">
               <thead style="width:77rem">
                 <tr>
                   <th style="width:20%; text-align:center">Cliente</th>
