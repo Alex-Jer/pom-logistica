@@ -42,7 +42,7 @@ function echoActiveClassIfRequestMatches($requestUri)
     
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style3.min.css">
-    <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
+    <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png">
     
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
