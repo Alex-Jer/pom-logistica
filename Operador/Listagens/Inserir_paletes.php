@@ -9,7 +9,7 @@ $navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
 include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
-   
+
     $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='" . $_POST['Confirm'] . "'");
     $dado = mysqli_fetch_array($buscaId);
     $tpID = $dado['tipo_palete_id'];
@@ -30,8 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
     }
   } elseif (isset($_POST['confirmTotal'])) {
-    //echo $_POST['confirmTotal'];
-
     $updateGuia = mysqli_query($conn, "UPDATE guia SET confirmarTotal=1 WHERE id='" . $_POST['confirmTotal'] . "'");
     if (mysqli_query($conn, $updateGuia)) { }
   } elseif (isset($_POST['save'])) {
@@ -41,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referencia = $_POST['refpal'];
 
     $referencia = "PAL-$referencia";
-    // echo $referencia;
     $nomepal = $_POST['nomepal'];
     $eachLocalizacao = $_POST['comboBoxLocalizacao'];
 
@@ -63,17 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result->store_result();
     $result->bind_result($count);
     $result->fetch();
-    // echo $count;
 
     $countEspaco = $conn->query("SELECT count(*) FROM localizacao  WHERE hasPalete = 1 AND zona_id=$zonaID");
     $row12 = $countEspaco->fetch_row();
-    //echo '#: ', $row12[0];
     $countRows = $row12[0];
 
     date_default_timezone_set("Europe/Lisbon");
     $timeRN = date("Y-m-d H:i:s");
     $nomepal = "Palete de $nomepal";
-    // echo $referencia;
 
     if ($count == 0) {
       $stmt = $conn->prepare("INSERT INTO palete (guia_entrada_id, artigo_id, tipo_palete_id, referencia, nome, Data) VALUES ('" . $_POST['Guia_ID2'] . "',?,?,?,?,?)");
@@ -112,17 +106,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
 </head>
 
 <style>
@@ -177,13 +167,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: calc(100% - 1rem)
       /* scrollbar is average 1em/16px width, remove it from thead width */
   }
-  .table-row{
-  cursor:pointer;
+
+  .table-row {
+    cursor: pointer;
   }
 
   .nav-pills .nav-link.active,
   .nav-pills .show>.nav-link {
     background-color: #ffffff;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
   }
 </style>
 
@@ -208,17 +205,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div style="text-align:center; width:80rem">
           <div class="container">
-            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem">
+            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem; font-size:14px">
               <thead style="width:77rem">
                 <tr>
-                  <th style="width:20%">Cliente</th>
-                  <th style="width:20%">Nº requisição</th>
-                  <th style="width:20%">Dia e hora da carga</th>
-                  <th style="width:15%">Nº de paletes</th>
-                  <th style="width:20%">Artigo</th>
-                  <th style="width:20%">Armazém</th>
-                  <th style="width:15%">Confirmar</th>
-                  <th style="width:15%; visibility:collapse;" id="registarH">Registar Palete</th>
+                  <th style="width:20%; text-align:center">Cliente</th>
+                  <th style="width:20%; text-align:center">Nº requisição</th>
+                  <th style="width:20%; text-align:center">Dia e hora da carga</th>
+                  <th style="width:15%; text-align:center">Nº de paletes</th>
+                  <th style="width:20%; text-align:center">Artigo</th>
+                  <th style="width:20%; text-align:center">Armazém</th>
+                  <th style="width:15%; text-align:center">Confirmar</th>
+                  <th style="width:15%; text-align:center; visibility:collapse;" id="registarH">Registar Palete</th>
                 </tr>
               </thead>
               <tbody id="Testeeee">

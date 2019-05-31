@@ -9,7 +9,7 @@ $navbar .= "/POM-Logistica/Navbar/navbarAdmin.php";
 include_once($navbar);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['Confirm'])) {
-   
+
     $buscaId = mysqli_query($conn, "SELECT * FROM guia WHERE id='" . $_POST['Confirm'] . "'");
     $dado = mysqli_fetch_array($buscaId);
     $tpID = $dado['tipo_palete_id'];
@@ -112,17 +112,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
 </head>
 
 <style>
@@ -177,13 +173,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     width: calc(100% - 1rem)
       /* scrollbar is average 1em/16px width, remove it from thead width */
   }
-  .table-row{
-  cursor:pointer;
+
+  .table-row {
+    cursor: pointer;
   }
 
   .nav-pills .nav-link.active,
   .nav-pills .show>.nav-link {
     background-color: #ffffff;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
   }
 </style>
 

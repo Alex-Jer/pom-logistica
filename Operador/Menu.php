@@ -1,7 +1,3 @@
-<?php
-//include 'Navbar\navbarAdmin.php'; 
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,19 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>POM Logistica</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="\POM-Logistica\node_modules\admin-lte\dist\css\AdminLTE.css">
-        <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-        <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
-        <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-        <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.10/css/AdminLTE.min.css">
         <link rel="icon" type="image/png" href="/POM-Logistica/images/titlelogo.png  ">
 </head>
 
+<style>
+        .small-box>.small-box-footer {
+                position: relative;
+                text-align: center;
+                padding: 3px 0;
+                color: #fff;
+                color: rgb(255, 255, 255);
+                display: block;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.1);
+                background-color: #0063cc;
+                text-decoration: none;
+                transition: background .25s;
+        }
+
+        .small-box>.small-box-footer:hover {
+                color: #fff;
+                background: rgba(0, 0, 0, 0.35);
+        }
+</style>
 
 <script>
         function startTime() {
@@ -60,9 +69,6 @@
                 width: 100%;
                 height: 100%;
                 border-left: solid 4px #0159b7;
-                /* border:solid;
-  border-color: #33ccff; */
-
                 /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;
@@ -76,8 +82,6 @@
                 /* Full height */
                 width: 28.5rem;
                 height: 20rem;
-                /* border:solid;
-                border-color: #33ccff; */
                 /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;

@@ -19,11 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="\POM-Logistica\styles\table.css">
-  <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
-  <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-  <link rel="stylesheet" href="\POM-Logistica\css\bootstrap.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <style>
@@ -84,6 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   .btn-success {
     background-color: #01d932 !important;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
   }
 </style>
 
@@ -241,21 +244,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script>
   $(document).ready(function() {
-    // $.ajax({
-    //   url: 'ajaxPedidosTotais.php',
-    //   type: 'POST',
-    //   data: {
-    //     id: $("#notConfirmed").val(),
-    //     dataescolhida: $("#DataEntrega2").val()
-    //   },
-    //   success: function(data) {
-    //     $("#notConfirmed").removeClass('btn2')
-    //     $("#notConfirmed").addClass('btn3')
-    //     $("#Confirmed").removeClass('btn3')
-    //     $("#Confirmed").addClass('btn2')
-    //     $("#Testeeee").html(data);
-    //   },
-    // });
     $.ajax({
       url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
       type: 'POST',

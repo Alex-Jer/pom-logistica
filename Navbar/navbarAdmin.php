@@ -30,9 +30,6 @@ function echoActiveClassIfRequestMatches($requestUri)
 
 <head>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="/POM-Logistica/styles/style3.css">
-    <link rel="stylesheet" href="/POM-Logistica/css/bootstrap.css">
     <html lang="en">
 
     <title>POM Logistica</title>
@@ -42,33 +39,17 @@ function echoActiveClassIfRequestMatches($requestUri)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="/POM-Logistica/css/font-awesome.min.css">
-
-    <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="/POM-Logistica/css/elegant-fonts.css">
-
-    <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="/POM-Logistica/css/themify-icons.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="/POM-Logistica/css/swiper.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
     <!-- Styles -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" crossorigin="anonymous"> -->
-    <!-- <link href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style3.min.css">
     <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
-    <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style.css">
-    <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style3.css">
-    <link rel="stylesheet" type="text/css" href="\POM-Logistica\css\bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <style>

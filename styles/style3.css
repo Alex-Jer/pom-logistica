@@ -17,7 +17,7 @@
 ::placeholder {
   text-align: center;
 }
- 
+
 .btn2 {
   border: none;
   color: #495057;
@@ -71,4 +71,29 @@
   outline: 0;
   color: #131212;
   transition: 0.3s;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: transparent !important;
+  color: #131212 !important;
+  font-weight: normal;
+}
+
+.btn2:hover {
+  font-weight: normal;
+}
+
+.btn3:hover {
+  font-weight: normal;
+}
+
+.btn3 {
+  font-weight: normal;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #131212;
+  background-color: #007bff;
 }
