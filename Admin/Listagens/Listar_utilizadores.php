@@ -71,38 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="\POM-Logistica\node_modules\font-awesome\css\font-awesome.min.css"> -->
     <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <style>
-    body {
+    /* body {
         overflow: hidden;
-    }
+    } */
 
-    /* width */
-    ::-webkit-scrollbar {
-        width: 0.3rem;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #007bff;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0056b3;
+    body {
+        color: #566787;
     }
 
     .btn-success {
@@ -113,87 +96,167 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #01bc2c;
     }
 
-    body {
-        color: #566787;
+    @media only screen and (min-width: 768px) {
+
+        /* Desktop */
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 0.3rem;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #007bff;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0056b3;
+        }
+
+        tbody {
+            display: block;
+            max-height: 22rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        thead,
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            /* even columns width , fix width of table too*/
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 0px solid #dee2e6;
+        }
+
+        thead {
+            width: calc(100% - 0rem)
+                /* scrollbar is average 1em/16px width, remove it from thead width */
+        }
+
+        .desktopAdd {
+            position: relative;
+            margin-top: -2rem;
+            float: right;
+        }
+
+        .desktopAdd:before {
+            content: 'Adicionar Utilizador';
+        }
+
+        .table-title {
+            max-height: 5rem !important;
+        }
+
+        .desktopPassword {
+            width: 437px;
+            margin-top: 1rem;
+            margin-left: 0.2rem;
+            margin-right: auto;
+        }
     }
 
-    tbody {
-        display: block;
-        max-height: 22rem;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+    @media only screen and (max-width: 767px) {
+        /* Mobile */
 
-    thead,
-    tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
-        /* even columns width , fix width of table too*/
-    }
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
+            display: none;
+        }
 
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 0px solid #dee2e6;
-    }
+        /* body {
+            overflow-x: hidden;
+        } */
 
-    thead {
-        width: calc(100% - 0rem)
-            /* scrollbar is average 1em/16px width, remove it from thead width */
+        .mobileTable {
+            overflow-x: auto;
+        }
+
+        .mobileAdd {
+            width: 10%;
+            margin-top: -2rem;
+        }
+
+        .mobileAdd:before {
+            content: none;
+        }
+
+        .mobilePassword {
+            width:100%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        h2 {
+            font-size: 24px !important;
+        }
+
+        .table-wrapper {
+            margin-top: 1rem !important;
+        }
     }
 </style>
 
 <body>
     <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Admin\Listagens\Listar_utilizadores.php" method="post" novalidate>
         <div class="container">
-            <div class="table-wrapper" style="margin-top:5rem; margin-left:auto; margin-right:auto; width:65rem">
-                <div class="table-title" style="background-color:#0275d8">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h2>Gerir <b>Utilizadores</b></h2>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Utilizador</span></a>
-                        </div>
-                    </div>
+            <div class="table-wrapper" style="margin-top:5rem">
+                <div class="table-title" style="background-color:#0275d8; z-index:0">
+                    <h2>Gerir <b>Utilizadores</b></h2>
+                    <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
                 </div>
-                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
-                    <thead>
-                        <tr>
-                            <th style="width:20%">Nome</th>
-                            <th style="width:30%; text-align:center">Email</th>
-                            <th style="width:25%; text-align:center">Estatuto</th>
-                            <th style="width:25%; text-align:center">Armazém</th>
-                            <th style="width:20%; text-align:center">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $dado = mysqli_query($conn, "SELECT utilizador.id as id, utilizador.nome as nome, utilizador.email as email,utilizador.perfil_id as perfil_id,armazem_id, armazem.nome as armazem_nome, perfil.nome as pnome FROM utilizador INNER JOIN armazem on armazem.id=utilizador.armazem_id INNER JOIN perfil on perfil.id=utilizador.perfil_id ORDER BY id ASC");
-                        foreach ($dado as $eachRow) {
-                            $buscaId = $eachRow['id'];
-                            $nomeID = $eachRow['id'];
-                            $Nome = $eachRow['nome'];
-                            $email = $eachRow['email'];
-                            $ArmazemNome  = $eachRow['armazem_nome'];
-                            $PerfilNome  = $eachRow['pnome'];
-                            echo '<tr>';
-                            echo '<td style="width:20%"> ' . $Nome . '</td>';
-                            echo '<td style="width:30%; text-align:center"> ' . $email . '</td>';
-                            echo '<td style="width:25%; text-align:center"> ' . $PerfilNome . '</td>';
-                            echo '<td style="width:25%; text-align:center"> ' . $ArmazemNome . '</td>';
-                            echo '<td style="width:20%; text-align:center">';
+                <div class="mobileTable">
+                    <table style="margin-left:auto; margin-right:auto; margin-top:-0.65rem" class="table table-striped table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th style="width:20%">Nome</th>
+                                <th style="width:30%; text-align:center">Email</th>
+                                <th style="width:25%; text-align:center">Estatuto</th>
+                                <th style="width:25%; text-align:center">Armazém</th>
+                                <th style="width:20%; text-align:center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $dado = mysqli_query($conn, "SELECT utilizador.id as id, utilizador.nome as nome, utilizador.email as email,utilizador.perfil_id as perfil_id,armazem_id, armazem.nome as armazem_nome, perfil.nome as pnome FROM utilizador INNER JOIN armazem on armazem.id=utilizador.armazem_id INNER JOIN perfil on perfil.id=utilizador.perfil_id ORDER BY id ASC");
+                            foreach ($dado as $eachRow) {
+                                $buscaId = $eachRow['id'];
+                                $nomeID = $eachRow['id'];
+                                $Nome = $eachRow['nome'];
+                                $email = $eachRow['email'];
+                                $ArmazemNome  = $eachRow['armazem_nome'];
+                                $PerfilNome  = $eachRow['pnome'];
+                                echo '<tr>';
+                                echo '<td style="width:20%"> ' . $Nome . '</td>';
+                                echo '<td style="width:30%; text-align:center"> ' . $email . '</td>';
+                                echo '<td style="width:25%; text-align:center"> ' . $PerfilNome . '</td>';
+                                echo '<td style="width:25%; text-align:center"> ' . $ArmazemNome . '</td>';
+                                echo '<td style="width:20%; text-align:center">';
+                                ?>
+                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                                <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                                <?php '</td>';
+                                echo '</tr>';
+                            }
                             ?>
-                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
-                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
-                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
-                            <?php '</td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                        <!-- <div id="Testeeee"></div> -->
-                    </tbody>
-                </table>
+                            <!-- <div id="Testeeee"></div> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="Testeeee">
@@ -212,13 +275,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-body">
                         <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="1" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
                         <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="2" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-                        <div class="row" style=" width:437px; margin-top:1rem; margin-left:0.2rem; margin-right:auto;">
-                            <input style="margin-left:19px; height:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                        <div class="row desktopPassword mobilePassword">
+                            <input style="height:auto; margin-top:1rem; margin-left:auto; margin-right:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px; position:absolute" class="btn-eye" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
-                        <div class="row" style="width:437px; margin-top:1rem; margin-left:0.2rem; margin-right:auto;">
-                            <input style="margin-left:19px; height:auto;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px;" class="btn-eye" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                        <div class="row desktopPassword mobilePassword">
+                            <input style="height:auto; margin-left:auto; margin-right:auto; margin-top:1rem;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
+                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px; position:absolute" class="btn-eye" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
                         </div>
                         <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color:#6c757d;" tabindex="5" color: #6C757D;" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
