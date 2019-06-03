@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -134,129 +134,188 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
-    * {
-        box-sizing: border-box;
+    body {
+        background-color: #f5f5f5 !important;
+    }
+
+    .btn-success {
+        background-color: #01d932;
+    }
+
+    .btn-success:hover {
+        background-color: #01bc2c;
+    }
+
+    body {
+        background-color: #f5f5f5 !important;
+    }
+
+    .table-row {
+        cursor: pointer;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 0px solid #dee2e6;
+        border-top: 0px solid #dee2e6;
+    }
+
+    .table-title {
+        margin: -20px -25px 0px !important;
+        padding: 32px;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    .pagination>li>a,
+    .pagination>li>span {
+        /* margin-top: 2rem; */
+        text-align: center;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        background-color: #fff !important;
+        border-radius: 1px !important;
+        margin: 2rem -1px !important;
+        font-size: 14.4px !important;
+        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+    }
+
+    .pagination>li.active>a,
+    .pagination>li.active>span {
+        /* margin-top: 2rem; */
+        font-size: 14.4px !important;
+        background-color: #007bff !important;
+        border-radius: 1px !important;
+        margin: 2rem 0 !important;
+        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+    }
+
+    #myTable_previous a {
+        /* background-color: black !important; */
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        border-radius: 3px 1px 1px 3px !important;
+        color: #007bff !important;
+    }
+
+    #myTable_next a {
+        /* background-color: black !important; */
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: #dfe3e7 !important;
+        border-radius: 1px 3px 3px 1px !important;
+        color: #007bff !important;
+    }
+
+    .dataTables_wrapper .dt-buttons {
+        position: absolute;
+        margin-top: -7.3rem;
+        margin-left: -1.6rem;
+        float: none;
+        text-align: left;
+    }
+
+    .btn-outline-warning {
+        border-radius: 1px;
+    }
+
+    .buttons-copy {
+        border-radius: 3px 1px 1px 3px;
+        border-right: none;
+    }
+
+    .buttons-excel {
+        margin-left: -4px;
+        border-left: none;
+        border-right: none;
+    }
+
+    .buttons-pdf {
+        margin-left: -4px;
+        border-left: none;
+        border-right: none;
+    }
+
+    .buttons-print {
+        margin-left: -4px;
+        border-radius: 1px 3px 3px 1px;
+        border-left: none;
+    }
+
+    .btn:focus,
+    .btn:active {
+        outline: none !important;
+        box-shadow: none;
     }
 
     @media only screen and (min-width: 768px) {
-        /* For desktop: */
 
-        body {
-            background-color: #f5f5f5 !important;
+        /* Desktop */
+        .desktopSearch {
+            text-align: left;
+            width: 15rem;
+            height: 2rem;
+            position: relative;
+            margin-top: -1rem;
+            border-radius: 2px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .btn-success {
-            background-color: #01d932;
+        .desktopAdd {
+            position: relative;
+            margin-top: -2rem;
+            width: 10rem;
+            float: right;
         }
 
-        .btn-success:hover {
-            background-color: #01bc2c;
-        }
-
-        body {
-            background-color: #f5f5f5 !important;
-        }
-
-        .table-row {
-            cursor: pointer;
-        }
-
-        .table thead th {
-            vertical-align: bottom;
-            border-bottom: 0px solid #dee2e6;
-            border-top: 0px solid #dee2e6;
+        .desktopAdd:before {
+            content: 'Adicionar Cliente';
         }
 
         .table-title {
-            margin: -20px -25px 0px !important;
-            padding: 32px;
+            max-height: 2rem !important;
         }
+    }
 
-        .dataTables_filter {
+    @media only screen and (max-width: 767px) {
+        /* Mobile */
+
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
             display: none;
         }
 
-        .pagination>li>a,
-        .pagination>li>span {
-            /* margin-top: 2rem; */
-            text-align: center;
-            border-style: solid !important;
-            border-width: 1px !important;
-            border-color: #dfe3e7 !important;
-            background-color: #fff !important;
-            border-radius: 1px !important;
-            margin: 2rem -1px !important;
-            font-size: 14.4px !important;
-            font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+        body {
+            overflow-x: hidden;
         }
 
-        .pagination>li.active>a,
-        .pagination>li.active>span {
-            /* margin-top: 2rem; */
-            font-size: 14.4px !important;
-            background-color: #007bff !important;
-            border-radius: 1px !important;
-            margin: 2rem 0 !important;
-            font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+        .mobileTable {
+            overflow-x: auto;
         }
 
-        #myTable_previous a {
-            /* background-color: black !important; */
-            border-style: solid !important;
-            border-width: 1px !important;
-            border-color: #dfe3e7 !important;
-            border-radius: 3px 1px 1px 3px !important;
-            color: #007bff !important;
+        .mobileSearch {
+            padding: 2px;
+            width: 20%;
+            margin-top: -4.9rem;
+            position: relative;
+            margin-left: 95%;
+            z-index: 900;
         }
 
-        #myTable_next a {
-            /* background-color: black !important; */
-            border-style: solid !important;
-            border-width: 1px !important;
-            border-color: #dfe3e7 !important;
-            border-radius: 1px 3px 3px 1px !important;
-            color: #007bff !important;
+        .mobileAdd {
+            width: 10%;
+            margin-top: 1rem;
         }
 
-        .dataTables_wrapper .dt-buttons {
-            position: absolute;
-            margin-top: -7.3rem;
-            margin-left: -1.6rem;
-            float: none;
-            text-align: left;
-        }
-
-        .btn-outline-warning {
-            border-radius: 1px;
-        }
-
-        .buttons-copy {
-            border-radius: 3px 1px 1px 3px;
-            border-right: none;
-        }
-
-        .buttons-excel {
-            margin-left: -4px;
-            border-left: none;
-            border-right: none;
-        }
-
-        .buttons-pdf {
-            margin-left: -4px;
-            border-left: none;
-            border-right: none;
-        }
-
-        .buttons-print {
-            margin-left: -4px;
-            border-radius: 1px 3px 3px 1px;
-            border-left: none;
-        }
-
-        .btn:focus,
-        .btn:active {
-            outline: none !important;
-            box-shadow: none;
+        .mobileAdd:before {
+            content: none;
         }
     }
 </style>
@@ -265,52 +324,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="/POM-Logistica/Admin/Listagens/Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
-                <div class="table-title" style="background-color:#0275d8;">
-                    <div class="row">
-                        <div class="col-sm-6" z-index="5" style="position:absolute; height:6rem;">
-                            <h2 style="position:absolute; margin-top:-0.7rem">Gerir <b>Clientes</b></h2>
-                            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:27rem; margin-top:-1rem; border-radius:2px" id="searchbox">
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" style="position:absolute; margin-left:56rem; margin-top:-1rem; width:10rem;"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
-                        </div>
-                    </div>
+                <div class="table-title" style="background-color:#0275d8; z-index:0">
+                    <h2 style="position:absolute; margin-top:-0.7rem">Gerir <b>Clientes</b></h2>
+                    <input type="search" z-index="500" class="form-control mobileSearch desktopSearch" placeholder="Procurar" id="searchbox">
+                    <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
                 </div>
-                <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
-                    <thead>
-                        <tr>
-                            <th style="width:20%;">Nome</th>
-                            <th style="width:20%; text-align:center">NIF</th>
-                            <th style="width:20rem; text-align:center">Morada</th>
-                            <th style="width:21%; text-align:center">Localidade</th>
-                            <th style="width:14%; text-align:center">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $dados = mysqli_query($conn, "SELECT * FROM cliente");
-                        foreach ($dados as $eachRow) {
-                            $buscaId = $eachRow['id'];
-                            $nome = $eachRow['nome'];
-                            $nif = $eachRow['nif'];
-                            $morada = $eachRow['morada'];
-                            $localidade = $eachRow['localidade'];
-                            echo '<tr class="table-row" data-value="' . $buscaId . '">';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nome . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $nif . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20rem; text-align:center"> ' . $morada . '</td>';
-                            echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $localidade . '</td>';
-                            echo '<td style="width:15%; text-align:center">';
-                            ?>
-                            <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
-                            <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
-                            <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
-                            <?php '</td>';
-                            echo '</tr>';
-                        }
-                        ?><div id="Testeeee"></div>
-                    </tbody>
-                </table>
+                <div class="mobileTable">
+                    <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">Nome</th>
+                                <th style="width:20%; text-align:center">NIF</th>
+                                <th style="width:20rem; text-align:center">Morada</th>
+                                <th style="width:21%; text-align:center">Localidade</th>
+                                <th style="width:14%; text-align:center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $dados = mysqli_query($conn, "SELECT * FROM cliente");
+                            foreach ($dados as $eachRow) {
+                                $buscaId = $eachRow['id'];
+                                $nome = $eachRow['nome'];
+                                $nif = $eachRow['nif'];
+                                $morada = $eachRow['morada'];
+                                $localidade = $eachRow['localidade'];
+                                echo '<tr class="table-row" data-value="' . $buscaId . '">';
+                                echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%"> ' . $nome . '</td>';
+                                echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $nif . '</td>';
+                                echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20rem; text-align:center"> ' . $morada . '</td>';
+                                echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $localidade . '</td>';
+                                echo '<td style="width:15%; text-align:center">';
+                                ?>
+                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                                <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                                <?php '</td>';
+                                echo '</tr>';
+                            }
+                            ?><div id="Testeeee"></div>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- Modal -->

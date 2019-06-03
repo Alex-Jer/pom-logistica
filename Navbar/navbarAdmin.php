@@ -26,17 +26,12 @@ function echoActiveClassIfRequestMatches($requestUri)
 }
 ?>
 
-<html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <html lang="en">
-
     <title>POM Logistica</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
