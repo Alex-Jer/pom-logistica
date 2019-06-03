@@ -120,10 +120,10 @@ function echoActiveClassIfRequestMatches($requestUri)
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_utilizadores") ?>" href="/POM-Logistica/Admin/Listagens/Listar_utilizadores.php">Utilizadores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Lista de Guias</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Guias</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Lista de Paletes</a>
+                <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Paletes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias_diarias.php">Pedidos Diários</a>

@@ -9,18 +9,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>POM Logistica</title>
-        <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-        <link rel="stylesheet" href="\POM-Logistica\node_modules\admin-lte\dist\css\AdminLTE.css">
+        <title>POM Logística</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
-        <link rel="stylesheet" href="\POM-Logistica\node_modules\jquery\dist\jquery.js">
-        <link rel="stylesheet" href="\POM-Logistica\styles\style3.css">
-        <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.10/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="\POM-Logistica\styles\style3.min.css">
+        <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png">
 </head>
 
 
@@ -103,7 +98,7 @@
         .colunaEsquerda {
 
                 width: 46%;
-                heigth: 100%;
+                height: 100%;
                 float: left;
                 padding: 5px;
         }
@@ -111,7 +106,7 @@
         .colunaMaisEsquerda {
 
                 width: 2%;
-                heigth: 100%;
+                height: 100%;
                 float: left;
                 margin: 5px;
                 padding: 5px;
@@ -119,7 +114,7 @@
 
         .colunaDireita {
                 width: 50%;
-                heigth: 100%;
+                height: 100%;
                 float: left;
                 margin: 5px;
                 margin-left: 0px;
@@ -147,26 +142,34 @@
         .rowGrande {
                 height: 100%;
         }
+
+        .small-box>.small-box-footer {
+                background-color: #0063cc;
+                color: #fff;
+                transition: 0.3s;
+        }
+
+        .small-box>.small-box-footer:hover {
+                background-color: #0056b3;
+        }
 </style>
 
 <body onload="startTime()">
         <div class="row rowGrande">
                 <div class="colunaMaisEsquerda">
                 </div>
-                <div class="colunaEsquerda">
-                        <div class="text-center">
-                                <img src="\POM-Logistica\images\logogrande.png" style="width:19rem; height:3rem; margin-left:6.5rem;">
+                <div class="colunaEsquerda" style="display:block; margin:auto">
+                        <div class="text-center; display:block; margin:auto">
+                                <img src="\POM-Logistica\images\logogrande.png" style="display:block; margin:auto">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
                                 ?>
-                                <div class="row">
-                                        <h5 style="margin-left:20.5rem"><?php echo $timeRN ?></h5>
-                                        <h5 id="txt" style="margin-left:0.8rem;"></h5>
-                                </div>
+                                <h5 style="text-align:center; margin-top:0.5rem"><?php echo $timeRN ?></h5>
+                                <h5 style="text-align:center; margin-bottom:0.5rem" id="txt"></h5>
                         </div>
-                        <div class="row rowi" style="height:150px">
-                                <div class="col sm-1 colop" style="">
+                        <div class="row rowi" style="height:150px; margin-top:1rem; margin:auto">
+                                <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px;">
                                                 <div class="inner">
                                                         <h5><b>Gerir</b></h5>
@@ -195,7 +198,7 @@
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Listar</b></h5>
+                                                        <h5><b>Gerir</b></h5>
                                                         <p>Todas as guias</p>
                                                 </div>
                                                 <div class="icon">
@@ -206,7 +209,7 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="row rowi" style="height:150px;">
+                        <div class="row rowi" style="height:150px; margin:auto">
                                 <div class="col sm-1 colop">
                                         <div class="small-box bg-aqua" style="width:150px">
                                                 <div class="inner">
@@ -249,10 +252,7 @@
                                 <!-- <div class="row" style="height:100px;">
                 </div>  -->
                         </div>
-                        <div class="row rowi" style="height:390px;">
-                                <div class="ImagemPequena" style="height:390px;">
-                                </div>
-                        </div>
+                        <img src="/POM-Logistica/images/paletes.png" style="display:block; margin:auto; margin-top:-4rem; width:26rem">
                 </div>
                 <div class="colunaDireita" style="margin-top:-1rem">
                         <div class="Imagem" style="margin-left:1rem">
@@ -262,7 +262,6 @@
         <div class="footer">
                 <p style="margin-right:10px; color:black;">Direitos reservados a POM Logistica, LDA 2019</p>
         </div>
-
 </body>
 
 </html>

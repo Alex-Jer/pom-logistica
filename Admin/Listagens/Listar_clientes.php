@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -133,122 +134,130 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
-    body {
-        background-color: #f5f5f5 !important;
+    * {
+        box-sizing: border-box;
     }
 
-    .btn-success {
-        background-color: #01d932;
-    }
+    @media only screen and (min-width: 768px) {
+        /* For desktop: */
 
-    .btn-success:hover {
-        background-color: #01bc2c;
-    }
+        body {
+            background-color: #f5f5f5 !important;
+        }
 
-    body {
-        background-color: #f5f5f5 !important;
-    }
+        .btn-success {
+            background-color: #01d932;
+        }
 
-    .table-row {
-        cursor: pointer;
-    }
+        .btn-success:hover {
+            background-color: #01bc2c;
+        }
 
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 0px solid #dee2e6;
-        border-top: 0px solid #dee2e6;
-    }
+        body {
+            background-color: #f5f5f5 !important;
+        }
 
-    .table-title {
-        margin: -20px -25px 0px !important;
-        padding: 32px;
-    }
+        .table-row {
+            cursor: pointer;
+        }
 
-    .dataTables_filter {
-        display: none;
-    }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 0px solid #dee2e6;
+            border-top: 0px solid #dee2e6;
+        }
 
-    .pagination>li>a,
-    .pagination>li>span {
-        /* margin-top: 2rem; */
-        text-align: center;
-        border-style: solid !important;
-        border-width: 1px !important;
-        border-color: #dfe3e7 !important;
-        background-color: #fff !important;
-        border-radius: 1px !important;
-        margin: 2rem -1px !important;
-        font-size: 14.4px !important;
-        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
-    }
+        .table-title {
+            margin: -20px -25px 0px !important;
+            padding: 32px;
+        }
 
-    .pagination>li.active>a,
-    .pagination>li.active>span {
-        /* margin-top: 2rem; */
-        font-size: 14.4px !important;
-        background-color: #007bff !important;
-        border-radius: 1px !important;
-        margin: 2rem 0 !important;
-        font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
-    }
+        .dataTables_filter {
+            display: none;
+        }
 
-    #myTable_previous a {
-        /* background-color: black !important; */
-        border-style: solid !important;
-        border-width: 1px !important;
-        border-color: #dfe3e7 !important;
-        border-radius: 3px 1px 1px 3px !important;
-        color: #007bff !important;
-    }
+        .pagination>li>a,
+        .pagination>li>span {
+            /* margin-top: 2rem; */
+            text-align: center;
+            border-style: solid !important;
+            border-width: 1px !important;
+            border-color: #dfe3e7 !important;
+            background-color: #fff !important;
+            border-radius: 1px !important;
+            margin: 2rem -1px !important;
+            font-size: 14.4px !important;
+            font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+        }
 
-    #myTable_next a {
-        /* background-color: black !important; */
-        border-style: solid !important;
-        border-width: 1px !important;
-        border-color: #dfe3e7 !important;
-        border-radius: 1px 3px 3px 1px !important;
-        color: #007bff !important;
-    }
+        .pagination>li.active>a,
+        .pagination>li.active>span {
+            /* margin-top: 2rem; */
+            font-size: 14.4px !important;
+            background-color: #007bff !important;
+            border-radius: 1px !important;
+            margin: 2rem 0 !important;
+            font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+        }
 
-    .dataTables_wrapper .dt-buttons {
-        position: absolute;
-        margin-top: -7.3rem;
-        margin-left: -1.6rem;
-        float: none;
-        text-align: left;
-    }
+        #myTable_previous a {
+            /* background-color: black !important; */
+            border-style: solid !important;
+            border-width: 1px !important;
+            border-color: #dfe3e7 !important;
+            border-radius: 3px 1px 1px 3px !important;
+            color: #007bff !important;
+        }
 
-    .btn-outline-warning {
-        border-radius: 1px;
-    }
+        #myTable_next a {
+            /* background-color: black !important; */
+            border-style: solid !important;
+            border-width: 1px !important;
+            border-color: #dfe3e7 !important;
+            border-radius: 1px 3px 3px 1px !important;
+            color: #007bff !important;
+        }
 
-    .buttons-copy {
-        border-radius: 3px 1px 1px 3px;
-        border-right: none;
-    }
+        .dataTables_wrapper .dt-buttons {
+            position: absolute;
+            margin-top: -7.3rem;
+            margin-left: -1.6rem;
+            float: none;
+            text-align: left;
+        }
 
-    .buttons-excel {
-        margin-left: -4px;
-        border-left: none;
-        border-right: none;
-    }
+        .btn-outline-warning {
+            border-radius: 1px;
+        }
 
-    .buttons-pdf {
-        margin-left: -4px;
-        border-left: none;
-        border-right: none;
-    }
+        .buttons-copy {
+            border-radius: 3px 1px 1px 3px;
+            border-right: none;
+        }
 
-    .buttons-print {
-        margin-left: -4px;
-        border-radius: 1px 3px 3px 1px;
-        border-left: none;
-    }
+        .buttons-excel {
+            margin-left: -4px;
+            border-left: none;
+            border-right: none;
+        }
 
-    .btn:focus,
-    .btn:active {
-        outline: none !important;
-        box-shadow: none;
+        .buttons-pdf {
+            margin-left: -4px;
+            border-left: none;
+            border-right: none;
+        }
+
+        .buttons-print {
+            margin-left: -4px;
+            border-radius: 1px 3px 3px 1px;
+            border-left: none;
+        }
+
+        .btn:focus,
+        .btn:active {
+            outline: none !important;
+            box-shadow: none;
+        }
     }
 </style>
 

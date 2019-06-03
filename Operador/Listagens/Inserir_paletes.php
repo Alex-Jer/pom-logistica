@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </button>
                 </div>
                 <div class="modal-body">
-                  <select style="text-align-last:center; margin-top:1rem; color: #6C757D;" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
+                  <select style="text-align-last:center; margin-top:1rem; color: #6C757D; margin-left:auto; margin-right:auto; width:100%" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
                     <option value="" disabled selected>Localização</option>
                     <?php
                     $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
@@ -247,13 +247,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="input-group-prepend">
                       <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:6rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
                     </div>
-                    <input type="text" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem;" placeholder="Referência da palete" name="refpal" required>
+                    <input type="text" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" placeholder="Referência da palete" name="refpal" required>
                   </div>
                   <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
                     </div>
-                    <input placeholder="Nome da palete" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+                    <input placeholder="Nome da palete" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
                   </div>
                 </div>
                 <div class="modal-footer">
