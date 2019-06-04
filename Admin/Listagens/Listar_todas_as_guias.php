@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -195,14 +196,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     color: #007bff !important;
   }
 
-  .dataTables_wrapper .dt-buttons {
-    position: absolute;
-    margin-top: -7.3rem;
-    margin-left: 50.1rem;
-    float: none;
-    text-align: left;
-  }
-
   .btn-outline-warning {
     border-radius: 1px;
   }
@@ -252,6 +245,210 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   .btn3 {
     font-weight: normal;
   }
+
+  @media only screen and (min-width: 1200px) {
+    .dataTables_wrapper .dt-buttons {
+      position: absolute;
+      margin-top: -7.3rem;
+      margin-left: 50.1rem;
+      float: none;
+      text-align: left;
+    }
+  }
+
+  @media only screen and (width: 1200px) {
+    .dataTables_wrapper .dt-buttons {
+      position: absolute !important;
+      margin-top: -7.3rem !important;
+      margin-left: 50.1rem !important;
+      float: none !important;
+      text-align: left !important;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .dataTables_wrapper .dt-buttons {
+      position: relative;
+      margin-top: -7rem;
+      float: right;
+      text-align: right;
+    }
+
+    .btn-outline-warning {
+      font-size: 15px;
+    }
+
+    .mobileSearch {
+      margin-left: 29rem !important;
+    }
+
+    .mobileData {
+      margin-left: 13.5rem !important;
+    }
+  }
+
+  @media only screen and (max-width: 991px) and (min-width:769px) {
+    .mobileSearch {
+      width: 7rem !important;
+      margin-left: 21rem !important;
+      margin-top: -3.5rem !important;
+      padding: 1px 1px !important;
+    }
+
+    .mobileData {
+      width: 7rem !important;
+      font-size: 10px !important;
+      padding: 1px 1px !important;
+      text-indent: 1px !important;
+    }
+  }
+
+  @media only screen and (max-width: 334px) {
+    .mobileSearch {
+      position: absolute !important;
+      margin-left: 7rem !important;
+    }
+  }
+
+  /* @media only screen and (min-width: 767px) and (max-width: 768px) {
+    .dataTables_wrapper .dt-buttons {
+      position: absolute !important;
+      margin-left: 13rem !important;
+      margin-top: -10rem !important;
+      float: right !important;
+      text-align: right !important;
+    }
+    
+    .mobileAdd {
+      position: absolute;
+      margin-top:0rem !important;
+      margin-left:10rem !important;
+    }
+    
+  } */
+
+  @media only screen and (min-width: 576px) and (max-width: 769px) {
+    .dataTables_wrapper .dt-buttons {
+      position: absolute;
+      margin-top: -12rem;
+      margin-left: -21rem;
+      /* margin-left:auto; */
+      /* margin-right:auto; */
+    }
+
+    .nav-pillsMobile {
+      margin-top: 1rem;
+    }
+
+    .mobileAdd {
+      position: relative;
+      margin-top: auto !important;
+    }
+  }
+
+  @media only screen and (max-width: 575px) {
+    .dataTables_wrapper .dt-buttons {
+      position: absolute;
+      display: block;
+      margin-top: -11.5rem;
+      margin-left: -7rem;
+    }
+
+    .btn-outline-warning {
+      font-size: 12px;
+    }
+  }
+
+  @media only screen and (min-width: 769px) {
+
+    /* Desktop */
+    .desktopSearch {
+      text-align: left;
+      width: 15rem;
+      height: 2rem;
+      position: relative;
+      margin-top: -1rem;
+      border-radius: 2px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .desktopAddEntrega {
+      position: relative;
+      width: 10rem;
+      float: right;
+    }
+
+    .desktopAddEntrega:before {
+      content: 'Guia de Entrega';
+    }
+
+    .desktopAddTransporte {
+      position: relative;
+      width: 11rem;
+      float: right;
+    }
+
+    .desktopAddTransporte:before {
+      content: 'Guia de Transporte';
+    }
+
+    .desktopTable {
+      /* margin-top:5rem; */
+    }
+
+    .table-title {
+      /* max-height: 2rem !important; */
+    }
+  }
+
+  @media only screen and (max-width: 769px) {
+    /* Mobile */
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .mobileTable {
+      overflow-x: auto;
+    }
+
+    .mobileSearch {
+      margin-top: -2.6rem !important;
+      margin-left: 10.2rem !important;
+      width: 7rem !important;
+      padding: 1px 1px !important;
+      text-align: left !important;
+      font-size: 10px;
+      text-indent: 0px !important;
+    }
+
+    .mobileAdd {
+      width: 10%;
+      margin-top: -2rem;
+      margin-bottom: 2rem;
+    }
+
+    .mobileAdd:before {
+      content: none !important;
+    }
+
+    .mobileData {
+      margin-top: -2.6rem !important;
+      margin-left: 0.3rem !important;
+      width: 7rem !important;
+      padding: 1px 1px !important;
+      font-size: 10px;
+      text-indent: 0px !important;
+    }
+  }
 </style>
 
 <body>
@@ -260,7 +457,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
   <form class="container" action="\POM-Logistica\Admin\Listagens\Listar_todas_as_guias.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
     <div class="table-wrapper" style="margin-top:10rem;">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills nav-pillsMobile">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.55rem;">
           <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link btn3" value="1" data-toggle="pill" id="notConfirmed" name="entrega">Entrega</button>
         </li>
@@ -268,9 +465,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed" name="transporte">Transporte</button>
         </li>
       </ul>
-      <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto; width:66.3rem;"></div>
-      <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:18.5rem; margin-top:-3.1rem; margin-right:auto; width:15rem; height:2rem; position:absolute; z-index:500; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
-      <div id="Testeeee"></div>
+      <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto;"></div>
+      <input class="form-control mobileData" style="text-align:center; text-indent:1.5rem; margin-left:18.5rem; margin-top:-3.1rem; margin-right:auto; width:15rem; height:2rem; position:absolute; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+      <div class="mobileTable desktopTable" id="Testeeee">
+      </div>
+
       <!--MODAL HERE -->
       <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -94,6 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .btn-success:hover {
         background-color: #01bc2c;
+    }
+
+    .table thead>tr>th {
+        border-top: none;
     }
 
     @media only screen and (min-width: 768px) {
@@ -155,6 +160,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             content: 'Adicionar Utilizador';
         }
 
+        .desktopBtn {
+            position:absolute;
+            margin-left: 26.3rem;
+        }
+
         .table-title {
             max-height: 5rem !important;
         }
@@ -195,9 +205,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .mobilePassword {
-            width:100%;
-            margin-left:auto;
-            margin-right:auto;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mobileBtn {
+            position: relative;
+            float: right
         }
 
         h2 {
@@ -219,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
                 </div>
                 <div class="mobileTable">
-                    <table style="margin-left:auto; margin-right:auto; margin-top:-0.65rem" class="table table-striped table-hover" id="myTable">
+                    <table style="margin-left:auto; margin-right:auto; margin-top:-0.5rem" class="table table-striped table-hover" id="myTable">
                         <thead>
                             <tr>
                                 <th style="width:20%">Nome</th>
@@ -273,17 +288,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="1" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto; height:auto;" tabindex="2" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
-                        <div class="row desktopPassword mobilePassword">
-                            <input style="height:auto; margin-top:1rem; margin-left:auto; margin-right:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px; position:absolute" class="btn-eye" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
-                        </div>
-                        <div class="row desktopPassword mobilePassword">
-                            <input style="height:auto; margin-left:auto; margin-right:auto; margin-top:1rem;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
-                            <button type="button" style="font-size:20px; width:15px; height:15px; margin-left:3px; position:absolute" class="btn-eye" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
-                        </div>
-                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color:#6c757d;" tabindex="5" color: #6C757D;" class="form-control" name="combobox" required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto;" tabindex="1" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto;" tabindex="2" type="email" name="Email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto;" type="password" id="PasswordInput" name="MainPw" tabindex="3" class="form-control" placeholder="Password" required autofocus>
+                        <button type="button" style="margin-top:-2rem; font-size:20px; width:15px; height:15px;" class="btn-eye mobileBtn desktopBtn" tabindex="-1" onclick="myFunction2()"><i class="fa fa-eye" id="ieye" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                        <input style="margin-top:1rem; margin-left:auto; margin-right:auto;" type="password" id="input2Password" name="Pw2" tabindex="4" class="form-control" placeholder="Confirmar Password" required autofocus>
+                        <button type="button" style="margin-top:-2rem; font-size:20px; width:15px; height:15px;" class="btn-eye mobileBtn desktopBtn" tabindex="-1" onclick="myFunction()"><i class="fa fa-eye" id="ieye2" style="width:15px; height:15px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                        <select style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" tabindex="5" class="form-control" name="combobox" required autofocus>
                             <option value="" disabled selected>Armazém</option>
                             <?php
                             $busca = mysqli_query($conn, "SELECT id,nome FROM armazem");

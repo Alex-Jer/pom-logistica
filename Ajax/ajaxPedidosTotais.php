@@ -22,7 +22,7 @@ if ($_POST['id'] == 1) {
 }
 echo '<table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
     <thead>
-    <input type="search" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:34rem; margin-top:-3.45rem; border-radius:2px" id="searchbox">
+    <input type="search" class="form-control mobileSearch" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:34rem; margin-top:-3.45rem; border-radius:2px" id="searchbox">
       <tr>
         <th style="width:20%; text-align:center">Cliente</th>
         <th style="width:20%; text-align:center">Nº de requisição</th>
