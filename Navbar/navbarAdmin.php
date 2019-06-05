@@ -35,14 +35,14 @@ function echoActiveClassIfRequestMatches($requestUri)
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style3.min.css">
     <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
-    
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
+
     <!-- Bootstrap JS -->
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
@@ -100,48 +100,57 @@ function echoActiveClassIfRequestMatches($requestUri)
         margin-top: -0.3rem !important;
         border-radius: 3px !important;
     }
+
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        background-color: #fcfcfc !important;
+        border-color: #dee2e6 #dee2e6 #fcfcfc !important;
+    }
 </style>
 
 <body>
-    <nav role="navigation">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="d-block" style="margin-top:5px" href="/POM-Logistica/Admin/Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/Logosemsombra.png" alt="logo"></a>
-            </li>
-            <li class="nav-item" style="margin-left:1rem">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Admin/Listagens/Listar_clientes.php">Clientes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_utilizadores") ?>" href="/POM-Logistica/Admin/Listagens/Listar_utilizadores.php">Utilizadores</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Guias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Paletes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias_diarias.php">Pedidos Diários</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="/POM-Logistica/Admin/fatura_cliente.php">Fatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="/POM-Logistica/Admin/artigo.php">Artigo</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudar_pass") ?> data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
-                <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" href="/POM-Logistica/Admin/mudar_pass.php">Alterar Palavra-Passe</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="/POM-Logistica/index.php">Sair</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="d-block" style="margin-top:5px" href="/POM-Logistica/Admin/Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/Logosemsombra.png" alt="logo"></a>
+                </li>
+                <li class="nav-item" style="margin-left:1rem">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Admin/Listagens/Listar_clientes.php">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_utilizadores") ?>" href="/POM-Logistica/Admin/Listagens/Listar_utilizadores.php">Utilizadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Guias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Paletes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias_diarias.php">Pedidos Diários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="/POM-Logistica/Admin/fatura_cliente.php">Fatura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="/POM-Logistica/Admin/artigo.php">Artigo</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                    <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" href="/POM-Logistica/Admin/mudar_pass.php">Alterar Palavra-Passe</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="/POM-Logistica/index.php">Sair</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </body>
-
-
 
 </html>

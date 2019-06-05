@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <style>
   body {
-    background-color: #f5f5f5 !important;
+    background-color: #fcfcfc !important;
   }
 
   .table-row {
@@ -309,23 +309,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       margin-left: 7rem !important;
     }
   }
-
-  /* @media only screen and (min-width: 767px) and (max-width: 768px) {
-    .dataTables_wrapper .dt-buttons {
-      position: absolute !important;
-      margin-left: 13rem !important;
-      margin-top: -10rem !important;
-      float: right !important;
-      text-align: right !important;
-    }
-    
-    .mobileAdd {
-      position: absolute;
-      margin-top:0rem !important;
-      margin-left:10rem !important;
-    }
-    
-  } */
 
   @media only screen and (min-width: 576px) and (max-width: 769px) {
     .dataTables_wrapper .dt-buttons {

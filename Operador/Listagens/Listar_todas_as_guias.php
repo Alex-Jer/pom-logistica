@@ -97,10 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="table-wrapper" style="margin-top:10rem;">
       <ul class="nav nav-pills">
         <li class="nav-item" style="margin-top:-8.5rem; margin-left:-1.5rem;">
-          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#f5f5f5" class="nav-link btn2" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
+          <button style="border-radius:0.2rem; margin-right:1rem; background-color:#fcfcfc" class="nav-link btn2" value="1" data-toggle="pill" id="notConfirmed">Entrega</button>
         </li>
         <li class="nav-item" style="margin-top:-8.5rem;">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
+          <button style="border-radius:0.2rem; background-color:#fcfcfc" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
         </li>
         <li style="margin-top:-8.5rem;">
           <input class="form-control" style="text-align:center; text-indent:1.5rem; margin-left:39rem; width:14rem; position:absolute; z-index:500; margin-top:3.85rem; border-radius:2px" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">

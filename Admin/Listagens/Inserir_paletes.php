@@ -256,10 +256,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
       <ul class="nav nav-pills" style="margin-top:2rem;">
         <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5; margin-right:1rem;" class="nav-link active btn2" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+          <button style="border-radius:0.2rem; background-color:#fcfcfc; margin-right:1rem;" class="nav-link active btn2" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
         </li>
         <li class="nav-item">
-          <button style="border-radius:0.2rem; background-color:#f5f5f5" class="nav-link btn2" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+          <button style="border-radius:0.2rem; background-color:#fcfcfc" class="nav-link btn2" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
         </li>
       </ul>
       <div class="table-wrapper" style="margin-top:0.5rem; position:relative;">

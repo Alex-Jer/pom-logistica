@@ -106,7 +106,7 @@ function echoActiveClassIfRequestMatches($requestUri)
     }
 
     body {
-        background-color: #f5f5f5 !important;
+        background-color: #fcfcfc !important;
     }
 </style>
 

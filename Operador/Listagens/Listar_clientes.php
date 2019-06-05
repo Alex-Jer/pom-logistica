@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <style>
     body {
-        background-color: #f5f5f5 !important;
+        background-color: #fcfcfc !important;
     }
 
     .btn-success {
@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     body {
-        background-color: #f5f5f5 !important;
+        background-color: #fcfcfc !important;
     }
 
     .table-row {
