@@ -106,14 +106,86 @@ function echoActiveClassIfRequestMatches($requestUri)
         background-color: #fcfcfc !important;
         border-color: #dee2e6 #dee2e6 #fcfcfc !important;
     }
+
+    @media (min-width:320px) {
+
+        /* smartphones, iPhone, portrait 480x320 phones */
+        #navbarMobile {
+            display: initial;
+        }
+
+        #navbarDesktop {
+            display: none;
+        }
+    }
+
+    @media (min-width:481px) {
+
+        /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+        #navbarMobile {
+            display: initial;
+        }
+
+        #navbarDesktop {
+            display: none;
+        }
+    }
+
+    @media (min-width:641px) {
+
+        /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+        #navbarMobile {
+            display: initial;
+        }
+
+        #navbarDesktop {
+            display: none;
+        }
+    }
+
+    @media (min-width:961px) {
+
+        /* tablet, landscape iPad, lo-res laptops ands desktops */
+        #navbarMobile {
+            display: initial;
+        }
+
+        #navbarDesktop {
+            display: none;
+        }
+    }
+
+    @media (min-width:1025px) {
+
+        /* big landscape tablets, laptops, and desktops */
+        #navbarMobile {
+            display: none;
+        }
+
+        #navbarDesktop {
+            display: initial;
+        }
+    }
+
+    @media (min-width:1281px) {
+
+        /* hi-res laptops and desktops */
+        #navbarMobile {
+            display: none;
+        }
+
+        #navbarDesktop {
+            display: initial;
+        }
+    }
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg" id="navbarDesktop">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-top:-1rem">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="d-block" style="margin-top:5px" href="/POM-Logistica/Admin/Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/Logosemsombra.png" alt="logo"></a>
@@ -146,6 +218,49 @@ function echoActiveClassIfRequestMatches($requestUri)
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="/POM-Logistica/index.php">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbarMobile">
+        <button class="navbar-toggler" style="margin-top:1rem; margin-bottom:-1rem" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="nav flex-column">
+                <li class="nav-item" style="margin-top:1rem">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Menu") ?>" href="/POM-Logistica/Admin/Menu.php.php">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Admin/Listagens/Listar_clientes.php">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_utilizadores") ?>" href="/POM-Logistica/Admin/Listagens/Listar_utilizadores.php">Utilizadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias.php">Guias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Inserir_paletes") ?>" href="/POM-Logistica/Admin/Listagens/Inserir_paletes.php">Paletes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_todas_as_guias_diarias") ?>" href="/POM-Logistica/Admin/Listagens/Listar_todas_as_guias_diarias.php">Pedidos Diários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("fatura_cliente") ?>" href="/POM-Logistica/Admin/fatura_cliente.php">Fatura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("artigo") ?>" href="/POM-Logistica/Admin/artigo.php">Artigo</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" data-toggle=" dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Conta</a>
+                    <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item <?= echoActiveClassIfRequestMatches("mudar_pass") ?>" href="/POM-Logistica/Admin/mudar_pass.php">Alterar Palavra-Passe</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-bottom:-2rem">
                     <a class="nav-link <?= echoActiveClassIfRequestMatches("index") ?>" href="/POM-Logistica/index.php">Sair</a>
                 </li>
             </ul>
