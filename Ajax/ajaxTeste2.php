@@ -30,8 +30,8 @@ foreach ($dado as $eachRow) {
     echo '<tr class="table-row" data-value="' . $GuiaID . '">';
     echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeCliente . '</td>';
     echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $numeroReq . '</td>';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $time . '</td>';
-    echo '<td style="width:15%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $qtPal . '</td>';
+    echo '<td style="width:25%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $time . '</td>';
+    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $qtPal . '</td>';
     echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $refArtigo . '</td>';
     echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeArmazem . '</td>';
 

@@ -81,10 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
-    /* body {
-        overflow: hidden;
-    } */
-
     body {
         color: #566787;
     }
@@ -161,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .desktopBtn {
-            position:absolute;
+            position: absolute;
             margin-left: 26.3rem;
         }
 
@@ -187,9 +183,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: none;
         }
 
-        /* body {
+        body {
             overflow-x: hidden;
-        } */
+        }
 
         .mobileTable {
             overflow-x: auto;
@@ -234,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
                 </div>
                 <div class="mobileTable">
-                    <table style="margin-left:auto; margin-right:auto; margin-top:-0.5rem" class="table table-striped table-hover" id="myTable">
+                    <table style="margin-left:auto; margin-right:auto; margin-top:-0.5rem" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th style="width:20%">Nome</th>
@@ -274,9 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-        <div id="Testeeee">
-
-        </div>
+        <div id="Testeeee"></div>
         <!-- Modal -->
         <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
