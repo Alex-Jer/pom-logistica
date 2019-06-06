@@ -146,10 +146,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #01bc2c;
     }
 
-    body {
-        background-color: #fcfcfc !important;
-    }
-
     .table-row {
         cursor: pointer;
     }
@@ -305,17 +301,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 20%;
             margin-top: -4.9rem;
             position: relative;
-            margin-left: 95%;
             z-index: 900;
+            float: right;
         }
 
         .mobileAdd {
             width: 10%;
-            margin-top: 1rem;
+            margin-top: -1rem;
+            position: relative;
+            float: right;
         }
 
         .mobileAdd:before {
             content: none;
+        }
+    }
+
+    @media only screen and (max-width: 410px) {
+        .mobileSearch {
+            padding: 2px;
+            width: 75%;
+            margin-top: -8.8rem;
+            position: relative;
+            z-index: 900;
+            float: right;
         }
     }
 </style>
@@ -324,7 +333,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="/POM-Logistica/Admin/Listagens/Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
-                <div class="table-title" style="background-color:#0275d8; z-index:0">
+                <div class="table-title" style="background-color:#007bff; z-index:0">
                     <h2 style="position:absolute; margin-top:-0.7rem">Gerir <b>Clientes</b></h2>
                     <input type="search" z-index="500" class="form-control mobileSearch desktopSearch" placeholder="Procurar" id="searchbox">
                     <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>

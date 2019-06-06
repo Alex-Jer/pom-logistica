@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   /* width */
   ::-webkit-scrollbar {
     width: 0.3rem;
-    height:0.3rem;
+    height: 0.3rem;
   }
 
   /* Track */
@@ -107,27 +107,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     @media only screen and (max-width: 465px) {
       h2 {
-        font-size:20px !important;
+        font-size: 20px !important;
       }
-     }
+    }
 
-    @media only screen and (max-width: 406px) { 
+    @media only screen and (max-width: 406px) {
       .table-title {
-        height:6.5rem !important;
+        height: 6.5rem !important;
       }
+
       h2 {
-        font-size:22px !important;
-        margin-top:1.5rem !important;
+        font-size: 22px !important;
+        margin-top: 1.5rem !important;
       }
 
       #cliente {
-        width:40% !important;
-        float:right !important;
+        width: 40% !important;
+        float: right !important;
       }
 
       #DataEntrega2 {
         width: 40% !important;
-        margin-top:2.5rem;
+        margin-top: 2.5rem;
       }
     }
   }

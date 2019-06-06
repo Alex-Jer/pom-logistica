@@ -14,7 +14,6 @@ $timeRN2 = date("Y-m-d");
 $FinalDay = date("Y-m-t");
 $FirstDay = date("Y-m-01");
 if ($_SESSION["perfilId"] == 2) {
-
     header("Location: /POM-Logistica/index.php");
     ?>
     <script type="text/javascript">
@@ -27,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = mysqli_query($conn, "SELECT nome FROM cliente WHERE id='$cliente'");
     $dado = mysqli_fetch_array($query);
     $clienteNome = $dado['nome'];
-
     $dataInicial = $_POST['FirstDay'];
     $dataFinal = $_POST['FinalDay'];
 } else {
@@ -87,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     tbody {
-        display: block;
         max-height: 22rem;
         overflow-y: auto;
         overflow-x: hidden;
@@ -95,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     thead,
     tbody tr {
-        display: table;
         width: 100%;
         table-layout: fixed;
         /* even columns width , fix width of table too*/
@@ -114,6 +110,125 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     input[type=date]::-webkit-inner-spin-button,
     input[type=date]::-webkit-outer-spin-button {
         -webkit-appearance: none;
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        /* Desktop */
+        .desktopSearch {
+            text-align: left;
+            width: 15rem;
+            height: 2rem;
+            position: relative;
+            margin-top: -1rem;
+            border-radius: 2px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .desktopAdd {
+            position: relative;
+            margin-top: -2rem;
+            width: 10rem;
+            float: right;
+        }
+
+        .desktopAdd:before {
+            content: 'Adicionar Cliente';
+        }
+
+        .table-title {
+            /* max-height: 2rem !important; */
+        }
+
+        thead,
+        tbody tr {
+            display: table;
+        }
+
+        tbody {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        /* Mobile */
+
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
+            display: none;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .mobileTable {
+            overflow-x: auto;
+        }
+
+        .mobileSearch {
+            padding: 2px;
+            width: 20%;
+            margin-top: -4.9rem;
+            position: relative;
+            z-index: 900;
+            float: right;
+        }
+
+        .mobileAdd {
+            width: 10%;
+            margin-top: -1rem;
+            position: relative;
+            float: right;
+        }
+
+        .mobileAdd:before {
+            content: none;
+        }
+
+        #cbCliente {
+            margin-top: -6rem !important;
+            margin-left: -1.8rem !important;
+            width: 30% !important;
+        }
+
+        #FirstDay {
+            margin-top: -6rem !important;
+            margin-left: 6.3rem !important;
+            width: 30% !important;
+            font-size: 10px !important;
+            padding: 0 0;
+            text-indent: 0 !important;
+        }
+
+        #FinalDay {
+            margin-top: -6rem !important;
+            margin-left: 14.6rem !important;
+            width: 30% !important;
+            font-size: 10px !important;
+            padding: 0 0;
+            text-indent: 0 !important;
+        }
+
+        #pdf {
+            position: relative !important;
+            float: right;
+            margin-left: auto !important;
+        }
+    }
+
+    @media only screen and (max-width: 410px) {
+        .mobileSearch {
+            padding: 2px;
+            width: 75%;
+            margin-top: -8.8rem;
+            position: relative;
+            z-index: 900;
+            float: right;
+        }
     }
 </style>
 
@@ -151,20 +266,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
-                    <thead>
-                        <tr>
-                            <th style="width:15%; text-align:center">Tipo de Guia</th>
-                            <th style="width:15%; text-align:center">Nº de requisição</th>
-                            <th style="width:10%; text-align:center">Nº Paletes</th>
-                            <th style="width:20%; text-align:center">Preço por palete / zona</th>
-                            <th style="width:20%; text-align:center">Preço de Carga/Descarga</th>
-                            <th style="width:10%; text-align:center">Dias</th>
-                            <th style="width:10%; text-align:center">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="Fatura"></tbody>
-                </table>
+                <div class="mobileTable">
+                    <table class="table table-striped table-hover" style="margin-top:-0.6rem;">
+                        <thead>
+                            <tr>
+                                <th style="width:15%; text-align:center">Tipo de Guia</th>
+                                <th style="width:15%; text-align:center">Nº de requisição</th>
+                                <th style="width:10%; text-align:center">Nº Paletes</th>
+                                <th style="width:20%; text-align:center">Preço por palete / zona</th>
+                                <th style="width:20%; text-align:center">Preço de Carga/Descarga</th>
+                                <th style="width:10%; text-align:center">Dias</th>
+                                <th style="width:10%; text-align:center">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Fatura"></tbody>
+                    </table>
+                </div>
             </div>
         </form>
     </div>
@@ -194,7 +311,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
     }
-
     setInputFilter(document.getElementById("uintTextBox"), function(value) {
         return /^\d*$/.test(value);
     });
@@ -300,7 +416,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $(document).ready(function() {
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
-
         // Select/Deselect checkboxes
         var checkbox = $('table tbody input[type="checkbox"]');
         $("#selectAll").click(function() {

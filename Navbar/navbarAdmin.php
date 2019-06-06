@@ -55,6 +55,14 @@ function echoActiveClassIfRequestMatches($requestUri)
             animation-fill-mode: both;
             -webkit-animation-fill-mode: both;
         }
+
+        #navbarMobile {
+            display: none !important;
+        }
+
+        #navbarDesktop {
+            display: initial !important;
+        }
     }
 
     @keyframes slideIn {
@@ -107,6 +115,10 @@ function echoActiveClassIfRequestMatches($requestUri)
         border-color: #dee2e6 #dee2e6 #fcfcfc !important;
     }
 
+    .nav-tabs {
+        width: 100%;
+    }
+
     @media (min-width:320px) {
 
         /* smartphones, iPhone, portrait 480x320 phones */
@@ -152,6 +164,7 @@ function echoActiveClassIfRequestMatches($requestUri)
 
         #navbarDesktop {
             display: none;
+            font-size: 90%;
         }
     }
 
@@ -181,14 +194,15 @@ function echoActiveClassIfRequestMatches($requestUri)
 </style>
 
 <body>
+    <!-- Navbar Desktop -->
     <nav class="navbar navbar-expand-lg" id="navbarDesktop">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-top:-1rem">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="margin-top:-1.4rem">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="d-block" style="margin-top:5px" href="/POM-Logistica/Admin/Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/Logosemsombra.png" alt="logo"></a>
+                    <a class="d-block" style="margin-top:5px" href="/POM-Logistica/Admin/Menu.php" rel="home"><img class="d-block" src="/POM-Logistica/images/Logosemsombra.png" id="logo" alt="logo"></a>
                 </li>
                 <li class="nav-item" style="margin-left:1rem">
                     <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Admin/Listagens/Listar_clientes.php">Clientes</a>
@@ -224,6 +238,7 @@ function echoActiveClassIfRequestMatches($requestUri)
         </div>
     </nav>
 
+    <!-- Navbar Mobile -->
     <nav class="navbar navbar-expand-lg navbar-light" id="navbarMobile">
         <button class="navbar-toggler" style="margin-top:1rem; margin-bottom:-1rem" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -231,7 +246,7 @@ function echoActiveClassIfRequestMatches($requestUri)
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="nav flex-column">
                 <li class="nav-item" style="margin-top:1rem">
-                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Menu") ?>" href="/POM-Logistica/Admin/Menu.php.php">Menu</a>
+                    <a class="nav-link <?= echoActiveClassIfRequestMatches("Menu") ?>" href="/POM-Logistica/Admin/Menu.php">Menu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= echoActiveClassIfRequestMatches("Listar_clientes") ?>" href="/POM-Logistica/Admin/Listagens/Listar_clientes.php">Clientes</a>
