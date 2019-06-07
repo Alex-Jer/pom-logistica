@@ -30,5 +30,6 @@
         "typescriptreact",
         "yaml",
         "yml"
-    ]
+    ],
+    "discord.enabled": false
 }

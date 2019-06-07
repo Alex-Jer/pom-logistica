@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -113,35 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         -webkit-appearance: none;
     }
 
-    @media only screen and (min-width: 768px) {
+    /* @media only screen and (min-width: 768px) {
 
-        /* Desktop */
-        .desktopSearch {
-            text-align: left;
-            width: 15rem;
-            height: 2rem;
-            position: relative;
-            margin-top: -1rem;
-            border-radius: 2px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .desktopAdd {
-            position: relative;
-            margin-top: -2rem;
-            width: 10rem;
-            float: right;
-        }
-
-        .desktopAdd:before {
-            content: 'Adicionar Cliente';
-        }
-
-        .table-title {
-            /* max-height: 2rem !important; */
-        }
-
+        Desktop
         thead,
         tbody tr {
             display: table;
@@ -150,10 +124,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         tbody {
             display: block;
         }
+
+        #cbCliente {
+            text-align-last: center;
+            width: 13rem;
+            height: 2rem;
+            font-size: 15px;
+            margin-left: 13rem;
+            margin-top: -2.1rem;
+            position: absolute;
+            z-index: 500;
+            border-radius: 1.5px;
+        }
+
+        #lblFinalDay {
+            position: absolute;
+            margin-top: -3rem;
+            margin-left: 29rem;
+            display: inline-block;
+            width: 5rem;
+            font-size: 11px;
+        }
+
+        #lblFirstDay {
+            position: absolute;
+            margin-top: -3rem;
+            margin-left: 45rem;
+            display: inline-block;
+            width: 5rem;
+            font-size: 11px;
+        }
     }
 
     @media only screen and (max-width: 767px) {
-        /* Mobile */
+         Mobile
 
         input[type="search"]::-webkit-search-decoration,
         input[type="search"]::-webkit-search-cancel-button,
@@ -170,26 +174,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             overflow-x: auto;
         }
 
-        .mobileSearch {
-            padding: 2px;
-            width: 20%;
-            margin-top: -4.9rem;
-            position: relative;
-            z-index: 900;
-            float: right;
-        }
-
-        .mobileAdd {
-            width: 10%;
-            margin-top: -1rem;
-            position: relative;
-            float: right;
-        }
-
-        .mobileAdd:before {
-            content: none;
-        }
-
         #cbCliente {
             margin-top: -6rem !important;
             margin-left: -1.8rem !important;
@@ -199,18 +183,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         #FirstDay {
-            margin-top: -6rem !important;
             margin-left: 6.3rem !important;
-            width: 30% !important;
+            width: 50% !important;
             font-size: 10px !important;
             padding: 1px 1px;
             text-indent: 0 !important;
         }
 
         #FinalDay {
-            margin-top: -6rem !important;
             margin-left: 14.6rem !important;
-            width: 30% !important;
+            width: 50% !important;
             font-size: 10px !important;
             padding: 1px 1px;
             text-indent: 0 !important;
@@ -222,16 +204,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: auto !important;
         }
 
-        #lblDataInicial {
+        #lblFirstDay {
             color: #007bff;
-            margin-top: -7rem !important;
+            margin-top: -3rem !important;
             margin-left: 6.3rem !important;
         }
 
-        #lblDataFinal {
+        #lblFinalDay {
             color: #007bff;
-            margin-top: -7rem !important;
-            margin-left: 14.55rem !important;
+            margin-top: -3rem !important;
+            margin-left: 14.6rem !important;
         }
     }
 
@@ -248,12 +230,169 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: 12.4rem !important;
         }
 
-        #lblDataInicial {
+        #lblFirstDay {
             margin-left: 5.2rem !important;
         }
 
-        #lblDataFinal {
+        #lblFinalDay {
             margin-left: 12.4rem !important;
+        }
+    }
+
+    @media only screen and (max-width: 1025px) {
+        #cbCliente {
+            width: 30% !important;
+            font-size: 12px !important;
+        }
+
+        #FirstDay {
+            width: 30% !important;
+            font-size: 12px !important;
+            text-indent: 0px !important;
+        }
+
+        #FinalDay {
+            width: 30% !important;
+            font-size: 12px !important;
+            text-indent: 0px !important;
+        }
+    }
+
+    @media only screen and (min-width:768px) and (max-width: 992px) {
+        #cbCliente {
+            position: relative !important;
+            margin-top: -6rem !important;
+            margin-left: -1.8rem !important;
+            width: 50% !important;
+        }
+
+        #FirstDay {
+            margin-left: 20rem !important;
+        }
+
+        #FinalDay {
+            margin-left: 33.5rem !important;
+        }
+    } */
+
+    .mobileTable {
+        overflow-x: auto;
+    }
+
+    #cbCliente {
+        text-align-last: center;
+        padding: 1px 1px;
+        font-size: 15px;
+        z-index: 500;
+        border-radius: 1.5px;
+    }
+
+    #FirstDay {
+        text-align-last: center;
+        padding: 1px 1px;
+        text-indent: 1.3rem;
+        height: 1.7rem;
+        font-size: 15px;
+        z-index: 500;
+        border-radius: 1.5px;
+    }
+
+    #FinalDay {
+        text-align-last: center;
+        padding: 1px 1px;
+        text-indent: 1.3rem;
+        font-size: 15px;
+        z-index: 500;
+        border-radius: 1.5px;
+    }
+
+    #lblFinalDay {
+        position: absolute;
+        margin-top: -1rem;
+        display: inline-block;
+        font-size: 11px;
+    }
+
+    #lblFirstDay {
+        position: absolute;
+        margin-top: -1rem;
+        display: inline-block;
+        font-size: 11px;
+    }
+
+    #pdf {
+        text-align-last: center;
+        font-size: 15px;
+        position: absolute;
+        z-index: 500;
+        border-radius: 1.5px;
+        display: none;
+    }
+
+    @media only screen and (min-width:1200px) {
+        #cbCliente {
+            width: 13rem;
+            height: 1.7rem;
+        }
+
+        #FirstDay {
+            width: 13rem;
+        }
+
+        #FinalDay {
+            width: 13rem;
+            height: 1.7rem;
+        }
+
+        #lblFinalDay {
+            width: 5rem;
+        }
+
+        #lblFirstDay {
+            width: 5rem;
+        }
+
+        #pdf {
+            width: 1rem;
+            height: 2em;
+            margin-left: 60.5rem;
+            margin-top: -2.1rem;
+        }
+    }
+
+    @media only screen and (max-width:1200px) {
+        #cbCliente {
+            width: 13rem;
+            height: 1.7rem;
+            margin-top: 1rem;
+        }
+
+        #FirstDay {
+            width: 13rem;
+            margin-top: 1rem;
+        }
+
+        #FinalDay {
+            width: 13rem;
+            height: 1.7rem;
+            margin-top: 1rem;
+        }
+
+        #lblFinalDay {
+            width: 5rem;
+            margin-top: 0;
+        }
+
+        #lblFirstDay {
+            width: 5rem;
+            margin-top: 0;
+        }
+
+        #pdf {
+            width: 1rem;
+            height: 2em;
+            margin-left: 60.5rem;
+            margin-top: -2.1rem;
         }
     }
 </style>
@@ -264,32 +403,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
                 <div class="table-title" style="background-color:#007bff;">
-                    <div class="row">
-                        <div class="col-sm-6" style="height:2rem">
+                    <div class="row" style="">
+                        <div class="col">
                             <h2>Fatura <b>Mensal</b></h2>
-                            <div>
-                                <select class="form-control" name="cbCliente" id="cbCliente" style="text-align-last:center; width:13rem; height:2rem; font-size:15px; margin-left:13rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;">// onchange="this.form.submit()">
-                                    <option value="" disabled selected>Cliente</option>
-                                    <?php
-                                    $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
-                                    foreach ($busca as $eachRow) {
-                                        ?>
-                                        <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
-                                    <?php
-                                }
-                                ?>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="position:absolute; margin-top:-3rem; margin-left:29rem; display:inline-block; width:5rem; font-size:11px;" id="lblDataInicial">Data Inicial</label>
-                                <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:29rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
-                            </div>
-                            <div>
-                                <label style="position:absolute; margin-top:-3rem; margin-left:45rem; display:inline-block; width:5rem; font-size:11px;" id="lblDataFinal">Data Final</label>
-                                <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:45rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
-                            </div>
-                            <button type="submit" class="btn btn-danger" style="text-align-last:center; width:1rem; height:2rem; font-size:15px; margin-left:60.5rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px; display:none;" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
                         </div>
+                        <div class="col">
+                            <select class="form-control" name="cbCliente" id="cbCliente">
+                                <option value="" disabled selected>Cliente</option>
+                                <?php
+                                $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
+                                foreach ($busca as $eachRow) {
+                                    ?>
+                                    <option value=" <?php echo $eachRow['id'] ?>" <?php echo (isset($_POST['cbCliente']) && $_POST['cbCliente'] == $eachRow['id']) ? 'selected="selected"' : ''; ?>><?php echo $eachRow['nome'] ?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label id="lblFirstDay">Data Inicial</label>
+                            <input class="form-control" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
+                        </div>
+                        <div class="col">
+                            <label id="lblFinalDay">Data Final</label>
+                            <input class="form-control" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
+                        </div>
+                        <button type="submit" class="btn btn-danger" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
                     </div>
                 </div>
                 <div class="mobileTable">
