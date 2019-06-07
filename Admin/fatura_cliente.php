@@ -54,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     /* width */
     ::-webkit-scrollbar {
-        width: 0.3rem;
+        width: 0.2rem;
+        height: 0.2rem;
     }
 
     /* Track */
@@ -98,8 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     thead {
-        width: calc(100% - 0rem)
-            /* scrollbar is average 1em/16px width, remove it from thead width */
+        width: calc(100% - 0rem);
+        /* scrollbar is average 1em/16px width, remove it from thead width */
     }
 
     .table thead th {
@@ -193,6 +194,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-top: -6rem !important;
             margin-left: -1.8rem !important;
             width: 30% !important;
+            padding: 1px 1px !important;
+            font-size: 10px !important;
         }
 
         #FirstDay {
@@ -200,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: 6.3rem !important;
             width: 30% !important;
             font-size: 10px !important;
-            padding: 0 0;
+            padding: 1px 1px;
             text-indent: 0 !important;
         }
 
@@ -209,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: 14.6rem !important;
             width: 30% !important;
             font-size: 10px !important;
-            padding: 0 0;
+            padding: 1px 1px;
             text-indent: 0 !important;
         }
 
@@ -218,16 +221,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             float: right;
             margin-left: auto !important;
         }
+
+        #lblDataInicial {
+            color: #007bff;
+            margin-top: -7rem !important;
+            margin-left: 6.3rem !important;
+        }
+
+        #lblDataFinal {
+            color: #007bff;
+            margin-top: -7rem !important;
+            margin-left: 14.55rem !important;
+        }
     }
 
-    @media only screen and (max-width: 410px) {
-        .mobileSearch {
-            padding: 2px;
-            width: 75%;
-            margin-top: -8.8rem;
-            position: relative;
-            z-index: 900;
-            float: right;
+    @media only screen and (max-width: 376px) {
+        #cbCliente {
+            font-size: 10px !important;
+        }
+
+        #FirstDay {
+            margin-left: 5.2rem !important;
+        }
+
+        #FinalDay {
+            margin-left: 12.4rem !important;
+        }
+
+        #lblDataInicial {
+            margin-left: 5.2rem !important;
+        }
+
+        #lblDataFinal {
+            margin-left: 12.4rem !important;
         }
     }
 </style>
@@ -237,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="container" action="/POM-Logistica/PDFs/pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
             <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
-                <div class="table-title" style="background-color:#0275d8;">
+                <div class="table-title" style="background-color:#007bff;">
                     <div class="row">
                         <div class="col-sm-6" style="height:2rem">
                             <h2>Fatura <b>Mensal</b></h2>
@@ -255,14 +281,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </select>
                             </div>
                             <div>
-                                <label style="position:absolute; margin-top:-3rem; margin-left:29rem; display:inline-block; width:5rem; font-size:11px;">Data Inicial</label>
+                                <label style="position:absolute; margin-top:-3rem; margin-left:29rem; display:inline-block; width:5rem; font-size:11px;" id="lblDataInicial">Data Inicial</label>
                                 <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:29rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
                             </div>
                             <div>
-                                <label style="position:absolute; margin-top:-3rem; margin-left:45rem; display:inline-block; width:5rem; font-size:11px;">Data Final</label>
+                                <label style="position:absolute; margin-top:-3rem; margin-left:45rem; display:inline-block; width:5rem; font-size:11px;" id="lblDataFinal">Data Final</label>
                                 <input class="form-control" style="text-align-last:center; width:13rem; text-indent:1.3rem; height:2rem; font-size:15px; margin-left:45rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px;" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
                             </div>
-                            <button type="submit" class="btn btn-danger" style="text-align-last:center; width:1rem; height:2rem; font-size:15px; margin-left:60.5rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px; display:none;" id="pdf" style=""><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
+                            <button type="submit" class="btn btn-danger" style="text-align-last:center; width:1rem; height:2rem; font-size:15px; margin-left:60.5rem; margin-top:-2.1rem; position:absolute; z-index:500; border-radius:1.5px; display:none;" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
                         </div>
                     </div>
                 </div>
