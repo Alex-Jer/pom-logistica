@@ -70,12 +70,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       width: 20px;
       height: 20px;
       position: absolute;
-      margin-left: 85%;
       z-index: 500
     }
 
     .full-width {
       width: 100%;
+    }
+
+    @media only screen and (min-width: 768px) {
+
+      /* Desktop */
+      .btnEye {
+        margin-left: 85%;
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+
+      /* Mobile */
+      .btnEye {
+        margin-left: 65vw;
+      }
     }
   </style>
 </head>
