@@ -55,30 +55,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/POM-Logistica/styles/style.min.css">
-  <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
+  <link rel="stylesheet" href="/POM-Logistica/styles/table.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .input {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1rem;
+    }
+
+    .btnEye {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      margin-left: 85%;
+      z-index: 500
+    }
+
+    .full-width {
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="card card-container">
-      <form action="\POM-Logistica\Admin\mudar_pass.php" method="post">
-        <h1 style="text-align:center">Mudar Palavra-Passe</h1>
-        <div class="row" style="margin-left:20px; margin-top:2rem;">
-          <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+  <!-- <div class="container"> -->
+  <div class="container card card-container">
+    <form action="\POM-Logistica\Admin\mudar_pass.php" method="post">
+      <div class="row">
+        <div class="col-12">
+          <h1 style="text-align:center">Mudar Palavra-Passe</h1>
         </div>
-        <div class="row" style="margin-left:20px">
-          <input type="password" style="margin-bottom:1rem;" name="textNewPass" id="newPass" tabindex="2" class="form-control" placeholder="Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+      </div>
+      <div class="row" style="margin-top:2rem;">
+        <div class="col-12">
+          <button type="button" class="btn-eye btnEye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <input type="password" name="textPass" id="oldPass" tabindex="1" class="form-control input full-width" placeholder="Password antiga" required autofocus>
         </div>
-        <div class="row" style="margin-left:20px">
-          <input type="password" name="textNewPass2" class="form-control" id="textNewPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="button" tabindex="-1" class="btn-eye btnEye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <input type="password" name="textNewPass" id="newPass" tabindex="2" class="form-control input full-width" placeholder="Nova Password" required>
         </div>
-        <button class="btn btn-primary" style="margin-top:2rem; margin-left:20px; width:371.7px; margin-bottom:1rem;" type="submit">Confirmar</button>
-      </form><!-- /form -->
-    </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="button" tabindex="-1" class="btn-eye btnEye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+          <input type="password" name="textNewPass2" class="form-control input full-width" id="textNewPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-primary full-width" style="margin-top:1rem; margin-bottom:1rem;" type="submit">Confirmar</button>
+        </div>
+      </div>
+    </form><!-- /form -->
   </div>
+  <!-- </div> -->
 </body>
 
 </html>
