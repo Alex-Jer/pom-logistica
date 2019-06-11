@@ -31,5 +31,5 @@
         "yaml",
         "yml"
     ],
-    "discord.enabled": false
+    "discord.enabled": true
 }

@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootcbcstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <style>
     body {
         overflow: hidden;
+        color: #566787;
     }
 
     /* width */
@@ -71,18 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #0056b3;
-    }
-
-    .btn-success {
-        background-color: #01d932;
-    }
-
-    .btn-success:hover {
-        background-color: #01bc2c;
-    }
-
-    body {
-        color: #566787;
     }
 
     tbody {
@@ -113,167 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         -webkit-appearance: none;
     }
 
-    /* @media only screen and (min-width: 768px) {
-
-        Desktop
-        thead,
-        tbody tr {
-            display: table;
-        }
-
-        tbody {
-            display: block;
-        }
-
-        #cbCliente {
-            text-align-last: center;
-            width: 13rem;
-            height: 2rem;
-            font-size: 15px;
-            margin-left: 13rem;
-            margin-top: -2.1rem;
-            position: absolute;
-            z-index: 500;
-            border-radius: 1.5px;
-        }
-
-        #lblFinalDay {
-            position: absolute;
-            margin-top: -3rem;
-            margin-left: 29rem;
-            display: inline-block;
-            width: 5rem;
-            font-size: 11px;
-        }
-
-        #lblFirstDay {
-            position: absolute;
-            margin-top: -3rem;
-            margin-left: 45rem;
-            display: inline-block;
-            width: 5rem;
-            font-size: 11px;
-        }
+    .table-title .btn {
+        margin-left: 0;
     }
-
-    @media only screen and (max-width: 767px) {
-         Mobile
-
-        input[type="search"]::-webkit-search-decoration,
-        input[type="search"]::-webkit-search-cancel-button,
-        input[type="search"]::-webkit-search-results-button,
-        input[type="search"]::-webkit-search-results-decoration {
-            display: none;
-        }
-
-        body {
-            overflow-x: hidden;
-        }
-
-        .mobileTable {
-            overflow-x: auto;
-        }
-
-        #cbCliente {
-            margin-top: -6rem !important;
-            margin-left: -1.8rem !important;
-            width: 30% !important;
-            padding: 1px 1px !important;
-            font-size: 10px !important;
-        }
-
-        #FirstDay {
-            margin-left: 6.3rem !important;
-            width: 50% !important;
-            font-size: 10px !important;
-            padding: 1px 1px;
-            text-indent: 0 !important;
-        }
-
-        #FinalDay {
-            margin-left: 14.6rem !important;
-            width: 50% !important;
-            font-size: 10px !important;
-            padding: 1px 1px;
-            text-indent: 0 !important;
-        }
-
-        #pdf {
-            position: relative !important;
-            float: right;
-            margin-left: auto !important;
-        }
-
-        #lblFirstDay {
-            color: #007bff;
-            margin-top: -3rem !important;
-            margin-left: 6.3rem !important;
-        }
-
-        #lblFinalDay {
-            color: #007bff;
-            margin-top: -3rem !important;
-            margin-left: 14.6rem !important;
-        }
-    }
-
-    @media only screen and (max-width: 376px) {
-        #cbCliente {
-            font-size: 10px !important;
-        }
-
-        #FirstDay {
-            margin-left: 5.2rem !important;
-        }
-
-        #FinalDay {
-            margin-left: 12.4rem !important;
-        }
-
-        #lblFirstDay {
-            margin-left: 5.2rem !important;
-        }
-
-        #lblFinalDay {
-            margin-left: 12.4rem !important;
-        }
-    }
-
-    @media only screen and (max-width: 1025px) {
-        #cbCliente {
-            width: 30% !important;
-            font-size: 12px !important;
-        }
-
-        #FirstDay {
-            width: 30% !important;
-            font-size: 12px !important;
-            text-indent: 0px !important;
-        }
-
-        #FinalDay {
-            width: 30% !important;
-            font-size: 12px !important;
-            text-indent: 0px !important;
-        }
-    }
-
-    @media only screen and (min-width:768px) and (max-width: 992px) {
-        #cbCliente {
-            position: relative !important;
-            margin-top: -6rem !important;
-            margin-left: -1.8rem !important;
-            width: 50% !important;
-        }
-
-        #FirstDay {
-            margin-left: 20rem !important;
-        }
-
-        #FinalDay {
-            margin-left: 33.5rem !important;
-        }
-    } */
 
     .mobileTable {
         overflow-x: auto;
@@ -301,6 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         text-align-last: center;
         padding: 1px 1px;
         text-indent: 1.3rem;
+        height: 1.7rem;
         font-size: 15px;
         z-index: 500;
         border-radius: 1.5px;
@@ -321,12 +153,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #pdf {
+        min-width: auto;
+        width: 1.9rem;
         text-align-last: center;
-        font-size: 15px;
         position: absolute;
         z-index: 500;
         border-radius: 1.5px;
-        display: none;
+        visibility: hidden;
     }
 
     @media only screen and (min-width:1200px) {
@@ -353,29 +186,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         #pdf {
-            width: 1rem;
-            height: 2em;
-            margin-left: 60.5rem;
-            margin-top: -2.1rem;
+            position: relative;
+            float: right;
+            height: 1.7rem;
+            /* margin-top: -2.1rem; */
         }
     }
 
     @media only screen and (max-width:1200px) {
         #cbCliente {
-            width: 13rem;
+            /* width: 13rem; */
             height: 1.7rem;
             margin-top: 1rem;
         }
 
         #FirstDay {
-            width: 13rem;
+            /* width: 13rem; */
             margin-top: 1rem;
+            font-size: 12px;
+            text-indent: 0rem;
+            text-align: center;
         }
 
         #FinalDay {
-            width: 13rem;
-            height: 1.7rem;
+            /* width: 13rem; */
             margin-top: 1rem;
+            font-size: 12px;
+            text-indent: 0rem;
+            text-align: center;
         }
 
         #lblFinalDay {
@@ -389,10 +227,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         #pdf {
-            width: 1rem;
-            height: 2em;
-            margin-left: 60.5rem;
-            margin-top: -2.1rem;
+            height: 2rem;
+        }
+    }
+
+    @media only screen and (max-width:991px) {
+        #pdf {
+            margin-left: 60%;
+        }
+    }
+
+    @media only screen and (min-width:991px) and (max-width:1199px) {
+        #pdf {
+            margin-left: 12rem;
         }
     }
 </style>
@@ -400,15 +247,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <form class="container" action="/POM-Logistica/PDFs/pdfFatura.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1;" method="post">
-            <!-- <div class="table-wrapper" style="margin-top:5rem; width:80rem;"> -->
             <div class="table-wrapper" style="margin-top:6rem">
                 <div class="table-title" style="background-color:#007bff;">
-                    <div class="row" style="">
+                    <div class="row">
                         <div class="col">
                             <h2>Fatura <b>Mensal</b></h2>
                         </div>
-                        <div class="col">
-                            <select class="form-control" name="cbCliente" id="cbCliente">
+                        <div class="col" id="divSelect">
+                            <select class="form-control" name="cbCliente" id="cbCliente" style="margin-left:auto; margin-right:auto;">
                                 <option value="" disabled selected>Cliente</option>
                                 <?php
                                 $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
@@ -420,15 +266,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                             </select>
                         </div>
-                        <div class="col">
-                            <label id="lblFirstDay">Data Inicial</label>
-                            <input class="form-control" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
+                        <div class="col" id="divFirst">
+                            <label id="lblFirstDay" style="text-align:center">Data Inicial</label>
+                            <input style="margin-left:auto; margin-right:auto; position:relative" class="form-control" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
                         </div>
-                        <div class="col">
-                            <label id="lblFinalDay">Data Final</label>
-                            <input class="form-control" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
+                        <div class="col" id="divLast">
+                            <label id="lblFinalDay" style="text-align:center">Data Final</label>
+                            <input style="margin-left:auto; margin-right:auto;" class="form-control" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
                         </div>
-                        <button type="submit" class="btn btn-danger" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px"></i> <span></span></button>
+                        <button type="submit" class="btn btn-danger btn-sm" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px; font-size:14px; margin-left:auto; margin-right:auto; position:relative; text-align:center"></i> <span></span></button>
                     </div>
                 </div>
                 <div class="mobileTable">
@@ -530,7 +376,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                    'display': 'block'
+                    'visibility': 'visible'
                 });
             },
         });
@@ -550,7 +396,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                    'display': 'block'
+                    'visibility': 'visible'
                 });
             },
         });
@@ -570,7 +416,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             success: function(data) {
                 $("#Fatura").html(data);
                 $("#pdf").css({
-                    'display': 'block'
+                    'visibility': 'visible'
                 });
             },
         });
@@ -600,4 +446,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
     });
+</script>
+
+<script>
+    window.onload = function() {
+        if ($(window).width() < 991) {
+            // alert('Less than 991');
+            $('#divSelect').addClass('container');
+            $('#divSelect').removeClass('col');
+            $('#divFirst').addClass('container');
+            $('#divFirst').removeClass('col');
+            $('#divLast').addClass('container');
+            $('#divLast').removeClass('col');
+        } else {
+            // alert('More than 991');
+            $('#divSelect').addClass('col');
+            $('#divSelect').removeClass('container');
+            $('#divFirst').addClass('col');
+            $('#divFirst').removeClass('container');
+            $('#divLast').addClass('col');
+            $('#divLast').removeClass('container');
+        }
+    };
+</script>
+
+<script>
+    $(window).on('resize', function() {
+        if ($(window).width() < 991) {
+            // alert('Less than 991');
+            $('#divSelect').addClass('container');
+            $('#divSelect').removeClass('col');
+            $('#divFirst').addClass('container');
+            $('#divFirst').removeClass('col');
+            $('#divLast').addClass('container');
+            $('#divLast').removeClass('col');
+        } else {
+            // alert('More than 991');
+            $('#divSelect').addClass('col');
+            $('#divSelect').removeClass('container');
+            $('#divFirst').addClass('col');
+            $('#divFirst').removeClass('container');
+            $('#divLast').addClass('col');
+            $('#divLast').removeClass('container');
+        }
+    })
 </script>
