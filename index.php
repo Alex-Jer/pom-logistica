@@ -47,14 +47,14 @@ include_once($db);
     <?php
 }
 ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <title>POM-Logística</title>
     <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png">
-    <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <style>
@@ -120,7 +120,6 @@ include_once($db);
         display: block;
         width: 100%;
         margin-bottom: 0;
-        /* Override default `<label>` margin */
         line-height: 1.5;
         color: #495057;
         border: 1px solid transparent;
@@ -160,29 +159,52 @@ include_once($db);
         color: #777;
     }
 
-    .btn-google {
-        color: white;
-        background-color: #ea4335;
-    }
-
-    .btn-facebook {
-        color: white;
-        background-color: #3b5998;
-    }
-
     .btn:focus,
     .btn:active {
         outline: none !important;
         box-shadow: none;
     }
+
+    #image {
+        width: 19rem;
+        height: 3rem;
+        margin-top: 2rem;
+    }
+
+    #btnEye {
+        font-size: 20px;
+        width: 24px;
+        height: 24px;
+        /* margin-left: 21.2rem; */
+        float: right;
+        margin-top: -3.5rem;
+        z-index: 500;
+        position: relative;
+    }
+
+    @media only screen and (max-width: 767px) {
+
+        /* Mobile */
+        #image {
+            width: 14rem;
+            height: 2.5rem;
+        }
+
+        #btnEye {
+            margin-left: 0;
+            position: relative;
+            float: right;
+        }
+    }
 </style>
+
 <body>
     <div class="container" style="margin-top:4rem;">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="text-center" style="margin-top:1rem;">
-                        <img src="images\logogrande.png" style="width:19rem; height:3rem; margin-top:2rem;">
+                        <img src="images\logogrande.png" id="image">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">Iniciar Sessão</h5>
@@ -194,7 +216,7 @@ include_once($db);
                             <div class="form-label-group">
                                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" style="z-index:1;" required autofocus>
                                 <label for="inputPassword">Password</label>
-                                <button type="button" style="font-size:20px; width:24px; height:24px; margin-left:21.2rem; margin-top:-3.5rem; z-index:500; position:absolute" class="btn btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="margin-left:-15px" data-toggle="tooltip" title="Mostrar Password"></i></button>
+                                <button type="button" id="btnEye" class="btn btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="margin-left:-15px" data-toggle="tooltip" title="Mostrar Password"></i></button>
                             </div>
                             <button style="margin-top:3rem; margin-bottom:1rem;" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Iniciar Sessão</button>
                         </form>
