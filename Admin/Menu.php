@@ -1,21 +1,21 @@
 <?php
-//include 'Navbar\navbarAdmin.php'; 
+//include 'Navbar\navbarAdmin.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>POM Logística</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.10/css/AdminLTE.min.css">
-        <link rel="stylesheet" href="\POM-Logistica\styles\style3.min.css">
-        <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png">
+        <link rel="stylesheet" href="/POM-Logistica/styles/style3.min.css">
+        <link rel="icon" type="image/png" href="/POM-Logistica/images/titlelogo.png">
 </head>
 
 
@@ -55,8 +55,6 @@
                 width: 100%;
                 height: 100%;
                 border-left: solid 4px #0159b7;
-                /* border:solid;
-  border-color: #33ccff; */
 
                 /* Center and scale the image nicely */
                 background-position: center;
@@ -71,9 +69,6 @@
                 /* Full height */
                 width: 28.5rem;
                 height: 20rem;
-                /* border:solid;
-                border-color: #33ccff; */
-                /* Center and scale the image nicely */
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -92,7 +87,8 @@
                 background-color: white;
                 color: black;
                 text-align: right;
-                font-size: 10px
+                font-size: 10px;
+                z-index: 500;
         }
 
         .colunaEsquerda {
@@ -152,6 +148,116 @@
         .small-box>.small-box-footer:hover {
                 background-color: #0056b3;
         }
+
+        @media only screen and (min-width: 769px) {
+
+                /* Desktop */
+                #row1 {
+                        height: 150px;
+                }
+
+                #row2 {
+                        height: 150px;
+                }
+
+                #middleTopBox {
+                        margin-left: -5rem;
+                        margin-right: -5rem;
+                }
+
+                #middleBottomBox {
+                        margin-left: -5rem;
+                        margin-right: -5rem;
+                }
+        }
+
+        @media only screen and (min-width: 549px) and (max-width:969px) {
+                .box-menu {
+                        max-width: 0;
+                        min-width: 8rem !important;
+                        min-height: 120px;
+                }
+
+                .colunaDireita {
+                        display: none;
+                }
+        }
+
+        @media only screen and (max-width: 1300px) {
+                #middleTopBox {
+                        margin-left: 0rem;
+                        margin-right: 0rem;
+                }
+
+                #middleBottomBox {
+                        margin-left: 0rem;
+                        margin-right: 0rem;
+                }
+        }
+
+        @media only screen and (max-width: 768px) {
+                body {
+                        overflow: auto;
+                }
+
+                p {
+                        font-size: 15px !important;
+                }
+
+                #paletes {
+                        display: none !important;
+                }
+
+                #imagem {
+                        display: none;
+                }
+
+                #logo {
+                        width: 100%;
+                }
+
+                .colop {
+                        max-width: none;
+                }
+
+                .box-menu {
+                        min-width: 8rem;
+                        width: auto !important;
+                }
+        }
+
+        @media only screen and (min-width: 483px) and (max-width:578px) {
+
+                /* #row1 {} */
+                .row {
+                        margin-right: 0;
+                        margin-left: 0;
+                }
+
+                .box-menu {
+                        max-width: none;
+                        width: auto !important;
+                }
+        }
+
+        @media only screen and (min-width: 578px) and (max-width:760px) {
+                body {
+                        overflow: hidden;
+                }
+
+                .row {
+                        flex-wrap: nowrap;
+                }
+
+                #paletes {
+                        display: block !important;
+                        position: relative;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                        width: 100% !important;
+                        margin-top: -3rem !important;
+                }
+        }
 </style>
 
 <body onload="startTime()">
@@ -160,7 +266,7 @@
                 </div>
                 <div class="colunaEsquerda" style="display:block; margin:auto">
                         <div class="text-center; display:block; margin:auto">
-                                <img src="\POM-Logistica\images\logogrande.png" style="display:block; margin:auto">
+                                <img src="\POM-Logistica\images\logogrande.png" id="logo" style="display:block; position:relative; margin: 0 auto;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
@@ -168,9 +274,9 @@
                                 <h5 style="text-align:center; margin-top:0.5rem"><?php echo $timeRN ?></h5>
                                 <h5 style="text-align:center; margin-bottom:0.5rem" id="txt"></h5>
                         </div>
-                        <div class="row rowi" style="height:150px; margin-top:1rem; margin:auto">
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px;">
+                        <div class="row" id="row1" style="position:relative; margin-top:1rem;">
+                                <div class="col p-0 colop mx-auto">
+                                        <div class="small-box bg-aqua box-menu" id="box" style="width:150px;">
                                                 <div class="inner">
                                                         <h5><b>Gerir</b></h5>
                                                         <p>Clientes</p>
@@ -182,8 +288,8 @@
                                                 </a>
                                         </div>
                                 </div>
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px">
+                                <div class="col p-0 colop" id="middleTopBox">
+                                        <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Gerir</b></h5>
                                                         <p>Utilizadores</p>
@@ -195,8 +301,8 @@
                                                 </a>
                                         </div>
                                 </div>
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px">
+                                <div class="col p-0 colop mx-auto">
+                                        <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Gerir</b></h5>
                                                         <p>Todas as guias</p>
@@ -209,9 +315,9 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="row rowi" style="height:150px; margin:auto">
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px">
+                        <div class="row" id="row2">
+                                <div class="col p-0 colop mx-auto">
+                                        <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Criar</b></h5>
                                                         <p>Faturas</p>
@@ -223,8 +329,8 @@
                                                 </a>
                                         </div>
                                 </div>
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px">
+                                <div class="col p-0 colop" id="middleBottomBox">
+                                        <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Criar</b></h5>
                                                         <p>Artigo</p>
@@ -236,26 +342,24 @@
                                                 </a>
                                         </div>
                                 </div>
-                                <div class="col sm-1 colop">
-                                        <div class="small-box bg-aqua" style="width:150px">
+                                <div class="col p-0 colop mx-auto">
+                                        <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Sair</b></h5>
-                                                        <p>Terminar sessão</p>
+                                                        <p style="position:absolute;" id="terminar">Terminar sessão</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>
-                                                <a href="\POM-Logistica\index.php" class="small-box-footer">
+                                                <a href="\POM-Logistica\index.php" style="margin-top:2.4rem;" class="small-box-footer">
                                                         Ir <i class="fa fa-arrow-circle-right"></i>
                                                 </a>
                                         </div>
                                 </div>
-                                <!-- <div class="row" style="height:100px;">
-                </div>  -->
                         </div>
-                        <img src="/POM-Logistica/images/paletes.png" style="display:block; margin:auto; margin-top:-4rem; width:26rem">
+                        <img src="/POM-Logistica/images/paletes.png" id="paletes" style="display:block; margin:auto; margin-top:-4rem; width:26rem">
                 </div>
                 <div class="colunaDireita" style="margin-top:-1rem">
-                        <div class="Imagem" style="margin-left:1rem">
+                        <div class="Imagem" id="imagem" style="margin-left:1rem">
                         </div>
                 </div>
         </div>
