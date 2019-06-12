@@ -161,13 +161,13 @@
                 }
 
                 #middleTopBox {
-                        margin-left: -5rem;
-                        margin-right: -5rem;
+                        margin-left: -7rem;
+                        margin-right: -7rem;
                 }
 
                 #middleBottomBox {
-                        margin-left: -5rem;
-                        margin-right: -5rem;
+                        margin-left: -7rem;
+                        margin-right: -7rem;
                 }
         }
 
