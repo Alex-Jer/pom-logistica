@@ -449,7 +449,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
       </ul>
       <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto;"></div>
-      <input class="form-control mobileData" style="text-align:center; text-indent:1.5rem; margin-left:18.5rem; margin-top:-3.1rem; margin-right:auto; width:15rem; height:2rem; position:absolute; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
+      <input class="form-control mobileData" style="text-align:center; text-indent:1.5rem; margin-left:18.5rem; margin-top:-3rem; margin-right:auto; width:15rem; height:1.7rem; position:absolute; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
       <div class="mobileTable desktopTable" id="Testeeee">
       </div>
 

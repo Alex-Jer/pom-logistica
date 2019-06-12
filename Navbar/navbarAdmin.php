@@ -119,6 +119,17 @@ function echoActiveClassIfRequestMatches($requestUri)
         width: 100%;
     }
 
+    @media (max-width:320px) {
+
+        #navbarMobile {
+            display: initial;
+        }
+
+        #navbarDesktop {
+            display: none;
+        }
+    }
+
     @media (min-width:320px) {
 
         /* smartphones, iPhone, portrait 480x320 phones */

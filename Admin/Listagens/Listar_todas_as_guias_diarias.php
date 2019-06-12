@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
       </ul>
       <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
-        <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; width:15rem; height:2rem; position:relative; margin-left:auto; margin-right:auto; margin-bottom:-2rem; z-index:500; border-radius:2px">
+        <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; width:15rem; height:1.7rem; position:relative; margin-left:auto; margin-right:auto; margin-bottom:-2rem; z-index:500; border-radius:2px; font-size:16px; padding: 1px 1px;">
           <option value="0" selected>Todos os clientes</option>
           <?php
           $busca = mysqli_query($conn, "SELECT * FROM cliente");
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <input class="form-control" style="text-align:center; text-indent:1.5rem; width:14rem; height:2rem; position:relative; float:right; z-index:500; border-radius:2px" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
+        <input class="form-control" style="text-align:center; text-indent:1.5rem; width:14rem; height:1.7rem; position:relative; float:right; z-index:500; border-radius:2px; margin-top:0.3rem;" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
         <div class="row">
           <div class="col-sm-6">
             <h2><b>Guias </b> diárias</h2>
