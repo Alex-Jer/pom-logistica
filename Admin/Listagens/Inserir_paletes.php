@@ -279,8 +279,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <tr>
                 <th style="width:20%; text-align:center;">Cliente</th>
                 <th style="width:20%; text-align:center;">Nº requisição</th>
-                <th style="width:25%; text-align:center;">Dia e hora da carga</th>
-                <th style="width:20%; text-align:center;">Nº de paletes</th>
+                <th style="width:20%; text-align:center;">Dia e hora da carga</th>
+                <th style="width:15%; text-align:center;">Nº de paletes</th>
                 <th style="width:20%; text-align:center;">Artigo</th>
                 <th style="width:20%; text-align:center;">Armazém</th>
                 <th style="width:15%; text-align:center;">Confirmar</th>

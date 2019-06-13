@@ -28,19 +28,19 @@ foreach ($dado as $eachRow) {
     $time = $eachRow['data_prevista'];
 
     echo '<tr class="table-row" data-value="' . $GuiaID . '">';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeCliente . '</td>';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $numeroReq . '</td>';
-    echo '<td style="width:25%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $time . '</td>';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $qtPal . '</td>';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $refArtigo . '</td>';
-    echo '<td style="width:20%; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeArmazem . '</td>';
+    echo '<td style="width:170px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeCliente . '</td>';
+    echo '<td style="width:170px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $numeroReq . '</td>';
+    echo '<td style="width:170px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $time . '</td>';
+    echo '<td style="width:130px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $qtPal . '</td>';
+    echo '<td style="width:140px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $refArtigo . '</td>';
+    echo '<td style="width:170px; text-align:center" data-toggle="modal" data-target="#exampleModal2"> ' . $nomeArmazem . '</td>';
 
     if ($confirm == NULL) {
-        echo '<td style="width:15%; text-align:center"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="Confirm" id="Confirm"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
-        echo '<td style="width:15%; text-align:center"></td>';
+        echo '<td style="width:130px; text-align:center"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="Confirm" id="Confirm"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
+        echo '<td style="width:130px; text-align:center"></td>';
     } else {
-        echo '<td style="width:15%; text-align:center"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="confirmTotal" id="confirmTotal" value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
-        echo '<td style="width:15%; text-align:center" id="registarD"><button type="button" style="width:1px; height:1.5rem;" class="btn" name="Guia_ID4" id="Guia_ID4" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '"><i class="material-icons" style="color:#01d932; margin-left:-11px; margin-top:-15px; font-size:22px">add_circle</i></button></td>';
+        echo '<td style="width:130px; text-align:center"><button type="submit" style="width:1px; height:1.5rem;" class="btn" name="confirmTotal" id="confirmTotal" value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-left:-11px; margin-top:-15px; font-size:22px">check_circle</i></button></td>';
+        echo '<td style="width:130px; text-align:center" id="registarD"><button type="button" style="width:1px; height:1.5rem;" class="btn" name="Guia_ID4" id="Guia_ID4" data-toggle="modal" data-target="#exampleModal" value="' . $GuiaID . '"><i class="material-icons" style="color:#01d932; margin-left:-11px; margin-top:-15px; font-size:22px">add_circle</i></button></td>';
     }
     echo '</tr>';
 }

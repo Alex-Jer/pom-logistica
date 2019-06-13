@@ -107,37 +107,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
 </head>
 
 <style>
   body {
-    overflow: hidden;
-  }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 0.3rem;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #007bff;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
+    color: #566787;
   }
 
   .btn-success {
@@ -148,45 +129,135 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     background-color: #01bc2c;
   }
 
-  tbody {
-    display: block;
-    max-height: 22rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  thead,
-  tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    /* even columns width , fix width of table too*/
-  }
-
-  thead {
-    width: calc(100% - 1rem)
-      /* scrollbar is average 1em/16px width, remove it from thead width */
+  .table thead>tr>th {
+    border-top: none;
   }
 
   .table-row {
     cursor: pointer;
   }
 
-  .nav-pills .nav-link.active,
-  .nav-pills .show>.nav-link {
-    background-color: #ffffff;
+  @media only screen and (min-width: 768px) {
+
+    /* Desktop */
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 0.2rem;
+      height: 0.2rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #007bff;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0056b3;
+    }
+
+    tbody {
+      display: block;
+      max-height: 22rem;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      /* even columns width , fix width of table too*/
+    }
+
+    .table thead th {
+      vertical-align: bottom;
+      border-bottom: 0px solid #dee2e6;
+    }
+
+    thead {
+      width: calc(100% - 0rem);
+      /* scrollbar is average 1em/16px width, remove it from thead width */
+    }
+
+    .desktopAdd {
+      position: relative;
+      margin-top: -2rem;
+      float: right;
+    }
+
+    .table-title {
+      max-height: 5rem !important;
+    }
+
+    .container {
+      margin-top: 4rem;
+    }
   }
 
-  .table thead th {
-    vertical-align: bottom;
-    border-bottom: 0px solid #dee2e6;
-    border-top: 0px solid #dee2e6;
+  .mobileTable {
+    overflow-x: auto;
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 95%;
+      padding: 0 0;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    /* Mobile */
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+
+
+    .mobileAdd {
+      width: 10%;
+      margin-top: -2rem;
+    }
+
+    .mobileAdd:before {
+      content: none;
+    }
+
+    .mobilePassword {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mobileBtn {
+      position: relative;
+      float: right
+    }
+
+    h2 {
+      font-size: 24px !important;
+    }
   }
 </style>
 
 <body>
   <form class="container" style="font-family: 'Varela Round', sans-serif; font-size:13px;" action="/POM-Logistica/Operador/Listagens/inserir_paletes.php" method="post" id="mainForm" novalidate>
-    <div class="container" style="margin-left:-6rem">
+    <div class="container">
       <ul class="nav nav-pills" style="margin-top:4rem;">
         <li class="nav-item">
           <button style="border-radius:0.2rem; background-color:#fcfcfc; margin-right:1rem;" class="nav-link active btn2" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
@@ -195,92 +266,86 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem; background-color:#fcfcfc" class="nav-link btn2" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
         </li>
       </ul>
-      <div class="table-wrapper" style="margin-top:0.3rem; width:80rem">
-        <div class="table-title" style="background-color:#007bff; width:80rem">
-          <div class="row">
-            <div class="col-sm-6">
-              <h2>Guias de <b>Entrega</b></h2>
-            </div>
-          </div>
+      <div class="table-wrapper" style="margin-top:0.3rem">
+        <div class="table-title" style="background-color:#007bff;">
+          <h2>Guias de <b>Entrega</b></h2>
         </div>
-        <div style="text-align:center; width:80rem">
-          <div class="container">
-            <table class="table table-striped table-hover" style="margin-top:-0.6rem; margin-left:-5.5rem; width:77rem; font-size:13px">
-              <thead style="width:77rem">
-                <tr>
-                  <th style="width:20%; text-align:center">Cliente</th>
-                  <th style="width:20%; text-align:center">Nº requisição</th>
-                  <th style="width:20%; text-align:center">Dia e hora da carga</th>
-                  <th style="width:15%; text-align:center">Nº de paletes</th>
-                  <th style="width:20%; text-align:center">Artigo</th>
-                  <th style="width:20%; text-align:center">Armazém</th>
-                  <th style="width:15%; text-align:center">Confirmar</th>
-                  <th style="width:15%; text-align:center; visibility:collapse;" id="registarH">Registar Palete</th>
-                </tr>
-              </thead>
-              <tbody id="Testeeee">
-              </tbody>
-            </table>
-          </div>
-          <div id="DivEntrega2"></div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Registar palete</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <select style="text-align-last:center; margin-top:1rem; color: #6C757D; margin-left:auto; margin-right:auto; width:100%" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
-                    <option value="" disabled selected>Localização</option>
-                    <?php
-                    $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
-                    foreach ($busca as $eachRow) {
-                      ?>
-                      <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
-                    <?php
-                  }
-                  ?>
-                  </select>
-                  <div style="text-align:center;" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:6rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
-                    </div>
-                    <input type="text" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" placeholder="Referência da palete" name="refpal" required>
+        <div class="mobileTable">
+          <table style="margin-left:auto; margin-right:auto; margin-top:-0.5rem" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th style="width:170px; text-align:center">Cliente</th>
+                <th style="width:170px; text-align:center">Nº requisição</th>
+                <th style="width:170px; text-align:center">Dia e hora da carga</th>
+                <th style="width:130px; text-align:center">Nº de paletes</th>
+                <th style="width:140px; text-align:center">Artigo</th>
+                <th style="width:170px; text-align:center">Armazém</th>
+                <th style="width:130px; text-align:center">Confirmar</th>
+                <th style="width:130px; text-align:center; visibility:collapse;" id="registarH">Registar Palete</th>
+              </tr>
+            </thead>
+            <tbody id="Testeeee"></tbody>
+          </table>
+        </div>
+        <div id="DivEntrega2"></div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registar palete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                </button>
+              </div>
+              <div class="modal-body">
+                <select style="text-align-last:center; margin-top:1rem; color: #6C757D; margin-left:auto; margin-right:auto; width:100%" class="form-control" name="comboBoxLocalizacao" id="comboBoxLocalizacao" required>
+                  <option value="" disabled selected>Localização</option>
+                  <?php
+                  $busca = mysqli_query($conn, "SELECT * FROM localizacao WHERE hasPalete=0");
+                  foreach ($busca as $eachRow) {
+                    ?>
+                    <option value=" <?php echo $eachRow['id'] ?>"><?php echo $eachRow['referencia'] ?></option>
+                  <?php
+                }
+                ?>
+                </select>
+                <div style="text-align:center;" class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="height:2.35rem; margin-top:1rem; width:6rem; text-indent:1.15rem;" id="inputGroup-sizing">PAL-</span>
                   </div>
-                  <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
-                    </div>
-                    <input placeholder="Nome da palete" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
+                  <input type="text" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" placeholder="Referência da palete" name="refpal" required>
+                </div>
+                <div style="text-align:center; margin-top:-1.5rem;" class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="height:2.35rem; margin-top:1rem;" id="inputGroup-sizing">Palete de</span>
                   </div>
+                  <input placeholder="Nome da palete" class="form-control" style="height:2.35rem; width:5rem; margin-top:1rem; margin-left:auto; margin-right:auto;" type="text" id="inputdata" name="nomepal" placeholder="Data" required>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary" name="save">Confirmar</button>
-                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" name="save">Confirmar</button>
               </div>
             </div>
           </div>
-          <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body" id="TableDetails">
-                </diV>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalhes da Guia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+              </div>
+              <div class="modal-body" id="TableDetails">
+              </diV>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </form>
 </body>
