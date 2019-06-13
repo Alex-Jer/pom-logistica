@@ -35,9 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
 
     <!-- DataTables CSS -->
@@ -114,10 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .btn-success:hover {
         background-color: #01bc2c;
-    }
-
-    body {
-        background-color: #fcfcfc !important;
     }
 
     .table-row {
@@ -215,113 +212,199 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         border-radius: 1px 3px 3px 1px;
         border-left: none;
     }
+
+    .btn:focus,
+    .btn:active {
+        outline: none !important;
+        box-shadow: none;
+    }
+
+    #searchbox {
+        height: 1.7rem;
+        margin-top: -0.9rem;
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        /* Desktop */
+        .desktopSearch {
+            text-align: left;
+            width: 15rem;
+            height: 2rem;
+            position: relative;
+            margin-top: -1rem;
+            border-radius: 2px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .desktopAdd {
+            position: relative;
+            margin-top: -2rem;
+            width: 10rem;
+            float: right;
+        }
+
+        .desktopAdd:before {
+            content: 'Adicionar Cliente';
+        }
+
+        .table-title {
+            max-height: 2rem !important;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        /* Mobile */
+
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
+            display: none;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .mobileTable {
+            overflow-x: auto;
+        }
+
+        .mobileSearch {
+            padding: 2px;
+            width: 20%;
+            margin-top: -4.9rem;
+            position: relative;
+            z-index: 900;
+            float: right;
+        }
+
+        .mobileAdd {
+            width: 10%;
+            margin-top: -1rem;
+            position: relative;
+            float: right;
+        }
+
+        .mobileAdd:before {
+            content: none;
+        }
+    }
+
+    @media only screen and (max-width: 410px) {
+        .mobileSearch {
+            padding: 2px;
+            width: 75%;
+            margin-top: -8.8rem;
+            position: relative;
+            z-index: 900;
+            float: right;
+        }
+    }
 </style>
 
 <body>
-    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="/POM-Logistica/Operador/Listagens/Listar_clientes.php" method="post" novalidate>
+    <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="/POM-Logistica/Admin/Listagens/Listar_clientes.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
-                <div class="table-title" style="background-color:#0275d8;">
-                    <div class="row">
-                        <div class="col-sm-6" z-index="5" style="position:absolute; height:6rem;">
-                            <h2 style="position:absolute; margin-top:-0.7rem">Lista de <b>Clientes</b></h2>
-                            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:27rem; margin-top:-1rem; border-radius:2px" id="searchbox">
+                <div class="table-title" style="background-color:#007bff; z-index:0">
+                    <h2 style="position:absolute; margin-top:-0.7rem">Gerir <b>Clientes</b></h2>
+                    <input type="search" z-index="500" class="form-control mobileSearch desktopSearch" placeholder="Procurar" id="searchbox">
+                    <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
+                </div>
+                <div class="mobileTable">
+                    <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width:30%">Nome</th>
+                                <th style="text-align:center; width:15%">NIF</th>
+                                <th style="text-align:center; width:30%;">Morada</th>
+                                <th style="text-align:center;">Localidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $dados = mysqli_query($conn, "SELECT * FROM cliente");
+                            foreach ($dados as $eachRow) {
+                                $buscaId = $eachRow['id'];
+                                $nome = $eachRow['nome'];
+                                $nif = $eachRow['nif'];
+                                $morada = $eachRow['morada'];
+                                $localidade = $eachRow['localidade'];
+                                echo '<tr>';
+                                echo '<td style="text-align:center; width:30%"> ' . $nome . '</td>';
+                                echo '<td style="text-align:center; width:15%"> ' . $nif . '</td>';
+                                echo '<td style="text-align:center; width:30%"> ' . $morada . '</td>';
+                                echo '<td style="text-align:center;"> ' . $localidade . '</td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Registar Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" style="position:absolute; margin-left:56rem; margin-top:-1rem; width:10rem;"><i class="material-icons">&#xE147;</i> <span>Adicionar Cliente</span></a>
+                        <div class="modal-body">
+                            <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
+                            <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." required autofocus>
+                            <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required autofocus>
+                            <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required autofocus>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" name="registar" class="btn btn-primary">Registar</button>
                         </div>
                     </div>
                 </div>
-                <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center; width:30%">Nome</th>
-                            <th style="text-align:center; width:15%">NIF</th>
-                            <th style="text-align:center; width:30%;">Morada</th>
-                            <th style="text-align:center;">Localidade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $dados = mysqli_query($conn, "SELECT * FROM cliente");
-                        foreach ($dados as $eachRow) {
-                            $buscaId = $eachRow['id'];
-                            $nome = $eachRow['nome'];
-                            $nif = $eachRow['nif'];
-                            $morada = $eachRow['morada'];
-                            $localidade = $eachRow['localidade'];
-                            echo '<tr>';
-                            echo '<td style="text-align:center; width:30%"> ' . $nome . '</td>';
-                            echo '<td style="text-align:center; width:15%"> ' . $nif . '</td>';
-                            echo '<td style="text-align:center; width:30%"> ' . $morada . '</td>';
-                            echo '<td style="text-align:center;"> ' . $localidade . '</td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
             </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Registar Cliente</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input style="margin-top:1rem; height:auto;" type="input" name="Nome" class="form-control" placeholder="Nome" pattern="[A-Za-z\sâàáêèééìíôòóùúçãõ ]+" title="Apenas deve conter letras." required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="number" id="uintTextBox" name="nif" class="form-control" placeholder="NIF" max="999999999" pattern=".{9,}" minlength=9 maxlength=9 title="O NIF tem de ter 9 dígitos." required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="input" name="morada" class="form-control" placeholder="Morada" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" required autofocus>
-                        <input style="margin-top:1rem; height:auto;" type="input" name="local" class="form-control" placeholder="Localidade" pattern="[A-Za-z0-9\sâàáêèééìíôòóùúçãõªº-;,. ]+" pattern="[A-Za-z]+" required autofocus>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" name="registar" class="btn btn-primary">Registar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Editar Cliente</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body" id="OlaEdit">
+            <!-- Edit Modal HTML -->
+            <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Editar Cliente</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body" id="OlaEdit">
 
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-info" name="save" value="Guardar">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Apagar Cliente</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Tem a certeza que quer apagar estes registos?</p>
-                        <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-info" name="save" value="Guardar">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Delete Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Apagar Cliente</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem a certeza que quer apagar estes registos?</p>
+                            <p class="text-warning"><small>Esta ação não pode ser desfeita.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <input type="submit" class="btn btn-danger" name="apagar" value="Apagar">
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
 </body>
 

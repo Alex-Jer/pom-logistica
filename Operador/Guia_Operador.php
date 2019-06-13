@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $armazemID = $dado['armazem_id'];
   $tipoZona = $dado['tzid'];
   //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
-  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, confirmar,confirmarTotal) 
+  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, confirmar,confirmarTotal)
                     VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada',1,1)";
   if (mysqli_query($conn, $sql)) { }
   $sql10 = mysqli_query($conn, "UPDATE guia SET confirmar = 1, confirmarTotal = 1 WHERE id=$idGuia ");
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <form class="container" action="/POM-Logistica/Operador/Guia_Operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:5rem;">
-      <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+      <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
         <div class="row">
           <div class="col-sm-6">
             <h2>Guias de <b>Transporte</b> por confirmar</h2>

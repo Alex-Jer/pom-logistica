@@ -270,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
       </ul>
       <div class="table-wrapper" style="margin-top:0.5rem; position:relative;">
-        <div class="table-title" style="background-color:#0275d8; z-index:0;">
+        <div class="table-title" style="background-color:#007bff; z-index:0;">
           <h2>Guias de <b>Entrega</b></h2>
         </div>
         <div class="mobileTable">

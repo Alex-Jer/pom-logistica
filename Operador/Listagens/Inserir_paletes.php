@@ -196,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
       </ul>
       <div class="table-wrapper" style="margin-top:0.3rem; width:80rem">
-        <div class="table-title" style="background-color:#0275d8; width:80rem">
+        <div class="table-title" style="background-color:#007bff; width:80rem">
           <div class="row">
             <div class="col-sm-6">
               <h2>Guias de <b>Entrega</b></h2>

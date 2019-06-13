@@ -3,7 +3,7 @@ $db = $_SERVER['DOCUMENT_ROOT'];
 $db .= "/POM-Logistica/db.php";
 include_once($db);
 // echo $_POST['id'];
-echo '<div class="table-title" style="background-color:#0275d8;">';
+echo '<div class="table-title" style="background-color:#007bff;">';
 echo '<div class="row">';
 
 if ($_POST['id'] == 1) {

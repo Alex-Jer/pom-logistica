@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </select>
         </li>
       </ul>
-      <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+      <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
         <div class="row">
           <div class="col-sm-6">
             <h2><b>Guias </b>diárias</h2>

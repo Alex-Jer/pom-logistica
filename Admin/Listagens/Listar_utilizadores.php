@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form style="font-family: 'Varela Round', sans-serif; font-size:13px" action="\POM-Logistica\Admin\Listagens\Listar_utilizadores.php" method="post" novalidate>
         <div class="container">
             <div class="table-wrapper" style="margin-top:5rem">
-                <div class="table-title" style="background-color:#0275d8; z-index:0">
+                <div class="table-title" style="background-color:#007bff; z-index:0">
                     <h2>Gerir <b>Utilizadores</b></h2>
                     <a href="#addEmployeeModal" class="btn btn-success mobileAdd desktopAdd" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
                 </div>

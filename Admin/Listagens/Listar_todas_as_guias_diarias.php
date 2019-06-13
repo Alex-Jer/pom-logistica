@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem; background-color:#fcfcfc" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed">Transporte</button>
         </li>
       </ul>
-      <div class="table-title" style="background-color:#0275d8; margin-top:-5.5rem;">
+      <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
         <select class="form-control" id="cliente" name="cliente" style="text-align-last:center; width:15rem; height:1.7rem; position:relative; margin-left:auto; margin-right:auto; margin-bottom:-2rem; z-index:500; border-radius:2px; font-size:16px; padding: 1px 1px;">
           <option value="0" selected>Todos os clientes</option>
           <?php
