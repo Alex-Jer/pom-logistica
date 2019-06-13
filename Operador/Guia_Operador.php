@@ -26,24 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $npal = $dado["npaletes"];
   $nrequisicao = $dado['numero_requisicao'];
   $tipoPalete = $dado['tp'];
-  //echo $paleteeID;
   date_default_timezone_set("Europe/Lisbon");
   $data = date("Y-m-d H:i:s");
   $zonaID = $dado['zona'];
   $armazemID = $dado['armazem_id'];
   $tipoZona = $dado['tzid'];
-  //echo "cliente: $cliente , nreq: $nrequisicao , morada: $morada , data: $data , artigo: $artigo , npaletes: $npaletes";
-  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, confirmar,confirmarTotal)
-                    VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada',1,1)";
+  $sql = "INSERT INTO guia (cliente_id, guia_id, tipo_guia_id, tipo_palete_id, tipo_zona_id, armazem_id, artigo_id, data_prevista, numero_paletes, numero_requisicao, morada, confirmar,confirmarTotal) VALUES ($cliente, $idGuia, 4, $tipoPalete, $tipoZona, $armazemID, $artigo, '$data', '$npal', '$nrequisicao', '$morada',1,1)";
   if (mysqli_query($conn, $sql)) { }
   $sql10 = mysqli_query($conn, "UPDATE guia SET confirmar = 1, confirmarTotal = 1 WHERE id=$idGuia ");
   if (mysqli_query($conn, $sql10)) { }
   $sql6 = mysqli_query($conn, "SELECT * FROM palete WHERE artigo_id='$artigo' ORDER BY Data ASC");
-  //$sql7 = mysqli_query($conn, "DELETE FROM palete WHERE artigo_id='$sql5' ORDER BY Data ASC LIMIT $npaletes");
   foreach ($sql6 as $eachRow2) {
     $count++;
     if ($count <= $npal) {
-      //echo $count;
       $paleteId = $eachRow2['id'];
       $sql10 = mysqli_query($conn, "UPDATE localizacao SET hasPalete = 0, palete_id = NULL, zona_id = NULL, data_entrada = NULL WHERE palete_id=$paleteId ORDER BY data_entrada ASC LIMIT $npal");
       if (mysqli_query($conn, $sql10)) {
@@ -62,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -84,6 +80,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+
   body {
     background-color: #fcfcfc !important;
   }
@@ -108,7 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   .pagination>li>a,
   .pagination>li>span {
-    /* margin-top: 2rem; */
     text-align: center;
     border-style: solid !important;
     border-width: 1px !important;
@@ -122,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   .pagination>li.active>a,
   .pagination>li.active>span {
-    /* margin-top: 2rem; */
     font-size: 14.4px !important;
     background-color: #007bff !important;
     border-radius: 1px !important;
@@ -131,7 +146,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   #myTable_previous a {
-    /* background-color: black !important; */
     border-style: solid !important;
     border-width: 1px !important;
     border-color: #dfe3e7 !important;
@@ -140,7 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   #myTable_next a {
-    /* background-color: black !important; */
     border-style: solid !important;
     border-width: 1px !important;
     border-color: #dfe3e7 !important;
@@ -186,21 +199,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   .modal-backdrop {
     opacity: 0.3 !important;
   }
+
+  #searchbox {
+    text-align: left;
+    width: 15rem;
+    height: 1.7rem;
+    position: relative;
+    float: right;
+    margin-top: 3px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .mobileTable {
+      overflow-x: auto;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1240px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .dataTables_wrapper .dt-buttons {
+      margin-top: -9rem;
+    }
+  }
+
+  @media (max-width: 411px) {
+    .dataTables_wrapper .dt-buttons {
+      margin-top: -10.8rem;
+    }
+  }
 </style>
 
 <body>
   <form class="container" action="/POM-Logistica/Operador/Guia_Operador.php" style="font-family: 'Varela Round', sans-serif; font-size:13px; z-index:1" method="post">
     <div class="table-wrapper" style="margin-top:5rem;">
       <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
-        <div class="row">
-          <div class="col-sm-6">
-            <h2>Guias de <b>Transporte</b> por confirmar</h2>
-            <input type="search" z-index="500" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:51rem; margin-top:-2.1rem; border-radius:2px" id="searchbox">
-          </div>
-        </div>
+        <input type="search" z-index="500" class="form-control" placeholder="Procurar" id="searchbox">
+        <h2>Guias de <b>Transporte</b> por confirmar</h2>
       </div>
-      <div id="Testeeee"></div>
-      <div id="DivEntrega"></div>
+      <div class="mobileTable">
+        <div id="Testeeee"></div>
+      </div>
     </div>
   </form>
 </body>

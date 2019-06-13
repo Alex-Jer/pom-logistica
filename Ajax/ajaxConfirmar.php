@@ -24,13 +24,12 @@ foreach ($query as $eachRow) {
     $morada = $eachRow['morada'];
     $nomeCliente = $eachRow['clinome'];
     $nomeArmazem = $eachRow['armazemnome'];
-    //Inacabado
     echo '<tr>';
-    echo '<td style="width:20%;"> ' . $nomeCliente . '</t>';
-    echo '<td style="width:20%;"> ' . $numReq . '</td>';
-    echo '<td style="width:25%;"> ' . $morada . '</td>';
-    echo '<td style="width:15%;"> ' . date($dataPrevista) . '</td>';
-    echo '<td style="width:17%; text-align:center"> ' . $numPaletes . '</td>';
-    echo '<td style="width:20%;"> ' . $nomeArmazem . '</td>';
+    echo '<td style="width:190px;"> ' . $nomeCliente . '</t>';
+    echo '<td style="width:190px;"> ' . $numReq . '</td>';
+    echo '<td style="width:190px;"> ' . $morada . '</td>';
+    echo '<td style="width:190px;"> ' . date($dataPrevista) . '</td>';
+    echo '<td style="width:190px; text-align:center"> ' . $numPaletes . '</td>';
+    echo '<td style="width:190px;"> ' . $nomeArmazem . '</td>';
     echo '</tr>';
 }

@@ -14,13 +14,13 @@ echo '
 <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
         <thead>
             <tr>
-                <th style="text-align:center">Cliente</th>
-                <th style="text-align:center">Nº de Requisição</th>
-                <th style="text-align:center">Dia e hora da carga</th>
-                <th style="text-align:center">Nº de Paletes</th>
-                <th style="text-align:center">Artigo</th>
-                <th style="text-align:center">Armazém</th>
-                <th style="text-align:center">Confirmar</th>
+                <th style="text-align:center; width:190px">Cliente</th>
+                <th style="text-align:center; width:190px">Nº de Requisição</th>
+                <th style="text-align:center; width:190px">Dia e hora da carga</th>
+                <th style="text-align:center; width:190px">Nº de Paletes</th>
+                <th style="text-align:center; width:190px">Artigo</th>
+                <th style="text-align:center; width:190px">Armazém</th>
+                <th style="text-align:center; width:190px">Confirmar</th>
             </tr>
         </thead>
         <tbody>
@@ -34,13 +34,13 @@ foreach ($dado as $eachRow) {
     $refArtigo = $eachRow['artigoreef'];
     $time = $eachRow['data_prevista'];
     echo '<tr>';
-    echo '<td style="text-align:center; width:25%"> ' . $nomeCliente . '</td>';
-    echo '<td style="text-align:center; width:15%"> ' . $numeroReq . '</td>';
-    echo '<td style="text-align:center; width:20%"> ' . $time . '</td>';
-    echo '<td style="text-align:center; width:13%"> ' . $qtPal . '</td>';
-    echo '<td style="text-align:center; width:15%"> ' . $refArtigo . '</td>';
-    echo '<td style="text-align:center; width:20%"> ' . $nomeArmazem . '</td>';
-    echo '<td style="text-align:center; width:20%"><button type="submit"  class="btn" style="padding: 1px 1px; border-radius:0.3rem;" name="Confirm3" id="Confirm3"  value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-top:5px">check_circle</i></button></td>';
+    echo '<td style="text-align:center; width:190px"> ' . $nomeCliente . '</td>';
+    echo '<td style="text-align:center; width:190px"> ' . $numeroReq . '</td>';
+    echo '<td style="text-align:center; width:200px"> ' . $time . '</td>';
+    echo '<td style="text-align:center; width:170px"> ' . $qtPal . '</td>';
+    echo '<td style="text-align:center; width:160px"> ' . $refArtigo . '</td>';
+    echo '<td style="text-align:center; width:190px"> ' . $nomeArmazem . '</td>';
+    echo '<td style="text-align:center; width:100px"><button type="submit" class="btn" style="padding: 1px 1px; border-radius:0.3rem;" name="Confirm3" id="Confirm3" value="' . $GuiaID . '"><i class="material-icons" style="color:#ffc107; margin-top:5px">check_circle</i></button></td>';
     echo '</tr>';
 }
 echo '</tbody>';
