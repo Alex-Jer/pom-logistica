@@ -143,8 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     /* width */
     ::-webkit-scrollbar {
-      width: 0.2rem;
-      height: 0.2rem;
+      width: 0.3rem;
+      height: 0.3rem;
     }
 
     /* Track */

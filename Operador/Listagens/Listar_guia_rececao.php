@@ -52,6 +52,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
         "language": {
           url: 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json'
         },
+        "columns": [{
+            "width": "25"
+          },
+          {
+            "width": "25"
+          },
+          {
+            "width": "25"
+          },
+          {
+            "width": "25"
+          },
+          {
+            "width": "25"
+          },
+          {
+            "width": "25"
+          }
+        ],
         dom: 'Bfrtip',
         buttons: [{
             extend: 'copy',
@@ -110,6 +129,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 </head>
 
 <style>
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+    height: 0.3rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+
   body {
     background-color: #fcfcfc !important;
   }
@@ -208,55 +248,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     border-radius: 1px 3px 3px 1px;
     border-left: none;
   }
+
+  #searchbox {
+    text-align: left;
+    width: 15rem;
+    height: 1.7rem;
+    position: relative;
+    float: right;
+    margin-top: -0.1rem;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 1200px) {
+    .mobileTable {
+      overflow-x: auto;
+    }
+  }
 </style>
 
 <body>
   <form class="container" action="/POM-Logistica/PDFs/pdf.php" style="font-family: 'Varela Round', sans-serif; font-size:14px; z-index:1;" method="post">
     <div class="table-wrapper" style="margin-top:5rem;">
+      <input type="search" class="form-control" placeholder="Procurar" id="searchbox">
       <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
-        <div class="row">
-          <div class="col-sm-6">
-            <h2>Guia de <b>Receção</b></h2>
-            <input type="search" class="form-control" placeholder="Procurar" style="text-align:left; width:15rem; height:2rem; position:absolute; margin-left:50.5rem; margin-top:-2.1rem; border-radius:2px" id="searchbox">
-          </div>
-        </div>
+        <h2>Guia de <b>Receção</b></h2>
       </div>
-      <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
-        <thead style="margin-top:-5rem">
-          <tr>
-            <th style="width:20%; text-align:center">Cliente</th>
-            <th style="width:20%; text-align:center">Dia e hora da carga</th>
-            <th style="width:15%; text-align:center">Nº de Paletes</th>
-            <th style="width:20%; text-align:center;">Artigo</th>
-            <th style="width:20%; text-align:center">Armazém</th>
-            <th style="width:20%; text-align:center">PDF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          $dado = mysqli_query($conn, "SELECT guia.id as idg,guia.artigo_id,guia.cliente_id,guia.numero_paletes, guia.data_prevista, guia.numero_requisicao,guia.armazem_id, guia.confirmar, guia.confirmarTotal, cliente.nome as clientenome ,armazem.nome as armazemnome,artigo.referencia as artigoreef FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id WHERE tipo_guia_id=3 ");
-          foreach ($dado as $eachRow) {
-            $GuiaID = $eachRow['idg'];
-            $qtPal = $eachRow['numero_paletes'];
-            $numeroReq = $eachRow['numero_requisicao'];
-            $nomeArmazem = $eachRow['armazemnome'];
-            $nomeCliente = $eachRow['clientenome'];
-            $refArtigo = $eachRow['artigoreef'];
-            $timeRN = $eachRow['data_prevista'];
-            echo '<tr class="table-row" data-value="' . $GuiaID . '">';
-            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $nomeCliente . '</td>';
-            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $timeRN . '</td>';
-            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:15%; text-align:center"> ' . $qtPal . '</td>';
-            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $refArtigo . '</td>';
-            echo '<td data-toggle="modal" data-target="#exampleModal2" style="width:20%; text-align:center"> ' . $nomeArmazem . '</td>';
-            ?>
-            <td style="width:20%; cursor:context-menu; text-align:center;"><button type="submit" style="font-size:8px; height:1.5rem; width:1px;" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
+      <div class="mobileTable">
+        <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
+          <thead style="margin-top:-5rem">
+            <tr>
+              <th style=" text-align:center">Cliente</th>
+              <th style=" text-align:center">Dia e hora da carga</th>
+              <th style=" text-align:center">Nº de Paletes</th>
+              <th style=" text-align:center;">Artigo</th>
+              <th style=" text-align:center">Armazém</th>
+              <th style=" text-align:center">PDF</th>
+            </tr>
+          </thead>
+          <tbody>
             <?php
-            echo '</tr>';
-          }
-          ?>
-        </tbody>
-      </table>
+            $dado = mysqli_query($conn, "SELECT guia.id as idg,guia.artigo_id,guia.cliente_id,guia.numero_paletes, guia.data_prevista, guia.numero_requisicao,guia.armazem_id, guia.confirmar, guia.confirmarTotal, cliente.nome as clientenome ,armazem.nome as armazemnome,artigo.referencia as artigoreef FROM guia INNER JOIN cliente on guia.cliente_id = cliente.id INNER JOIN artigo on guia.artigo_id=artigo.id INNER JOIN armazem on guia.armazem_id=armazem.id WHERE tipo_guia_id=3 ");
+            foreach ($dado as $eachRow) {
+              $GuiaID = $eachRow['idg'];
+              $qtPal = $eachRow['numero_paletes'];
+              $numeroReq = $eachRow['numero_requisicao'];
+              $nomeArmazem = $eachRow['armazemnome'];
+              $nomeCliente = $eachRow['clientenome'];
+              $refArtigo = $eachRow['artigoreef'];
+              $timeRN = $eachRow['data_prevista'];
+              echo '<tr class="table-row" data-value="' . $GuiaID . '">';
+              echo '<td data-toggle="modal" data-target="#exampleModal2" style="text-align:center"> ' . $nomeCliente . '</td>';
+              echo '<td data-toggle="modal" data-target="#exampleModal2" style="text-align:center"> ' . $timeRN . '</td>';
+              echo '<td data-toggle="modal" data-target="#exampleModal2" style="text-align:center"> ' . $qtPal . '</td>';
+              echo '<td data-toggle="modal" data-target="#exampleModal2" style="text-align:center"> ' . $refArtigo . '</td>';
+              echo '<td data-toggle="modal" data-target="#exampleModal2" style="text-align:center"> ' . $nomeArmazem . '</td>';
+              ?>
+              <td style="w cursor:context-menu; text-align:center;"><button type="submit" style="font-size:8px; height:1.5rem; width:1px;" class="btn" name="GuiaID" value="<?php echo $GuiaID ?>"><i class="fa fa-file-pdf-o" style="font-size:24px; color:#dc3545; margin-left:-7px; margin-top:-8px"></i></button></td>
+              <?php
+              echo '</tr>';
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div><!-- /card-container -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
