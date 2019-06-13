@@ -188,8 +188,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     thead {
-      width: calc(100% - 0rem)
-        /* scrollbar is average 1em/16px width, remove it from thead width */
+      width: calc(100% - 0rem);
+      /* scrollbar is average 1em/16px width, remove it from thead width */
     }
 
     .desktopAdd {
@@ -204,6 +204,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .container {
       margin-top: 4rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 95%;
+      padding: 0 0;
     }
   }
 

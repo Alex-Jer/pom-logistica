@@ -72,7 +72,7 @@ function echoActiveClassIfRequestMatches($requestUri)
         }
 
         100% {
-            transform: translateY(0rem);
+            transform: translateY(0);
             opacity: 1;
         }
 
@@ -117,6 +117,11 @@ function echoActiveClassIfRequestMatches($requestUri)
 
     .nav-tabs {
         width: 100%;
+    }
+
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+        background-color: transparent;
     }
 
     @media (max-width:320px) {

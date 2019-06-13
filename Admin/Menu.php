@@ -1,7 +1,3 @@
-<?php
-//include 'Navbar\navbarAdmin.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +13,6 @@
         <link rel="stylesheet" href="/POM-Logistica/styles/style3.min.css">
         <link rel="icon" type="image/png" href="/POM-Logistica/images/titlelogo.png">
 </head>
-
 
 <script>
         function startTime() {
@@ -60,12 +55,11 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
-
-
         }
 
         .ImagemPequena {
                 background-image: url("/POM-Logistica/images/paletes.png");
+
                 /* Full height */
                 width: 28.5rem;
                 height: 20rem;
@@ -73,8 +67,6 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin-left: 3.5rem;
-
-
         }
 
         .footer {
@@ -92,7 +84,6 @@
         }
 
         .colunaEsquerda {
-
                 width: 46%;
                 height: 100%;
                 float: left;
@@ -100,7 +91,6 @@
         }
 
         .colunaMaisEsquerda {
-
                 width: 2%;
                 height: 100%;
                 float: left;
@@ -227,8 +217,6 @@
         }
 
         @media only screen and (min-width: 483px) and (max-width:578px) {
-
-                /* #row1 {} */
                 .row {
                         margin-right: 0;
                         margin-left: 0;

@@ -35,6 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="/POM-Logistica/styles/style.min.css">
 </head>
 
+<style>
+    body {
+        background-color: #fcfcfc;
+    }
+</style>
+
 <body>
     <div class="container">
         <div class="card card-container">
