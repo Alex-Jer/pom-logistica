@@ -154,12 +154,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     #pdf {
         min-width: auto;
-        width: 1.9rem;
+        width: 3rem;
         text-align-last: center;
-        position: absolute;
         z-index: 500;
         border-radius: 1.5px;
         visibility: hidden;
+    }
+
+    #pdf-icon {
+        position: relative;
+        font-size: 17px;
+        top: 50%;
+        left: 40%;
+        height: 50%;
+        transform: translate(-50%, -30%);
+        width: 10px;
+        height: 10px;
+        display: block;
     }
 
     @media only screen and (min-width:1200px) {
@@ -238,6 +249,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: 12rem;
         }
     }
+
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1240px;
+        }
+    }
 </style>
 
 <body>
@@ -263,14 +280,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
                         <div class="col" id="divFirst">
-                            <label id="lblFirstDay" style="text-align:center; text-indent:-6px">Data Inicial</label>
+                            <label id="lblFirstDay" style="text-align:center; text-indent:18px">Data Inicial</label>
                             <input style="margin-left:auto; margin-right:auto; position:relative" class="form-control" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
                         </div>
                         <div class="col" id="divLast">
-                            <label id="lblFinalDay" style="text-align:center; text-indent:-12px">Data Final</label>
+                            <label id="lblFinalDay" style="text-align:center; text-indent:13px">Data Final</label>
                             <input style="margin-left:auto; margin-right:auto;" class="form-control" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
                         </div>
-                        <button type="submit" class="btn btn-danger btn-sm" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px; font-size:14px; margin-left:auto; margin-right:auto; position:relative; text-align:center"></i> <span></span></button>
+                        <button type="submit" class="btn btn-danger btn-sm" id="pdf"><i class="fa fa-file-pdf-o" id="pdf-icon"></i></button>
                     </div>
                 </div>
                 <div class="mobileTable">
