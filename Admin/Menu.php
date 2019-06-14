@@ -168,6 +168,10 @@
                         min-height: 120px;
                 }
 
+                .small-box>.inner {
+                        max-height: 91px;
+                }
+
                 .colunaDireita {
                         display: none;
                 }
@@ -308,7 +312,7 @@
                                         <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
                                                         <h5><b>Criar</b></h5>
-                                                        <p>Faturas</p>
+                                                        <p>Faturas mensais</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>

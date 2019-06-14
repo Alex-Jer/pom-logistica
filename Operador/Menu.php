@@ -310,8 +310,8 @@
                                 <div class="col p-0 colop mx-auto">
                                         <div class="small-box bg-aqua box-menu" style="width:150px">
                                                 <div class="inner">
-                                                        <h5><b>Pedidos</b></h5>
-                                                        <p>Diários</p>
+                                                        <h5><b>Consultar</b></h5>
+                                                        <p>Pedidos Diários</p>
                                                 </div>
                                                 <div class="icon">
                                                 </div>

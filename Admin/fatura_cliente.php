@@ -189,19 +189,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             position: relative;
             float: right;
             height: 1.7rem;
-            /* margin-top: -2.1rem; */
         }
     }
 
     @media only screen and (max-width:1200px) {
         #cbCliente {
-            /* width: 13rem; */
             height: 1.7rem;
             margin-top: 1rem;
         }
 
         #FirstDay {
-            /* width: 13rem; */
             margin-top: 1rem;
             font-size: 12px;
             text-indent: 0rem;
@@ -209,7 +206,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         #FinalDay {
-            /* width: 13rem; */
             margin-top: 1rem;
             font-size: 12px;
             text-indent: 0rem;
@@ -267,11 +263,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
                         <div class="col" id="divFirst">
-                            <label id="lblFirstDay" style="text-align:center">Data Inicial</label>
+                            <label id="lblFirstDay" style="text-align:center; text-indent:-6px">Data Inicial</label>
                             <input style="margin-left:auto; margin-right:auto; position:relative" class="form-control" id="FirstDay" type="date" value="<?php echo $dataInicial ?>" name="FirstDay">
                         </div>
                         <div class="col" id="divLast">
-                            <label id="lblFinalDay" style="text-align:center">Data Final</label>
+                            <label id="lblFinalDay" style="text-align:center; text-indent:-12px">Data Final</label>
                             <input style="margin-left:auto; margin-right:auto;" class="form-control" id="FinalDay" type="date" value="<?php echo $dataFinal ?>" name="FinalDay">
                         </div>
                         <button type="submit" class="btn btn-danger btn-sm" id="pdf"><i class="fa fa-file-pdf-o" style="margin-left:3px; font-size:14px; margin-left:auto; margin-right:auto; position:relative; text-align:center"></i> <span></span></button>

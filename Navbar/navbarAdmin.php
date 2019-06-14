@@ -48,6 +48,10 @@ function echoActiveClassIfRequestMatches($requestUri)
 </head>
 
 <style>
+    body {
+        background-color: #fcfcfc;
+    }
+
     @media (min-width: 992px) {
         .animate {
             animation-duration: 0.3s;

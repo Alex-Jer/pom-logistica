@@ -10,7 +10,7 @@ mysqli_set_charset($conn, "utf8");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-require(dirname(__FILE__).'\..\fpdf.php');
+require(dirname(__FILE__) . '\..\fpdf.php');
 class myPDF extends FPDF
 {
     function header()
@@ -31,7 +31,6 @@ class myPDF extends FPDF
     {
         $this->SetFont('Times', 'B', 12);
         $this->Cell(40, 10, iconv('UTF-8', 'windows-1252', 'Referência'), 1, 0, 'C');
-        // $this->Cell(40,10,'Name',1,0,'C');
         $this->Cell(40, 10, 'Nome', 1, 0, 'C');
         $this->Cell(60, 10, 'Data e Hora', 1, 0, 'C');
         $this->Cell(25, 10, iconv('UTF-8', 'windows-1252', 'Nº Paletes'), 1, 0, 'C');
@@ -51,13 +50,12 @@ class myPDF extends FPDF
         $nomeCliente = $eachRow['clientenome'];
         $refArtigo = $eachRow['artigoreef'];
         $timeRN = $eachRow['data_prevista'];
-        $this->Cell(40, 10, $numeroReq, 1, 0, 'C');
-        // $this->Cell(40,10,$data->nome,1,0,'L');
-        $this->Cell(40, 10, $nomeCliente, 1, 0, 'C');
+        $this->Cell(40, 10, iconv('UTF-8', 'windows-1252', $numeroReq), 1, 0, 'C');
+        $this->Cell(40, 10, iconv('UTF-8', 'windows-1252', $nomeCliente), 1, 0, 'C');
         $this->Cell(60, 10, $timeRN, 1, 0, 'C');
         $this->Cell(25, 10, $qtPal, 1, 0, 'C');
-        $this->Cell(30, 10, $refArtigo, 1, 0, 'C');
-        $this->Cell(50, 10, $nomeArmazem, 1, 0, 'C');
+        $this->Cell(30, 10, iconv('UTF-8', 'windows-1252', $refArtigo), 1, 0, 'C');
+        $this->Cell(50, 10, iconv('UTF-8', 'windows-1252', $nomeArmazem), 1, 0, 'C');
         $this->Ln();
     }
 }
