@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/POM-Logistica/styles/table.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.7/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   /* width */
   ::-webkit-scrollbar {
     width: 0.3rem;
+    height: 0.3rem;
   }
 
   /* Track */
@@ -90,12 +91,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     border-top: 0px solid #dee2e6;
   }
 
+  .mobileTable {
+    overflow-x: auto;
+  }
+
   #cliente {
     text-align-last: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: -2rem;
-    margin-top: 0.1rem;
+    margin-top: -1.9rem;
     width: 14rem;
     height: 1.7rem;
     padding: 1px 1px;
@@ -105,19 +109,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   #DataEntrega2 {
-    /* text-align: center; */
-    /* text-indent: 1.5rem; */
     margin-left: 39rem;
     width: 10rem;
     height: 1.7rem;
     position: relative;
     float: right;
     z-index: 500;
-    margin-top: 0.2rem;
-    margin-bottom: -1rem;
+    margin-top: -1.7rem;
     border-radius: 2px;
     font-size: 15px;
     padding: 1px 1px;
+  }
+
+  @media (max-width: 767px) {
+    #cliente {
+      width: 8rem;
+      font-size: 12px;
+    }
+
+    #DataEntrega2 {
+      width: 8rem;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #cliente {
+      margin-top: -8rem;
+      margin-left: -1.8rem;
+    }
+
+    #DataEntrega2 {
+      margin-top: -1.7rem;
+      margin-left: 8rem;
+      margin-bottom: 6rem;
+      float: none;
+    }
   }
 </style>
 
@@ -138,6 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </li>
       </ul>
       <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
+        <h2><b>Guias </b>diárias</h2>
         <select class="form-control" id="cliente" name="cliente">
           <option value="0" selected>Todos os clientes</option>
           <?php
@@ -149,25 +177,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         </select>
-        <input class="form-control" id="DataEntrega2" type="text" value="<?php echo $timeRN ?>" name="Dataentrega2">
-        <h2 style="max-width:200px;"><b>Guias </b>diárias</h2>
+        <input class="form-control" id="DataEntrega2" type="date" value="<?php echo $timeRN ?>" name="Dataentrega2">
       </div>
-      <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th style="width:20%; text-align:center">Cliente</th>
-            <th style="width:20%; text-align:center">Nº de requisição</th>
-            <th style="width:20%; text-align:center">Data e hora prevista</th>
-            <th style="width:17%; text-align:center">Nº paletes</th>
-            <th style="width:20%; text-align:center">Armazém</th>
-          </tr>
-        </thead>
-        <tbody id="Testeeee">
-          <?php
-          date_default_timezone_set("Europe/Lisbon");
-          ?>
-        </tbody>
-      </table>
+      <div class="mobileTable">
+        <table style="margin-top:-0.6rem; margin-left:auto; margin-right:auto;" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th style="width:20%; text-align:center">Cliente</th>
+              <th style="width:20%; text-align:center">Nº de requisição</th>
+              <th style="width:20%; text-align:center">Data e hora prevista</th>
+              <th style="width:17%; text-align:center">Nº paletes</th>
+              <th style="width:20%; text-align:center">Armazém</th>
+            </tr>
+          </thead>
+          <tbody id="Testeeee">
+            <?php
+            date_default_timezone_set("Europe/Lisbon");
+            ?>
+          </tbody>
+        </table>
+      </div>
       <!--MODAL HERE -->
       <input type="hidden" id="getConfirm">
       <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
@@ -194,12 +223,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </form>
-  <script>
-    $("#DataEntrega2").flatpickr({
-      enableTime: true,
-      dateFormat: "F, d Y H:i"
-    });
-  </script>
 </body>
 
 </html>
