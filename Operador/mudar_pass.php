@@ -8,8 +8,6 @@ include_once($db);
 $navbar = $_SERVER['DOCUMENT_ROOT'];
 $navbar .= "/POM-Logistica/Navbar/navbarOperador.php";
 include_once($navbar);
-// include '/POM-Logistica/db.php';
-// include "/POM-Logistica/Navbar/navbarOperador.php";
 $NewPass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,11 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bind_result($oLdPassword);
   $stmt->fetch();
 
-  // var_dump($pw);
-  // var_dump($oLdPassword);
-  // var_dump($pw2);
-  // var_dump($pw3);
-  // if ($oLdPassword == $pw && $pw3 == $pw2) {
   if ((password_verify($pw, $oLdPassword)) && $pw2 == $pw3) {
     $Fim = true;
   } else {
@@ -62,29 +55,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/POM-Logistica/styles/style.min.css">
-  <link rel="stylesheet" href="\POM-Logistica\styles\table.min.css">
+  <link rel="stylesheet" href="/POM-Logistica/styles/table.min.css">
 </head>
 
+<style>
+  #oldPass {
+    margin-top: 1rem;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #newPass {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #newPass2 {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #confirm {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+</style>
+
 <body>
-  <div class="container">
-    <div class="card card-container">
-      <form action="Operador\mudar_pass.php" method="post">
+  <div class="container card card-container">
+    <form action="Operador/mudar_pass.php" method="post">
+      <div>
         <h1 style="text-align:center">Mudar Palavra-Passe</h1>
-        <div class="row" style="margin-left:20px; margin-top:2rem;">
-          <input type="password" style="margin-bottom:1rem;" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
-        </div>
-        <div class="row" style="margin-left:20px">
-          <input type="password" style="margin-bottom:1rem;" name="textNewPass" id="newPass" tabindex="2" class="form-control" placeholder="Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
-        </div>
-        <div class="row" style="margin-left:20px">
-          <input type="password" name="textNewPass2" class="form-control" id="textNewPass2" tabindex="3" placeholder="Confirmar Nova Password" required>
-          <button type="button" style="font-size:20px; width:20px; height:20px; margin-left:-2.5rem;" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
-        </div>
-        <button class="btn btn-primary" style="margin-top:2rem; margin-left:20px; width:371.7px; margin-bottom:1rem;" type="submit">Confirmar</button>
-      </form><!-- /form -->
-    </div>
+      </div>
+      <div>
+        <input type="password" name="textPass" id="oldPass" tabindex="1" class="form-control" placeholder="Password antiga" required autofocus>
+        <button type="button" class="btn-eye" onclick="myFunction()"><i class="fa fa-eye" id="ieye" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+      </div>
+      <div>
+        <input type="password" name="textNewPass" id="newPass" tabindex="2" class="form-control" placeholder="Nova Password" required>
+        <button type="button" tabindex="-1" class="btn-eye" onclick="myFunction2()"><i class="fa fa-eye" id="ieye2" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+      </div>
+      <div>
+        <input type="password" name="textNewPass2" id="newPass2" class="form-control" tabindex="3" placeholder="Confirmar Nova Password" required>
+        <button type="button" tabindex="-1" class="btn-eye" onclick="myFunction3()"><i class="fa fa-eye" id="ieye3" style="width:20px; height:20px;" data-toggle="tooltip" title="Mostrar Password"></i></button>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" id="confirm" type="submit">Confirmar</button>
+      </div>
+    </form>
   </div>
 </body>
 
@@ -122,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script>
   function myFunction3() {
-    var x = document.getElementById("textNewPass2");
+    var x = document.getElementById("newPass2");
     if (x.type === "password") {
       x.type = "text";
       $("#ieye3").removeClass('fa fa-eye-open');
