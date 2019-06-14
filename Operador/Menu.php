@@ -272,7 +272,7 @@
                 </div>
                 <div class="colunaEsquerda" style="display:block; margin:auto">
                         <div class="text-center; display:block; margin:auto">
-                                <img src="\POM-Logistica\images\logogrande.png" id="logo" style="display:block; position:relative; margin: 0 auto;">
+                                <img src="\POM-Logistica\images\logogrande.png" id="logo" alt="logo" style="display:block; position:relative; margin: 0 auto;">
                                 <?php
                                 date_default_timezone_set("Europe/Lisbon");
                                 $timeRN = date("Y-m-d");
@@ -362,7 +362,7 @@
                                         </div>
                                 </div>
                         </div>
-                        <img src="/POM-Logistica/images/paletes.png" id="paletes" style="display:block; margin:auto; margin-top:-4rem; width:26rem">
+                        <img src="/POM-Logistica/images/paletes.png" id="paletes" alt="paletes" style="display:block; margin:auto; margin-top:-4rem; width:26rem">
                 </div>
                 <div class="colunaDireita" style="margin-top:-1rem">
                         <div class="Imagem" id="imagem" style="margin-left:1rem">

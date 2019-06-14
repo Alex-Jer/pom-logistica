@@ -255,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
     height: 1.7rem;
     position: relative;
     float: right;
-    margin-top: -0.1rem;
+    margin-top: -3rem;
     border-radius: 2px;
   }
 
@@ -269,10 +269,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { }
 <body>
   <form class="container" action="/POM-Logistica/PDFs/pdf.php" style="font-family: 'Varela Round', sans-serif; font-size:14px; z-index:1;" method="post">
     <div class="table-wrapper" style="margin-top:5rem;">
-      <input type="search" class="form-control" placeholder="Procurar" id="searchbox">
       <div class="table-title" style="background-color:#007bff; margin-top:-5.5rem;">
         <h2>Guia de <b>Receção</b></h2>
       </div>
+      <input type="search" class="form-control" placeholder="Procurar" id="searchbox">
       <div class="mobileTable">
         <table style="margin-left:auto; margin-right:auto;" class="table table-striped table-hover" id="myTable">
           <thead style="margin-top:-5rem">
