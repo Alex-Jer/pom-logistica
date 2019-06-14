@@ -1,0 +1,28 @@
+{
+  "name": "pom-logistica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "admin-lte": "^2.4.10",
+    "bootstrap-select": "^1.13.10",
+    "bootstrap3": "^3.3.5",
+    "flatpickr": "^4.6.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexJeron/POM-Logistica.git"
+  },
+  "author": "Alexandre Jerónimo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexJeron/POM-Logistica/issues"
+  },
+  "homepage": "https://github.com/AlexJeron/POM-Logistica#readme"
+}
