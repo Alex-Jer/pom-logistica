@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Maio-2019 às 18:35
--- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.2
+-- Tempo de geração: 17-Jun-2019 às 12:37
+-- Versão do servidor: 10.3.15-MariaDB
+-- versão do PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `estagio`
+-- Banco de dados: `estagio`
 --
 
 -- --------------------------------------------------------
@@ -146,10 +146,10 @@ CREATE TABLE `guia` (
   `data_prevista` datetime DEFAULT NULL,
   `data_carga` datetime NOT NULL,
   `numero_paletes` int(3) DEFAULT NULL,
-  `numero_requisicao` text,
-  `morada` text,
-  `localidade` text,
-  `matricula` text,
+  `numero_requisicao` text DEFAULT NULL,
+  `morada` text DEFAULT NULL,
+  `localidade` text DEFAULT NULL,
+  `matricula` text DEFAULT NULL,
   `confirmar` tinyint(1) DEFAULT NULL,
   `confirmarTotal` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -531,9 +531,9 @@ CREATE TABLE `utilizador` (
 --
 
 INSERT INTO `utilizador` (`id`, `perfil_id`, `armazem_id`, `nome`, `email`, `password`) VALUES
-(1, 2, 3, 'a', 'a@a.com', 'aa'),
-(2, 1, 3, 'b', 'b@b.com', 'b'),
-(3, 2, 6, 'c', 'c@c.com', 'c');
+(1, 2, 3, 'a', 'a@a.com', '$2y$10$rsD/DO2kMmeSl8BPfcFD3uTabb3whidTR6GCukp6TQhnyKTsHRlPG'),
+(5, 2, 3, 'b', 'b@b.com', '$2y$10$R/iwUXNL.OstbMk8iJMfB.m8jyNdaVKWCn9doXcPEgjUN3kjjbFF6'),
+(6, 1, 6, 'c', 'c@c.com', '$2y$10$NfbE.3DZb4SJz0L7ZjKWmuJoTpZIb6.hte2twJ3P2ynK6NChuyP4a');
 
 -- --------------------------------------------------------
 
@@ -564,30 +564,30 @@ INSERT INTO `zona` (`id`, `armazem_id`, `tipo_zona_id`, `nome`, `preco_zona`, `e
 (6, 6, 1, 'Zona de Paletes baixas no Armazem D', 8, 34, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `armazem`
+-- Índices para tabela `armazem`
 --
 ALTER TABLE `armazem`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `artigo`
+-- Índices para tabela `artigo`
 --
 ALTER TABLE `artigo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cliente_id` (`cliente_id`);
 
 --
--- Indexes for table `cliente`
+-- Índices para tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `documento`
+-- Índices para tabela `documento`
 --
 ALTER TABLE `documento`
   ADD PRIMARY KEY (`id`),
@@ -595,7 +595,7 @@ ALTER TABLE `documento`
   ADD KEY `utilizador_id` (`utilizador_id`);
 
 --
--- Indexes for table `guia`
+-- Índices para tabela `guia`
 --
 ALTER TABLE `guia`
   ADD PRIMARY KEY (`id`),
@@ -608,7 +608,7 @@ ALTER TABLE `guia`
   ADD KEY `guia_ibfk_7` (`artigo_id`);
 
 --
--- Indexes for table `linha`
+-- Índices para tabela `linha`
 --
 ALTER TABLE `linha`
   ADD PRIMARY KEY (`id`),
@@ -619,7 +619,7 @@ ALTER TABLE `linha`
   ADD KEY `cliente_id` (`cliente_id`);
 
 --
--- Indexes for table `localizacao`
+-- Índices para tabela `localizacao`
 --
 ALTER TABLE `localizacao`
   ADD PRIMARY KEY (`id`),
@@ -627,7 +627,7 @@ ALTER TABLE `localizacao`
   ADD KEY `zona_id` (`zona_id`);
 
 --
--- Indexes for table `palete`
+-- Índices para tabela `palete`
 --
 ALTER TABLE `palete`
   ADD PRIMARY KEY (`id`),
@@ -637,37 +637,37 @@ ALTER TABLE `palete`
   ADD KEY `guia_saida_id` (`guia_saida_id`);
 
 --
--- Indexes for table `perfil`
+-- Índices para tabela `perfil`
 --
 ALTER TABLE `perfil`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_guia`
+-- Índices para tabela `tipo_guia`
 --
 ALTER TABLE `tipo_guia`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_linha`
+-- Índices para tabela `tipo_linha`
 --
 ALTER TABLE `tipo_linha`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_palete`
+-- Índices para tabela `tipo_palete`
 --
 ALTER TABLE `tipo_palete`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipo_zona`
+-- Índices para tabela `tipo_zona`
 --
 ALTER TABLE `tipo_zona`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `utilizador`
+-- Índices para tabela `utilizador`
 --
 ALTER TABLE `utilizador`
   ADD PRIMARY KEY (`id`),
@@ -675,7 +675,7 @@ ALTER TABLE `utilizador`
   ADD KEY `perfil_id` (`perfil_id`);
 
 --
--- Indexes for table `zona`
+-- Índices para tabela `zona`
 --
 ALTER TABLE `zona`
   ADD PRIMARY KEY (`id`),
@@ -684,101 +684,101 @@ ALTER TABLE `zona`
   ADD KEY `tipo_palete_id` (`tipo_palete_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `armazem`
+-- AUTO_INCREMENT de tabela `armazem`
 --
 ALTER TABLE `armazem`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `artigo`
+-- AUTO_INCREMENT de tabela `artigo`
 --
 ALTER TABLE `artigo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `cliente`
+-- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `documento`
+-- AUTO_INCREMENT de tabela `documento`
 --
 ALTER TABLE `documento`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `guia`
+-- AUTO_INCREMENT de tabela `guia`
 --
 ALTER TABLE `guia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
 
 --
--- AUTO_INCREMENT for table `linha`
+-- AUTO_INCREMENT de tabela `linha`
 --
 ALTER TABLE `linha`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `localizacao`
+-- AUTO_INCREMENT de tabela `localizacao`
 --
 ALTER TABLE `localizacao`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
--- AUTO_INCREMENT for table `palete`
+-- AUTO_INCREMENT de tabela `palete`
 --
 ALTER TABLE `palete`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
--- AUTO_INCREMENT for table `perfil`
+-- AUTO_INCREMENT de tabela `perfil`
 --
 ALTER TABLE `perfil`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tipo_guia`
+-- AUTO_INCREMENT de tabela `tipo_guia`
 --
 ALTER TABLE `tipo_guia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tipo_linha`
+-- AUTO_INCREMENT de tabela `tipo_linha`
 --
 ALTER TABLE `tipo_linha`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tipo_palete`
+-- AUTO_INCREMENT de tabela `tipo_palete`
 --
 ALTER TABLE `tipo_palete`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tipo_zona`
+-- AUTO_INCREMENT de tabela `tipo_zona`
 --
 ALTER TABLE `tipo_zona`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `utilizador`
+-- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `zona`
+-- AUTO_INCREMENT de tabela `zona`
 --
 ALTER TABLE `zona`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
