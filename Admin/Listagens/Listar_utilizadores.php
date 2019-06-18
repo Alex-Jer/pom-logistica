@@ -257,20 +257,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 echo '<td style="width:25%; text-align:center"> ' . $ArmazemNome . '</td>';
                                 echo '<td style="width:20%; text-align:center">';
                                 ?>
-                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
-                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
-                                <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="edit" id="edit" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="delete" id="delete" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                                <input type="hidden" value="<?php echo $buscaId ?>">
                                 <?php '</td>';
                                 echo '</tr>';
                             }
                             ?>
-                            <!-- <div id="Testeeee"></div> -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div id="Testeeee"></div>
         <!-- Modal -->
         <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -393,21 +391,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </script>
 
-<script>
-    $('button[name="teste2"]').on("click", function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/teste.php',
-            type: 'POST',
-            data: {
-                id: $(this).val()
-            },
-            success: function(data) {
-                $("#Testeeee").html(data);
-            },
-        });
-    });
-</script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         // Activate tooltip
@@ -464,7 +447,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-    $('button[name="teste4"]').on("click", function() {
+    $('button[name="edit"]').on("click", function() {
         $.ajax({
             url: '/POM-Logistica/Ajax/ajaxEditUtilizador.php',
             type: 'POST',

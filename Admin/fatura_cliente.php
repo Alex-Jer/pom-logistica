@@ -347,21 +347,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-    $('button[name="teste2"]').on("click", function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/teste.php',
-            type: 'POST',
-            data: {
-                id: $(this).val()
-            },
-            success: function(data) {
-                $("#Testeeee").html(data);
-            },
-        });
-    });
-</script>
-
-<script>
     $('button[name="teste4"]').on("click", function() {
         $.ajax({
             url: '/POM-Logistica/Ajax/ajaxEdit.php',
@@ -379,7 +364,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#cbCliente").on("change", function() {
         $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura.php',
             type: 'POST',
             data: {
                 id: $(this).val(),
@@ -399,7 +384,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#FirstDay").on("change", function() {
         $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura.php',
             type: 'POST',
             data: {
                 id: $("#cbCliente").val(),
@@ -419,7 +404,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     $("#FinalDay").on("change", function() {
         $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxFatura2.php',
+            url: '/POM-Logistica/Ajax/ajaxFatura.php',
             type: 'POST',
             data: {
                 id: $("#cbCliente").val(),

@@ -19,7 +19,7 @@ echo '
 </select>
 <input class="form-control" style="text-align:center; margin-top:1rem; margin-left:auto; margin-right:auto;" type="text" id="date" name="dataentrega" placeholder="Data e hora de entrega" onfocus="(this.type=\'datetime-local\')" id="date" required>
 <select class="form-control" name="comboboxArtigo" style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" id="comboboxArtigo" required>
-  <option value="" disabled selected>Artigo</option> 
+  <option value="" disabled selected>Artigo</option>
 </select>
 <select class="form-control" name="comboboxTipo_Palete" id="TipoPalete" style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" required>
 <option value="" disabled selected>Tipo de paletes</option>';
@@ -41,7 +41,7 @@ echo '
 </div>
 <select class="form-control" name="Armazem" id="Armazem" style="display:none; text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D;" required></select>
 <div id="Espaco"></div>
-<div id="HiddenTeste" name="HiddenTeste">
+<div id="Hidden" name="Hidden">
 </div>
   </div>
 <div class="modal-footer">
@@ -96,7 +96,7 @@ echo '
       type: 'POST',
       data: {
         id: $("#Armazem").val(),
-        teste: $("#TipoZona").val()
+        tipozona: $("#TipoZona").val()
       },
       success: function(data) {
         document.getElementById("inputqt").setAttribute("max", data);
@@ -108,7 +108,7 @@ echo '
 <script>
   $("#comboboxCli").on("change", function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxaArtigoCliente.php',
+      url: '/POM-Logistica/Ajax/ajaxArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#comboboxCli").val()

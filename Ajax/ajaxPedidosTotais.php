@@ -68,7 +68,7 @@ echo '</tbody> </table>';
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxTesteasd.php',
+            url: '/POM-Logistica/Ajax/ajaxDetalhesGuia.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')

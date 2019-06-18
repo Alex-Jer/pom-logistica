@@ -13,7 +13,6 @@ if ($conn->connect_error) {
 }
 
 require(dirname(__FILE__) . '/../fpdf.php');
-// require(__DIR__ . '/../fpdf.php');
 class myPDF extends FPDF
 {
     function header()
@@ -41,16 +40,16 @@ class myPDF extends FPDF
         $FinalDay = date("Y-m-t");
         $FirstDay = date("Y-m-01");
         $this->SetFont('Times', '', 12);
-        $teste = $this->w;
-        $teste = $teste / 2;
-        $teste = $teste - 20;
-        $this->SetX($teste);
+        $x = $this->w;
+        $x = $x / 2;
+        $x = $x - 20;
+        $this->SetX($x);
         $DataInicial = $_POST['GetDataInicial'];
         $DataFinal = $_POST['GetDataFinal'];
         $newDate = date("d/m/Y", strtotime($DataInicial));
         $newDateFinal = date("d/m/Y", strtotime($DataFinal));
         $this->Cell(20, 5, "$newDate -", 0, 0, 'C');
-        $this->SetX($teste + 30);
+        $this->SetX($x + 30);
         $this->Cell(5, 5, $newDateFinal, 0, 0, 'C');
         $this->Ln(20);
     }
@@ -135,75 +134,75 @@ class myPDF extends FPDF
             $Total = $CargaFinal + ($precoZona * $numPaletes * $diasArmazenamento);
             ?>
 
-                                                                    <?php
-                                                                    $result = $conn->query("SELECT count(*) FROM linha  WHERE guia_id = '$guiaid'");
-                                                                    $row = $result->fetch_row();
-                                                                    $count = $row[0];
-                                                                    if ($count == 0) {
-                                                                        $sql = "INSERT INTO linha (cliente_id, tipo_linha_id, guia_id, artigo_id,quantidade,valor,data_guia) VALUES ('" . $_POST['GetCliente'] . "',$tipoLinha,$guiaid, $ArtigoIDD ,$numPaletes,'$Total','$dataGuias')";
-                                                                        if (mysqli_query($conn, $sql)) { }
-                                                                    }
-                                                                    $this->Cell(30, 10, "$NomeGuia", 'B,L', 0, 'C');
-                                                                    $this->Cell(30, 10, "$numReq", 'B', 0, 'C');
-                                                                    $this->Cell(20, 10, $numPaletes, 'B', 0, 'C');
-                                                                    $this->Cell(25, 10, $ArtigoRef, 'B', 0, 'C');
-                                                                    $this->Cell(15, 10, $diasArmazenamento, 'B', 0, 'C');
-                                                                    $this->Cell(40, 10, $precoZona * $numPaletes * $diasArmazenamento . chr(128), 'B', 0, 'C');
-                                                                    $this->Cell(50, 10, $CargaFinal . chr(128), 'B', 0, 'C');
-                                                                    $this->Cell(30, 10, $Total . chr(128), 'B,R', 0, 'C');
-                                                                    // $this->Cell(50,10,$tech_total,1,0,'C');
-                                                                    $this->Ln();
-                                                                }
-                                                            }
-                                                            function headerTableBot()
-                                                            {
-                                                                $this->SetFont('Times', 'B', 12);
-                                                                $this->Cell(25, 10, "", 'T,B,L', 0, 'C');
-                                                                $this->Cell(25, 10, 'Total Paletes', 'B,T', 0, 'c');
-                                                                $this->Cell(25, 10, 'IVA(23%)', 'B,T', 0, 'C');
-                                                                $this->Cell(35, 10, 'Total', 'B,R,T', 0, 'C');
-                                                                $this->Ln();
-                                                            }
-                                                            function viewTableBot($conn)
-                                                            {
-                                                                $this->SetFont('Times', 'B', 12);
-                                                                $res = $conn->query("SELECT sum(valor) as suma FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
-                                                                $val = $res->fetch_array();
-                                                                $tech_total = $val['suma'];
-                                                                $iva = $tech_total * 0.23;
-                                                                $iva = number_format($iva, 2, '.', '');
-                                                                date_default_timezone_set("Europe/Lisbon");
-                                                                $timeRN = date("Y-m-d H:i:s");
-                                                                $FinalDay = date("Y-m-t");
-                                                                $FirstDay = date("Y-m-01");
-                                                                $res2 = $conn->query("SELECT sum(quantidade) as sumpal FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
-                                                                $val2 = $res2->fetch_array();
-                                                                $totalpal = $val2['sumpal'];
-                                                                $this->Cell(25, 10, "TOTAL:", 'B,L', 0, 'C');
-                                                                $this->SetFont('Times', '', 12);
-                                                                $this->Cell(25, 10, $totalpal, 'B', 0, 'C');
-                                                                $this->Cell(25, 10, $iva . chr(128), 'B', 0, 'C');
-                                                                $this->Cell(35, 10, $tech_total . chr(128), 'B,R', 0, 'C');
-                                                                $this->Ln();
-                                                                $result = $conn->query("SELECT count(*) FROM documento  WHERE cliente_id = '" . $_POST['GetCliente'] . "' AND data_inicio='" . $_POST['GetDataInicial'] . "' AND data_fim='" . $_POST['GetDataFinal'] . "'");
-                                                                $row = $result->fetch_row();
-                                                                $count = $row[0];
-                                                                if ($count == 0) {
-                                                                    $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('" . $_POST['GetCliente'] . "','" . $_SESSION['perfilId'] . "','$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
-                                                                    if (mysqli_query($conn, $sql2)) {
-                                                                        $id = mysqli_insert_id($conn);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        $pdf = new myPDF();
-                                                        $pdf->AliasNbPages();
-                                                        $pdf->AddPage('L', 'A4', 0);
-                                                        $pdf->SetLeftMargin('34');
-                                                        $pdf->headerTable();
-                                                        $pdf->viewTable($conn);
-                                                        $pdf->SetX(164);
-                                                        $pdf->headerTableBot();
-                                                        $pdf->SetX(164);
-                                                        $pdf->viewTableBot($conn);
-                                                        $pdf->Output();
+                                                                                            <?php
+                                                                                            $result = $conn->query("SELECT count(*) FROM linha  WHERE guia_id = '$guiaid'");
+                                                                                            $row = $result->fetch_row();
+                                                                                            $count = $row[0];
+                                                                                            if ($count == 0) {
+                                                                                                $sql = "INSERT INTO linha (cliente_id, tipo_linha_id, guia_id, artigo_id,quantidade,valor,data_guia) VALUES ('" . $_POST['GetCliente'] . "',$tipoLinha,$guiaid, $ArtigoIDD ,$numPaletes,'$Total','$dataGuias')";
+                                                                                                if (mysqli_query($conn, $sql)) { }
+                                                                                            }
+                                                                                            $this->Cell(30, 10, "$NomeGuia", 'B,L', 0, 'C');
+                                                                                            $this->Cell(30, 10, "$numReq", 'B', 0, 'C');
+                                                                                            $this->Cell(20, 10, $numPaletes, 'B', 0, 'C');
+                                                                                            $this->Cell(25, 10, $ArtigoRef, 'B', 0, 'C');
+                                                                                            $this->Cell(15, 10, $diasArmazenamento, 'B', 0, 'C');
+                                                                                            $this->Cell(40, 10, $precoZona * $numPaletes * $diasArmazenamento . chr(128), 'B', 0, 'C');
+                                                                                            $this->Cell(50, 10, $CargaFinal . chr(128), 'B', 0, 'C');
+                                                                                            $this->Cell(30, 10, $Total . chr(128), 'B,R', 0, 'C');
+                                                                                            // $this->Cell(50,10,$tech_total,1,0,'C');
+                                                                                            $this->Ln();
+                                                                                        }
+                                                                                    }
+                                                                                    function headerTableBot()
+                                                                                    {
+                                                                                        $this->SetFont('Times', 'B', 12);
+                                                                                        $this->Cell(25, 10, "", 'T,B,L', 0, 'C');
+                                                                                        $this->Cell(25, 10, 'Total Paletes', 'B,T', 0, 'c');
+                                                                                        $this->Cell(25, 10, 'IVA(23%)', 'B,T', 0, 'C');
+                                                                                        $this->Cell(35, 10, 'Total', 'B,R,T', 0, 'C');
+                                                                                        $this->Ln();
+                                                                                    }
+                                                                                    function viewTableBot($conn)
+                                                                                    {
+                                                                                        $this->SetFont('Times', 'B', 12);
+                                                                                        $res = $conn->query("SELECT sum(valor) as suma FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
+                                                                                        $val = $res->fetch_array();
+                                                                                        $tech_total = $val['suma'];
+                                                                                        $iva = $tech_total * 0.23;
+                                                                                        $iva = number_format($iva, 2, '.', '');
+                                                                                        date_default_timezone_set("Europe/Lisbon");
+                                                                                        $timeRN = date("Y-m-d H:i:s");
+                                                                                        $FinalDay = date("Y-m-t");
+                                                                                        $FirstDay = date("Y-m-01");
+                                                                                        $res2 = $conn->query("SELECT sum(quantidade) as sumpal FROM linha WHERE cliente_id='" . $_POST['GetCliente'] . "' and data_guia BETWEEN '" . $_POST['GetDataInicial'] . "' and '" . $_POST['GetDataFinal'] . "' ");
+                                                                                        $val2 = $res2->fetch_array();
+                                                                                        $totalpal = $val2['sumpal'];
+                                                                                        $this->Cell(25, 10, "TOTAL:", 'B,L', 0, 'C');
+                                                                                        $this->SetFont('Times', '', 12);
+                                                                                        $this->Cell(25, 10, $totalpal, 'B', 0, 'C');
+                                                                                        $this->Cell(25, 10, $iva . chr(128), 'B', 0, 'C');
+                                                                                        $this->Cell(35, 10, $tech_total . chr(128), 'B,R', 0, 'C');
+                                                                                        $this->Ln();
+                                                                                        $result = $conn->query("SELECT count(*) FROM documento  WHERE cliente_id = '" . $_POST['GetCliente'] . "' AND data_inicio='" . $_POST['GetDataInicial'] . "' AND data_fim='" . $_POST['GetDataFinal'] . "'");
+                                                                                        $row = $result->fetch_row();
+                                                                                        $count = $row[0];
+                                                                                        if ($count == 0) {
+                                                                                            $sql2 = "INSERT INTO documento (cliente_id, utilizador_id, data_emissao, data_inicio,data_fim,iva,total) VALUES ('" . $_POST['GetCliente'] . "','" . $_SESSION['perfilId'] . "','$timeRN','$FirstDay','$FinalDay','$iva','$tech_total')";
+                                                                                            if (mysqli_query($conn, $sql2)) {
+                                                                                                $id = mysqli_insert_id($conn);
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                $pdf = new myPDF();
+                                                                                $pdf->AliasNbPages();
+                                                                                $pdf->AddPage('L', 'A4', 0);
+                                                                                $pdf->SetLeftMargin('34');
+                                                                                $pdf->headerTable();
+                                                                                $pdf->viewTable($conn);
+                                                                                $pdf->SetX(164);
+                                                                                $pdf->headerTableBot();
+                                                                                $pdf->SetX(164);
+                                                                                $pdf->viewTableBot($conn);
+                                                                                $pdf->Output();

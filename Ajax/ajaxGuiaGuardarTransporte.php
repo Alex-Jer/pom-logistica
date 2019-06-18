@@ -11,11 +11,11 @@ echo '<div class="modal-content">
 <div class="modal-body">
   <select name="cliente" class="form-control" style="text-align-last:center; margin-top:1rem; margin-left:auto; margin-right:auto; color: #6C757D; height:auto;" id="clienteCBID" required>
     <option value="" disabled selected>Cliente</option>';
-  $busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
-  foreach ($busca as $eachRow) {
-    echo '<option value=' . $eachRow['id'] . '>' . $eachRow['nome'] . '</option>';
-  }
-  echo '
+$busca = mysqli_query($conn, "SELECT id,nome FROM cliente");
+foreach ($busca as $eachRow) {
+  echo '<option value=' . $eachRow['id'] . '>' . $eachRow['nome'] . '</option>';
+}
+echo '
   </select>
   <select class="form-control" name="artigo" style="text-align-last:center; margin-top:1rem;  margin-left:auto; margin-right:auto; color: #6C757D; height:auto;" id="artigoseID" required>
   <option value="" disabled selected>Artigo</option>
@@ -56,7 +56,7 @@ echo '<div class="modal-content">
 <script>
   $("#clienteCBID").on("change", function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxaArtigoCliente.php',
+      url: '/POM-Logistica/Ajax/ajaxArtigoCliente.php',
       type: 'POST',
       data: {
         id: $("#clienteCBID").val()

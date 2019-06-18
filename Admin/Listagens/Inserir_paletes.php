@@ -287,7 +287,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th style="width:15%; text-align:center; visibility:collapse;" id="registarH">Registar Palete</th>
               </tr>
             </thead>
-            <tbody id="Testeeee"></tbody>
+            <tbody id="body"></tbody>
           </table>
         </div>
         <div id="DivEntrega2"></div>
@@ -358,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxTeste2.php',
+      url: '/POM-Logistica/Ajax/ajaxInserirPaletes.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -368,7 +368,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#notConfirmed").addClass('btn3')
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
@@ -377,7 +377,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#Confirmed").on("click", function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxTeste2.php',
+      url: '/POM-Logistica/Ajax/ajaxInserirPaletes.php',
       type: 'POST',
       data: {
         id: $("#Confirmed").val()
@@ -388,7 +388,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Confirmed").addClass('btn3')
         $("#notConfirmed").removeClass('btn3')
         $("#notConfirmed").addClass('btn2')
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
@@ -397,7 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxTeste2.php',
+      url: '/POM-Logistica/Ajax/ajaxInserirPaletes.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -407,7 +407,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#notConfirmed").addClass('btn3')
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });

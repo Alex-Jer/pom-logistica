@@ -159,13 +159,13 @@ html {
   white-space: nowrap;
 }
 
-.custom-select-teste {
+.custom-select {
   position: relative;
   font-family: Arial;
   font-size: 150%;
 }
 
-.custom-select-teste select {
+.custom-select select {
   display: none; /*hide original SELECT element: */
 }
 

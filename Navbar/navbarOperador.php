@@ -37,7 +37,7 @@ function echoActiveClassIfRequestMatches($requestUri)
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style3.min.css">
+    <link rel="stylesheet" type="text/css" href="\POM-Logistica\styles\style2.min.css">
     <link rel="icon" type="image/png" href="\POM-Logistica\images/titlelogo.png  ">
 
     <!-- jQuery -->

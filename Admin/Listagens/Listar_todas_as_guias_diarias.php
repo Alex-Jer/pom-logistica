@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <th style="width:20%; text-align:center">Armazém</th>
             </tr>
           </thead>
-          <tbody id="Testeeee">
+          <tbody id="body">
             <?php
             date_default_timezone_set("Europe/Lisbon");
             ?>
@@ -231,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
         $("#getConfirm").val($("#notConfirmed").val());
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#notConfirmed").removeClass('btn3')
         $("#notConfirmed").addClass('btn2')
         $("#getConfirm").val($("#Confirmed").val());
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
@@ -276,24 +276,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Confirmed").removeClass('btn3')
         $("#Confirmed").addClass('btn2')
         $("#getConfirm").val($("#notConfirmed").val());
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
 </script>
 
-
-
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+      url: '/POM-Logistica/Ajax/AjaxGuia.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val(),
       },
       success: function(data) {
-        $("#guiaTeste").html(data);
+        $("#guia").html(data);
       },
     });
   });
@@ -310,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });
@@ -327,7 +325,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         tipo_cliente_id: $("#cliente").val()
       },
       success: function(data) {
-        $("#Testeeee").html(data);
+        $("#body").html(data);
       },
     });
   });

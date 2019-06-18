@@ -365,13 +365,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 echo '<td data-toggle="modal" data-target="#modalDetails" style="width:20%; text-align:center"> ' . $localidade . '</td>';
                                 echo '<td style="width:15%; text-align:center">';
                                 ?>
-                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="teste4" id="teste4" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
-                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="teste2" id="teste2" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
-                                <input type="hidden" value="<?php echo $buscaId ?>" name="teste">
+                                <button type="button" style="width:1px; height:1.5rem; color:#ffc107;" value="<?php echo $buscaId ?>" name="edit" id="edit" href="#editEmployeeModal" class="btn" data-toggle="modal"><i class="material-icons" style="margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Editar">&#xE254;</i></button>
+                                <button type="button" style="width:1px; height:1.5rem;" class="btn" value="<?php echo $buscaId ?>" name="delete" id="delete" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" style="color:#dc3545; margin-left:-11px; margin-top:-15px" data-toggle="tooltip" title="Apagar">&#xE872;</i></button>
+                                <input type="hidden" value="<?php echo $buscaId ?>">
                                 <?php '</td>';
                                 echo '</tr>';
                             }
-                            ?><div id="Testeeee"></div>
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -489,22 +489,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 </script>
 
-<script>
-    $('button[name="teste2"]').on("click", function() {
-        $.ajax({
-            url: '/POM-Logistica/Ajax/teste.php',
-            type: 'POST',
-            data: {
-                id: $(this).val()
-            },
-            success: function(data) {
-                $("#Testeeee").html(data);
-                $("#modalDetails").modal("hide");
-            },
-        });
-    });
-</script>
-
 <script type="text/javascript">
     $(document).on("keydown", function(e) {
         var keyCode = e.which || e.keyCode;
@@ -532,7 +516,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <script>
-    $('button[name="teste4"]').on("click", function(e) {
+    $('button[name="edit"]').on("click", function(e) {
         $.ajax({
             url: '/POM-Logistica/Ajax/ajaxEdit.php',
             type: 'POST',

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css">
-    <link rel="stylesheet" href="styles\style.css">
+    <link rel="stylesheet" href="styles\style.min.css">
     <link rel="stylesheet" href="node_modules\jquery\dist\jquery.js">
 </head>
 
@@ -78,20 +78,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         ?>
                         <input class="form-control" onchange="this.form.submit()" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem;" type="date" value="<?php echo $data ?>" name="data">
                     <?php
-                    } else {
+                } else {
                     ?>
                         <input class="form-control" onchange="this.form.submit()" style="text-align:center; text-indent:1.5rem; margin-left:auto; margin-right:auto; width:17rem;" type="date" value="<?php echo $timeRN ?>" name="data">
                     <?php
-                    }
-                    ?>
+                }
+                ?>
                     <div>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
-                        </li>
-                        <li class="nav-item">
-                            <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
-                        </li>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <button style="border-radius:0.2rem; margin-right:1rem;" class="nav-link active" value="1" data-toggle="pill" id="notConfirmed">Por Confirmar</button>
+                            </li>
+                            <li class="nav-item">
+                                <button style="border-radius:0.2rem;" class="nav-link" value="2" data-toggle="pill" id="Confirmed">Confirmadas</button>
+                            </li>
                         </ul>
                         <table style="margin-top:2rem; margin-left:-25px; width: 1160px; text-align:center" class="table">
                             <thead>
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao,  guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$data' ORDER BY data_carga ASC");
                                 } else {
                                     //$query = mysqli_query($conn, "SELECT * FROM guia WHERE tipo_guia_id = 2 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
-                                    
+
                                     $query = mysqli_query($conn, "SELECT cliente.nome as clinome, armazem.nome as armazemnome,guia.data_carga as data_carga,guia.data_prevista as data_prevista, guia.numero_paletes as numero_paletes ,guia.cliente_id as cliente_id, guia.numero_requisicao as numero_requisicao, guia.morada as morada FROM guia INNER JOIN cliente on cliente.id = guia.cliente_id INNER JOIN armazem on armazem.id=guia.armazem_id WHERE tipo_guia_id = 2 or tipo_guia_id = 1 AND DATE(data_prevista)='$timeRN' ORDER BY data_carga ASC");
                                 }
                                 foreach ($query as $eachRow) {

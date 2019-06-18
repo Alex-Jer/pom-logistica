@@ -41,7 +41,7 @@ if ($_POST['id'] == 1) {
 }
 
 foreach ($query as $eachRow) {
-    $GuiaID=$eachRow['guiaid'];
+    $GuiaID = $eachRow['guiaid'];
     $clienteId = $eachRow['cliente_id'];
     $numReq = $eachRow['numero_requisicao'];
     $numPaletes = $eachRow['numero_paletes'];
@@ -50,7 +50,7 @@ foreach ($query as $eachRow) {
     $morada = $eachRow['morada'];
     $nomeCliente = $eachRow['clinome'];
     $nomeArmazem = $eachRow['armazemnome'];
-    echo '<tr class="table-row" data-value="'.$GuiaID.'" data-toggle="modal" data-target="#exampleModal2">';
+    echo '<tr class="table-row" data-value="' . $GuiaID . '" data-toggle="modal" data-target="#exampleModal2">';
     echo '<td style="width:20%; text-align:center"> ' . $nomeCliente . '</t>';
     echo '<td style="width:20%; text-align:center;"> ' . $numReq . '</td>';
     echo '<td style="width:20%; text-align:center;"> ' . date($dataPrevista) . '</td>';
@@ -63,7 +63,7 @@ foreach ($query as $eachRow) {
 <script>
     $(".table-row").click(function() {
         $.ajax({
-            url: '/POM-Logistica/Ajax/ajaxTesteasd.php',
+            url: '/POM-Logistica/Ajax/ajaxDetalhesGuia.php',
             type: 'POST',
             data: {
                 id: $(this).data('value')
@@ -73,5 +73,4 @@ foreach ($query as $eachRow) {
             },
         });
     });
-
 </script>

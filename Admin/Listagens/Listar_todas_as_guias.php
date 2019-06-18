@@ -448,10 +448,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button style="border-radius:0.2rem;" class="nav-link btn3" value="2" data-toggle="pill" id="Confirmed" name="transporte">Transporte</button>
         </li>
       </ul>
-      <div id="guiaTeste" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto;"></div>
+      <div id="guia" style="margin-top:-5.5rem; margin-left:auto; margin-right:auto;"></div>
       <input class="form-control mobileData" style="text-align:center; text-indent:1.5rem; margin-left:18.5rem; margin-top:-3rem; margin-right:auto; width:15rem; height:1.7rem; position:absolute; border-radius:2px;" id="DataEntrega2" type="text" name="Dataentrega2" placeholder="Data e hora de entrega" onfocus="(this.type='date')">
-      <div class="mobileTable desktopTable" id="Testeeee">
-      </div>
+      <div class="mobileTable desktopTable" id="table"></div>
 
       <!--MODAL HERE -->
       <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
@@ -492,19 +491,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#notConfirmed").addClass('btn3')
           $("#Confirmed").removeClass('btn3')
           $("#Confirmed").addClass('btn2')
-          $("#Testeeee").html(data);
+          $("#table").html(data);
         },
       });
 
       $.ajax({
-        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        url: '/POM-Logistica/Ajax/AjaxGuia.php',
         type: 'POST',
         data: {
           id: $("#notConfirmed").val(),
 
         },
         success: function(data) {
-          $("#guiaTeste").html(data);
+          $("#guia").html(data);
         },
       });
     });
@@ -524,19 +523,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#Confirmed").addClass('btn3')
           $("#notConfirmed").removeClass('btn3')
           $("#notConfirmed").addClass('btn2')
-          $("#Testeeee").html(data);
+          $("#table").html(data);
         },
       });
 
       $.ajax({
-        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        url: '/POM-Logistica/Ajax/AjaxGuia.php',
         type: 'POST',
         data: {
           id: $("#Confirmed").val(),
 
         },
         success: function(data) {
-          $("#guiaTeste").html(data);
+          $("#guia").html(data);
         },
       });
     });
@@ -554,19 +553,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#notConfirmed").addClass('btn3')
           $("#Confirmed").removeClass('btn3')
           $("#Confirmed").addClass('btn2')
-          $("#Testeeee").html(data);
+          $("#table").html(data);
         },
       });
 
       $.ajax({
-        url: '/POM-Logistica/Ajax/ajaxGuiaTeste.php',
+        url: '/POM-Logistica/Ajax/AjaxGuia.php',
         type: 'POST',
         data: {
           id: $("#notConfirmed").val(),
 
         },
         success: function(data) {
-          $("#guiaTeste").html(data);
+          $("#guia").html(data);
         },
       });
     });
@@ -584,7 +583,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $("#notConfirmed").addClass('btn3')
           $("#Confirmed").removeClass('btn3')
           $("#Confirmed").addClass('btn2')
-          $("#Testeeee").html(data);
+          $("#table").html(data);
         },
       });
     });

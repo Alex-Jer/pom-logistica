@@ -243,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Guias de <b>Transporte</b> por confirmar</h2>
       </div>
       <div class="mobileTable">
-        <div id="Testeeee"></div>
+        <div id="table"></div>
       </div>
     </div>
   </form>
@@ -254,13 +254,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $("#notConfirmed").on("click", function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxDevolucao2.php',
+      url: '/POM-Logistica/Ajax/ajaxDevolucao.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
       },
       success: function(data) {
-        $("#Testeeee").html(data);
+        $("#table").html(data);
       },
     });
   });
@@ -280,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#Confirmed").addClass('btn3')
         $("#notConfirmed").removeClass('btn3')
         $("#notConfirmed").addClass('btn2')
-        $("#Testeeee").html(data);
+        $("#table").html(data);
       },
     });
   });
@@ -289,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: '/POM-Logistica/Ajax/ajaxDevolucao2.php',
+      url: '/POM-Logistica/Ajax/ajaxDevolucao.php',
       type: 'POST',
       data: {
         id: $("#notConfirmed").val()
@@ -297,7 +297,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       success: function(data) {
         $("#notConfirmed").removeClass('btn2')
         $("#notConfirmed").addClass('btn3')
-        $("#Testeeee").html(data);
+        $("#table").html(data);
       },
     });
   });
